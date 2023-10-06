@@ -15,8 +15,8 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gray-300">
-      <div className="flex justify-between  items-center h-24 max-w-[1240px] px-4 mx-auto">
+    <header className="header">
+      <div className="flex justify-between items-center h-24 max-w-[1240px]  px-4 mx-auto">
         <h1 className=" flex ">logo</h1>
         {/* Navbar destock */}
         <nav className=" hidden md:flex gap-1 p-6 ">
@@ -26,7 +26,7 @@ const Header = () => {
             <li>Contacto</li>
           </ul>
           <div className="flex g-2 items-center border rounded-xl h-10 px-3 mt-4 bg-slate-50">
-            <input className="border-none  bg-slate-50" type="text" />
+            <input className="border-none  bg-slate-50"  type="text" />
             <AiOutlineSearch />
           </div>
         </nav>
@@ -42,11 +42,11 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <div>
+    
           <div onClick={handleNav} className="block md:hidden">
             {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
           </div>
-        </div>
+       
         {/* Navbar mobile */}
 
         <nav
