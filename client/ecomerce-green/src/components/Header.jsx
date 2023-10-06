@@ -42,11 +42,11 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <div>
+        
           <div onClick={handleNav} className="block md:hidden">
             {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
           </div>
-        </div>
+        
         {/* Navbar mobile */}
 
         <nav
