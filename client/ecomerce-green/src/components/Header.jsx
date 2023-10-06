@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
+    <header className="header fixed w-[100vw]">
       <div className="flex justify-between items-center h-24 max-w-[1240px]  px-4 mx-auto">
         <h1 className=" flex ">logo</h1>
         {/* Navbar destock */}

@@ -7,6 +7,6 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 .header{
-    background:  rgba(183, 192, 206, 0.25) repeat-x scroll 0 0 transparent;
+    background:  rgba(183, 192, 206, 0.25);
 
 }
