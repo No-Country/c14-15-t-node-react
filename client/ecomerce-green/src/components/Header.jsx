@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header fixed w-[100vw]">
+    <header className="header fixed w-[100vw] z-[2] text-white">
       <div className="flex justify-between items-center h-24 max-w-[1240px]  px-4 mx-auto">
         <h1 className=" flex ">logo</h1>
         {/* Navbar destock */}
@@ -43,16 +43,17 @@ const Header = () => {
           </ul>
         </div>
     
+        
           <div onClick={handleNav} className="block md:hidden">
             {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
           </div>
-       
+        
         {/* Navbar mobile */}
 
         <nav
           className={
             nav
-              ? "bg-gray-300 fixed left-0 top-0 w-[60%] h-full border-r-gray-900 uppercase ease-in-out duration-500"
+              ? "bg-gray-500 fixed z-[4] left-0 top-0 w-[60%] h-full border-r-gray-900 uppercase ease-in-out duration-500"
               : "fixed left-[-100%]"
           }
         >
