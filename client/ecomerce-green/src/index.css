@@ -61,3 +61,31 @@
     margin-top: 2rem;
     font-weight: 500;
 }
+
+/* Footer */
+
+footer{
+    background-color: #F8924F;
+}
+
+.footer-container{
+    background-color: #051C12;
+    color:#fff;
+}
+.title-footer{
+    font-size: 20px; 
+    color: #051C12;
+    font-weight: 800;
+}
+.footer-icons li:hover{
+    color: rgb(87, 167, 238);
+} 
+
+.btn-footer{
+    background-color: #976336;
+    border-radius: 8px;
+    
+}
+.btn-footer:hover{
+    background-color: #F8924F;
+}
