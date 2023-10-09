@@ -5,6 +5,7 @@ import {
   AiOutlineSearch,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+import logo from '../assets/logo.svg'
 import { VscAccount } from "react-icons/vsc";
 
 const Header = () => {
@@ -15,19 +16,24 @@ const Header = () => {
   };
 
   return (
-    <header className="header fixed w-[100vw] z-[2] text-white">
-      <div className="flex justify-between items-center h-24 max-w-[1240px]  px-4 mx-auto">
-        <h1 className=" flex ">logo</h1>
+    <header className="header fixed w-[100vw] z-[2] text-white rounded-b-lg border-b-2 border-white ">
+      <div className="flex justify-between items-center h-24 max-w-[1240px]  px-7 mx-auto">
+      
+    <div className=" flex gap-2 ">
+    <img src={logo}></img>
+    <h1 >GreenIX</h1>
+    </div>
+       
         {/* Navbar destock */}
-        <nav className=" hidden md:flex gap-1 p-6 ">
+        <nav className=" hidden md:flex gap-3 p-6 ">
           <ul className=" flex  gap-2 p-6 ">
             <li>Home</li>
             <li>Tienda</li>
             <li>Contacto</li>
           </ul>
           <div className="flex g-2 items-center border rounded-xl h-10 px-3 mt-4 bg-slate-50">
-            <input className="border-none  bg-slate-50"  type="text" />
-            <AiOutlineSearch />
+            <input className="border-none text-black bg-slate-50 focus:border-none active:border-none w-full" placeholder="Buscador"  type="text" />
+            <AiOutlineSearch className="text-gray-800" />
           </div>
         </nav>
         <div className="hidden md:flex">
