@@ -2,9 +2,9 @@ import React from "react";
 
 const Cards = () => {
   return (
-    <section className="landing-cardsection">
+    <section className="cards-bg flex flex-col content-start justify-center items-center my-20 lg:flex-row">
       <div className="landing-card">
-        <img src="./public/PanelSolar.svg" alt="" />
+        <img src="/PanelSolar.svg" alt="" />
         <h4>Tu solución brillante para un hogar ecoamigable</h4>
         <p>
           ¡Genera tu propia energía! Con nuestros paneles solares, puedes
@@ -12,7 +12,7 @@ const Cards = () => {
         </p>
       </div>
       <div className="landing-card">
-        <img src="./public/Light.svg" alt="" />
+        <img src="/Light.svg" alt="" />
         <h4>Una luz amigable con el planeta y tu bolsillo</h4>
         <p>
           Ilumina de forma sostenible. Nuestras bombillas de bajo consumo duran
@@ -20,7 +20,7 @@ const Cards = () => {
         </p>
       </div>
       <div className="landing-card">
-        <img src="./public/Fridge.svg" alt="" />
+        <img src="/Fridge.svg" alt="" />
         <h4>Haz la vida más fácil, sin gastar en exceso</h4>
         <p>
           Eficiencia energética al máximo. Nuestros electrodomésticos de bajo

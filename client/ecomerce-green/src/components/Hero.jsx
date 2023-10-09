@@ -2,6 +2,7 @@ import React from "react";
 
 const Hero = () => {
   return (
+
     <section className="Hero">
       <div className="section-hero">
         <h1 className="titulo-hero">¡Bienvenido al Futuro Verde de la Tecnología!</h1>
