@@ -1,9 +1,10 @@
 import React from "react";
+import Cards from "./Cards";
 
 const Hero = () => {
   return (
 
-    <section className="Hero">
+    <section className="Hero flex-col">
       <div className="section-hero">
         <h1 className="titulo-hero">¡Bienvenido al Futuro Verde de la Tecnología!</h1>
         <p className="p-hero">
@@ -12,7 +13,10 @@ const Hero = () => {
         </p>
         <button className="btn-hero">Productos</button>
       </div>
+      <Cards />
     </section>
+    
+
   );
 };
 

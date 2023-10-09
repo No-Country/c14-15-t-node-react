@@ -2,7 +2,7 @@ import React from "react";
 
 const Cards = () => {
   return (
-    <section className="cards-bg flex flex-col content-start justify-center items-center my-20 lg:flex-row">
+    <section className="cards-bg flex flex-col content-start justify-center items-center mt-20 w-screen lg:flex-row">
       <div className="landing-card">
         <img src="/PanelSolar.svg" alt="" />
         <h4>Tu solución brillante para un hogar ecoamigable</h4>
