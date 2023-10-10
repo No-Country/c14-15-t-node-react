@@ -4,15 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-.header {
-  background: rgba(183, 192, 206, 0.25);
-}
+
 
 .Hero {
   position: relative;
@@ -121,9 +120,27 @@ align-items: center;
 }
 
 .container-drop{
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    margin: 0;
+}
+/* .Hero{
+    position: relative; 
+    min-height: 100vh; 
+    background-image: url("./assets/imgHero.jpeg");  
+    background-size: cover; 
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: 100%;
 }
 .dropbtn {
@@ -153,8 +170,22 @@ align-items: center;
 .icon-dropdown{
     margin-left: 0.4rem;
     font-size: 1rem;
+
+    color: #FFFFFF; 
+
+} 
+.Hero::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+
     
 }
+
 
 .dropdown-content {
   display: none;
@@ -163,6 +194,12 @@ align-items: center;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+
+.section-hero{
+    max-width: 35%;
+    text-align: center;
+    z-index: 1;
+
 }
 
 .dropdown-content a {
