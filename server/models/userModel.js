@@ -1,12 +1,9 @@
 const Crypto = require("crypto");
 const bcrypt = require("bcryptjs");
-
+const jwt = require("jsonwebtoken");
 const User = require("../Schema/UserSchema");
 
 class UserModel {
-  static async getAll() {
-    return { messagge: "Todos los usuarios" };
-  }
 
   static async createUser(body) {
     const { email, password } = body;
@@ -34,6 +31,21 @@ class UserModel {
         email: user.email,
       },
     };
+  }
+
+  static async login(body) {
+    const { email, password } = body;
+    const user = await User.findOne({email});
+    if (!user) {
+      return { error: true, message: "mail o contraseña incorrectos" };
+    }
+    if (!bcrypt.compare(password, user.password)) {
+      return { error: true, message: "mail o contraseña incorrectos" };
+    }
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES,
+    });
+    return { error: false, token };
   }
 }
 module.exports = UserModel;

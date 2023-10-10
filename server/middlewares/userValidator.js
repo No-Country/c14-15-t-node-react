@@ -42,8 +42,8 @@ const validatorUser = (body) => {
   return userSchema.safeParse(body);
 };
 
-// const validatorUserPartial = (body) => {
-//   return userSchema.partial().safeParse(body);
-// };
+const validatorPartialUser = (body) => {
+  return userSchema.partial().safeParse(body);
+};
 
-module.exports = validatorUser;
+module.exports = { validatorUser, validatorPartialUser };
