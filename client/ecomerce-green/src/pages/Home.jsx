@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../components/Footer'
 import  Header  from '../components/Header'
 import Hero from '../components/Hero'
 import HeroStore from '../components/HeroStore'
@@ -23,12 +24,16 @@ const Home = () => {
         <Header />
         <Hero />
 
+
+
+
         
         {/* <HeroStore />
         <ProductFilters /> */}
 
         <Marks images={images} speed={5000}/>
 
+        <Footer />
     </>
   )
 }
