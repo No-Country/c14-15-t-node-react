@@ -20,7 +20,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
-  justify-content: center;
+  justify-content:center;
   align-items: center;
   color: #ffffff;
 }
@@ -120,34 +120,17 @@ align-items: center;
 }
 
 .container-drop{
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
-body{
-    margin: 0;
-}
-/* .Hero{
-    position: relative; 
-    min-height: 100vh; 
-    background-image: url("./assets/imgHero.jpeg");  
-    background-size: cover; 
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    width: 100%;
-}
+
+
 .dropbtn {
     display: flex;
     justify-content: space-around;
     align-items: center;
-  /* width: 150px; */
+  width: 150px;
   background-color: #4caf50;
   color: white;
   padding: 0.3rem 0.6rem;
@@ -174,17 +157,7 @@ body{
     color: #FFFFFF; 
 
 } 
-.Hero::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
 
-    
-}
 
 
 .dropdown-content {
@@ -194,13 +167,9 @@ body{
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-
-.section-hero{
-    max-width: 35%;
-    text-align: center;
-    z-index: 1;
-
 }
+
+
 
 .dropdown-content a {
   color: black;
@@ -217,13 +186,7 @@ body{
   display: block;
 }
 
-.btn-hero{
-    background-color: rgba(248, 147, 79, 0.7);
-    padding: 0.1rem 0.9rem;
-    border-radius: 0.5rem;
-    margin-top: 2rem;
-    font-weight: 500;
-}
+
 
 /* Footer */
 
