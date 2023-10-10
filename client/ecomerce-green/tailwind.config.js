@@ -7,7 +7,7 @@ export default {
         "hero-pattern": "url('./assets/imgHero.jpeg')",
       },
       animation: {
-        "infinite-scroll": "infinite-scroll 9s linear infinite backwards",
+        "infinite-scroll": "infinite-scroll 18s linear infinite backwards",
       },
       keyframes: {
         "infinite-scroll": {
