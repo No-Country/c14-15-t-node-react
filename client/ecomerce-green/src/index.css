@@ -12,21 +12,20 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.header{
-    background: rgba(183, 192, 206, 0.25);
+body{
+    margin: 0;
 }
-.Hero{
-    position: relative;
-    min-height: 100vh;
-    background-image: url("./assets/imgHero.jpeg");
-    background-size: cover;
+/* .Hero{
+    position: relative; 
+    min-height: 100vh; 
+    background-image: url("./assets/imgHero.jpeg");  
+    background-size: cover; 
     display: flex;
     justify-content:center ;
     align-items: center;
-    color: #FFFFFF;
-  
+    color: #FFFFFF; 
 
-}
+} */
 .Hero::before{
     content: "";
     position: absolute;
