@@ -5,8 +5,8 @@ const Marks = ({ images }) => {
   console.log(images);
 
   return (
-    <div className="w-[100vw] max-w-6xl mx-auto px-4 md:px-6 py-13 ">
-      <div className="w-full max-w-5xl mx-auto px-4 md:px-6 py-24">
+    <div className="w-[100vw] max-w-6xl mx-auto px-3 sm:px-2 md:px-4  py-13 ">
+      <div className="w-full max-w-5xl mx-auto px-1 md:px-2 py-10">
         <div className="text-center">
           {/* <!-- Logo Carousel animation --> */}
           <div

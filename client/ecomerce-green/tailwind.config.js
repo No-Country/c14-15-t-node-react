@@ -5,6 +5,10 @@ export default {
     extend: {
       backgroundImage: {
         "hero-pattern": "url('./assets/imgHero.jpeg')",
+       
+      },
+      backgroundColor:{
+        "card-pattern": "background: rgba(41, 25, 12, 0.89)",
       },
       animation: {
         "infinite-scroll": "infinite-scroll 18s linear infinite backwards",

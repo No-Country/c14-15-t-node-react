@@ -7,6 +7,7 @@ import HeroStore from "../components/HeroStore";
 import ProductFilters from "../components/ProductFilters";
 import Marks from "../components/Marks";
 import MainLayout from "../components/MainLayout";
+import Cards from "../components/Cards";
 
 const Home = () => {
   const images = [
@@ -31,8 +32,6 @@ const Home = () => {
         <main>
           <Hero />
           <FeaturedProduct />
-          {/* <HeroStore />
-        <ProductFilters /> */}
           <Marks images={images} speed={5000} />
         </main>
       </MainLayout>
