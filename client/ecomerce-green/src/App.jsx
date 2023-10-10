@@ -9,7 +9,7 @@ import ProductCards from './components/ProductCards/ProductCards';
 
 const App = () => {
   return (
-    <div >
+  
     <Router>
       <Routes>
         <Route exact path="/" element={<Home />} />
@@ -18,8 +18,11 @@ const App = () => {
       </Routes>
     </Router>
 
+
     {/* <ProductCards/> */}
     </div>
+
+
   )
 }
 

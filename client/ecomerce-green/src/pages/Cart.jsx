@@ -1,8 +1,11 @@
 import React from 'react'
+import MainLayout from '../components/MainLayout'
 
 const Cart = () => {
   return (
-    <div>Cart</div>
+   <MainLayout >
+    <h1>Cart</h1>
+   </MainLayout>
   )
 }
 
