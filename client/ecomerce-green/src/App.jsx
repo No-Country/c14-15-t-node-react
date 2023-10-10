@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import { Login } from './pages/Login';
 import Cart from './pages/Cart';
 import Cards from './components/Cards';
+import ProductCards from './components/ProductCards/ProductCards';
 
 const App = () => {
   return (
@@ -16,6 +17,8 @@ const App = () => {
         <Route exact path="/login" element={<Login />} />
       </Routes>
     </Router>
+
+    {/* <ProductCards/> */}
     </div>
   )
 }
