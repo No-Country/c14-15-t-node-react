@@ -2,15 +2,10 @@ const { response } = require("express");
 const UserModel = require("../models/userModel");
 const validatorUser = require("../middlewares/userValidator");
 
-class userController {
+class authController {
   static async getAll(req, res) {
     const users = await UserModel.getAll();
     res.status(200).json(users);
-  }
-
-  static async getUserById(req, res = response) {
-    const { id } = req.params;
-    res.status(200).json({ id: id });
   }
 
   static async create(req, res) {
@@ -20,8 +15,10 @@ class userController {
       return res.status(400).json({ error: JSON.parse(result.error.message) });
     }
 
-    res.status(201).json(result);
+    const newUser = await UserModel.createUser(result.data);
+
+    res.status(201).json(newUser);
   }
 }
 
-module.exports = userController;
+module.exports = authController;

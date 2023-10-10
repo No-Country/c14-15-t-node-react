@@ -42,7 +42,7 @@ app.use(express.json());
 app.disable("x-powered-by");
 
 //routes
-app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/auth", userRoutes);
 
 //listen
 app.listen(process.env.PORT || 5000, () => {

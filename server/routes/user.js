@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const userController = require("../controllers/userController");
+const authController = require("../controllers/userController");
 
 const userRoutes = Router();
 
@@ -41,12 +41,12 @@ const userRoutes = Router();
  *      200:
  *        description: Get all Users
  */
-userRoutes.get("/", userController.getAll);
+userRoutes.post("/", authController.getAll);
 
 //Get User By Id
-userRoutes.get("/:id", userController.getUserById);
+// userRoutes.get("/:id", userController.getUserById);
 
-userRoutes.post("/", userController.create);
+userRoutes.post("/register", authController.create);
 
 module.exports = {
   userRoutes,
