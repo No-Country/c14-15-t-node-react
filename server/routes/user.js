@@ -41,7 +41,7 @@ const userRoutes = Router();
  *      200:
  *        description: Get all Users
  */
-userRoutes.post("/", authController.getAll);
+userRoutes.post("/", authController.login);
 
 //Get User By Id
 // userRoutes.get("/:id", userController.getUserById);
