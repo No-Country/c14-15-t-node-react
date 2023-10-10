@@ -1,0 +1,40 @@
+.textFeaturedProduct{
+    max-width: 276px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.63);
+    padding-bottom: 1rem;
+}
+.textFeaturedProduct, .textFeaturedProduct p, .textFeaturedProduct ul li{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: normal;
+}
+.textFeaturedProduct ul{
+    list-style: initial;
+    list-style-type: "-"; 
+    font-family: 'Roboto'; 
+}
+@media (min-width: 768px) {
+    .textFeaturedProduct{
+        max-width: 287px;
+        height: 324px;
+        padding: 0;
+        padding-right: 36px;
+        border: none;
+        display: flex;
+        align-items: center;
+    }
+    .textFeaturedProduct, .textFeaturedProduct p, .textFeaturedProduct ul li{
+        font-size: 0.8rem;
+    }
+}
+@media (min-width: 1024px) {
+    .textFeaturedProduct{
+        max-width: 399px;
+        border: none;
+        padding: 0;   
+    }
+    .textFeaturedProduct, .textFeaturedProduct p, .textFeaturedProduct ul li{
+        font-size: 1rem;
+    }
+}
