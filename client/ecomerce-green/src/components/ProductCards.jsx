@@ -1,4 +1,3 @@
-import "./ProductCards.css"
 
 const ProductCards = () => {
   return (
