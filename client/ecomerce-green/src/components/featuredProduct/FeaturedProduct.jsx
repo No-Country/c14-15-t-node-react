@@ -1,12 +1,12 @@
-import "./featuredProduct.css";
-import ImgFeaturedProduct from "./imgFeaturedProduct/ImgFeaturedProduct";
-import TextFeaturedProduct from "./textFeaturedProduct/TextFeaturedProduct";
+import  '../../styles/featuredProduct.css'
+import ImgFeaturedProduct from "./ImgFeaturedProduct";
+import TextFeaturedProduct from "./TextFeaturedProduct";
 
 const FeaturedProduct = () => {
   const featured = `text-[#B0FC90] py-5 px-3 bg-[#051C12] w-full`
   return (
     // <section className="featuredProduct">
-          <section className={`featuredProduct ${featured}`}>
+        <section className={`featuredProduct ${featured}`}>
       <div className="featuredProduct__container flex flex-col justify-center items-center">
         <h2 className="featuredProduct__title">
           ¡Bienvenido al Futuro Verde de la Tecnología!

@@ -1,6 +1,9 @@
-import "./imgFeaturedProduct.css";
-import imgProduct from './ProductFeatured/Subtract-png.png';
+
+import  '../../styles/imgFeaturedProduct.css'
+
 const ImgFeaturedProduct = () => {
+
+  const imgProduct = "/img/Subtract-png.png"
   return (
     <div className="imgFeaturedProduct">
         <img src={imgProduct}/>

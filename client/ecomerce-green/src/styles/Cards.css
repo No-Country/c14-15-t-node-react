@@ -4,7 +4,7 @@
   align-items: center;
   text-align: center;
   color: #fff;
-  font-family: "Roboto", sans-serif;
+
   width: 40%;
   min-width: 18.75rem;
   height: 16rem;
@@ -58,7 +58,6 @@
 
 /***PRODUCT CARDS***/
 .card-container {
-  font-family: "Roboto", sans-serif;
   color: #051c12;
 }
 
