@@ -3,7 +3,6 @@
     background-color: #051C12;
     color: white;
     width: 100%;
-    font-family: 'Roboto',sans-serif ;
     padding: 24px 12px;
     margin: 0 auto;
 }
@@ -14,10 +13,9 @@
     align-items: center; 
 }
 .featuredProduct .featuredProduct__title{
-    font-family: 'Roboto',sans-serif ;
     text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.50);
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: center;
 }
 .featuredProduct .featuredProduct__content{
@@ -37,10 +35,6 @@
     .featuredProduct{
         padding: 40px 64px;
         margin: 0 auto;
-    }
-    .featuredProduct .featuredProduct__title{
-        font-size: 2rem;
-        text-align: center;
     }
     .featuredProduct .featuredProduct__content{
         flex-direction: row;

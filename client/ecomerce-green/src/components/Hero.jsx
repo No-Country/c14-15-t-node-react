@@ -1,6 +1,6 @@
 import React from "react";
 import Cards from "./Cards";
-
+import  '../styles/Hero.css';
 const Hero = () => {
 
   const hero = `w-[100vw] relative min-h-screen bg-hero-pattern min-h-[120vh] bg-no-repeat bg-cover flex  items-center before:absolute before:content-[''] text-white`
