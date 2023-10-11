@@ -20,12 +20,12 @@ const Marks = ({ images }) => {
           >
             <ul
               x-ref="logos"
-              class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
+              className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
             >
               {images.map((el) => (
-                <li>
-                  <img className=" md:h-20 md:max-w-xs" src={el.image} key={`${el.id}2` } alt={el.image} />
-                </li>
+                <li key={el.id}>
+                <img className="md:h-20 md:max-w-xs" src={el.image} alt={el.image} />
+              </li>
               ))}
             </ul>
           
