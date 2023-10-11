@@ -7,7 +7,7 @@ const Product = () => {
   return (
     <MainLayout>
       <main>
-        Producto id
+        Producto id 
       </main>
     </MainLayout>
   );

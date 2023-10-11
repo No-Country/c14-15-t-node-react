@@ -110,6 +110,24 @@ body{
   background-position-y: -10rem;
 }
 
+
+.landing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  width: 40%;
+  min-width: 18.75rem;
+  height: 16rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(72deg, #355647 12.12%, #34966b 100%);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5) inset;
+  margin: 3rem;
+  padding: 15px;
+  z-index: 1;
+}
 .gradient {
   width: 100%;
   height: 40vh;
@@ -282,3 +300,22 @@ footer{
       min-height: 5rem;
     }
   }
+
+  /***PRODUCT CARDS***/
+  .card-container{
+    font-family: 'Roboto', sans-serif;
+    color: #051C12;
+}
+
+.energy-label{
+    border-radius: 5px;
+    width: 3rem;
+    height: 3rem;
+}
+
+.energy-label.a-tag{
+    background-color: #70A02A;
+}
+.energy-label.b-tag{
+    background-color: #8CCF2B;
+}

@@ -16,7 +16,7 @@ const Cards = () => {
           </p>
         </div>
         <div className="landing-card">
-          <img src={Light} alt="ligth" />
+          <img src={Light} alt="light" />
 
           <h4>Una luz amigable con el planeta y tu bolsillo</h4>
           <p>
