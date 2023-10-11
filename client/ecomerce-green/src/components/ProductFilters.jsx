@@ -6,49 +6,49 @@ const ProductFilters = () => {
   return (
     <section className="dropdown-container">
         <div className="container-drop">
-      <div class="dropdown">
-        <button class="dropbtn">Ordenar <AiOutlineDown className="icon-dropdown"/></button>
-        <div class="dropdown-content">
+      <div className="dropdown">
+        <button className="dropbtn">Ordenar <AiOutlineDown className="icon-dropdown"/></button>
+        <div className="dropdown-content">
           <a href="#">Link 1</a>
           <a href="#">Link 2</a>
           <a href="#">Link 3</a>
         </div>
       </div>
-      <div class="dropdown">
-        <button class="dropbtn">Precio <AiOutlineDown className="icon-dropdown"/></button>
-        <div class="dropdown-content">
+      <div className="dropdown">
+        <button className="dropbtn">Precio <AiOutlineDown className="icon-dropdown"/></button>
+        <div className="dropdown-content">
           <a href="#">Link 1</a>
           <a href="#">Link 2</a>
           <a href="#">Link 3</a>
         </div>
       </div>
-      <div class="dropdown">
-        <button class="dropbtn">Categoría <AiOutlineDown className="icon-dropdown"/></button>
-        <div class="dropdown-content">
+      <div className="dropdown">
+        <button className="dropbtn">Categoría <AiOutlineDown className="icon-dropdown"/></button>
+        <div className="dropdown-content">
           <a href="#">Link 1</a>
           <a href="#">Link 2</a>
           <a href="#">Link 3</a>
         </div>
       </div>
-      <div class="dropdown">
-        <button class="dropbtn">Marca <AiOutlineDown className="icon-dropdown"/></button>
-        <div class="dropdown-content">
+      <div className="dropdown">
+        <button className="dropbtn">Marca <AiOutlineDown className="icon-dropdown"/></button>
+        <div className="dropdown-content">
           <a href="#">Link 1</a>
           <a href="#">Link 2</a>
           <a href="#">Link 3</a>
         </div>
       </div>
-      <div class="dropdown">
-        <button class="dropbtn">Etiqueta energetica <AiOutlineDown className="icon-dropdown"/></button>
-        <div class="dropdown-content">
+      <div className="dropdown">
+        <button className="dropbtn">Etiqueta energetica <AiOutlineDown className="icon-dropdown"/></button>
+        <div className="dropdown-content">
           <a href="#">Link 1</a>
           <a href="#">Link 2</a>
           <a href="#">Link 3</a>
         </div>
       </div>
-      <div class="dropdown">
-        <button class="dropbtn">6 <AiOutlineDown className="icon-dropdown"/></button>
-        <div class="dropdown-content">
+      <div className="dropdown">
+        <button className="dropbtn">6 <AiOutlineDown className="icon-dropdown"/></button>
+        <div className="dropdown-content">
           <a href="#">2</a>
           <a href="#">3</a>
           <a href="#">4</a>
