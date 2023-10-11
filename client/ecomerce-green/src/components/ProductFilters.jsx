@@ -1,4 +1,5 @@
 import React from "react";
+import  '../styles/ProductHero.css';
 
 import { AiOutlineDown } from "react-icons/ai";
 

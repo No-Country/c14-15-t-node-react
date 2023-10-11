@@ -1,0 +1,76 @@
+.landing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  width: 40%;
+  min-width: 18.75rem;
+  height: 16rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(72deg, #355647 12.12%, #34966b 100%);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5) inset;
+  margin: 3rem;
+  padding: 15px;
+  z-index: 1;
+}
+
+.landing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 18.75rem;
+  height: 17rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(72deg, #355647 12.12%, #34966b 100%);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5) inset;
+  margin: 3rem;
+  padding: 15px;
+}
+
+.landing-card img {
+  width: 5rem;
+  height: 5rem;
+}
+.landing-card h4 {
+  font-size: 1rem;
+  line-height: 1.3rem;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.cards-bg {
+  background: rgba(41, 25, 12, 0.89);
+  display: flex;
+}
+
+@media (max-width: 820px) {
+  .cards-bg {
+    flex-direction: column;
+  }
+  .landing-card {
+    width: 22.75rem;
+    min-height: 5rem;
+  }
+}
+
+/***PRODUCT CARDS***/
+.card-container {
+  font-family: "Roboto", sans-serif;
+  color: #051c12;
+}
+
+.energy-label {
+  border-radius: 5px;
+  width: 3rem;
+  height: 3rem;
+}
+
+.energy-label.a-tag {
+  background-color: #70a02a;
+}
+.energy-label.b-tag {
+  background-color: #8ccf2b;
+}

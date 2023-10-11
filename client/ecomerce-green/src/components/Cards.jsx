@@ -1,9 +1,10 @@
 import Fridge from '/Fridge.svg';
 import PanelSolar from '/PanelSolar.svg';
 import Light from '/Ligth.svg';
+import  '../styles/Cards.css'
 
 const Cards = () => {
-        const wraper = `w-[100vw] bg-inherit cards-bg  flex  content-end justify-center items-center lg:flex-row`
+        const wraper = `w-[100vw] cards-bg  flex  content-end justify-center items-center lg:flex-row`
     return (
 
       <section className={wraper}>

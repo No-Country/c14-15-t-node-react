@@ -1,7 +1,7 @@
 
 import { BsFacebook, BsTelephoneFill, } from 'react-icons/bs';
 import { AiFillInstagram, AiOutlineMail, AiFillLinkedin}  from "react-icons/ai"
-
+import  '../styles/Footer.css';
 
 const Footer = () => {
     return (
