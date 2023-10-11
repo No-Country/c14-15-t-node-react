@@ -2,9 +2,9 @@ const Crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../Schema/UserSchema");
+const { generateToken } = require("../helper/jwt");
 
 class UserModel {
-
   static async createUser(body) {
     const { email, password } = body;
 
@@ -22,6 +22,7 @@ class UserModel {
 
     await user.save();
 
+    const token = await generateToken(user.uid, user.firstname, user.lastname);
     return {
       error: false,
       user: {
@@ -29,23 +30,33 @@ class UserModel {
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
+        token,
       },
     };
   }
 
   static async login(body) {
     const { email, password } = body;
-    const user = await User.findOne({email});
+    const user = await User.findOne({ email });
     if (!user) {
-      return { error: true, message: "mail o contraseña incorrectos" };
+      return { error: true, message: "Email o contraseña incorrectos" };
     }
-    if (!bcrypt.compare(password, user.password)) {
-      return { error: true, message: "mail o contraseña incorrectos" };
+
+    const passValidated = bcrypt.compareSync(password, user.password);
+    if (!passValidated) {
+      return { error: true, message: "Email o contraseña incorrectos" };
     }
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES,
-    });
+
+    const token = await generateToken(user.uid, user.firstname, user.lastname);
     return { error: false, token };
   }
+
+  static async revalidateToken(body) {
+    const { uid, firstname, lastname } = body;
+    const token = await generateToken(uid, firstname, lastname);
+
+    return { error: false, uid, firstname, lastname, token };
+  }
 }
+
 module.exports = UserModel;

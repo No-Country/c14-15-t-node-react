@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const authController = require("../controllers/userController");
+const validatorJWT = require("../controllers/validatorJWT");
 
 const userRoutes = Router();
 
@@ -43,10 +44,9 @@ const userRoutes = Router();
  */
 userRoutes.post("/", authController.login);
 
-//Get User By Id
-// userRoutes.get("/:id", userController.getUserById);
-
 userRoutes.post("/register", authController.create);
+
+userRoutes.get("/token", validatorJWT, authController.validateToken);
 
 module.exports = {
   userRoutes,

@@ -6,7 +6,7 @@ const userSchema = z.object({
       invalid_type_error: "El nombre debe ser letras",
       required_error: "El nombre es requerido.",
     })
-    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ']+([- ][A-Za-zÀ-ÖØ-öø-ÿ']+)*$/, {
+    .regex(/^[A-Z][a-zA-Z]*$/, {
       message: "Tu nombre debe estar bien escrito",
     })
     .trim(),
@@ -15,7 +15,7 @@ const userSchema = z.object({
       invalid_type_error: "El apellido debe ser letras",
       required_error: "El apellido es requerido.",
     })
-    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ']+([- ][A-Za-zÀ-ÖØ-öø-ÿ']+)*$/, {
+    .regex(/^[A-Z][a-zA-Z]*$/, {
       message: "Tu nombre debe estar bien escrito",
     })
     .trim(),
@@ -27,9 +27,13 @@ const userSchema = z.object({
     .min(5),
   password: z
     .string()
-    .regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]+$/, {
-      message: "Tu contraseña no cumple los requisitos",
-    })
+    .regex(
+      /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]+$/,
+      {
+        message: "Tu contraseña no cumple los requisitos",
+      }
+    )
+    .min(6)
     .trim(),
   adress: z.optional(
     z.string({
