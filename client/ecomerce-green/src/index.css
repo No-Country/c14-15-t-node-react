@@ -67,8 +67,9 @@
   text-align: center;
   color: #fff;
   font-family: "Roboto", sans-serif;
-  width: 18.75rem;
-  height: 15rem;
+  width: 40%;
+  min-width: 18.75rem;
+  height: 16rem;
   border-radius: 0.5rem;
   background: linear-gradient(72deg, #355647 12.12%, #34966b 100%);
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5) inset;

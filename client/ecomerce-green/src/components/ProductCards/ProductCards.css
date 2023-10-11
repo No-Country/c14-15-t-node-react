@@ -7,7 +7,13 @@
 
 .energy-label{
     border-radius: 5px;
-    background: #70A02A;
     width: 3rem;
     height: 3rem;
+}
+
+.energy-label.a-tag{
+    background-color: #70A02A;
+}
+.energy-label.b-tag{
+    background-color: #8CCF2B;
 }

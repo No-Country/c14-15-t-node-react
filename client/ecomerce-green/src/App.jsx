@@ -18,7 +18,7 @@ const App = () => {
       </Routes>
     </Router>
 
-    {/* <ProductCards/> */}
+    <ProductCards/>
     </div>
   )
 }
