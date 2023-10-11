@@ -1,6 +1,6 @@
-import Fridge from '../../public/Fridge.svg';
-import PanelSolar from '../../public/Panelsolar.svg';
-import Light from '../../public/Ligth.svg';
+import Fridge from '/Fridge.svg';
+import PanelSolar from '/PanelSolar.svg';
+import Light from '/Ligth.svg';
 
 const Cards = () => {
     return (

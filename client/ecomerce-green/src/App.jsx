@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import { Login } from './pages/Login';
 import Cart from './pages/Cart';
 import Product from './pages/Product';
+import DynamicTitlePage from './pages/DynamicTitlePage';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/product" element={<Product />} />
+        <Route exact path="/dinamic" element={<DynamicTitlePage />} />
       </Routes>
     </Router>
 
