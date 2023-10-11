@@ -1,91 +1,14 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Roboto&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 
-    
-}
-.header{
-    background: rgba(183, 192, 206, 0.25);
-}
-.Hero{
-    position: relative;
-    min-height: 100vh;
-    background-image: url("./assets/imgHero.jpeg");
-    background-size: cover;
-    display: flex;
-    justify-content:center ;
-    align-items: center;
-    color: #FFFFFF;
-  
-
-}
-.Hero::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    
-  }
-
-.section-hero{
-    max-width: 35%;
-    text-align: center;
-    z-index: 1;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
-
-.titulo-hero{
-    font-size: 3rem;
-    font-weight: 800;
-}
-
-.p-hero{
-    font-weight: 500;
-}
-.btn-hero{
-    background-color: rgba(248, 147, 79, 0.7);
-    padding: 0.1rem 0.9rem;
-    border-radius: 0.5rem;
-    margin-top: 2rem;
-    font-weight: 500;
-}
-
-/* Footer */
-
-footer{
-    background-color: #F8924F;
-}
-
-.footer-container{
-    background-color: #051C12;
-    color:#fff;
-}
-.title-footer{
-    font-size: 20px; 
-    color: #051C12;
-    font-weight: 800;
-}
-.footer-icons li:hover{
-    color: rgb(87, 167, 238);
-} 
-
-.btn-footer{
-    background-color: #976336;
-    border-radius: 8px;
-    
-}
-.btn-footer:hover{
-    background-color: #F8924F;
-}
