@@ -7,8 +7,7 @@ const Product = () => {
   return (
     <MainLayout>
       <main>
-        <HeroStore />
-        <ProductFilters />
+        Producto id
       </main>
     </MainLayout>
   );

@@ -2,10 +2,12 @@ import React from 'react'
 
 const Products = () => {
   return (
-    <div>
-
-
-    </div>
+    <MainLayout>
+    <main>
+      <HeroStore />
+      <ProductFilters />
+    </main>
+  </MainLayout>
   )
 }
 

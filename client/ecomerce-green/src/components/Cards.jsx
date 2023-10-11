@@ -3,9 +3,10 @@ import PanelSolar from '/PanelSolar.svg';
 import Light from '/Ligth.svg';
 
 const Cards = () => {
+        const wraper = `w-[100vw] bg-inherit cards-bg  flex  content-end justify-center items-center lg:flex-row`
     return (
-      
-      <section className="w-[100vw] bg-inherit cards-bg  flex  content-end justify-center items-center lg:flex-row">
+
+      <section className={wraper}>
         <div className="landing-card ">
           <img src={PanelSolar} alt="panel" />
           <h4>Tu solución brillante para un hogar ecoamigable</h4>

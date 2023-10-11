@@ -31,8 +31,9 @@ const Home = () => {
       <MainLayout>
         <main>
           <Hero />
-          <FeaturedProduct />
           <Marks images={images} speed={5000} />
+          <FeaturedProduct />
+         
         </main>
       </MainLayout>
     </>
