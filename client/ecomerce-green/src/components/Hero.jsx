@@ -8,7 +8,7 @@ const Hero = () => {
     <section className={`& Hero`}>
     {/* <section className={`&${hero} Hero flex-col items-end pt-[7rem]`}> */}
       <div className="section-hero  ">
-        <h1 className="titulo-hero pt-[7rem]">¡Bienvenido al Futuro Verde de la Tecnología!</h1>
+        <h1 className="titulo-hero pt-[7rem]">¡Bienvenido <br/> al Futuro Verde de la Tecnología!</h1>
         <p className="p-hero">
           Únete a la revolución verde de la tecnología. ¡Visita nuestra tienda y
           descubre un mundo de posibilidades sostenibles!
