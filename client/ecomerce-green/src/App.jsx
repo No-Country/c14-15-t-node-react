@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from "./pages/Home";
 import { Login } from './pages/Login';
 import Cart from './pages/Cart';
-import Product from './pages/Product';
+import Product from './pages/ProductDetail';
 import Products from './pages/Products';
 import DynamicTitlePage from './pages/DynamicTitlePage';
 
