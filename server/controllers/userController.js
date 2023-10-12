@@ -27,7 +27,10 @@ class authController {
       return res.status(400).json({error: JSON.parse(result.error.message)})
     }
     const updatedUser = await UserModel.updateUser(result.data);
-    res.status(200).json(updatedUser);
+    if(!updatedUser.error){
+      return res.status(202).json(updatedUser);
+    }
+    res.status(400).json(updatedUser);
   }
   // ------------------- login user-------------------
   static async login(req, res) {

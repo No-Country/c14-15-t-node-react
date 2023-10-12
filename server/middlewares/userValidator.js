@@ -1,7 +1,7 @@
 const z = require("zod");
 
 const userSchema = z.object({
-  uid: z.string().optional(),
+  uid: z.string().optional().readonly(),
   firstname: z
     .string({
       invalid_type_error: "El nombre debe ser letras",
