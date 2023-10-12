@@ -67,7 +67,7 @@ const Header = () => {
      <nav
           className={
             nav
-              ? "bg-gray-600 fixed z-[2] text-white left-0 top-[10%] w-[100%] h-1/ border-r-gray-900 uppercase ease-in-out duration-500"
+              ? "bg-green-950/95 fixed z-[2] text-white left-0 top-[10%] w-[100%] h-1/ border-r-gray-900 uppercase ease-in-out duration-500"
               : "fixed top-[-100%]"
           }
         >
