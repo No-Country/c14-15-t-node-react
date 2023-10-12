@@ -1,5 +1,5 @@
 import Fridge from '/Fridge.svg';
-import PanelSolar from '/PanelSolar.svg';
+import PanelSolar from '/Panelsolar.svg';
 import Light from '/Ligth.svg';
 import  '../styles/Cards.css'
 
