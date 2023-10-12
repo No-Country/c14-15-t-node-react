@@ -42,14 +42,35 @@
     margin-top: 2rem;
     font-weight: 500;
   }
+  @media (max-width: 1920px) {
+    .section-hero {
+        max-width: 30%;
+       
+      }
+      .titulo-hero {
+        
+        font-size: 4rem;
+        font-weight: 800;
+      }
+      .btn-hero {
+      
+        padding: 0.1rem 1.9rem;
+        font-size: 1.5rem;
+    
+     
+        font-weight: 600;
+        
+      }
+  }
   
   @media (max-width: 1200px) {
     .section-hero {
-        max-width: 40%;
+        max-width: 60%;
        
       }
+   
   }
-  @media (max-width: 900px) {
+  @media (max-width: 850px) {
     .section-hero {
         max-width: 60%;
        
