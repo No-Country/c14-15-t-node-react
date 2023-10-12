@@ -5,6 +5,7 @@ const {
 } = require("../middlewares/userValidator");
 
 class authController {
+  // ------------------- create user -------------------
   static async create(req, res) {
     const result = validatorUser(req.body);
 
@@ -19,7 +20,16 @@ class authController {
     }
     res.status(409).json(newUser);
   }
-
+  // ------------------- updating user -------------------
+  static async update(req, res) {
+    const result = validatorPartialUser(req.body);
+    if(!result.success){
+      return res.status(400).json({error: JSON.parse(result.error.message)})
+    }
+    const updatedUser = await UserModel.updateUser(result.data);
+    res.status(200).json(updatedUser);
+  }
+  // ------------------- login user-------------------
   static async login(req, res) {
     const { email, password } = req.body;
 
@@ -36,12 +46,13 @@ class authController {
     }
     res.status(400).json(login);
   }
-
+  // ------------------- validate token -------------------
   static async validateToken(req, res) {
     const token = await UserModel.revalidateToken(req);
 
     res.status(200).json(token);
   }
+  
 }
 
 module.exports = authController;

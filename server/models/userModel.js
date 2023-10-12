@@ -57,6 +57,56 @@ class UserModel {
 
     return { error: false, uid, firstname, lastname, token };
   }
+  // === update user controller ====
+  static async updateUser(body) {
+    const {uid, firstname, lastname, email, address} = body;
+    let user = await User.findOne({uid});
+    if(!user){
+      return {error: true, message: "El usuario que intenta modificar no existe"};
+    }
+    user = new User(body);
+    let update = await User.findByIdAndUpdate(uid, {firstname: "Marcos"});
+
+    // user.firstname = firstname;
+    // user.lastname = lastname;
+    // user.email = email;
+    // user.password = password; // ¿debería ir acá la contraseña?
+    // user.address = address;
+
+    // await user.save();
+
+    // return{
+    //   error: false, 
+    //   user:{
+    //     uid: user.uid,
+    //     firstname: user.firstname,
+    //     lastname: user.lastname,
+    //     email: user.email,
+    //     address: user.address
+    //   }
+    // }
+    
+  }
+  // === updating password ===
+  static async updateUserPassword(body){
+    const { uid, password } = body;
+    let user = await User.findOne({uid});
+    if(!user){
+      return{error: true, message: "Este usuario no existe (?)"}
+    }
+    const passValidated = bcrypt.compareSync(password, user.password);
+    if(!passValidated){
+      return{error: true, message:"La contraseña es incorrecta"};
+    }
+    user = new User(body);
+    user.password = password;
+    await user.save();
+    return{
+      error: false,
+      message: "La contraseña ha sido actualizada"
+    }
+    // aquí falta algo unu
+  }
 }
 
 module.exports = UserModel;

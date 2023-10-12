@@ -42,11 +42,16 @@ const userRoutes = Router();
  *      200:
  *        description: Get all Users
  */
-userRoutes.post("/", authController.login);
 
 userRoutes.post("/register", authController.create);
 
+userRoutes.patch("/modify", authController.update);
+
+userRoutes.post("/", authController.login);
+
 userRoutes.get("/token", validatorJWT, authController.validateToken);
+
+
 
 module.exports = {
   userRoutes,
