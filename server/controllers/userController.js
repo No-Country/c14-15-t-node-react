@@ -16,22 +16,24 @@ class authController {
     const newUser = await UserModel.createUser(result.data);
 
     if (!newUser.error) {
-      res.status(201).json(newUser);
+      return res.status(201).json(newUser);
     }
     res.status(409).json(newUser);
   }
+
   // ------------------- updating user -------------------
   static async update(req, res) {
     const result = validatorPartialUser(req.body);
-    if(!result.success){
-      return res.status(400).json({error: JSON.parse(result.error.message)})
+    if (!result.success) {
+      return res.status(400).json({ error: JSON.parse(result.error.message) });
     }
     const updatedUser = await UserModel.updateUser(result.data);
-    if(!updatedUser.error){
+    if (!updatedUser.error) {
       return res.status(202).json(updatedUser);
     }
     res.status(400).json(updatedUser);
   }
+
   // ------------------- login user-------------------
   static async login(req, res) {
     const { email, password } = req.body;
@@ -49,13 +51,13 @@ class authController {
     }
     res.status(400).json(login);
   }
+
   // ------------------- validate token -------------------
   static async validateToken(req, res) {
     const token = await UserModel.revalidateToken(req);
 
     res.status(200).json(token);
   }
-  
 }
 
 module.exports = authController;

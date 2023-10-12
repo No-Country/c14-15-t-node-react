@@ -59,25 +59,29 @@ class UserModel {
   }
   // === update user controller ====
   static async updateUser(body) {
-    let {uid, firstname, lastname, email, address, password} = body;
-    
-    let user = await User.findOne({uid});
-    if(!user){
-      return {error: true, message: "El usuario que intenta modificar no existe"};
-    }
-    if(password){
-      body.password = user.password;
-    }    
-    let isValidUser = await User.findByIdAndUpdate(user._id,body,{new:true});
-    return{
-      error: false,
-      user: { 
-      firstname: isValidUser.firstname, 
-      lastname: isValidUser.lastname,  
-      email: isValidUser.email
-    }
-  }
+    let { uid, firstname, lastname, email, address, password } = body;
 
+    let user = await User.findOne({ uid });
+    if (!user) {
+      return {
+        error: true,
+        message: "El usuario que intenta modificar no existe",
+      };
+    }
+    if (password) {
+      body.password = user.password;
+    }
+    let isValidUser = await User.findByIdAndUpdate(user._id, body, {
+      new: true,
+    });
+    return {
+      error: false,
+      user: {
+        firstname: isValidUser.firstname,
+        lastname: isValidUser.lastname,
+        email: isValidUser.email,
+      },
+    };
   }
   // === updating password ===
   // static async updateUserPassword(body){

@@ -36,7 +36,7 @@ const userSchema = z.object({
     )
     .min(6)
     .trim(),
-  adress: z.optional(
+  address: z.optional(
     z.string({
       invalid_type_error: "La direccion debe ser solo letras",
     })
