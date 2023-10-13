@@ -87,7 +87,7 @@ const Header = () => {
       >
         <div className="p-4 mt-5">Ingresar</div>
         <ul>
-          <li className="p-4 ">Home</li>
+          <li className="p-4 "> Home</li>
           <li className="p-4  ">Tienda</li>
           <li className="p-4 ">Contacto</li>
           <li className="p-4">
