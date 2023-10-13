@@ -8,6 +8,7 @@ import {
 import logo from "../assets/logo.svg";
 import { VscAccount } from "react-icons/vsc";
 import useHeaderShadow from "../hooks/useHeaderShadow";
+import { NavLink, Link } from "react-router-dom";
 
 const Header = () => {
   const [nav, setNav] = useState(false);
@@ -30,9 +31,15 @@ const Header = () => {
           {/* Navbar destock */}
           <nav className=" hidden md:flex gap-3 p-6 ">
             <ul className=" flex  gap-2 p-6 ">
-              <li>Home</li>
-              <li>Tienda</li>
-              <li>Contacto</li>
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/products">Tienda</NavLink>
+              </li>
+              <li>
+                <NavLink to="/contacto">Contacto</NavLink>
+              </li>
             </ul>
             <div className="flex g-2 items-center border rounded-xl h-10 px-3 mt-4 bg-slate-50">
               <input
@@ -45,13 +52,21 @@ const Header = () => {
           </nav>
           <div className="hidden md:flex">
             <ul className="flex g-1">
-              <li className="pr-4">Log in</li>
               <li className="pr-4">
-                <VscAccount size={20} />
-              </li>
-              <li>
                 {" "}
-                <AiOutlineShoppingCart size={20} />
+                <Link to="/login">Log in</Link>
+              </li>
+              <li className="pr-4">
+                <Link to="/login">
+                  <VscAccount size={20} />
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/cart">
+                  {" "}
+                  <AiOutlineShoppingCart size={20} />
+                </Link>
               </li>
             </ul>
           </div>
@@ -71,7 +86,7 @@ const Header = () => {
         }
       >
         <div className="p-4 mt-5">Ingresar</div>
-        <ul >
+        <ul>
           <li className="p-4 ">Home</li>
           <li className="p-4  ">Tienda</li>
           <li className="p-4 ">Contacto</li>
@@ -85,17 +100,18 @@ const Header = () => {
               <AiOutlineSearch className="text-gray-800" />
             </div>
           </li>
-          </ul>
-          <ul className="flex justify-between mx-2" >
-       
-              <li className=" flex pr-4 items-center">
-               <div className="ml-2"><VscAccount size={20} /> </div> 
-                <a className="ml-2 ">Log in</a>
-              </li>
+        </ul>
+        <ul className="flex justify-between mx-2">
+          <li className=" flex pr-4 items-center">
+            <div className="ml-2">
+              <VscAccount size={20} />{" "}
+            </div>
+            <a className="ml-2 ">Log in</a>
+          </li>
           <li className="p-4 border-b border-r-gray-600">
-          {" "}
-                <AiOutlineShoppingCart size={25} />
-            </li>
+            {" "}
+            <AiOutlineShoppingCart size={25} />
+          </li>
         </ul>
       </nav>
     </>
