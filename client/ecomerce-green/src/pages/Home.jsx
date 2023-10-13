@@ -9,6 +9,7 @@ import Marks from "../components/Marks";
 import MainLayout from "../components/MainLayout";
 import Cards from "../components/Cards";
 
+
 const Home = () => {
   const images = [
     "/img/jks.png",
