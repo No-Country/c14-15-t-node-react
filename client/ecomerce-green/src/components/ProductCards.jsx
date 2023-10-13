@@ -1,7 +1,7 @@
 
 const ProductCards = () => {
   return (
-    <section className="card-container py-10 flex flex-col justify-center items-center w-screen min-w-min gap-10 flex-wrap md:flex-row">
+    <section className="card-container py-10 flex flex-col justify-center items-center w-full min-w-min gap-10 flex-wrap md:flex-row">
     <div className="product-card flex-column w-72 min-width-[276px] mt-20 divide-y divide-gray-950">
         <img src="/ProductImg.png" alt="" className="object-cover"/>
         <div className="description flex place-content-between items-center pb-3">
