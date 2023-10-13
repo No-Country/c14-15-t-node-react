@@ -11,10 +11,10 @@ const Footer = () => {
                 <h1 className="title-footer">GreenIX</h1>
             </div>
         <div className="footer-container flex lg:flex-row  justify-around items-center py-5 px-5 gap-3 flex-col sm:flex-col log:gap-5 sm:gap-3 md:flex-row">
-                <ul className='footer-icons flex gap-3'>
-                <li><a href="#"> <BsFacebook size={18}/></a></li>
-                <li><a href="#"> <AiFillInstagram size={20}/></a></li>
-                <li className=''><a href="#"> <AiFillLinkedin size={20}/></a></li>
+                <ul className='footer-icons flex gap-4'>
+                <li><a href="#"> <BsFacebook size={30}/></a></li>
+                <li><a href="#"> <AiFillInstagram size={32}/></a></li>
+                <li className=''><a href="#"> <AiFillLinkedin size={32}/></a></li>
                 </ul>
             
             <div className='flex '>
