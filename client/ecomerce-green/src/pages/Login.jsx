@@ -1,66 +1,77 @@
-import React from 'react'
+
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import MainLayout from "../components/MainLayout"
-
-
-
+import "../pages/Login/login.css"
+import { useState } from "react"
 
 export const Login = () => {
+  const [ icoPassword, setsicoPassword ] = useState(false)
   return (
-
+   
     <MainLayout>
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+    <main className='container flex justify-center '>
+    
+    <div className="flex  min-h-full  flex-col justify-center px-6 py-12 lg:px-8">
+    <div className=' input-container w-[336px] h-[400px] justify-center '>
+    <div className=" logo sm:mx-auto sm:w-full sm:max-w-sm ">
+     
       <img
-        className="mx-auto h-10 w-auto"
-        src="./logo.png"
+        className="mx-auto h-[40px] w-[33px]"
+        src="/src/assets/logo.svg" 
         alt="Your Company"
       />
-      <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+     
+      <h2 className="mt-1 text-center text-1xl  leading-9 tracking-tight text-white-200">
        GreenIX
       </h2>
-      <p className='text-center mt-5 text-2x3'>Ingresa tus datos</p>
+      <p className='text-center mt-1 title'>Ingresa tus datos</p>
     </div>
 
-    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form className="space-y-6" action="#" method="POST">
-        <div>
-          {/* <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-            Email
-          </label> */}
-          <div className="">
+    <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form className="  space-y-6" action="#" method="POST">
+        <div className='form-container'>
+           <label htmlFor="email" className="lbl-nombre absolute w-full   text-sm font-medium leading-6">
+            {/* <spam className="text-nomb">Email</spam> */}
+          </label>
+          <div className="w-full ">
             <input
               id="email"
               name="email"
               type="email"
               autoComplete="email"
               required
-              className="block w-full  border-0 py-1.5 text-gray-900 shadow-sm  ring-inset  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              placeholder='Email'
+              className="form   w-full    border-0 pt-2 pb-0  sm:text-sm sm:leading-6"
+              placeholder="Email"
             />
           </div>
         </div>
 
-        <div>
+        <div className='form-container'>
           <div className="flex items-center justify-between">
-             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-             
+             <label htmlFor="password" className="lbl-nombre absolute text-sm  leading-6 ">
+            {/* <spam className='text-nomb'>Contraseña</spam>  */}
             </label> 
             
           </div>
-          <div className="mt-2">
+          <div className= " w-full flex flex-row-reverse items-center">
+            <div className="icono flex cursor-pointer w-50%  flex-row-reverse  relative " onClick={() => setsicoPassword (!icoPassword)}>
+
+              { icoPassword  ? <AiOutlineEye  size={20}/>  : <AiOutlineEyeInvisible  size={20}/> }
+             </div>
             <input
               id="password"
               name="password"
-              type="password"
+              type={ icoPassword ? "text" : "password"}
               autoComplete="current-password"
               required
-              className="block w-full  border-0 py-1.5 text-gray-900 shadow-sm  ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-             placeholder='Contraseña' 
+              className="form block  w-full  border-0   shadow-sm  sm:text-sm sm:leading-6  "
+             placeholder="Contraseña"
             />
+           
           </div>
         </div>
         <div className="text-sm flex justify-center">
-              <a href="#" className="font-semibold text-white-600 hover:text-indigo-500">
+              <a href="#" className="title">
                 ¿Has olvidado tu contraseña?
               </a>
             </div> 
@@ -70,22 +81,23 @@ export const Login = () => {
             type="submit"
             className="flex w-[160px] h-[40px] justify-center rounded-md bg-orange-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
           >
-          <p className='text-2x5'>Ingresar</p>  
+          <p className=''>Ingresar</p>  
           </button>
         </div>
       </form>
 
-      <p className="mt-10 text-center text-sm text-gray-500">
+      <p className="mt-5 mb-2 text-center text-sm title">
         ¿No estas registrado?{' '}
         <a href="#" className="font-semibold leading-6 text-orange-600 hover:text-orange-500">
         Crear cuenta
         </a>
       </p>
-    
     </div>
   </div>
+  </div>
+  </main>
   </MainLayout>
-
+  
 
   )
 }
