@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import {  incrementProduct } from '../redux/store/product/productSlice';
+// import {  incrementProduct } from '../redux/store/product/productSlice';
+import {  incrementProduct } from '../redux/store/cart/cartSlice';
 
 const ProductCards = ({product}) => {
   const dispatch = useDispatch();
