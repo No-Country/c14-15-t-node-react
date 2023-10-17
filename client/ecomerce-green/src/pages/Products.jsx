@@ -27,9 +27,7 @@ const Products = () => {
       sortedProducts.sort((producto1, producto2) => {
         return producto1.price - producto2.price;
       });
-      // productData = [...sortedProducts]
       setProductsData(sortedProducts); // Actualiza el estado para reflejar los productos ordenados
-    console.log(sortedProducts)
     }
     if (string === 'higherPrice') {
       const sortedProducts = [...productsData]; // Clona el arreglo
@@ -37,6 +35,13 @@ const Products = () => {
         return producto2.price - producto1.price; // Ordenar de mayor a menor
       });
       setProductsData(sortedProducts); // Actualiza el estado para reflejar los productos ordenados
+    }
+    if (string === 'name') {
+      const sortedProducts = [...productsData];
+      sortedProducts.sort((producto1, producto2) => {
+        return producto1.name.localeCompare(producto2.name); // Ordenar alfabéticamente por nombre
+      });
+      setProductsData(sortedProducts);
     }
     // return productsData
   };

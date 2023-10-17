@@ -12,7 +12,7 @@ const ProductFilters = ({orderProduct}) => {
         <div className="dropdown-content">
           <a onClick={() => orderProduct("lowerPrice")} >De menor a mayor</a>
           <a onClick={() =>orderProduct("higherPrice") } >De mayor a menor</a>
-       
+          <a onClick={() =>orderProduct("name") } >Nombre</a>
         </div>
       </div>
       <div className="dropdown">
