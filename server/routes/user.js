@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const authController = require("../controllers/userController");
-const validatorJWT = require("../controllers/validatorJWT");
+const validatorJWT = require("../helper/validatorJWT");
 const userController = require("../controllers/userController");
 
 const userRoutes = Router();
@@ -39,7 +39,7 @@ const userRoutes = Router();
  * @swagger
  * /api/v1/users/create:
  *  post:
- *    summary: Create user endpoint
+ *    summary: Create user
  *    tags: [Users]
  *    requestBody:
  *      required: true
@@ -50,7 +50,7 @@ const userRoutes = Router();
  *            $ref: '#/components/schemas/UserCreate'
  *    responses:
  *      201:
- *        description: Response error false and object user information
+ *        description: Response error false and user
  *      409:
  *        description: Some of the parameters are not correct
  */
@@ -86,7 +86,7 @@ userRoutes.post("/create", userController.create);
  * @swagger
  * /api/v1/users/edit:
  *  patch:
- *    summary: Update data user
+ *    summary: edit user
  *    tags: [Users]
  *    requestBody:
  *      required: true
@@ -97,7 +97,7 @@ userRoutes.post("/create", userController.create);
  *            $ref: '#/components/schemas/UserEdit'
  *    responses:
  *      202:
- *        description: Response error false and object user information
+ *        description: Response error false and user
  *      400:
  *        description: El usuario
  */

@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const authController = require("../controllers/authController");
-const validatorJWT = require("../controllers/validatorJWT");
+const validatorJWT = require("../helper/validatorJWT");
 
 const authRoutes = Router();
 
@@ -38,7 +38,7 @@ const authRoutes = Router();
  *            $ref: '#/components/schemas/UserAuth'
  *    responses:
  *      200:
- *        description: Response error false and object user information
+ *        description: Response error false and user
  *      400:
  *        description: credentials are not valid
  */
@@ -58,7 +58,7 @@ authRoutes.post("/", authController.login);
  *          required: true
  *      responses:
  *        200:
- *          description: Response data user and token
+ *          description: Response user and token
  *        401:
  *          description: Token Error
  */
