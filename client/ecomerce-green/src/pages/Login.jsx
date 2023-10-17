@@ -9,7 +9,7 @@ export const Login = () => {
   return (
    
     <MainLayout>
-    <main className='container flex justify-center '>
+    <main className='container-login flex justify-center '>
     
     <div className="flex  min-h-full  flex-col justify-center px-6 py-12 lg:px-8">
     <div className=' input-container w-[336px] h-[400px] justify-center '>
@@ -30,8 +30,8 @@ export const Login = () => {
     <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
       <form className="  space-y-6" action="#" method="POST">
         <div className='form-container'>
-           <label htmlFor="email" className="lbl-nombre absolute w-full   text-sm font-medium leading-6">
-            {/* <spam className="text-nomb">Email</spam> */}
+           <label htmlFor="email" className="lbl-nombre absolute  w-full   text-sm font-medium leading-6">
+           {/* <spam className="text-nomb">Email</spam>  */}
           </label>
           <div className="w-full ">
             <input
@@ -46,10 +46,10 @@ export const Login = () => {
           </div>
         </div>
 
-        <div className='form-container'>
+        <div className='form-container '>
           <div className="flex items-center justify-between">
              <label htmlFor="password" className="lbl-nombre absolute text-sm  leading-6 ">
-            {/* <spam className='text-nomb'>Contraseña</spam>  */}
+             {/* <spam className='text-nomb'>Contraseña</spam> */}
             </label> 
             
           </div>
@@ -65,7 +65,7 @@ export const Login = () => {
               autoComplete="current-password"
               required
               className="form block  w-full  border-0   shadow-sm  sm:text-sm sm:leading-6  "
-             placeholder="Contraseña"
+             placeholder="Contraseña" 
             />
            
           </div>

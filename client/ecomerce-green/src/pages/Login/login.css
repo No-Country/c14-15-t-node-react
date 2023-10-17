@@ -1,5 +1,6 @@
 
-.container{
+
+.container-login{
     
     background-image: url(../../../public/img-login.png);
     background-repeat: no-repeat;
@@ -37,7 +38,7 @@
     
    
 }
-.lbl-nombre{
+/* .lbl-nombre{
     bottom: 0;
     left: 0;
     width: 100%;
@@ -46,7 +47,17 @@
    
     
 }
- 
+  .text-nomb::after{
+    content: ""; 
+    position: relative;
+    left: 0;
+    margin-bottom: -1px;
+    width: 100%;
+    height: 100%;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.75);
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+}
  .text-nomb{
     font-size: 16px;
     position: absolute;
@@ -55,11 +66,18 @@
     transition: all 0.3s ease;
     color: #FFF;
 }
- ::placeholder{
-    font-size: 16px;
+ .form-container :focus  ~ .lbl-nombre {
+    
+    transform: translateX(-150%); 
+    font-size: 12px;
+    color: #fff;
+    padding: 0px;
+}  */
+::placeholder{
     color: #FFF;
+    font-size: 16px;
     font-weight: 600;
- }
+}
 
 .logo{
     color: #fff;
