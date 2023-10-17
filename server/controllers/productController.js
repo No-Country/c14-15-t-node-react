@@ -1,4 +1,5 @@
 const { validatorProduct } = require("../middlewares/productValidator");
+const productModel = require("../models/productModel");
 
 class productController {
   // ------------------- create Product -------------------
@@ -12,7 +13,8 @@ class productController {
       });
     }
 
-    res.json(result);
+    const newProduct = await productModel.create(result.data);
+    // res.json(result.data);
   }
 }
 

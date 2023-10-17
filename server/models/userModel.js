@@ -25,7 +25,7 @@ class UserModel {
     const token = await generateToken(user.uid, user.firstname, user.lastname);
     return {
       error: false,
-      user: {
+      data: {
         uid: user.uid,
         firstname: user.firstname,
         lastname: user.lastname,
@@ -48,7 +48,7 @@ class UserModel {
     }
 
     const token = await generateToken(user.uid, user.firstname, user.lastname);
-    return { error: false, token };
+    return { error: false, data: { token } };
   }
 
   static async revalidateToken(body) {
@@ -76,7 +76,7 @@ class UserModel {
     });
     return {
       error: false,
-      user: {
+      data: {
         firstname: isValidUser.firstname,
         lastname: isValidUser.lastname,
         email: isValidUser.email,

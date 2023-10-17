@@ -50,7 +50,7 @@ const userRoutes = Router();
  *            $ref: '#/components/schemas/UserCreate'
  *    responses:
  *      201:
- *        description: Response error false and user
+ *        description: Response error false and data
  *      409:
  *        description: Some of the parameters are not correct
  */
@@ -97,7 +97,7 @@ userRoutes.post("/create", userController.create);
  *            $ref: '#/components/schemas/UserEdit'
  *    responses:
  *      202:
- *        description: Response error false and user
+ *        description: Response error false and data
  *      400:
  *        description: El usuario
  */

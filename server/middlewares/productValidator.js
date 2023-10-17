@@ -18,14 +18,16 @@ const productSchema = z.object({
     invalid_type_error: "Detalles deben ser una cadena de texto",
     required_error: required_camp,
   }),
-  technical_info: z.object({
-    brand_name: z.string({
-      invalid_type_error: "Brand debe ser una cadena de texto",
-      required_error: required_camp,
-    }),
-    driver_model: z.string(),
-    energy_use: z.string(),
+  brand_name: z.string({
+    invalid_type_error: "Brand debe ser una cadena de texto",
+    required_error: required_camp,
   }),
+  technical_info: z
+    .object({
+      driver_model: z.string(),
+      energy_use: z.string(),
+    })
+    .optional(),
   measures: z
     .object({
       height: z.number().positive(),
