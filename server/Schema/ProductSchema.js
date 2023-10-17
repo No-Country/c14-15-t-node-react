@@ -26,7 +26,6 @@ const ProductSchema = Schema(
     },
     technical_info: {
       brand_name: String,
-      required: true,
       driver_model: String,
       energy_use: String,
     },

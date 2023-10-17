@@ -38,7 +38,7 @@ const authRoutes = Router();
  *            $ref: '#/components/schemas/UserAuth'
  *    responses:
  *      200:
- *        description: Response error false and user
+ *        description: Response error false and data
  *      400:
  *        description: credentials are not valid
  */
