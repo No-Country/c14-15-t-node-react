@@ -2,10 +2,14 @@ const express = require("express");
 const app = express();
 const dbConnection = require("./database/db");
 const { config } = require("dotenv");
+
 const { userRoutes } = require("./routes/user");
+const { productRoutes } = require("./routes/product");
+
 const swaggerUI = require("swagger-ui-express");
 const swaggerDoc = require("swagger-jsdoc");
 const path = require("path");
+const authRoutes = require("./routes/auth");
 
 //env
 config();
@@ -42,7 +46,9 @@ app.use(express.json());
 app.disable("x-powered-by");
 
 //routes
-app.use("/api/v1/auth", userRoutes);
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/products", productRoutes);
 
 //listen
 app.listen(process.env.PORT || 5000, () => {
