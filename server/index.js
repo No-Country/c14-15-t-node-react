@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const dbConnection = require("./database/db");
 const { config } = require("dotenv");
@@ -40,6 +41,8 @@ app.use(
   swaggerUI.setup(swaggerDoc(swaggerSpect))
 );
 
+//cors
+app.use(cors());
 //parse body
 app.use(express.json());
 
