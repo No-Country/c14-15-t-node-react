@@ -1,7 +1,7 @@
 
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import MainLayout from "../components/MainLayout"
-import "../pages/Login/login.css"
+import "../styles/login.css"
 import { useState } from "react"
 
 export const Login = () => {
@@ -28,48 +28,46 @@ export const Login = () => {
     </div>
 
     <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form className="  space-y-6" action="#" method="POST">
-        <div className='form-container'>
-           <label htmlFor="email" className="lbl-nombre absolute  w-full   text-sm font-medium leading-6">
-           {/* <spam className="text-nomb">Email</spam>  */}
-          </label>
-          <div className="w-full ">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              className="form   w-full    border-0 pt-2 pb-0  sm:text-sm sm:leading-6"
-              placeholder="Email"
-            />
-          </div>
-        </div>
+      <form className="space-y-6" action="#" method="POST">
+      <div className="p-2">
+      <div className="w-56 left-8 relative group">
+    
+      <input 
+      id="email"
+      name="email"
+      type="email"
+      autoComplete="email"
+      required 
+      className="form w-full text-white px-4 text-sm peer  outline-none"/>
+      
+      <label 
+      htmlFor="email"
+     className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6">
+      Email</label>
+      </div>
+      </div> 
 
-        <div className='form-container '>
-          <div className="flex items-center justify-between">
-             <label htmlFor="password" className="lbl-nombre absolute text-sm  leading-6 ">
-             {/* <spam className='text-nomb'>Contraseña</spam> */}
-            </label> 
-            
-          </div>
-          <div className= " w-full flex flex-row-reverse items-center">
-            <div className="icono flex cursor-pointer w-50%  flex-row-reverse  relative " onClick={() => setsicoPassword (!icoPassword)}>
+  <div className="p-2">
+  <div className="w-56 left-8 relative group flex flex-row-reverse">
+    <div className="icono flex cursor-pointer w-50%  flex-row-reverse absolute text-white  " onClick={() => setsicoPassword (!icoPassword)}>
 
-              { icoPassword  ? <AiOutlineEye  size={20}/>  : <AiOutlineEyeInvisible  size={20}/> }
-             </div>
-            <input
-              id="password"
-              name="password"
-              type={ icoPassword ? "text" : "password"}
-              autoComplete="current-password"
-              required
-              className="form block  w-full  border-0   shadow-sm  sm:text-sm sm:leading-6  "
-             placeholder="Contraseña" 
-            />
-           
-          </div>
-        </div>
+    { icoPassword  ? <AiOutlineEye  size={20}/>  : <AiOutlineEyeInvisible  size={20}/> }
+    </div>
+      <input 
+      name="password"
+      type={ icoPassword ? "text" : "password"} 
+      id="password" 
+      autoComplete="current-password"
+      required 
+      className="form w-full text-white  px-4 text-sm peer outline-none"/>
+      
+      <label 
+      htmlFor="password"
+     className=" title transform transition-all text-white  absolute pb-2 top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6">
+      Contraseña
+      </label>
+  </div>
+  </div>    
         <div className="text-sm flex justify-center">
               <a href="#" className="title">
                 ¿Has olvidado tu contraseña?
@@ -96,8 +94,11 @@ export const Login = () => {
   </div>
   </div>
   </main>
+  
+
   </MainLayout>
   
 
   )
+
 }
