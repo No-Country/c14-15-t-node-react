@@ -20,7 +20,7 @@ const UserData = () => {
     },
   });
   return (
-    <div className="flex   flex-col justify-center  ">
+    <section className="flex   flex-col justify-center  ">
     <div className=" input-container w-[336px] min-h-[400px] justify-center ">
       <div className=" logo sm:mx-auto sm:w-full sm:max-w-sm ">
         <img
@@ -161,7 +161,7 @@ const UserData = () => {
         </p>
       </div>
     </div>
-  </div>
+  </section>
   );
 };
 export default UserData;
