@@ -57,7 +57,7 @@ class UserModel {
 
     return { error: false, uid, firstname, lastname, token };
   }
-  // === update user controller ====
+  // === update user model ====
   static async updateUser(body) {
     let { uid, firstname, lastname, email, address, password } = body;
 
@@ -68,12 +68,15 @@ class UserModel {
         message: "El usuario que intenta modificar no existe",
       };
     }
+
     if (password) {
       body.password = user.password;
     }
+
     let isValidUser = await User.findByIdAndUpdate(user._id, body, {
       new: true,
     });
+    
     return {
       error: false,
       data: {
