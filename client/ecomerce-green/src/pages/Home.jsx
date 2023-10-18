@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
@@ -9,7 +9,10 @@ import Marks from "../components/Marks";
 import MainLayout from "../components/MainLayout";
 import Cards from "../components/Cards";
 
+
 const Home = () => {
+
+
   const images = [
     "/img/jks.png",
     "/img/longi.png",
@@ -33,7 +36,6 @@ const Home = () => {
           <Hero />
           <Marks images={images} speed={5000} />
           <FeaturedProduct />
-         
         </main>
       </MainLayout>
     </>
