@@ -16,16 +16,19 @@ class authController {
 
     const login = await AuthModel.login(result.data);
 
-    if (!login.error) {
-      return res.status(200).json(login);
+    if (login.error) {
+      return res.status(400).json(login);
     }
-    res.status(400).json(login);
+    res.status(200).json(login);
   }
 
   // ------------------- validate token -------------------
   static async validateToken(req, res) {
     const token = await AuthModel.revalidateToken(req);
 
+    if (token.error) {
+      return res.status(400).json(token);
+    }
     res.status(200).json(token);
   }
 }

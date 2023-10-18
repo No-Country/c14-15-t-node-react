@@ -26,10 +26,10 @@ class UserModel {
     return {
       error: false,
       data: {
-        uid: user.uid,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        email: user.email,
+        // uid: user.uid,
+        // firstname: user.firstname,
+        // lastname: user.lastname,
+        // email: user.email,
         token,
       },
     };
@@ -55,7 +55,7 @@ class UserModel {
     const { uid, firstname, lastname } = body;
     const token = await generateToken(uid, firstname, lastname);
 
-    return { error: false, uid, firstname, lastname, token };
+    return { error: false, data: { token } };
   }
   // === update user model ====
   static async updateUser(body) {
@@ -80,9 +80,11 @@ class UserModel {
     return {
       error: false,
       data: {
-        firstname: isValidUser.firstname,
-        lastname: isValidUser.lastname,
-        email: isValidUser.email,
+        id: user.id,
+        // firstname: isValidUser.firstname,
+        // lastname: isValidUser.lastname,
+        // email: isValidUser.email,
+        messsage: "Modificaste tu usuario correctamente",
       },
     };
   }

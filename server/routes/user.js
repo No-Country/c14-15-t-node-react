@@ -86,7 +86,7 @@ userRoutes.post("/create", userController.create);
  * @swagger
  * /api/v1/users/edit:
  *  patch:
- *    summary: edit user
+ *    summary: Edit user
  *    tags: [Users]
  *    requestBody:
  *      required: true

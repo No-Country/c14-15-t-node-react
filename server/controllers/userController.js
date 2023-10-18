@@ -17,10 +17,10 @@ class userController {
 
     const newUser = await UserModel.createUser(result.data);
 
-    if (!newUser.error) {
-      return res.status(201).json(newUser);
+    if (newUser.error) {
+      return res.status(409).json(newUser);
     }
-    res.status(409).json(newUser);
+    res.status(201).json(newUser);
   }
 
   // ------------------- updating user -------------------
@@ -32,10 +32,10 @@ class userController {
         .json({ error: true, data: JSON.parse(result.error.message) });
     }
     const updatedUser = await UserModel.updateUser(result.data);
-    if (!updatedUser.error) {
-      return res.status(202).json(updatedUser);
+    if (updatedUser.error) {
+      return res.status(400).json(updatedUser);
     }
-    res.status(400).json(updatedUser);
+    res.status(202).json(updatedUser);
   }
 }
 
