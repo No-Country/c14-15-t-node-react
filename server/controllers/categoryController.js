@@ -1,24 +1,54 @@
 const CategoryModel = require("../models/categoryModel");
-const { categoryValidator } = require("../middlewares/categoryValidator");
+const { categoryValidator, categoryPartialValidator } = require("../middlewares/categoryValidator");
 
 class categoryController{
     // ------------------- create category ---------------
     static async create(req, res){
         const result = categoryValidator(req.body);
         if(!result.success){
-            res
+            return res
             .status(400)
             .json({error: true, data: JSON.parse(result.error.message)});
         }
         const newCategory = await CategoryModel.createCategory(result.data);
         if(!newCategory.error){
-            res.status(201).json(newCategory);        
+            return res.status(201).json(newCategory);        
         }
-        res.status(409).json(newCategory);
+        return res.status(409).json(newCategory);
     }
-    // ------------------- update user -------------------
-    // ------------------- delete user -------------------
-    // ------------------- get all user ------------------
+    // ------------------- update category -------------------
+    static async update(req, res){
+        const result = categoryValidator(req.body);
+        if(!result.success){
+            return res
+            .status(400)
+            .json({error: true, data: JSON.parse(result.error.message)});
+        }
+
+        const updatedCategory = await CategoryModel.updateCategory(result.data);
+        if (updatedCategory && !updatedCategory.error) {
+            return res.status(202).json(updatedCategory);
+        }
+        return res.status(400).json(updatedCategory);
+
+    }
+    // ------------------- delete category -------------------
+    static async delete(req,res){
+        const result = categoryPartialValidator(req.body);
+        if(!result.success){
+            return res
+            .status(400)
+            .json({error: true, data: JSON.parse(result.error.message)});
+        }
+        
+        const deletedCategory = await CategoryModel.deleteCategory(result.data);
+
+        if(deletedCategory.error){
+            return res.status(400).json(deletedCategory);
+        }
+        return res.status(202).json(deletedCategory);
+    }
+    // ------------------- get all category ------------------
 
 
 

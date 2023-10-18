@@ -7,7 +7,6 @@ const CategorySchema = Schema(
         type: Number,
         required: true,
         unique: true,
-        default: 1,
     },
     name: {
         type: String,
