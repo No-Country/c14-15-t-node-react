@@ -151,12 +151,12 @@ const UserData = () => {
         </form>
 
         <p className="mt-5 mb-2 text-center text-sm title">
-          ¿No estas registrado?{" "}
+        ¿Ya estás registrado? {" "}
           <Link
-            to="/register"
+            to="/login"
             className="font-semibold leading-6 text-orange-600 hover:text-orange-500"
           >
-            Crear cuenta
+          Ingresar a cuenta
           </Link>
         </p>
       </div>
