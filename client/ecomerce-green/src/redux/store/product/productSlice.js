@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 // import { STATUS } from "../../../constants/Status";
-const base_url = "http://localhost:8000/";
+const base_url = "http://localhost:5000/";
 
 const initialState = {
   status: "",

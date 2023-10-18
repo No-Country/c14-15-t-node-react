@@ -1,117 +1,167 @@
-import './../../styles/UserData.css';
-import isoTipo from '/logo.svg'
-import TextField from './TextField';
-import { useState } from 'react';
-import ButtonForm from './ButtonForm';
-const UserData =()=>{
-    const [name, setName] = useState("");
-    const [lasName, setLastName] = useState("");
-    const [email, setEmail]= useState("");
-    const [password_1, setPassword_1] = useState("");
-    const [password_2, setPassword_2]= useState("");
-    const [errors, setErrors] =useState ({
-        name:{
-            error: false,
-            message: "",
-        }
-    });
-    return <section className="userData w-full flex justify-center items-center">
-        <div className='pt-[104px] pb-[60px] 
-        md:pt-[129px] md:pb-[64px] lg:pt-[144px] lg:pb-[74px]'>
-            <div 
-            className='userData__form-content py-8 px-6 flex flex-col 
-            gap-5 justify-center items-center 
-            md:w-[336px]'>
-                <div className='flex flex-col justify-center items-center'>
-                    <img className='w-8 h-10' src={isoTipo} />
-                    <p className='text-white text-[20px] font-extrabold'>GreenIX</p>
-                </div>
-                <p className='text-white font-normal text-[1rem]'>Registra tus datos</p>
+import "./../../styles/UserData.css";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import isoTipo from "/logo.svg";
+import TextField from "./TextField";
+import { useState } from "react";
+import ButtonForm from "./ButtonForm";
+import { Link } from "react-router-dom";
+const UserData = () => {
+    const [icoPassword, setsicoPassword] = useState(false);
+    const [icoPassword2, setsicoPassword2] = useState(false);
+  const [name, setName] = useState("");
+  const [lasName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password_1, setPassword_1] = useState("");
+  const [password_2, setPassword_2] = useState("");
+  const [errors, setErrors] = useState({
+    name: {
+      error: false,
+      message: "",
+    },
+  });
+  return (
+    <div className="flex   flex-col justify-center  ">
+    <div className=" input-container w-[336px] min-h-[400px] justify-center ">
+      <div className=" logo sm:mx-auto sm:w-full sm:max-w-sm ">
+        <img
+          className="mx-auto h-[40px] w-[33px]"
+          src="/src/assets/logo.svg"
+          alt="Your Company"
+        />
 
-                <form className='w-[240px] flex flex-col justify-center items-center' method='POST'>
-                    <TextField 
-                    type={'text'} 
-                    placeholder={'Nombre'} 
-                    name={'name'}
-                    id={'name'}
-                    ariaLabel={'nombre completo'}
-                    value={name}
-                    label={'Nombre'}
-                    onChange={(e)=>{ setName(e.target.value)}}
-                    error={false}
-                    bgColor={'transparent'}
-                    colorText={'white'}
-                    helperText={'Ingrese su nombre completo'}
-                    errorMessage={''}
-                    />
-                    <TextField 
-                    type={'text'} 
-                    placeholder={'Apellidos'} 
-                    name={'lastName'}
-                    id={'lastName'}
-                    ariaLabel={'Apellidos completos'}
-                    value={lasName}
-                    label={'Apellidos'}
-                    onChange={(e)=>{ setLastName(e.target.value)}}
-                    error={false}
-                    bgColor={'transparent'}
-                    colorText={'white'}
-                    helperText={'Ingrese sus apellidos completos'}
-                    errorMessage={''}
-                    />
-                    <TextField 
-                    type={'email'} 
-                    placeholder={'Email'} 
-                    name={'email'}
-                    id={'email'}
-                    ariaLabel={'Correo electronico'}
-                    value={email}
-                    label={'Email'}
-                    onChange={(e)=>{ setEmail(e.target.value)}}
-                    error={false}
-                    bgColor={'transparent'}
-                    colorText={'white'}
-                    helperText={'Ingrese un email válido'}
-                    errorMessage={''}
-                    />
-                    <TextField 
-                    type={'password'} 
-                    placeholder={'Ingresar contraseña'} 
-                    name={'password'}
-                    id={'password'}
-                    ariaLabel={'password'}
-                    value={password_1}
-                    label={'Ingresar contraseña'}
-                    bgColor={'transparent'}
-                    colorText={'white'}
-                    onChange={(e)=>{ setPassword_1(e.target.value)}}
-                    error={false}
-                    helperText={'Ingrese su contraseña, más de 6 digitos'}
-                    errorMessage={''}
-                    />
-                    <TextField 
-                    type={'password'} 
-                    placeholder={'Repetir contraseña'} 
-                    name={'password_2'}
-                    id={'password_2'}
-                    ariaLabel={'password_repetida'}
-                    value={password_2}
-                    label={'Repetir contraseña'}
-                    bgColor={'transparent'}
-                    colorText={'white'}
-                    onChange={(e)=>{ setPassword_2(e.target.value)}}
-                    error={false}
-                    helperText={'Repita la misma contraseña'}
-                    errorMessage={''}
-                    />
-                    <ButtonForm  text={'Registrarse'} type={'submit'} />
-                </form>
-                <div className='text-[12px] '>
-                    <span className='text-[white] font-normal'>¿Ya estás registrado?  </span>
-                    <a className=' font-semibold text-[#F8924F]' href='/login'>Ingresar a cuenta</a>
-                </div>
+        <h2 className="mt-1 text-center text-1xl  leading-9 tracking-tight text-white-200">
+          GreenIX
+        </h2>
+        <p className="text-center mt-1 title">Registra tus datos</p>
+      </div>
+
+      <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form className="space-y-6 w-auto" action="#" method="POST">
+          <div className="p-2">
+            <div className="w-56 left-8 relative group">
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                className="form w-full text-white px-4 text-sm peer  outline-none"
+              />
+
+              <label
+                htmlFor="name"
+                className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+              >
+                Name
+              </label>
             </div>
-        </div>
-    </section>
-}
+          </div>
+          <div className="p-2">
+                  <div className="w-56 left-8 relative group">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      className="form w-full text-white px-4 text-sm peer  outline-none"
+                    />
+
+                    <label
+                      htmlFor="email"
+                      className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+                    >
+                      Email
+                    </label>
+                  </div>
+                </div>
+
+          <div className="p-2">
+            <div className="w-56 left-8 relative group flex flex-row-reverse">
+              <div
+                className="icono flex cursor-pointer w-50%  flex-row-reverse absolute text-white  "
+                onClick={() => setsicoPassword(!icoPassword)}
+              >
+                {icoPassword ? (
+                  <AiOutlineEye size={20} />
+                ) : (
+                  <AiOutlineEyeInvisible size={20} />
+                )}
+              </div>
+              <input
+                name="password"
+                type={icoPassword ? "text" : "password"}
+                id="password"
+                autoComplete="current-password"
+                required
+                className="form w-full text-white  px-4 text-sm peer outline-none"
+              />
+
+              <label
+                htmlFor="password"
+                className=" title transform transition-all text-white  absolute pb-2 top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+              >
+                Contraseña
+              </label>
+            </div>
+          </div>
+          <div className="p-2">
+            <div className="w-56 left-8 relative group flex flex-row-reverse">
+              <div
+                className="icono flex cursor-pointer w-50%  flex-row-reverse absolute text-white  "
+                onClick={() => setsicoPassword2(!icoPassword2)}
+              >
+                {icoPassword2 ? (
+                  <AiOutlineEye size={20} />
+                ) : (
+                  <AiOutlineEyeInvisible size={20} />
+                )}
+              </div>
+              <input
+                name="password_2"
+                type={icoPassword2 ? "text" : "password"}
+                id="password_2"
+                autoComplete="current-password"
+                required
+                className="form w-full text-white  px-4 text-sm peer outline-none"
+              />
+
+              <label
+                htmlFor="password"
+                className=" title transform transition-all text-white  absolute pb-2 top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+              >
+                Repetir contraseña
+              </label>
+            </div>
+          </div>
+          <div className="text-sm flex justify-center">
+            <a href="#" className="title">
+              ¿Has olvidado tu contraseña?
+            </a>
+          </div>
+
+          <div className="flex justify-center ">
+            <button
+              type="submit"
+              className="flex w-[160px] h-[40px] justify-center rounded-md bg-[#F8924F99] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#F8924F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+            >
+              <p className="">Ingresar</p>
+            </button>
+          </div>
+        </form>
+
+        <p className="mt-5 mb-2 text-center text-sm title">
+          ¿No estas registrado?{" "}
+          <Link
+            to="/register"
+            className="font-semibold leading-6 text-orange-600 hover:text-orange-500"
+          >
+            Crear cuenta
+          </Link>
+        </p>
+      </div>
+    </div>
+  </div>
+  );
+};
 export default UserData;
