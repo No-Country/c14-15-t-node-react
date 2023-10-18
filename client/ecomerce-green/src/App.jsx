@@ -6,6 +6,7 @@ import Cart from './pages/Cart';
 import Product from './pages/ProductDetail';
 import Products from './pages/Products';
 import DynamicTitlePage from './pages/DynamicTitlePage';
+import UserRegister from './pages/UserRegister';
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/product" element={<Product />} />
+        <Route exact path="/register" element={<UserRegister />} />
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/dinamic" element={<DynamicTitlePage />} />
       </Routes>
