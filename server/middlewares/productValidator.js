@@ -1,7 +1,15 @@
 const z = require("zod");
 
 const required_camp = "Campo Requerido";
+
 const productSchema = z.object({
+  id: z
+    .number({
+      invalid_type_error: "Id no valido",
+      required_error: required_camp,
+    })
+    .optional()
+    .readonly(),
   name: z.string({
     invalid_type_error: "El nombre debe ser letras",
     required_error: required_camp,
