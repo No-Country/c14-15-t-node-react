@@ -8,8 +8,13 @@ import {
 import logo from "../assets/logo.svg";
 import { VscAccount } from "react-icons/vsc";
 import useHeaderShadow from "../hooks/useHeaderShadow";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { cart } = useSelector((state) => state.cart);
+console.log(cart)
+
+
   const [nav, setNav] = useState(false);
   const headerShadow = useHeaderShadow();
   const handleNav = () => {
@@ -45,13 +50,21 @@ const Header = () => {
           </nav>
           <div className="hidden md:flex">
             <ul className="flex g-1">
-              <li className="pr-4">Log in</li>
-              <li className="pr-4">
+              <li className="pr-4 flex justify-center items-center">Log in</li>
+              <li className="pr-4 flex justify-center items-center">
                 <VscAccount size={20} />
               </li>
-              <li>
-                {" "}
-                <AiOutlineShoppingCart size={20} />
+              <li className="flex justify-center items-center mt-[-0.7rem]">
+                <div className="relative ">
+                  <div className="t-0 absolute left-3">
+                 
+                      <p className={`${cart.length > 0 ? "flex":"hidden"} h-2 w-2  items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white`}>
+                      {cart?.length}
+                    </p>
+                   
+                  </div>{" "}
+                  <AiOutlineShoppingCart size={20} className="file: mt-4 h-6 w-6" />
+                </div>
               </li>
             </ul>
           </div>
@@ -71,7 +84,7 @@ const Header = () => {
         }
       >
         <div className="p-4 mt-5">Ingresar</div>
-        <ul >
+        <ul>
           <li className="p-4 ">Home</li>
           <li className="p-4  ">Tienda</li>
           <li className="p-4 ">Contacto</li>
@@ -85,17 +98,18 @@ const Header = () => {
               <AiOutlineSearch className="text-gray-800" />
             </div>
           </li>
-          </ul>
-          <ul className="flex justify-between mx-2" >
-       
-              <li className=" flex pr-4 items-center">
-               <div className="ml-2"><VscAccount size={20} /> </div> 
-                <a className="ml-2 ">Log in</a>
-              </li>
+        </ul>
+        <ul className="flex justify-between mx-2">
+          <li className=" flex pr-4 items-center">
+            <div className="ml-2">
+              <VscAccount size={20} />{" "}
+            </div>
+            <a className="ml-2 ">Log in</a>
+          </li>
           <li className="p-4 border-b border-r-gray-600">
-          {" "}
-                <AiOutlineShoppingCart size={25} />
-            </li>
+            {" "}
+            <AiOutlineShoppingCart size={25} />
+          </li>
         </ul>
       </nav>
     </>

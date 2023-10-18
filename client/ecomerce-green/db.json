@@ -1,0 +1,82 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "firstName":"Carlos",
+            "lastName": "Santillan",
+            "email": "carlos@test.com",
+            "pasword":"123456test",
+            "address": "recreo 250, estacion central",
+            "role_admin": true
+        },
+        {
+            "id": 2,
+            "firstName":"Ysis",
+            "lastName": "Longart",
+            "email": "ysis@test.com",
+            "pasword":"123456test",
+            "address": "recreo 250, estacion central",
+            "role_admin": true
+        }
+      
+      ],
+    "products": [
+        {
+        "id": 1,
+        "name": "Trina Solar",
+        "description": "Panel solar adaptable",
+        "calification_energy": "A",
+        "price": 300,
+        "inStock": 10,
+        "images":{"cover":"/ProductImg.png", "picture_1":"/ProductImg.png"},
+        "technical_specifications":"Vertex N 610W",
+        "category":  "paneles solares",
+        "garanty": 5 , 
+        " timestamps": "dd-mm-yy" 
+        
+    },  
+      {
+        "id": 2,
+        "name": "Jinko Solar",
+        "description": "Panel solar adaptable",
+        "calification_energy": "A",
+        "price": 200,
+        "inStock": 10,
+        "images":{"cover":"/ProductImg.png", "picture_1":"/ProductImg.png"},
+        "technical_specifications":"Tiger Neo 78HC",
+        "category":  "paneles solares",
+        "garanty": 5 , 
+        " timestamps": "dd-mm-yy" 
+        
+    },
+    {
+        "id": 3,
+        "name": "Jinko Solar",
+        "description": "Panel solar adaptable",
+        "calification_energy": "A",
+        "price": 500,
+        "inStock": 10,
+        "images":{"cover":"/ProductImg2.png", "picture_1":"/ProductImg.png"},
+        "technical_specifications":"Tiger Neo 78HC",
+        "category":  "paneles solares",
+        "garanty": 5 , 
+        " timestamps": "dd-mm-yy" 
+        
+    },
+    {
+        "id": 4,
+        "name": "Jinko Solar",
+        "description": "Panel solar adaptable",
+        "calification_energy": "A",
+        "price": 100,
+        "inStock": 10,
+        "images":{"cover":"/ProductImg2.png", "picture_1":"/ProductImg.png"},
+        "technical_specifications":"Tiger Neo 78HC",
+        "category":  "paneles solares",
+        "garanty": 5 , 
+        " timestamps": "dd-mm-yy" 
+        
+    }
+
+]
+}
