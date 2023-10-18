@@ -1,4 +1,7 @@
 const Category = require("../Schema/categorySchema");
+const Product = require("../Schema/ProductSchema");
+const mongoose = require('mongoose');
+
 
 class categoryModel {
     static async createCategory(body) {
@@ -50,6 +53,7 @@ class categoryModel {
             message: `La categoria con id: ${id} no existe`,
           };
         }
+
       
         // Update the category with the new data
         const updatedCategory = await Category.findByIdAndUpdate(category._id, body, {
@@ -64,5 +68,48 @@ class categoryModel {
         };
       }
       
+      static async deleteCategory(body) {
+        const { id } = body;
+      
+        let category = await Category.findOne({ id });
+        if (!category) {
+          return {
+            error: true,
+            message: 'Esta categoría no existe'
+          };
+        }
+      
+        let product = await Product.findOne({ category: category.name });
+        if (product) {
+          return {
+            error: true,
+            message: 'Existen productos con esta categoría'
+          };
+        }
+        
+        
+        const deletedCategory = await Category.findOneAndDelete({ id: id });
+              
+          return {
+            error: false,
+            message: `Se eliminó ${deletedCategory.name} como categoría`
+          };
+
+        // try{
+        //     //const objectId = new mongoose.Types.ObjectId(id); // Convierte el id a un ObjectId
+        //     const findCategory = await Category.findByIdAndDelete(id);
+        //     return {
+        //         data: findCategory
+        //     };
+        // }
+        // catch(e){
+        //     console.error(e);
+        //     return{
+        //         message: 'server error'
+        //     }
+        // }
+      }
+      
+          
 }
 module.exports = categoryModel;

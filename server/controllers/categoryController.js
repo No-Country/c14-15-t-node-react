@@ -33,6 +33,21 @@ class categoryController{
 
     }
     // ------------------- delete category -------------------
+    static async delete(req,res){
+        const result = categoryPartialValidator(req.body);
+        if(!result.success){
+            return res
+            .status(400)
+            .json({error: true, data: JSON.parse(result.error.message)});
+        }
+        
+        const deletedCategory = await CategoryModel.deleteCategory(result.data);
+
+        if(deletedCategory.error){
+            return res.status(400).json(deletedCategory);
+        }
+        return res.status(202).json(deletedCategory);
+    }
     // ------------------- get all category ------------------
 
 
