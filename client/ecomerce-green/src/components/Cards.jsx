@@ -1,11 +1,13 @@
-import Fridge from '../../public/Fridge.svg';
-import PanelSolar from '../../public/Panelsolar.svg';
-import Light from '../../public/Ligth.svg';
+import Fridge from '/Fridge.svg';
+import PanelSolar from '/Panelsolar.svg';
+import Light from '/Ligth.svg';
+import  '../styles/Cards.css'
 
 const Cards = () => {
+        const wraper = `w-[100vw] cards-bg  flex  content-end justify-center items-center lg:flex-row`
     return (
-      
-      <section className="w-[100vw] bg-inherit cards-bg  flex  content-end justify-center items-center lg:flex-row">
+
+      <section className={wraper}>
         <div className="landing-card ">
           <img src={PanelSolar} alt="panel" />
           <h4>Tu solución brillante para un hogar ecoamigable</h4>
@@ -15,7 +17,7 @@ const Cards = () => {
           </p>
         </div>
         <div className="landing-card">
-          <img src={Light} alt="ligth" />
+          <img src={Light} alt="light" />
 
           <h4>Una luz amigable con el planeta y tu bolsillo</h4>
           <p>

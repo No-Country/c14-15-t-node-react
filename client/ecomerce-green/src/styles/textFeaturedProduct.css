@@ -4,28 +4,26 @@
     padding-bottom: 1rem;
 }
 .textFeaturedProduct, .textFeaturedProduct p, .textFeaturedProduct ul li{
-    font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     line-height: normal;
 }
 .textFeaturedProduct ul{
     list-style: initial;
-    list-style-type: "-"; 
-    font-family: 'Roboto'; 
+    list-style-type: " - "; 
+    list-style-position:inside;
 }
 @media (min-width: 768px) {
     .textFeaturedProduct{
         max-width: 287px;
-        height: 324px;
         padding: 0;
-        padding-right: 36px;
+        padding-right: 14px;
         border: none;
         display: flex;
         align-items: center;
     }
     .textFeaturedProduct, .textFeaturedProduct p, .textFeaturedProduct ul li{
-        font-size: 0.8rem;
+        font-size: 0.875rem;
     }
 }
 @media (min-width: 1024px) {

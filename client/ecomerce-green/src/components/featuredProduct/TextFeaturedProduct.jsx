@@ -1,4 +1,5 @@
-import "./textFeaturedProduct.css";
+
+import  '../../styles/textFeaturedProduct.css'
 const TextFeaturedProduct = () => {
   return (
     <div className="textFeaturedProduct">
