@@ -28,7 +28,6 @@ const ProductCards = ({product}) => {
           }} />
         </div>
     </div>
-
   )
 }
 
