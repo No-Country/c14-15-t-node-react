@@ -1,0 +1,31 @@
+
+
+.container-login{
+    background-image: url(../../../public/img-login.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.input-container{
+    margin-top: 8rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(252deg, rgba(52, 150, 107, 0.95) 1.76%, rgba(53, 86, 71, 0.95) 87.66%);
+    border-radius: 8px;
+}
+.form{
+    background:none;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.75);  
+}
+.logo{
+    color: #fff;
+    margin-top: 1rem;
+}
+.title{
+ color: #FFF;
+font-family: Roboto;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}

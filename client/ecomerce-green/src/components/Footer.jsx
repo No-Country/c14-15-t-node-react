@@ -2,6 +2,7 @@
 import { BsFacebook, BsTelephoneFill, } from 'react-icons/bs';
 import { AiFillInstagram, AiOutlineMail, AiFillLinkedin}  from "react-icons/ai"
 import  '../styles/Footer.css';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -24,7 +25,7 @@ const Footer = () => {
                 <p className='flex gap-3 items-center'> <AiOutlineMail color='#976336' size={30} /> contacto@nombre.net</p>
             </div>
             <div className='btn-footer flex justify-center w-[160px] h-[40px]'>
-                <button>Contacto</button>
+            <button><Link to="/contacto">Contacto</Link></button>
             </div> 
          </div>
         </footer>
@@ -33,5 +34,3 @@ const Footer = () => {
 
 
 export default Footer
-
-

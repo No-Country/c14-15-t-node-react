@@ -9,6 +9,7 @@ import logo from "../assets/logo.svg";
 import { VscAccount } from "react-icons/vsc";
 import useHeaderShadow from "../hooks/useHeaderShadow";
 import { useSelector } from "react-redux";
+import { NavLink, Link } from "react-router-dom";
 
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
@@ -27,17 +28,25 @@ console.log(cart)
         className={`w-[100vw] fixed z-[3] ${headerShadow} rounded-b-lg border-b-2 border-white `}
       >
         <div className="flex sm:z-[3] justify-between items-center h-24 max-w-[1240px]  px-7 mx-auto">
+          <NavLink to="/">
           <div className=" flex gap-2 ">
             <img src={logo}></img>
             <h1>GreenIX</h1>
           </div>
+          </NavLink>
 
           {/* Navbar destock */}
           <nav className=" hidden md:flex gap-3 p-6 ">
             <ul className=" flex  gap-2 p-6 ">
-              <li>Home</li>
-              <li>Tienda</li>
-              <li>Contacto</li>
+              <li>
+              <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/products">Tienda</NavLink>
+              </li>
+              <li>
+                <NavLink to="/contacto">Contacto</NavLink>
+              </li>
             </ul>
             <div className="flex g-2 items-center border rounded-xl h-10 px-3 mt-4 bg-slate-50">
               <input
@@ -50,21 +59,21 @@ console.log(cart)
           </nav>
           <div className="hidden md:flex">
             <ul className="flex g-1">
-              <li className="pr-4 flex justify-center items-center">Log in</li>
-              <li className="pr-4 flex justify-center items-center">
-                <VscAccount size={20} />
+              <li className="pr-4">
+                {" "}
+                <Link to="/login">Log in</Link>
               </li>
-              <li className="flex justify-center items-center mt-[-0.7rem]">
-                <div className="relative ">
-                  <div className="t-0 absolute left-3">
-                 
-                      <p className={`${cart.length > 0 ? "flex":"hidden"} h-2 w-2  items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white`}>
-                      {cart?.length}
-                    </p>
-                   
-                  </div>{" "}
-                  <AiOutlineShoppingCart size={20} className="file: mt-4 h-6 w-6" />
-                </div>
+              <li className="pr-4">
+                <Link to="/login">
+                  <VscAccount size={20} />
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/cart">
+                  {" "}
+                  <AiOutlineShoppingCart size={20} />
+                </Link>
               </li>
             </ul>
           </div>
@@ -83,11 +92,11 @@ console.log(cart)
             : "fixed top-[-100%]"
         }
       >
-        <div className="p-4 mt-5">Ingresar</div>
+        <div className="p-4 mt-5"> <Link to="/login">Ingresar</Link></div>
         <ul>
-          <li className="p-4 ">Home</li>
-          <li className="p-4  ">Tienda</li>
-          <li className="p-4 ">Contacto</li>
+          <NavLink to="/"><li className="p-4"> Home</li></NavLink>
+          <NavLink to="/products"><li className="p-4"> Tienda</li></NavLink>
+          <NavLink to="/contacto"><li className="p-4"> Contacto</li></NavLink>
           <li className="p-4">
             <div className="flex g-2 items-center border rounded-xl h-10 px-3 mt-1 bg-slate-50">
               <input
