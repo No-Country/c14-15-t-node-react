@@ -50,7 +50,7 @@ app.disable("x-powered-by");
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/products", productRoutes);
-app.use("api/v1/categories", categoryRoutes);
+app.use("/api/v1/categories", categoryRoutes);
 
 //listen
 app.listen(process.env.PORT || 5000, () => {
