@@ -29,7 +29,7 @@ const swaggerSpect = {
         url: `http://localhost:${process.env.PORT}`,
       },
       {
-        url: `https://api-greeni.onrender.com:${process.env.PORT}`,
+        url: "https://api-greeni.onrender.com",
       },
     ],
   },
@@ -45,6 +45,7 @@ app.use(
 
 //cors
 app.use(cors());
+
 //parse body
 app.use(express.json());
 
