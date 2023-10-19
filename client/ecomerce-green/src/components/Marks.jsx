@@ -2,7 +2,7 @@ import React  from "react";
 
 
 const Marks = ({ images }) => {
-  console.log(images);
+
 
   return (
     <div className="w-[100vw] max-w-6xl mx-auto px-3 sm:px-2 md:px-4  py-13 ">
