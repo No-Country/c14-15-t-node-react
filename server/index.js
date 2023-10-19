@@ -27,7 +27,9 @@ const swaggerSpect = {
     servers: [
       {
         url: `http://localhost:${process.env.PORT}`,
-        // url: "HTTP",
+      },
+      {
+        url: `https://api-greeni.onrender.com:${process.env.PORT}`,
       },
     ],
   },
