@@ -40,19 +40,38 @@ const UserData = () => {
           <div className="p-2">
             <div className="w-56 left-8 relative group">
               <input
-                id="name"
-                name="name"
+                id="firstname"
+                name="firstname"
                 type="text"
-                autoComplete="name"
+                autoComplete="firstname"
                 required
                 className="form w-full text-white px-4 text-sm peer  outline-none"
               />
 
               <label
-                htmlFor="name"
+                htmlFor="firstname"
                 className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
               >
                 Name
+              </label>
+            </div>
+          </div>
+          <div className="p-2">
+            <div className="w-56 left-8 relative group">
+              <input
+                id="lastname"
+                name="lastname"
+                type="text"
+                autoComplete="lastname"
+                required
+                className="form w-full text-white px-4 text-sm peer  outline-none"
+              />
+
+              <label
+                htmlFor="lastname"
+                className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+              >
+                Apellido
               </label>
             </div>
           </div>
