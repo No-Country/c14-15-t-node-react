@@ -1,4 +1,3 @@
-const { number } = require("zod");
 const {
   validatorProduct,
   validatorPartialProduct,
@@ -27,11 +26,6 @@ class productController {
   // ------------------- Edit Product -------------------
 
   static async edit(req, res) {
-    // const id = parseInt(req.params.id);
-    // const newBody = {
-    //   id,
-    //   ...req.body,
-    // };
     const result = validatorPartialProduct(req.body);
 
     if (!result.success) {
@@ -50,7 +44,7 @@ class productController {
 
   // ------------------- Delete Product -------------------
   static async delete(req, res) {
-    const id = parseInt(req.params.id);
+    const { id } = body;
 
     const result = validatorPartialProduct({ id });
 
@@ -72,7 +66,8 @@ class productController {
   // ------------------- GetProductById Product -------------------
 
   static async getProductById(req, res) {
-    const id = parseInt(req.params.id);
+    // const id = parseInt(req.params.id);
+    const { id } = req.body;
 
     const result = validatorPartialProduct({ id });
 
@@ -84,6 +79,27 @@ class productController {
     }
 
     const ProductById = await productModel.getProductById(result.data);
+    if (ProductById.error) {
+      return res.status(409).json(ProductById);
+    }
+    res.status(200).json(ProductById);
+  }
+
+  // ------------------- GetProductByCategories Product -------------------
+
+  static async GetProductByCategories(req, res) {
+    const { id } = req.body;
+
+    const result = validatorPartialProduct({ id });
+
+    if (!result.success) {
+      return res.status(400).json({
+        error: true,
+        data: JSON.parse(result.error.message),
+      });
+    }
+
+    const ProductById = await productModel.GetProductByCategories(result.data);
     if (ProductById.error) {
       return res.status(409).json(ProductById);
     }

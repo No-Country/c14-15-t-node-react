@@ -3,29 +3,27 @@ const z = require("zod");
 const userSchema = z.object({
   uid: z.string().optional().readonly(),
   firstname: z
-    .string({
-      invalid_type_error: "El nombre debe ser letras",
-      required_error: "El nombre es requerido.",
-    })
+    .string()
     .regex(/^[A-Z][a-zA-Z]*$/, {
-      message: "Tu nombre debe estar bien escrito",
+      message: "Tu nombre no cumple los requisitos",
     })
-    .trim(),
+    .trim()
+    .min(3)
+    .max(20),
   lastname: z
-    .string({
-      invalid_type_error: "El apellido debe ser letras",
-      required_error: "El apellido es requerido.",
-    })
+    .string()
     .regex(/^[A-Z][a-zA-Z]*$/, {
-      message: "Tu nombre debe estar bien escrito",
+      message: "Tu nombre no cumple los requisitos",
     })
-    .trim(),
+    .trim()
+    .min(3)
+    .max(20),
   email: z
     .string()
     .email({
       message: "Este no es un email valido",
     })
-    .min(5),
+    .min(10),
   password: z
     .string()
     .regex(
@@ -36,11 +34,7 @@ const userSchema = z.object({
     )
     .min(6)
     .trim(),
-  address: z.optional(
-    z.string({
-      invalid_type_error: "La direccion debe ser solo letras",
-    })
-  ),
+  address: z.optional(z.string()),
 });
 
 const validatorUser = (body) => {

@@ -25,10 +25,12 @@ class productModel {
 
     return {
       error: false,
-      data: {
-        id: newProduct.id,
-        message: "Producto creado con exito",
-      },
+      data: [
+        {
+          id: newProduct.id,
+          message: "Producto creado con exito",
+        },
+      ],
     };
   }
 
@@ -41,7 +43,7 @@ class productModel {
     if (!product) {
       return {
         error: true,
-        messsage: "No existe un producto con este ID",
+        data: [{ messsage: "No existe un producto con este ID" }],
       };
     }
 
@@ -51,10 +53,12 @@ class productModel {
 
     return {
       error: false,
-      data: {
-        id: isValidProduct.id,
-        message: "Producto editado con exito",
-      },
+      data: [
+        {
+          id: isValidProduct.id,
+          data: [{ message: "Producto editado con exito" }],
+        },
+      ],
     };
   }
 
@@ -67,7 +71,7 @@ class productModel {
     if (!product) {
       return {
         error: true,
-        messsage: "No existe un producto con este ID",
+        data: [{ messsage: "No existe un producto con este ID" }],
       };
     }
 
@@ -75,10 +79,12 @@ class productModel {
 
     return {
       error: false,
-      data: {
-        id: isValidProduct.id,
-        message: "Producto eliminado con exito",
-      },
+      data: [
+        {
+          id: isValidProduct.id,
+          message: "Producto eliminado con exito",
+        },
+      ],
     };
   }
 
@@ -91,26 +97,28 @@ class productModel {
     if (!productById) {
       return {
         error: true,
-        data: { message: "El ID utilizado no existe" },
+        data: [{ message: "El ID utilizado no existe" }],
       };
     }
     return {
       error: false,
-      data: {
-        id: productById.id,
-        name: productById.name,
-        subtitle: productById.subtitle,
-        description: productById.description,
-        detail: productById.detail,
-        brand_name: productById.brand_name,
-        technical_info: productById.technical_info,
-        measures: productById.measures,
-        energy_efficiency: productById.energy_efficiency,
-        price: productById.price,
-        available_quantity: productById.available_quantity,
-        image: productById.image,
-        category: productById.category,
-      },
+      data: [
+        {
+          id: productById.id,
+          name: productById.name,
+          subtitle: productById.subtitle,
+          description: productById.description,
+          detail: productById.detail,
+          brand_name: productById.brand_name,
+          technical_info: productById.technical_info,
+          measures: productById.measures,
+          energy_efficiency: productById.energy_efficiency,
+          price: productById.price,
+          available_quantity: productById.available_quantity,
+          image: productById.image,
+          category: productById.category,
+        },
+      ],
     };
   }
 }

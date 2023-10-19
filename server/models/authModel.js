@@ -8,23 +8,29 @@ class AuthModel {
     const { email, password } = body;
     const user = await User.findOne({ email });
     if (!user) {
-      return { error: true, message: "Email o contraseña incorrectos" };
+      return {
+        error: true,
+        data: [{ message: "Email o contraseña incorrectos" }],
+      };
     }
 
     const passValidated = bcrypt.compareSync(password, user.password);
     if (!passValidated) {
-      return { error: true, message: "Email o contraseña incorrectos" };
+      return {
+        error: true,
+        data: [{ message: "Email o contraseña incorrectos" }],
+      };
     }
 
     const token = await generateToken(user.uid, user.firstname, user.isAdmin);
-    return { error: false, data: { token } };
+    return { error: false, data: [{ token }] };
   }
 
   static async revalidateToken(body) {
     const { uid, firstname, lastname } = body;
     const token = await generateToken(uid, firstname, lastname);
 
-    return { error: false, data: { token } };
+    return { error: false, data: [{ token }] };
   }
 }
 

@@ -11,7 +11,7 @@ class UserModel {
     let user = await User.findOne({ email });
 
     if (user) {
-      return { error: true, message: "Email ya utilizado" };
+      return { error: true, data: [{ message: "Email ya utilizado" }] };
     }
 
     user = new User(body);
@@ -25,13 +25,15 @@ class UserModel {
     const token = await generateToken(user.uid, user.firstname, user.lastname);
     return {
       error: false,
-      data: {
-        // uid: user.uid,
-        // firstname: user.firstname,
-        // lastname: user.lastname,
-        // email: user.email,
-        token,
-      },
+      data: [
+        {
+          // uid: user.uid,
+          // firstname: user.firstname,
+          // lastname: user.lastname,
+          // email: user.email,
+          token,
+        },
+      ],
     };
   }
 
@@ -39,24 +41,31 @@ class UserModel {
     const { email, password } = body;
     const user = await User.findOne({ email });
     if (!user) {
-      return { error: true, message: "Email o contraseña incorrectos" };
+      return {
+        error: true,
+        data: [{ message: "Email o contraseña incorrectos" }],
+      };
     }
 
     const passValidated = bcrypt.compareSync(password, user.password);
     if (!passValidated) {
-      return { error: true, message: "Email o contraseña incorrectos" };
+      return {
+        error: true,
+        data: [{ message: "Email o contraseña incorrectos" }],
+      };
     }
 
     const token = await generateToken(user.uid, user.firstname, user.lastname);
-    return { error: false, data: { token } };
+    return { error: false, data: [{ token }] };
   }
 
   static async revalidateToken(body) {
     const { uid, firstname, lastname } = body;
     const token = await generateToken(uid, firstname, lastname);
 
-    return { error: false, data: { token } };
+    return { error: false, data: [{ token }] };
   }
+
   // === update user model ====
   static async updateUser(body) {
     let { uid, firstname, lastname, email, address, password } = body;
@@ -65,7 +74,11 @@ class UserModel {
     if (!user) {
       return {
         error: true,
-        message: "El usuario que intenta modificar no existe",
+        data: [
+          {
+            message: "El usuario que intenta modificar no existe",
+          },
+        ],
       };
     }
 
@@ -76,16 +89,18 @@ class UserModel {
     let isValidUser = await User.findByIdAndUpdate(user._id, body, {
       new: true,
     });
-    
+
     return {
       error: false,
-      data: {
-        id: user.id,
-        // firstname: isValidUser.firstname,
-        // lastname: isValidUser.lastname,
-        // email: isValidUser.email,
-        messsage: "Modificaste tu usuario correctamente",
-      },
+      data: [
+        {
+          // id: isValidUser.id,
+          // firstname: isValidUser.firstname,
+          // lastname: isValidUser.lastname,
+          // email: isValidUser.email,
+          messsage: "Modificaste tu usuario correctamente",
+        },
+      ],
     };
   }
   // === updating password ===
