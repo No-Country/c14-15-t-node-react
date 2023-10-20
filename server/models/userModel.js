@@ -82,6 +82,13 @@ class UserModel {
       };
     }
 
+    if (email) {
+      let Emailvalid = await User.findOne({ email });
+      if (Emailvalid) {
+        return { error: true, data: [{ messsage: "Email no valido" }] };
+      }
+    }
+
     if (password) {
       body.password = user.password;
     }
@@ -103,26 +110,6 @@ class UserModel {
       ],
     };
   }
-  // === updating password ===
-  // static async updateUserPassword(body){
-  //   const { uid, password } = body;
-  //   let user = await User.findOne({uid});
-  //   if(!user){
-  //     return{error: true, message: "Este usuario no existe (?)"}
-  //   }
-  //   const passValidated = bcrypt.compareSync(password, user.password);
-  //   if(!passValidated){
-  //     return{error: true, message:"La contraseña es incorrecta"};
-  //   }
-  //   user = new User(body);
-  //   user.password = password;
-  //   await user.save();
-  //   return{
-  //     error: false,
-  //     message: "La contraseña ha sido actualizada"
-  //   }
-  //   // aquí falta algo unu
-  // }
 }
 
 module.exports = UserModel;

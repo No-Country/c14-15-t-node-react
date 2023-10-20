@@ -1,3 +1,4 @@
+const generateRandomID = require("../helper/Ids");
 const {
   validatorProduct,
   validatorPartialProduct,

@@ -3,13 +3,7 @@ const z = require("zod");
 const required_camp = "Campo Requerido";
 
 const productSchema = z.object({
-  id: z
-    .number({
-      invalid_type_error: "Id no valido",
-      required_error: required_camp,
-    })
-    .optional()
-    .readonly(),
+  id: z.string().uuid().optional().readonly(),
   name: z.string({
     invalid_type_error: "El nombre debe ser letras",
     required_error: required_camp,
@@ -24,10 +18,6 @@ const productSchema = z.object({
   }),
   detail: z.string({
     invalid_type_error: "Detalles deben ser una cadena de texto",
-    required_error: required_camp,
-  }),
-  brand_name: z.string({
-    invalid_type_error: "Brand debe ser una cadena de texto",
     required_error: required_camp,
   }),
   technical_info: z
@@ -82,12 +72,14 @@ const productSchema = z.object({
       })
       .url(),
   }),
+  ProductEnabled: z.boolean(),
   category: z
-    .string({
-      invalid_type_error: "La categoria debe ser un cadena de texto",
-      required_error: required_camp,
+    .object({
+      id: z.string().uuid(),
+      name: z.string(),
+      brand_name: z.string(),
     })
-    .trim(),
+    .required(),
 });
 
 const validatorProduct = (body) => {

@@ -7,15 +7,15 @@ const { count } = require("console");
 class productModel {
   // ------------------- create Product -------------------
   static async create(body) {
-    let countProduct = await Product.count();
-    let productId = 0;
+    // let countProduct = await Product.count();
+    let productId = Crypto.randomUUID();
 
-    if (!countProduct) {
-      productId = 1;
-    } else {
-      let lastProductId = await Product.find().sort({ id: "desc" }).limit(1);
-      productId = lastProductId[0].id + 1;
-    }
+    // if (!countProduct) {
+    //   productId = 1;
+    // } else {
+    //   let lastProductId = await Product.find().sort({ id: "desc" }).limit(1);
+    //   productId = lastProductId[0].id + 1;
+    // }
 
     const newProduct = new Product(body);
 
