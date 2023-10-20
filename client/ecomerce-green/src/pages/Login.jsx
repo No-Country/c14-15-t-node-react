@@ -23,7 +23,7 @@ export const Login = () => {
     <MainLayout>
       <main className="container-login flex justify-center ">
         <div className="flex  min-h-full  flex-col justify-center px-6 py-12 lg:px-8">
-          <div className=" input-container w-[336px] h-[400px] justify-center ">
+          <div className=" input-container w-[336px] min-h-[400px]  justify-center ">
             <div className=" logo sm:mx-auto sm:w-full sm:max-w-sm ">
               <img
                 className="mx-auto h-[40px] w-[33px]"
