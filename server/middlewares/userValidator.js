@@ -1,7 +1,7 @@
 const z = require("zod");
 
 const userSchema = z.object({
-  uid: z.string().optional().readonly(),
+  uid: z.string().uuid().optional().readonly(),
   firstname: z
     .string()
     .regex(/^[A-Z][a-zA-Z]*$/, {

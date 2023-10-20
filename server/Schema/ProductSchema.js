@@ -1,10 +1,11 @@
 const { Schema, model } = require("mongoose");
+const { string } = require("zod");
 
 const ProductSchema = Schema(
   {
     id: {
       index: true,
-      type: Number,
+      type: String,
       required: true,
       unique: true,
     },
@@ -21,10 +22,6 @@ const ProductSchema = Schema(
       required: true,
     },
     detail: {
-      type: String,
-      required: true,
-    },
-    brand_name: {
       type: String,
       required: true,
     },
@@ -55,8 +52,14 @@ const ProductSchema = Schema(
       picture_2: String,
     },
     category: {
+      id: String,
+      name: String,
+      brand_name: String,
+    },
+    ProductEnabled: {
       type: String,
       required: true,
+      default: true,
     },
   },
   {

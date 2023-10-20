@@ -24,14 +24,14 @@ const swaggerSpect = {
       title: "API E-Commerce Green",
       version: "1.0.0",
     },
-    servers: [
-      {
-        url: `http://localhost:${process.env.PORT}`,
-      },
-      {
-        url: "https://api-greeni.onrender.com",
-      },
-    ],
+    // servers: [
+    //   {
+    //     url: `http://localhost:${process.env.PORT}`,
+    //   },
+    //   {
+    //     url: "https://api-greeni.onrender.com",
+    //   },
+    // ],
   },
   apis: [`${path.join(__dirname, "./routes/*.js")}`],
 };
