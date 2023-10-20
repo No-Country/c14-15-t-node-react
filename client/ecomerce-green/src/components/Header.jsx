@@ -13,7 +13,7 @@ import { NavLink, Link } from "react-router-dom";
 
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
-console.log(cart)
+
 
 
   const [nav, setNav] = useState(false);
