@@ -66,11 +66,11 @@ const UserData = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-auto">
             {error && <p className="pl-4">{error}</p>}
             <div
-              class="fixed z-[10] top-8 right-1 flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-300 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+              className="fixed z-[10] top-8 right-1 flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-300 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
               role="alert"
             >
               <svg
-                class="flex-shrink-0 inline w-4 h-4 mr-3"
+                className="flex-shrink-0 inline w-4 h-4 mr-3"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
