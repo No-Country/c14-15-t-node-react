@@ -1,7 +1,7 @@
 
 
 .container-login{
-    background-image: url(../../../public/img-login.png);
+    background-image: url(/img-login.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

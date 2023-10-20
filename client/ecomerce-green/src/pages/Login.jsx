@@ -86,7 +86,7 @@ export const Login = () => {
                     type="submit"
                     className="flex w-[160px] h-[40px] justify-center rounded-md bg-[#F8924F99] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#F8924F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                   >
-                    <p className="">Ingresar</p>
+                    Ingresar
                   </button>
                 </div>
               </form>

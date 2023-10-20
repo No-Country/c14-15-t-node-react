@@ -10,6 +10,8 @@ import { VscAccount } from "react-icons/vsc";
 import useHeaderShadow from "../hooks/useHeaderShadow";
 import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
+import Cart from "../pages/Cart";
+
 
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
@@ -70,10 +72,11 @@ console.log(cart)
               </li>
 
               <li>
-                <Link to="/cart">
+                <Cart />
+                {/* <Link to="/cart">
                   {" "}
                   <AiOutlineShoppingCart size={20} />
-                </Link>
+                </Link> */}
               </li>
             </ul>
           </div>
@@ -109,16 +112,23 @@ console.log(cart)
           </li>
         </ul>
         <ul className="flex justify-between mx-2">
+          <Link to="/login">
           <li className=" flex pr-4 items-center">
             <div className="ml-2">
               <VscAccount size={20} />{" "}
             </div>
             <a className="ml-2 ">Log in</a>
           </li>
+          </Link>
+          <li>
+            <Cart />
+          </li>
+          {/* <Link to="/cart">
           <li className="p-4 border-b border-r-gray-600">
             {" "}
             <AiOutlineShoppingCart size={25} />
           </li>
+          </Link> */}
         </ul>
       </nav>
     </>
