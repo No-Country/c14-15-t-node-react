@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
+import logo from "../assets/logo.svg"
 
 import { registerUser } from "../../redux/store/authv/authActions";
 const UserData = () => {
@@ -51,7 +52,7 @@ const UserData = () => {
         <div className=" logo sm:mx-auto sm:w-full sm:max-w-sm ">
           <img
             className="mx-auto h-[40px] w-[33px]"
-            src="/src/assets/logo.svg"
+            src={logo}
             alt="Your Company"
           />
 
