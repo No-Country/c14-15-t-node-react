@@ -63,7 +63,10 @@ const UserData = () => {
                 <input
                   name="firstname"
                   type="text"
-                  className="form w-full text-white px-4 text-sm peer  outline-none"
+                  className={` ${
+                    errors.firstname ? "border-error" : "form"
+                  } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
+                 
                   autoComplete="firstname"
                   {...register("firstname", { required: true })}
                   aria-invalid={errors.firstname ? "true" : "false"}
@@ -87,7 +90,9 @@ const UserData = () => {
                   name="lastname"
                   type="text"
                   autoComplete="lastname"
-                  className="form w-full text-white px-4 text-sm peer  outline-none"
+                  className={` ${
+                    errors.lastname ? "border-error" : "form"
+                  } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
                   {...register("lastname", { required: true })}
                   aria-invalid={errors.lastname ? "true" : "false"}
                 />
@@ -110,7 +115,9 @@ const UserData = () => {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="form w-full text-white px-4 text-sm peer  outline-none"
+                  className={` ${
+                    errors.email ? "border-error" : "form"
+                  } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
                   {...register("email", {
                     required: "Este campo es requerido",
                     validate: validations.isEmail,
@@ -144,10 +151,13 @@ const UserData = () => {
                   )}
                 </div>
                 <input
+                id="password"
                   name="password"
                   type={icoPassword ? "text" : "password"}
                   autoComplete="current-password"
-                  className="form w-full text-white  px-4 text-sm peer outline-none"
+                  className={` ${
+                    errors.password ? "border-error" : "form"
+                  } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
                   {...register("password", {
                     required: "Este campo es requerido",
                     minLength: { value: 6, message: "Mínimo 6 caracteres" },
@@ -181,10 +191,13 @@ const UserData = () => {
                   )}
                 </div>
                 <input
+                id="password_repeat"
                   name="password_repeat"
                   type={icoPassword2 ? "text" : "password"}
                   autoComplete="current-password_repeat"
-                  className="form w-full text-white  px-4 text-sm peer outline-none"
+                  className={` ${
+                    errors.password_repeat ? "border-error" : "form"
+                  } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
                   {...register("password_repeat", {
                     required: "Este campo es requerido",
                     minLength: { value: 6, message: "Mínimo 6 caracteres" },
