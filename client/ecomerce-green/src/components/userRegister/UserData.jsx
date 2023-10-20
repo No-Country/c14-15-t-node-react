@@ -7,7 +7,14 @@ import ButtonForm from "./ButtonForm";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
+import { useDispatch, useSelector } from "react-redux";
+
+import { registerUser } from "../../redux/store/authv/authActions";
 const UserData = () => {
+  const { loading, userInfo, error, success } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -18,25 +25,27 @@ const UserData = () => {
   const [icoPassword, setsicoPassword] = useState(false);
   const [icoPassword2, setsicoPassword2] = useState(false);
 
-  const onSubmit = ({
-    firstname,
-    lastname,
-    email,
-    password,
-    password_repeat,
-  }) => {
+  const onSubmit = async (data) => {
+    const { firstname, lastname, email, password, password_repeat } = data;
     if (password !== password_repeat) {
       alert("Las contraseñas no coinciden");
-    } else {
-      console.log("data", {
-        firstname,
-        lastname,
-        email,
-        password,
-        password_repeat,
-      });
-      // Aquí puedes realizar otras acciones, como enviar el formulario.
     }
+    // Capitalizar los nombres
+    const capitalizedFirstname =
+      firstname.charAt(0).toUpperCase() + firstname.slice(1);
+
+    const capitalizedLastname =
+      lastname.charAt(0).toUpperCase() + lastname.slice(1);
+
+      const formData = {
+        firstname: capitalizedFirstname,
+        lastname: capitalizedLastname,
+        email,
+        password
+      };
+      console.log(formData)
+    
+      dispatch(registerUser(formData));
   };
 
   return (
@@ -66,7 +75,6 @@ const UserData = () => {
                   className={` ${
                     errors.firstname ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
-                 
                   autoComplete="firstname"
                   {...register("firstname", { required: true })}
                   aria-invalid={errors.firstname ? "true" : "false"}
@@ -80,7 +88,9 @@ const UserData = () => {
                 </label>
               </div>
               {errors.firstname?.type === "required" && (
-                <p className="pl-12 text-red-600 text-xs" role="alert">El nombre es requerido</p>
+                <p className="pl-12 text-red-600 text-xs" role="alert">
+                  El nombre es requerido
+                </p>
               )}
             </div>
             {/* Lastname */}
@@ -105,7 +115,9 @@ const UserData = () => {
                 </label>
               </div>
               {errors.lastname?.type === "required" && (
-                <p className="pl-12 text-red-600 text-xs" role="alert">El apellido es requerido</p>
+                <p className="pl-12 text-red-600 text-xs" role="alert">
+                  El apellido es requerido
+                </p>
               )}
             </div>
             {/* email */}
@@ -151,7 +163,7 @@ const UserData = () => {
                   )}
                 </div>
                 <input
-                id="password"
+                  id="password"
                   name="password"
                   type={icoPassword ? "text" : "password"}
                   autoComplete="current-password"
@@ -191,7 +203,7 @@ const UserData = () => {
                   )}
                 </div>
                 <input
-                id="password_repeat"
+                  id="password_repeat"
                   name="password_repeat"
                   type={icoPassword2 ? "text" : "password"}
                   autoComplete="current-password_repeat"
