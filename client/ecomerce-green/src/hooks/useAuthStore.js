@@ -5,7 +5,7 @@ import {greenIXApi} from "../axiosApi";
 import { clearErrorMessage, onChecking, onLogin, onLogout } from "../redux/store/auth/authSlice";
 
 export const useAuthStore = () => {
-  const { status, user, errorMessage } = useSelector((state) => state.auth);
+  const { status, user, errorMessage ,userToken} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 

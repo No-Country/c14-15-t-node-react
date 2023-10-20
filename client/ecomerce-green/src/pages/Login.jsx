@@ -1,23 +1,39 @@
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import MainLayout from "../components/MainLayout";
 import "../styles/login.css";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../utils";
+import { useDispatch, useSelector } from 'react-redux'
+import { userLogin } from "../redux/store/authv/authActions";
+import { Token } from "@mui/icons-material";
 
 export const Login = () => {
+  const { userInfo, loading, error , userToken} = useSelector((state) => state.authv)
+  const dispatch = useDispatch()
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(userToken){
+      navigate('/')
+    }
+    console.log("user",userInfo)
+    console.log("token",userToken)
+  }, [])
+  
 
   const [icoPassword, setsicoPassword] = useState(false);
 
-  const onSubmit = ({ email, password }) => {
-    console.log("data", { email, password });
+  const onSubmit = (data) => {
+    console.log("data", data);
+    dispatch(userLogin(data))
   };
   return (
     <MainLayout>
