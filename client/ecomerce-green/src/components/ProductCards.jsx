@@ -1,12 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-// import {  incrementProduct } from '../redux/store/product/productSlice';
 import {  incrementProduct } from '../redux/store/cart/cartSlice';
 
 const ProductCards = ({product}) => {
   const dispatch = useDispatch();
 
-
-  // console.log(cart)
   const {name, price, technical_specifications, images,
     calification_energy} = product
   return (
@@ -22,7 +19,7 @@ const ProductCards = ({product}) => {
         </div>
         <div className="flex place-content-between items-center pt-3">
         <p className="text-3xl font-extrabold">${price}</p>
-        <img src="/CartIcon.svg" alt="" className="w-12 cursor-pointer"   
+        <img src="/assets/CartIcon.svg" alt="" className="w-12 cursor-pointer"   
         onClick={() => {
             dispatch(incrementProduct(product));
           }} />
