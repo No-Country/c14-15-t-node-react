@@ -22,8 +22,7 @@ export const registerUser = createAsyncThunk(
       }, config);
      console.log(data)
     } catch (error) {
-      console.log("error",error.message)
-      console.log("si hay error",error.response.data.error)
+    
       console.log("mensaje de error",error.response.data.data[0].message)
     // return custom error message from backend if present
       if (error.response && error.response.data.data[0].message) {
@@ -55,8 +54,7 @@ export const userLogin = createAsyncThunk(
       localStorage.setItem('userToken',data.data.token)
       return data
     } catch (error) {
-      console.log("error",error.message)
-      console.log("hay error",error.response.data.error)
+      
       console.log("msg error",error.response.data.data[0].message)
       // return custom error message from API if any
       if (error.response && error.response.data.data[0].message) {
