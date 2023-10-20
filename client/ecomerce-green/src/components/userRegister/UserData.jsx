@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../assets/logo.svg"
+import logo from "../../assets/logo.svg"
 
 import { registerUser } from "../../redux/store/authv/authActions";
 const UserData = () => {
