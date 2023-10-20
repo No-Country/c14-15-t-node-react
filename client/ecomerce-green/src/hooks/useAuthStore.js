@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import pageApi from "../api/pageApi";
-import { clearErrorMessage, onChecking, onLogin, onLogout } from "../store";
+import {greenIXApi} from "../axiosApi";
+import { clearErrorMessage, onChecking, onLogin, onLogout } from "../redux/store/auth/authSlice";
 
 export const useAuthStore = () => {
-  const { status, user, errorMessage } = useSelector((state) => state.auth);
+  const { status, user, errorMessage ,userToken} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
@@ -38,7 +38,7 @@ export const useAuthStore = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("token-init-date", new Date().getTime());
       dispatch(
-        onLogin({ name: data.name, uid: data.uid})
+        onLogin(user)
       );
       Swal.fire(
         "Usuario creado correctamente",

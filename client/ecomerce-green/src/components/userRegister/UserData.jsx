@@ -7,7 +7,14 @@ import ButtonForm from "./ButtonForm";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
+import { useDispatch, useSelector } from "react-redux";
+
+import { registerUser } from "../../redux/store/authv/authActions";
 const UserData = () => {
+  const { loading, userInfo, error, success } = useSelector(
+    (state) => state.authv
+  );
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -18,25 +25,27 @@ const UserData = () => {
   const [icoPassword, setsicoPassword] = useState(false);
   const [icoPassword2, setsicoPassword2] = useState(false);
 
-  const onSubmit = ({
-    firstname,
-    lastname,
-    email,
-    password,
-    password_repeat,
-  }) => {
+  const onSubmit = async (data) => {
+    const { firstname, lastname, email, password, password_repeat } = data;
     if (password !== password_repeat) {
       alert("Las contraseñas no coinciden");
-    } else {
-      console.log("data", {
-        firstname,
-        lastname,
-        email,
-        password,
-        password_repeat,
-      });
-      // Aquí puedes realizar otras acciones, como enviar el formulario.
     }
+    // Capitalizar los nombres
+    const capitalizedFirstname =
+      firstname.charAt(0).toUpperCase() + firstname.slice(1);
+
+    const capitalizedLastname =
+      lastname.charAt(0).toUpperCase() + lastname.slice(1);
+
+    const formData = {
+      firstname: capitalizedFirstname,
+      lastname: capitalizedLastname,
+      email,
+      password,
+    };
+    console.log(formData);
+
+    dispatch(registerUser(formData));
   };
 
   return (
@@ -57,6 +66,23 @@ const UserData = () => {
 
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-auto">
+            {error && <p className="pl-4">{error}</p>}
+            <div
+              class="fixed z-[10] top-8 right-1 flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-300 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+              role="alert"
+            >
+              <svg
+                class="flex-shrink-0 inline w-4 h-4 mr-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+              </svg>
+              <span class="sr-only">Error</span>
+              <div>Datos erroneos</div>
+            </div>
             {/* Fistname */}
             <div className="p-2">
               <div className="w-56 left-8 relative group">
@@ -66,7 +92,6 @@ const UserData = () => {
                   className={` ${
                     errors.firstname ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
-                 
                   autoComplete="firstname"
                   {...register("firstname", { required: true })}
                   aria-invalid={errors.firstname ? "true" : "false"}
@@ -80,7 +105,9 @@ const UserData = () => {
                 </label>
               </div>
               {errors.firstname?.type === "required" && (
-                <p className="pl-12 text-red-600 text-xs" role="alert">El nombre es requerido</p>
+                <p className="pl-12 text-red-600 text-xs" role="alert">
+                  El nombre es requerido
+                </p>
               )}
             </div>
             {/* Lastname */}
@@ -105,7 +132,9 @@ const UserData = () => {
                 </label>
               </div>
               {errors.lastname?.type === "required" && (
-                <p className="pl-12 text-red-600 text-xs" role="alert">El apellido es requerido</p>
+                <p className="pl-12 text-red-600 text-xs" role="alert">
+                  El apellido es requerido
+                </p>
               )}
             </div>
             {/* email */}
@@ -151,7 +180,7 @@ const UserData = () => {
                   )}
                 </div>
                 <input
-                id="password"
+                  id="password"
                   name="password"
                   type={icoPassword ? "text" : "password"}
                   autoComplete="current-password"
@@ -191,7 +220,7 @@ const UserData = () => {
                   )}
                 </div>
                 <input
-                id="password_repeat"
+                  id="password_repeat"
                   name="password_repeat"
                   type={icoPassword2 ? "text" : "password"}
                   autoComplete="current-password_repeat"
