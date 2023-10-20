@@ -1,9 +1,6 @@
 import "./../../styles/UserData.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import isoTipo from "/logo.svg";
-import TextField from "./TextField";
 import { useState } from "react";
-import ButtonForm from "./ButtonForm";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
