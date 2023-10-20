@@ -5,8 +5,6 @@ import {  incrementProduct } from '../redux/store/cart/cartSlice';
 const ProductCards = ({product}) => {
   const dispatch = useDispatch();
 
-
-  // console.log(cart)
   const {name, price, technical_specifications, images,
     calification_energy} = product
   return (

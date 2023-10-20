@@ -1,16 +1,45 @@
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import MainLayout from "../components/MainLayout";
 import "../styles/login.css";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { validations } from "../utils";
+import { useDispatch, useSelector } from 'react-redux'
+import { userLogin } from "../redux/store/authv/authActions";
+
 
 export const Login = () => {
+  const { userInfo, loading, error , userToken} = useSelector((state) => state.authv)
+  const dispatch = useDispatch()
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(userToken){
+      navigate('/')
+    }
+    console.log("user",userInfo)
+    console.log("token",userToken)
+  }, [])
+  
+
   const [icoPassword, setsicoPassword] = useState(false);
+
+  const onSubmit = (data) => {
+    console.log("data", data);
+    dispatch(userLogin(data))
+  };
   return (
     <MainLayout>
       <main className="container-login flex justify-center ">
         <div className="flex  min-h-full  flex-col justify-center px-6 py-12 lg:px-8">
-          <div className=" input-container w-[336px] h-[400px] justify-center ">
+          <div className=" input-container w-[336px] min-h-[400px]  justify-center ">
             <div className=" logo sm:mx-auto sm:w-full sm:max-w-sm ">
               <img
                 className="mx-auto h-[40px] w-[33px]"
@@ -25,16 +54,25 @@ export const Login = () => {
             </div>
 
             <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-              <form className="space-y-6" action="#" method="POST">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="space-y-6"
+                action="#"
+                method="POST"
+              >
                 <div className="p-2">
-                  <div className="w-56 left-8 relative group">
+                  <div className="w-56 left-8 relative group bg-inherit">
                     <input
-                      id="email"
-                      name="email"
                       type="email"
                       autoComplete="email"
-                      required
-                      className="form w-full text-white px-4 text-sm peer  outline-none"
+                      name="email"
+                      className={`${
+                        errors.email ? "border-error" : "form"
+                      }  w-full bg-inherit text-white px-4 text-sm peer  outline-none`}
+                      {...register("email", {
+                        required: "Este campo es requerido",
+                        validate: validations.isEmail,
+                      })}
                     />
 
                     <label
@@ -43,6 +81,11 @@ export const Login = () => {
                     >
                       Email
                     </label>
+                    {errors.email && (
+                      <p className="px-4 text-red-600 text-xs" role="alert">
+                        {errors.email.message}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -61,10 +104,14 @@ export const Login = () => {
                     <input
                       name="password"
                       type={icoPassword ? "text" : "password"}
-                      id="password"
                       autoComplete="current-password"
-                      required
-                      className="form w-full text-white  px-4 text-sm peer outline-none"
+                      className={` ${
+                        errors.password ? "border-error" : "form"
+                      } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
+                      {...register("password", {
+                        required: "Este campo es requerido",
+                        minLength: { value: 6, message: "Mínimo 6 caracteres" },
+                      })}
                     />
 
                     <label
@@ -74,6 +121,11 @@ export const Login = () => {
                       Contraseña
                     </label>
                   </div>
+                  {errors.password && (
+                    <p className="pl-12 text-red-600 text-xs" role="alert">
+                      {errors.password.message}
+                    </p>
+                  )}
                 </div>
                 <div className="text-sm flex justify-center">
                   <a href="#" className="title">
@@ -86,7 +138,7 @@ export const Login = () => {
                     type="submit"
                     className="flex w-[160px] h-[40px] justify-center rounded-md bg-[#F8924F99] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#F8924F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                   >
-                    <p className="">Ingresar</p>
+                    Ingresar
                   </button>
                 </div>
               </form>
