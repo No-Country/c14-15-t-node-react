@@ -20,7 +20,7 @@ class categoryModel {
         const existingCategory = await Category.findOne({ name });
       
         if (existingCategory) {
-          return { error: true, data:[{ message: `La categoría ya existe.` }] };
+          return { error: true, data:[{ message: 'La categoría ya existe.' }] };
         }
       
         const newCategory = new Category(body);
@@ -49,7 +49,7 @@ class categoryModel {
         if (!category) {
           return {
             error: true,
-            data: [{ message: `No existe categoria con ese id` }]
+            data: [{ message: 'No existe categoria con ese id' }]
           };
         }
 
@@ -57,7 +57,7 @@ class categoryModel {
         const existingCategory = await Category.findOne({ name });
       
         if (existingCategory) {
-          return { error: true, data: [{ message: `La categoría ya existe.` }] };
+          return { error: true, data: [{ message: 'La categoría ya existe.' }] };
         }
       
         // Update the category with the new data
