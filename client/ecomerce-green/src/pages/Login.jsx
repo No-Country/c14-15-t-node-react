@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { validations } from "../utils";
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogin } from "../redux/store/authv/authActions";
-
+import logo from "../assets/logo.svg"
 
 export const Login = () => {
   const { userInfo, loading, error , userToken} = useSelector((state) => state.authv)
@@ -21,9 +21,9 @@ export const Login = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(userToken){
-      navigate('/')
-    }
+    // if(userToken){
+    //   navigate('/')
+    // }
     console.log("user",userInfo)
     console.log("token",userToken)
   }, [])
@@ -43,7 +43,7 @@ export const Login = () => {
             <div className=" logo sm:mx-auto sm:w-full sm:max-w-sm ">
               <img
                 className="mx-auto h-[40px] w-[33px]"
-                src="/src/assets/logo.svg"
+                src={logo}
                 alt="Your Company"
               />
 

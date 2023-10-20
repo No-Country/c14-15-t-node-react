@@ -20,7 +20,7 @@ const ProductCards = ({product}) => {
         </div>
         <div className="flex place-content-between items-center pt-3">
         <p className="text-3xl font-extrabold">${price}</p>
-        <img src="/CartIcon.svg" alt="" className="w-12 cursor-pointer"   
+        <img src="/assets/CartIcon.svg" alt="" className="w-12 cursor-pointer"   
         onClick={() => {
             dispatch(incrementProduct(product));
           }} />
