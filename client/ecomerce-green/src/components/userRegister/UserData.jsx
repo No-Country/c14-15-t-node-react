@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/logo.svg"
+import Error from "../Error"
 
 import { registerUser } from "../../redux/store/authv/authActions";
 const UserData = () => {
@@ -65,22 +66,7 @@ const UserData = () => {
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-auto">
             {error && <p className="pl-4">{error}</p>}
-            <div
-              className="fixed z-[10] top-8 right-1 flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-300 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-              role="alert"
-            >
-              <svg
-                className="flex-shrink-0 inline w-4 h-4 mr-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-              </svg>
-              <span class="sr-only">Error</span>
-              <div>Datos erroneos</div>
-            </div>
+           <Error />
             {/* Fistname */}
             <div className="p-2">
               <div className="w-56 left-8 relative group">
