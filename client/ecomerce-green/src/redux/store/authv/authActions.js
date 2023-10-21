@@ -56,6 +56,7 @@ export const userLogin = createAsyncThunk(
       return data
     } catch (error) {
       console.log("error",error.message)
+      
       console.log("hay error",error.response.data.error)
       console.log("msg error",error.response.data.data[0].message)
       // return custom error message from API if any

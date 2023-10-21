@@ -26,6 +26,9 @@ const useShowAlert = () => {
         setShowError(true);
         handleError();
       }
+      if(message === null && success){
+        setShowError(false);
+      }
     }
   };
 
