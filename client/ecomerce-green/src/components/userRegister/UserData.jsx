@@ -5,14 +5,16 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../../assets/logo.svg"
-import Error from "../Error"
+import logo from "../../assets/logo.svg";
+import Error from "../Error";
 
 import { registerUser } from "../../redux/store/authv/authActions";
+import useShowAlert from "../../hooks/useShowAlert";
 const UserData = () => {
   const { loading, userInfo, error, success } = useSelector(
     (state) => state.authv
   );
+  const { showError, messageError, showAlert } = useShowAlert();
   const dispatch = useDispatch();
   const {
     register,
@@ -24,11 +26,13 @@ const UserData = () => {
   const [icoPassword, setsicoPassword] = useState(false);
   const [icoPassword2, setsicoPassword2] = useState(false);
 
+
   const onSubmit = async (data) => {
     const { firstname, lastname, email, password, password_repeat } = data;
     if (password !== password_repeat) {
-      alert("Las contraseñas no coinciden");
+      showAlert("Las contraseñas no coinciden");
     }
+
     // Capitalizar los nombres
     const capitalizedFirstname =
       firstname.charAt(0).toUpperCase() + firstname.slice(1);
@@ -42,9 +46,12 @@ const UserData = () => {
       email,
       password,
     };
-    console.log(formData);
+    console.log("formData", formData);
 
     dispatch(registerUser(formData));
+    showAlert();
+    console.log(error);
+
   };
 
   return (
@@ -65,8 +72,11 @@ const UserData = () => {
 
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-auto">
-            {error && <p className="pl-4">{error}</p>}
-           <Error />
+            
+            <Error 
+            error={error}
+            messageError={messageError}
+            showError={showError} />
             {/* Fistname */}
             <div className="p-2">
               <div className="w-56 left-8 relative group">
