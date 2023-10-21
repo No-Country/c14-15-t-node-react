@@ -87,6 +87,7 @@ const UserData = () => {
                 <input
                   name="firstname"
                   type="text"
+                  required
                   className={` ${
                     errors.firstname ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
@@ -115,6 +116,7 @@ const UserData = () => {
                   name="lastname"
                   type="text"
                   autoComplete="lastname"
+                  required
                   className={` ${
                     errors.lastname ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
@@ -140,7 +142,8 @@ const UserData = () => {
               <div className="w-56 left-8 relative group">
                 <input
                   name="email"
-                  type="email"
+                  type="text"
+                  required
                   autoComplete="email"
                   className={` ${
                     errors.email ? "border-error" : "form"
@@ -182,6 +185,7 @@ const UserData = () => {
                   name="password"
                   type={icoPassword ? "text" : "password"}
                   autoComplete="current-password"
+                  required
                   className={` ${
                     errors.password ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
@@ -221,6 +225,7 @@ const UserData = () => {
                   id="password_repeat"
                   name="password_repeat"
                   type={icoPassword2 ? "text" : "password"}
+                  required
                   autoComplete="current-password_repeat"
                   className={` ${
                     errors.password_repeat ? "border-error" : "form"

@@ -61,14 +61,15 @@ export const Login = () => {
                 method="POST"
               >
                 <div className="p-2">
-                  <div className="w-56 left-8 relative group bg-inherit">
+                  <div className="w-56 left-8 relative group">
                     <input
-                      type="email"
+                      type="text"
                       autoComplete="email"
                       name="email"
+                      required
                       className={`${
                         errors.email ? "border-error" : "form"
-                      }  w-full bg-inherit text-white px-4 text-sm peer  outline-none`}
+                      }  w-full text-white px-4 text-sm peer  outline-none`}
                       {...register("email", {
                         required: "Este campo es requerido",
                         validate: validations.isEmail,
@@ -77,8 +78,8 @@ export const Login = () => {
 
                     <label
                       htmlFor="email"
-                      className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
-                    >
+                      className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6">
+                    
                       Email
                     </label>
                     {errors.email && (
@@ -105,6 +106,7 @@ export const Login = () => {
                       name="password"
                       type={icoPassword ? "text" : "password"}
                       autoComplete="current-password"
+                      required
                       className={` ${
                         errors.password ? "border-error" : "form"
                       } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
