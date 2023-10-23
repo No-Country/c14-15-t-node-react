@@ -47,14 +47,7 @@ const ProductFilters = ({orderProduct}) => {
           <a href="#">Link 3</a>
         </div>
       </div>
-      <div className="dropdown">
-        <button className="dropbtn">6 <AiOutlineDown className="icon-dropdown"/></button>
-        <div className="dropdown-content">
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-        </div>
-      </div>
+    
       </div>
     </section>
   );

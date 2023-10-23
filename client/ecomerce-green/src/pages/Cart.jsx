@@ -45,10 +45,10 @@ const Cart = ({ open, setOpen }) => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
+                    <div className="close-button absolute right-0 top-0 -ml-8 flex mr-4 pr-2 pt-4 ">
                       <button
                         type="button"
-                        className="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                        className="relative border-0 text-gray-300 hover:text-white "
                         onClick={() => setOpen(false)}
                       >
                         <span className="absolute -inset-2.5" />
