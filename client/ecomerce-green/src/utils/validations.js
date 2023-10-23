@@ -13,3 +13,20 @@ export const isValidEmail = (email) => {
       ? undefined
       : 'El correo no parece ser válido';
   }
+
+
+export const isValidPassword = (email) => {
+  
+    const match = String(email)
+        .toLowerCase()
+        .match(
+          /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]+$/
+        );
+  
+      return !!match;
+  };
+  export const isPassword = (password) => {
+    return isValidPassword(password) 
+      ? undefined
+      : 'La contraseña no cumple con los requisitos';
+  }
