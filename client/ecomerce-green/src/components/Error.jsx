@@ -2,12 +2,14 @@
 import React from 'react'
 
 const Error = ({showError , messageError, error}) => {
+
+  const message = messageError ? messageError : error
   return (
     <div
     id="toasts"
     className={`${
-        showError ?
-        "fixed z-[10] top-8 right-1 flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-300 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 ease-in-out duration-500"
+        showError &&  messageError || showError &&  error
+        ? "fixed z-[10] top-8 right-1 flex items-center p-4 mb-4 text-sm text-red-800 bg-red-300 border border-red-300 rounded-lg dark:bg-red-800 dark:text-red-400 dark:border-red-800 ease-in-out duration-500"
         : "fixed top-[-100%]"
     } `}
     role="alert"
@@ -22,7 +24,7 @@ const Error = ({showError , messageError, error}) => {
       <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
     </svg>
     <span className="sr-only">Error</span>
-    <div>{ messageError ? messageError : error}</div>
+    <div>{ message}</div>
   </div>
   )
 }
