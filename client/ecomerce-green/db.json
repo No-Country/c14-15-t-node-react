@@ -26,7 +26,7 @@
       "subtitle": "Este es un subtitle",
       "description": "Panel solar adaptable",
       "detail": "Proporciona iluminacion",
-      "techinal_info": {
+      "technical_info": {
         "driver_model": "ICDPD-19-1",
         "energy_use": "16.5 KWH/1.000 h"
       },
@@ -58,7 +58,7 @@
       "subtitle": "Este es un subtitle",
       "description": "Panel solar adaptable",
       "detail": "Proporciona iluminacion",
-      "techinal_info": {
+      "technical_info": {
         "driver_model": "ICDPD-19-1",
         "energy_use": "16.5 KWH/1.000 h"
       },
@@ -85,12 +85,12 @@
       " timestamps": "dd-mm-yy"
     },
     {
-        "id": 2,
+        "id": 3,
         "name": "Trina Solar2",
         "subtitle": "Este es un subtitle",
         "description": "Panel solar adaptable",
         "detail": "Proporciona iluminacion",
-        "techinal_info": {
+        "technical_info": {
           "driver_model": "ICDPD-19-1",
           "energy_use": "16.5 KWH/1.000 h"
         },
