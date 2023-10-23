@@ -1,19 +1,20 @@
 import "./../../styles/UserData.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import isoTipo from "/logo.svg";
-import TextField from "./TextField";
 import { useState } from "react";
-import ButtonForm from "./ButtonForm";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
+import logo from "../../assets/logo.svg";
+import Error from "../Error";
 
 import { registerUser } from "../../redux/store/authv/authActions";
+import useShowAlert from "../../hooks/useShowAlert";
 const UserData = () => {
   const { loading, userInfo, error, success } = useSelector(
     (state) => state.authv
   );
+  const { showError, messageError, showAlert } = useShowAlert();
   const dispatch = useDispatch();
   const {
     register,
@@ -25,11 +26,13 @@ const UserData = () => {
   const [icoPassword, setsicoPassword] = useState(false);
   const [icoPassword2, setsicoPassword2] = useState(false);
 
+
   const onSubmit = async (data) => {
     const { firstname, lastname, email, password, password_repeat } = data;
     if (password !== password_repeat) {
-      alert("Las contraseñas no coinciden");
+      showAlert("Las contraseñas no coinciden");
     }
+
     // Capitalizar los nombres
     const capitalizedFirstname =
       firstname.charAt(0).toUpperCase() + firstname.slice(1);
@@ -43,9 +46,12 @@ const UserData = () => {
       email,
       password,
     };
-    console.log(formData);
+    console.log("formData", formData);
 
     dispatch(registerUser(formData));
+    showAlert();
+    console.log(error);
+
   };
 
   return (
@@ -54,7 +60,7 @@ const UserData = () => {
         <div className=" logo sm:mx-auto sm:w-full sm:max-w-sm ">
           <img
             className="mx-auto h-[40px] w-[33px]"
-            src="/src/assets/logo.svg"
+            src={logo}
             alt="Your Company"
           />
 
@@ -66,29 +72,18 @@ const UserData = () => {
 
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-auto">
-            {error && <p className="pl-4">{error}</p>}
-            <div
-              class="fixed z-[10] top-8 right-1 flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-300 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-              role="alert"
-            >
-              <svg
-                class="flex-shrink-0 inline w-4 h-4 mr-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-              </svg>
-              <span class="sr-only">Error</span>
-              <div>Datos erroneos</div>
-            </div>
+            
+            <Error 
+            error={error}
+            messageError={messageError}
+            showError={showError} />
             {/* Fistname */}
             <div className="p-2">
               <div className="w-56 left-8 relative group">
                 <input
                   name="firstname"
                   type="text"
+                  required
                   className={` ${
                     errors.firstname ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
@@ -117,6 +112,7 @@ const UserData = () => {
                   name="lastname"
                   type="text"
                   autoComplete="lastname"
+                  required
                   className={` ${
                     errors.lastname ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
@@ -142,7 +138,8 @@ const UserData = () => {
               <div className="w-56 left-8 relative group">
                 <input
                   name="email"
-                  type="email"
+                  type="text"
+                  required
                   autoComplete="email"
                   className={` ${
                     errors.email ? "border-error" : "form"
@@ -184,6 +181,7 @@ const UserData = () => {
                   name="password"
                   type={icoPassword ? "text" : "password"}
                   autoComplete="current-password"
+                  required
                   className={` ${
                     errors.password ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
@@ -223,6 +221,7 @@ const UserData = () => {
                   id="password_repeat"
                   name="password_repeat"
                   type={icoPassword2 ? "text" : "password"}
+                  required
                   autoComplete="current-password_repeat"
                   className={` ${
                     errors.password_repeat ? "border-error" : "form"
