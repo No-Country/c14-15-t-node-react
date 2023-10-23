@@ -1,3 +1,4 @@
+import Pagination from "./Pagination";
 import ProductCards from "./ProductCards";
 
 const ProductList = ({productsData}) => {
@@ -6,7 +7,7 @@ const ProductList = ({productsData}) => {
       {productsData?.map((product) => {
         return <ProductCards key={product?.id} product={product} />;
       })}
-   
+   <Pagination />
     </section>
   );
 };
