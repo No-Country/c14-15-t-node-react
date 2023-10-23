@@ -1,21 +1,15 @@
 const Category = require("../Schema/categorySchema");
 const Product = require("../Schema/ProductSchema");
+const Crypto = require("crypto");
+
 
 
 class categoryModel {
     static async createCategory(body) {
         const { name } = body;
       
-        // Check the number of existing categories
-        const countCategory = await Category.count();
-        let categoryId = 1;
-      
-        if (countCategory) {
-          // If categories exist, find the last category's ID and increment it
-          const lastCategory = await Category.findOne().sort({ id: 'desc' });
-          categoryId = lastCategory ? lastCategory.id + 1 : 1;
-        }
-      
+        const categoryId = Crypto.randomUUID();
+        
         // Check if a category with the same name already exists
         const existingCategory = await Category.findOne({ name });
       
@@ -110,16 +104,14 @@ class categoryModel {
         }
 
         const listCategories = categories.map((category)=>{
-          return {id: category.id, name: category.name};
+          return {id: category.id, name: category.name, brands: category.brands};
         });
-
+        
         return{
           error: false,
           data: [{ listCategories, message: 'retorno todas las categorias'}]
         }
 
       }
-      
-          
 }
 module.exports = categoryModel;

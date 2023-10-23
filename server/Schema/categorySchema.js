@@ -4,7 +4,7 @@ const CategorySchema = Schema(
 {
     id: {
         index: true,
-        type: Number,
+        type: String,
         required: true,
         unique: true,
     },
@@ -12,6 +12,10 @@ const CategorySchema = Schema(
         type: String,
         required: true,
     },
+    brands: {
+        type: [String], 
+        required: true 
+    }
 },
 {
     timestamps: true,
