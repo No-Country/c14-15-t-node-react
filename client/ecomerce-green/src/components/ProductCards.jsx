@@ -13,7 +13,7 @@ const ProductCards = ({product}) => {
         <div className="description flex place-content-between items-center pb-3">
           <div>
         <p className="text-xl font-semibold mt-4">{category.brand_name}</p>
-        <p className="text-lg font-light">{name} s</p>
+        <p className="text-lg font-light">{name} </p>
         </div>
         <span className="energy-label a-tag flex items-center justify-center">
           <p className="text-white text-3xl font-extrabold text-center">{energy_efficiency}</p></span>
