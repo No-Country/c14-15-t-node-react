@@ -13,7 +13,7 @@ export const useAuthStore = () => {
   const startLogin = async ({ email, password }) => {
     dispatch(onChecking());
     try {
-      const { data } = await pageApi.post("/auth", { email, password });
+      const { data } = await greenIXApi.post("/auth", { email, password });
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("token-init-date", new Date().getTime());
@@ -33,7 +33,7 @@ export const useAuthStore = () => {
   const startRegister = async (User) => {
     dispatch(onChecking());
     try {
-      const { data } = await pageApi.post("/auth/register", { ...User });
+      const { data } = await greenIXApi.post("/auth/register", { ...User });
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("token-init-date", new Date().getTime());

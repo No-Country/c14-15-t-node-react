@@ -1,52 +1,84 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, userLogin } from './authActions'
-// initialize userToken from local storage
-const userToken = localStorage.getItem('userToken')
-  ? localStorage.getItem('userToken')
-  : null
+import { createSlice } from "@reduxjs/toolkit";
+import { registerUser, userLogin, verifyJwt, logout } from "./authActions";
+
+const userToken = localStorage.getItem("userToken")
+  ? localStorage.getItem("userToken")
+  : null;
 
 const initialState = {
-    loading: false,
-    userInfo: {}, // for user object
-    userToken, // for storing the JWT
-    error: null,
-    success: false, // for monitoring the registration process.
-  }
- const authSliceV = createSlice({
-    name: 'authv',
-    initialState,
-    reducers: {},
-    extraReducers: { // login user
-      [userLogin.pending]: (state) => {
-        state.loading = true
-        state.error = null
-      },
-      [userLogin.fulfilled]: (state, { payload }) => {
-        state.loading = false
-        state.userInfo = payload
-        state.userToken = payload.userToken
-      },
-      [userLogin.rejected]: (state, { payload }) => {
-        state.loading = false
-        state.error = payload
-      },
-      // register user
-      [registerUser.pending]: (state) => {
-        state.loading = true
-        state.error = null
-      },
-      [registerUser.fulfilled]: (state, { payload }) => {
-        state.loading = false
-        state.success = true // registration successful
-      },
-      [registerUser.rejected]: (state, { payload }) => {
-        state.loading = false
-        state.error = payload
-      },
-    },
+  loading: false,
+  userInfo: {},
+  isAuthenticated: false,
+  userToken,
+  error: null,
+  success: false,
+};
 
+const authSliceV = createSlice({
+  name: "authv",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    // Login user
+    builder
+      .addCase(userLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userLogin.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.userInfo = payload;
+        state.isAuthenticated = true;
+        state.userToken = payload.userToken;
+      })
+      .addCase(userLogin.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+        state.isAuthenticated = false;
+      });
+
+    // Register user
+    builder
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerUser.fulfilled, (state) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(registerUser.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+        state.userInfo = action.payload;
+      })
+      // LOGOUT
+      .addCase(logout.fulfilled, (state) => {
+        state.userInfo = null;
+        state.userToken = null;
+        state.isAuthenticated = false;
+      })
+
+      // VERIFY JWT
+      .addCase(verifyJwt.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(verifyJwt.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.isAuthenticated = action.payload;
+      })
+      .addCase(verifyJwt.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+        state.isAuthenticated = false;
+      })
+      ;
+
+  },
 });
 
-export const { onChecking, onLogin, onLogout, clearErrorMessage } = authSliceV.actions;
+export const { onChecking, onLogin, onLogout, clearErrorMessage } =
+  authSliceV.actions;
 
 export default authSliceV.reducer;
