@@ -16,7 +16,7 @@ import Cart from "../pages/Cart";
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
 
-
+  const [open, setOpen] = useState(false);
 
   const [nav, setNav] = useState(false);
   const headerShadow = useHeaderShadow();
@@ -72,11 +72,14 @@ const Header = () => {
               </li>
 
               <li>
-                <Cart />
-                {/* <Link to="/cart">
+                
+                <button onClick = {() => setOpen(true)}>
                   {" "}
                   <AiOutlineShoppingCart size={20} />
-                </Link> */}
+                </button>
+                <Cart open={open}
+                setOpen={setOpen}
+                />
               </li>
             </ul>
           </div>
@@ -120,15 +123,15 @@ const Header = () => {
             <a className="ml-2 ">Log in</a>
           </li>
           </Link>
-          <li>
+          {/* <li>
             <Cart />
-          </li>
-          {/* <Link to="/cart">
+          </li> */}
+         <button onClick = {() => setOpen(true)}>
           <li className="p-4 border-b border-r-gray-600">
             {" "}
             <AiOutlineShoppingCart size={25} />
           </li>
-          </Link> */}
+          </button> 
         </ul>
       </nav>
     </>
