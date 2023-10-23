@@ -1,15 +1,21 @@
 const z = require("zod");
 
 const categorySchema = z.object({
-    id: z.number().optional().readonly(),
+    id: z.string().uuid().optional().readonly(),
     name: z
         .string({
         invalid_type_error: "El nombre debe ser letras",
         required_error: "El nombre es requerido.",
         })
-        .regex(/^[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s]*$/, {
-        message: "Tu nombre debe estar bien escrito",
-        })
+        .min(5)
+        .regex(/^[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*$/, {
+        message: "El nombre debe estar bien escrito",
+        }),
+    brands: z
+        .array(z
+            .string().trim()
+        ).nonempty()
+        
 });
 const categoryValidator = (body) => {
     return categorySchema.safeParse(body);

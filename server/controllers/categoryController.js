@@ -67,7 +67,6 @@ class categoryController{
     
     // ------------------- get all category ------------------
     static async getAll(req, res) {
-        // try {
           const get_all = await CategoryModel.getAllCategories();
           
           if (get_all.error) {
@@ -75,10 +74,6 @@ class categoryController{
           }
 
           res.status(200).json(get_all);
-        // } catch (error) {
-        //   console.log(error)
-        //   res.status(500).json({ error: 'Error interno del servidor' });
-        // }
       }
 }
 

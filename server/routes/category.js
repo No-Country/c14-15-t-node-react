@@ -1,16 +1,20 @@
 const { Router } = require("express");
+
 const categoryController = require("../controllers/categoryController");
+const brandController = require("../controllers/brandController");
 
 const categoryRoutes = Router();
 
-// EndPoint create from categories
 categoryRoutes.post("/create", categoryController.create);
-// EndPoint update from categories
 categoryRoutes.patch("/edit", categoryController.update);
-// EndPoint delete from categories
 categoryRoutes.delete("/delete", categoryController.delete);
-// EndPoint get-all from categories
-categoryRoutes.get("/get-all", categoryController.getAll);
+categoryRoutes.get("/getAll", categoryController.getAll);
+
+// brand routes
+categoryRoutes.patch("/create/", brandController.create);
+// categoryRoutes.patch("/edit/", brandController.create);
+// categoryRoutes.delete("/delete/", brandController.create);
+
 
 module.exports = {
     categoryRoutes,
