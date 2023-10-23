@@ -14,7 +14,7 @@ const Products = () => {
     dispatch(fetchProducts());
   }, []);
 
-  const { products,  isLoading } = useSelector((state) => state.products);
+  const { products, isLoading } = useSelector((state) => state.products);
   const [productsData, setProductsData] = useState([]);
 
   useEffect(() => {
@@ -22,21 +22,21 @@ const Products = () => {
   }, [products]);
 
   const orderProduct = (string) => {
-    if (string === 'lowerPrice') {
+    if (string === "lowerPrice") {
       const sortedProducts = [...productsData]; // Clona el arreglo
       sortedProducts.sort((producto1, producto2) => {
         return producto1.price - producto2.price;
       });
       setProductsData(sortedProducts); // Actualiza el estado para reflejar los productos ordenados
     }
-    if (string === 'higherPrice') {
+    if (string === "higherPrice") {
       const sortedProducts = [...productsData]; // Clona el arreglo
       sortedProducts.sort((producto1, producto2) => {
         return producto2.price - producto1.price; // Ordenar de mayor a menor
       });
       setProductsData(sortedProducts); // Actualiza el estado para reflejar los productos ordenados
     }
-    if (string === 'name') {
+    if (string === "name") {
       const sortedProducts = [...productsData];
       sortedProducts.sort((producto1, producto2) => {
         return producto1.name.localeCompare(producto2.name); // Ordenar alfabéticamente por nombre
@@ -53,12 +53,10 @@ const Products = () => {
   return (
     <MainLayout>
       <main>
-        {isLoading && (
- <Loader />
-        ) }
-        <HeroStore  />
+        <HeroStore />
         <ProductFilters orderProduct={orderProduct} />
-        <ProductList productsData={productsData} />
+
+        {isLoading ? <Loader /> : <ProductList productsData={productsData} />}
       </main>
     </MainLayout>
   );

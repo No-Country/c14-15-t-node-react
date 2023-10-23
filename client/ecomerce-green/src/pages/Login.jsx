@@ -125,6 +125,7 @@ export const Login = () => {
                       {...register("password", {
                         required: "Este campo es requerido",
                         minLength: { value: 6, message: "Mínimo 6 caracteres" },
+                        validate: validations.isPassword,
                       })}
                     />
 
