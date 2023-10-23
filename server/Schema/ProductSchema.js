@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
-const { string } = require("zod");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const ProductSchema = Schema(
   {
-    id: {
+    productId: {
       index: true,
       type: String,
       required: true,
@@ -46,7 +46,7 @@ const ProductSchema = Schema(
       type: Number,
       required: true,
     },
-    image: {
+    images: {
       cover: String,
       picture_1: String,
       picture_2: String,
@@ -56,10 +56,14 @@ const ProductSchema = Schema(
       name: String,
       brand_name: String,
     },
-    ProductEnabled: {
-      type: String,
+    productEnabled: {
+      type: Boolean,
       required: true,
       default: true,
+    },
+    garanty: {
+      type: Number,
+      default: 0,
     },
   },
   {
@@ -67,5 +71,7 @@ const ProductSchema = Schema(
     versionKey: false,
   }
 );
+
+ProductSchema.plugin(mongoosePaginate);
 
 module.exports = model("Product", ProductSchema);

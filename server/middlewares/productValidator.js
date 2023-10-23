@@ -1,25 +1,11 @@
 const z = require("zod");
 
-const required_camp = "Campo Requerido";
-
 const productSchema = z.object({
-  id: z.string().uuid().optional().readonly(),
-  name: z.string({
-    invalid_type_error: "El nombre debe ser letras",
-    required_error: required_camp,
-  }),
-  subtitle: z.string({
-    invalid_type_error: "El subtitle debe ser letras",
-    required_error: required_camp,
-  }),
-  description: z.string({
-    invalid_type_error: "Description debe ser letras",
-    required_error: required_camp,
-  }),
-  detail: z.string({
-    invalid_type_error: "Detalles deben ser una cadena de texto",
-    required_error: required_camp,
-  }),
+  productId: z.string().uuid().optional().readonly(),
+  name: z.string(),
+  subtitle: z.string(),
+  description: z.string(),
+  detail: z.string(),
   technical_info: z
     .object({
       driver_model: z.string(),
@@ -33,51 +19,25 @@ const productSchema = z.object({
       base_diameter: z.number().positive(),
     })
     .optional(),
-  energy_efficiency: z
-    .string({
-      invalid_type_error: "Energy Efficiency debe ser una cadena de texto",
-      required_error: required_camp,
-    })
-    .trim(),
-  price: z
-    .number({
-      invalid_type_error: "Tiene que ser un numero",
-      required_error: required_camp,
-    })
-    .positive(),
-  available_quantity: z
-    .number({
-      invalid_type_error: "La cantidad disponible debe ser un numero",
-      required_error: required_camp,
-    })
-    .int()
-    .positive(),
-  image: z.object({
-    cover: z
-      .string({
-        invalid_type_error: "La url debe tener formato especifico",
-        required_error: required_camp,
-      })
-      .url(),
-    picture_1: z
-      .string({
-        invalid_type_error: "La url debe tener formato especifico",
-        required_error: required_camp,
-      })
-      .url(),
-    picture_2: z
-      .string({
-        invalid_type_error: "La url debe tener formato especifico",
-        required_error: required_camp,
-      })
-      .url(),
+  energy_efficiency: z.string().trim(),
+  price: z.number().positive(),
+  available_quantity: z.number().int().positive(),
+  images: z.object({
+    cover: z.string().url(),
+    picture_1: z.string().url(),
+    picture_2: z.string().url(),
   }),
-  ProductEnabled: z.boolean(),
+  productEnabled: z.boolean(),
+  garanty: z.number().int().positive().optional(),
   category: z
     .object({
       id: z.string().uuid(),
-      name: z.string(),
-      brand_name: z.string(),
+      name: z.string().regex(/^[A-Z][a-zA-Z]*$/, {
+        message: "Tu nombre no cumple los requisitos",
+      }),
+      brand_name: z.string().regex(/^[A-Z][a-zA-Z]*$/, {
+        message: "Tu nombre no cumple los requisitos",
+      }),
     })
     .required(),
 });

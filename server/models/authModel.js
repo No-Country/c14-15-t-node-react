@@ -10,7 +10,7 @@ class AuthModel {
     if (!user) {
       return {
         error: true,
-        data: [{ message: "Email o contraseña incorrectos" }],
+        data: { message: "Email o contraseña incorrectos" },
       };
     }
 
@@ -18,19 +18,19 @@ class AuthModel {
     if (!passValidated) {
       return {
         error: true,
-        data: [{ message: "Email o contraseña incorrectos" }],
+        data: { message: "Email o contraseña incorrectos" },
       };
     }
 
-    const token = await generateToken(user.uid, user.firstname, user.isAdmin);
-    return { error: false, data: [{ token }] };
+    const token = await generateToken(user.uid, user.isAdmin);
+    return { error: false, data: { token } };
   }
 
   static async revalidateToken(body) {
-    const { uid, firstname, lastname } = body;
-    const token = await generateToken(uid, firstname, lastname);
+    const { uid, isAdmin } = body;
+    const token = await generateToken(uid, isAdmin);
 
-    return { error: false, data: [{ token }] };
+    return { error: false, data: { token } };
   }
 }
 
