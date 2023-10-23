@@ -53,6 +53,9 @@ const Products = () => {
   return (
     <MainLayout>
       <main>
+        {isLoading && (
+ <Loader />
+        ) }
         <HeroStore  />
         <ProductFilters orderProduct={orderProduct} />
         <ProductList productsData={productsData} />
