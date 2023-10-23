@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {  incrementProduct } from '../redux/store/cart/cartSlice';
+import CartIcon from '../assets/CartIcon.svg'
 
 const ProductCards = ({product}) => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const ProductCards = ({product}) => {
         </div>
         <div className="flex place-content-between items-center pt-3">
         <p className="text-3xl font-extrabold">${price}</p>
-        <img src="/assets/CartIcon.svg" alt="" className="w-12 cursor-pointer"   
+        <img src={CartIcon} alt="" className="w-12 cursor-pointer"   
         onClick={() => {
             dispatch(incrementProduct(product));
           }} />

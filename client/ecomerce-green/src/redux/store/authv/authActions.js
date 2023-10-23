@@ -86,7 +86,7 @@ export const verifyJwt = createAsyncThunk(
   
   async (userToken, { rejectWithValue }) => {
     try {
-       // configure header's Content-Type as JSON
+       // configure header's 
        const config = {
         headers: {
           "x-token": userToken,
