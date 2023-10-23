@@ -22,8 +22,8 @@ const ProductCards = ({product}) => {
         <p className="text-3xl font-extrabold">${price}</p>
         <img src={CartIcon} alt="" className="w-12 cursor-pointer"   
         onClick={() => {
-            dispatch(incrementProduct(product));
-          }} />
+          dispatch(incrementProduct(product));
+        }} />
         </div>
     </div>
   )

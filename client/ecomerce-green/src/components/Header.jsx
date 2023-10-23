@@ -8,12 +8,13 @@ import {
 import logo from "../assets/logo.svg";
 import { VscAccount } from "react-icons/vsc";
 import useHeaderShadow from "../hooks/useHeaderShadow";
-import { useSelector , useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { logout } from "../redux/store/authv/authActions";
 
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
+  console.log(cart.length);
   const { isAuthenticated } = useSelector((state) => state.authv);
   const dispatch = useDispatch();
   const [nav, setNav] = useState(false);
@@ -60,28 +61,38 @@ const Header = () => {
           <div className="hidden md:flex">
             <ul className="flex g-1">
               {isAuthenticated ? (
-               <li onClick={() => dispatch(logout())} className="pr-4">
+                <li
+                  className="pr-4 flex justify-center items-center"
+                  onClick={() => dispatch(logout())}
+                >
                   {" "}
-                 Log out
+                  Log out
                 </li>
               ) : (
-                <li className="pr-4">
+                <li className="pr-4 flex justify-center items-center">
                   {" "}
                   <Link to="/login">Log in</Link>
                 </li>
               )}
-
-              <li className="pr-4">
-                <Link to="/login">
-                  <VscAccount size={20} />
-                </Link>
+              <li className="pr-4 flex justify-center items-center">
+                <VscAccount size={20} />
               </li>
-
-              <li>
-                <Link to="/cart">
-                  {" "}
-                  <AiOutlineShoppingCart size={20} />
-                </Link>
+              <li className="flex justify-center items-center mt-[-0.7rem]">
+                <div className="relative ">
+                  <div className="t-0 absolute left-3">
+                    <p
+                      className={`${
+                        cart.length > 0 ? "flex" : "hidden"
+                      } h-2 w-2  items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white`}
+                    >
+                      {cart?.length}
+                    </p>
+                  </div>{" "}
+                  <AiOutlineShoppingCart
+                    size={20}
+                    className="file: mt-4 h-6 w-6"
+                  />
+                </div>
               </li>
             </ul>
           </div>
