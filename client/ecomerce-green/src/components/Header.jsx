@@ -9,7 +9,7 @@ import logo from "../assets/logo.svg";
 import { VscAccount } from "react-icons/vsc";
 import useHeaderShadow from "../hooks/useHeaderShadow";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link  } from "react-router-dom";
 import Cart from "../pages/Cart";
 
 import { logout } from "../redux/store/authv/authActions";
@@ -27,6 +27,7 @@ const Header = () => {
   const handleNav = () => {
     setNav(!nav);
   };
+  
 
   return (
     <>
