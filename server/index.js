@@ -6,7 +6,8 @@ const { config } = require("dotenv");
 
 const { userRoutes } = require("./routes/user");
 const { productRoutes } = require("./routes/product");
-const { categoryRoutes } = require("./routes/category"); // io
+const { categoryRoutes } = require("./routes/category");
+const { brandRoutes } = require("./routes/brand");
 
 const swaggerUI = require("swagger-ui-express");
 const swaggerDoc = require("swagger-jsdoc");
@@ -60,6 +61,8 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/products", productRoutes);
 
 app.use("/api/v1/categories", categoryRoutes);
+
+app.use("/api/v1/brands", brandRoutes);
 
 //listen
 app.listen(process.env.PORT || 5000, () => {

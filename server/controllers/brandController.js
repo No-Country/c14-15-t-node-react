@@ -1,12 +1,9 @@
-//const CategoryModel = require("../models/categoryModel");
 const BrandModel = require("../models/brandModel");
-const { categoryValidator, categoryPartialValidator } = require("../middlewares/categoryValidator");
-const { update } = require("./categoryController");
-
+const { brandValidator, brandPartialValidator } = require("../middlewares/brandValidator");
 class brandController{
     // ------------------- create brand ---------------
     static async create(req, res){
-        const result = categoryPartialValidator(req.body);
+        const result = brandValidator(req.body);
         if(!result.success){
             return res.status(400).json({ 
                 error: true, 
