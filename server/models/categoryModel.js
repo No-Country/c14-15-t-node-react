@@ -8,7 +8,7 @@ class categoryModel {
     static async createCategory(body) {
         const { name } = body;
       
-        const categoryId = Crypto.randomUUID();
+        const category_id = Crypto.randomUUID();
         
         // Check if a category with the same name already exists
         const existingCategory = await Category.findOne({ name });
@@ -20,7 +20,7 @@ class categoryModel {
         const newCategory = new Category(body);
       
         // Set the category's ID and name
-        newCategory.id = categoryId;
+        newCategory.categoryId = category_id;
         newCategory.name = name;
       
         await newCategory.save();

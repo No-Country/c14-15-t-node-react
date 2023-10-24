@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const CategorySchema = Schema(
 {
-    id: {
+    categoryId: {
         index: true,
         type: String,
         required: true,
@@ -19,7 +19,7 @@ const CategorySchema = Schema(
 },
 {
     timestamps: true,
-    versionKey: false,
+    versionKey: false
 }
 );
 module.exports = model("Category", CategorySchema);

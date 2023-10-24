@@ -1,7 +1,7 @@
 const z = require("zod");
 
 const categorySchema = z.object({
-    id: z.string().uuid().optional().readonly(),
+    categoryId: z.string().uuid().optional().readonly(),
     name: z
         .string({
         invalid_type_error: "El nombre debe ser letras",
@@ -13,7 +13,11 @@ const categorySchema = z.object({
         }),
     brands: z
         .array(z
-            .string().trim()
+            .string()
+            .regex(/^[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*$/, {
+                message: "El nombre debe estar bien escrito",
+            })
+            .trim()
         ).nonempty()
         
 });
