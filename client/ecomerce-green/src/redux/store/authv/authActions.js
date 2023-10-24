@@ -28,10 +28,10 @@ export const registerUser = createAsyncThunk(
     } catch (error) {
       console.log("error",error.message)
       console.log("si hay error",error.response.data.error)
-      console.log("mensaje de error",error.response.data.data[0].message)
+      console.log("mensaje de error",error.response.data.data.message)
     // return custom error message from backend if present
-      if (error.response && error.response.data.data[0].message) {
-        return rejectWithValue(error.response.data.data[0].message);
+      if (error.response && error.response.data.data.message) {
+        return rejectWithValue(error.response.data.data.message);
       } else {
         return rejectWithValue(error.message);
       }
@@ -66,10 +66,10 @@ export const userLogin = createAsyncThunk(
       console.log("error",error.message)
       console.log("hay error",error.response.data.error)
       console.log("error",error.response.data)
-      console.log("msg error",error.response.data.data[0].message)
+      console.log("msg error",error.response.data.data.message)
       // return custom error message from API if any
-      if (error.response && error.response.data.data[0].message) {
-        return rejectWithValue(error.response.data.data[0].message);
+      if (error.response && error.response.data.data.message) {
+        return rejectWithValue(error.response.data.data.message);
       } else {
         return rejectWithValue(error.message);
       }

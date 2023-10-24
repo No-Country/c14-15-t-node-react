@@ -4,22 +4,25 @@ import HeroStore from "../components/HeroStore";
 import ProductFilters from "../components/ProductFilters";
 import ProductCards from "../components/ProductCards";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../redux/store/product/productSlice";
+import { fetchProducts } from "../redux/store/product/productAction";
 import Loader from "../components/Loader";
 import ProductList from "../components/ProductList";
 
 const Products = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
 
   const { products, isLoading } = useSelector((state) => state.products);
   const [productsData, setProductsData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  useEffect(() => {
+    dispatch(fetchProducts(currentPage)); 
+  }, [dispatch, currentPage]);
+
 
   useEffect(() => {
-    setProductsData(products); // Actualizar el estado cuando cambian los productos
-  }, [products]);
+    setProductsData(products.products); // Actualizar el estado cuando cambian los productos
+  }, [products.products]);
 
   const orderProduct = (string) => {
     if (string === "lowerPrice") {
@@ -44,6 +47,10 @@ const Products = () => {
       setProductsData(sortedProducts);
     }
     // return productsData
+  }; 
+   const onPageChange = (newPage) => {
+    // Update the current page and trigger a fetch for the new page
+    setCurrentPage(newPage);
   };
 
   if (isLoading) {
@@ -56,7 +63,11 @@ const Products = () => {
         <HeroStore />
         <ProductFilters orderProduct={orderProduct} />
 
-        {isLoading ? <Loader /> : <ProductList productsData={productsData} />}
+        {isLoading ? <Loader /> : <ProductList 
+        totalPages={products.totalPages}
+        onPageChange={onPageChange}
+        page ={products.page} 
+        productsData={productsData}  />}
       </main>
     </MainLayout>
   );
