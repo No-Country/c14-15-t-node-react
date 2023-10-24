@@ -9,7 +9,15 @@ const brandSchema = z.object({
         })
         .regex(/^[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*$/, {
         message: "El nombre debe estar bien escrito",
-        }),        
+        }),
+    otherBrand: z
+        .string({
+        invalid_type_error: "El nombre debe ser caracteres de texto",
+        required_error: "El nombre es requerido.",
+        })
+        .regex(/^[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*$/, {
+        message: "El nombre debe estar bien escrito",
+        })
 });
 const brandValidator = (body) => {
     return brandSchema.safeParse(body);

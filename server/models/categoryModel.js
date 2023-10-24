@@ -43,7 +43,7 @@ class categoryModel {
         if (!category) {
           return {
             error: true,
-            data: [{ message: 'No existe categoria con ese id' }]
+            data: [{ message: 'No existe esta categoria' }]
           };
         }
 

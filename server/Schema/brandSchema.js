@@ -11,6 +11,10 @@ const BrandSchema = Schema(
         brand: {
             type: String,
             required: true,
+        },
+        otherBrand:{
+            type: String,
+            required: true,
         }
     },
     {
