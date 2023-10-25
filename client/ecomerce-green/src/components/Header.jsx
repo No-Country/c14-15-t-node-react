@@ -9,7 +9,9 @@ import logo from "../assets/logo.svg";
 import { VscAccount } from "react-icons/vsc";
 import useHeaderShadow from "../hooks/useHeaderShadow";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link  } from "react-router-dom";
+import Cart from "../pages/Cart";
+
 import { logout } from "../redux/store/authv/authActions";
 
 const Header = () => {
@@ -17,11 +19,15 @@ const Header = () => {
 
   const { isAuthenticated } = useSelector((state) => state.authv);
   const dispatch = useDispatch();
+
+  const [open, setOpen] = useState(false);
+
   const [nav, setNav] = useState(false);
   const headerShadow = useHeaderShadow();
   const handleNav = () => {
     setNav(!nav);
   };
+  
 
   return (
     <>
@@ -75,7 +81,7 @@ const Header = () => {
                 </li>
               )}
               <li className="pr-4 flex justify-center items-center">
-                <VscAccount size={20} />
+              <Link to="/login"><VscAccount size={20} /></Link>
               </li>
               <li className="flex justify-center items-center mt-[-0.7rem]">
                 <div className="relative ">
@@ -87,12 +93,19 @@ const Header = () => {
                     >
                       {cart?.length}
                     </p>
-                  </div>{" "}
+                  </div>
+                  <button onClick = {() => setOpen(true)}>{" "}
                   <AiOutlineShoppingCart
                     size={20}
                     className="file: mt-4 h-6 w-6"
                   />
+                  </button>
+                  <Cart open={open}
+                setOpen={setOpen}
+                />
                 </div>
+
+                
               </li>
             </ul>
           </div>
@@ -137,16 +150,20 @@ const Header = () => {
           </li>
         </ul>
         <ul className="flex justify-between mx-2">
+          
           <li className=" flex pr-4 items-center">
             <div className="ml-2">
-              <VscAccount size={20} />{" "}
+            <Link to="/login"><VscAccount size={20} />{" "}</Link>
             </div>
-            <a className="ml-2 ">Log in</a>
+            <Link to="/login"><p className="ml-2">Log in</p></Link>
           </li>
+          
+         <button onClick = {() => setOpen(true)}>
           <li className="p-4 border-b border-r-gray-600">
             {" "}
             <AiOutlineShoppingCart size={25} />
           </li>
+          </button> 
         </ul>
       </nav>
     </>
