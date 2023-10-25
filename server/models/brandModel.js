@@ -39,6 +39,7 @@ class brandModel{
             }
         }
     }
+
     static async updateBrand(body){
         const { categoryId, brand,  otherBrand } = body;
         
@@ -52,7 +53,7 @@ class brandModel{
 
         const brands = [...category.brands ];
         
-        const index = brands.findIndex(brand => brand === body.brand);
+        const index = brands.indexOf(brand)
         if(index == -1){
             return {
                 error: true,
@@ -83,6 +84,7 @@ class brandModel{
             }
         }
     }
+    
     static async deleteBrand(body){
         const { categoryId, brand } = body;
 
