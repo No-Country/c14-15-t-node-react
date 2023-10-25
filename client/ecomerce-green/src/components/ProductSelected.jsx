@@ -1,13 +1,33 @@
 import useFetch from "../redux/service/useFetch";
+
 import arrowRight from "./../assets/arrow-right.svg";
 import arrowDown from "./../assets/arrow-down.svg";
 import { useState } from "react";
 import "./../styles/ProductSelected.css";
 import TagEfficiency from "./TagEficciency";
-const ProductSelected = ({ id }) => {
-  const { data } = useFetch(`/${id}`);
+import { currency } from "../utils";
 
-  console.log("objeto:", data);
+
+const ProductSelected = ({ product, id }) => {
+  // const { data } = useFetch(`/${id}`);
+const{category, 
+  images,
+  price,
+  description,
+  detail,
+  name,
+  subtitle,
+  productEnabled,
+  measures,
+  energy_efficiency,
+  technical_info
+
+} =product 
+  console.log("product api",product)
+
+  const formatPrice = currency.format(price)
+  console.log(formatPrice)
+  // console.log("objeto:", data);
   const [selected, setSelected] = useState(false);
   const toggle = (id) => {
     if (selected == id) {
@@ -35,14 +55,14 @@ const ProductSelected = ({ id }) => {
             className="text-[1rem] text-[#346758] font-normal underline
             md:text-[20px]"
           >
-            {data?.category?.name}
+            {category?.name} 
           </p>
           <h2 className=" font-semibold text-[32px]">
-            {data?.category?.brand_name}
+            {category?.brand_name}
           </h2>
-          <span className=" font-light text-[20px]">{data?.name}</span>
+          <span className=" font-light text-[20px]">{name}</span>
           <div className="border-t-2 border-[#252B2F]"></div>
-          <span className=" font-extrabold text-[36px]">{data?.price}</span>
+          <span className=" font-extrabold text-[36px]">{formatPrice}</span>
           <div className="flex flex-col gap-3">
             <button
               className="text-[20px] text-[white] bg-[#F8924FF2] hover:bg-[#ea8847] w-full h-[40px]
@@ -68,13 +88,13 @@ const ProductSelected = ({ id }) => {
           <img
             className="rounded-lg h-[300px] w-[280px] md:w-[200px] 
             lg:w-[300px] lg:h-[400px]"
-            src={data?.images.cover}
+            src={images?.cover}
             alt="imagen_1 del producto"
           />
           <img
             className="rounded-lg h-[300px] w-[280px] md:w-[200px] 
             lg:w-[300px] lg:h-[400px]"
-            src={data?.images.picture_1}
+            src={images?.picture_1}
             alt="imagen_2 del producto"
           />
         </div>
@@ -89,7 +109,7 @@ const ProductSelected = ({ id }) => {
           md:w-[420px] lg:w-[620px]"
         >
           <div className="w-full border-b-2 border-[#252B2F]">
-            {data?.description}
+            {description}
           </div>
           <div className="w-full flex flex-col">
             <div className="w-full border-b-2 border-[#252B2F]">
@@ -115,7 +135,7 @@ const ProductSelected = ({ id }) => {
                   (selected == `detalle` ? `desplegar` : `no-desplegar`)
                 }
               >
-                {data?.detail}
+                {detail}
               </div>
             </div>
             <div className="w-full border-b-2 border-[#252B2F] mb-4">
@@ -142,33 +162,33 @@ const ProductSelected = ({ id }) => {
                   (selected == `informacion` ? `desplegar` : `no-desplegar`)
                 }
               >
-              {data?.technical_info?.driver_model==""? <></>:<p className="font-semibold">
+              {technical_info?.driver_model==""? <></>:<p className="font-semibold">
                   Modelo:
                   <span className="font-normal ml-3">
-                    {data?.technical_info?.driver_model}
+                    {technical_info?.driver_model} 
                   </span>
                 </p> }
-                {data?.technical_info?.energy_use==""? <></>:<p className="font-semibold">
+                {technical_info?.energy_use==""? <></>:<p className="font-semibold">
                   Energía usada: 
                   <span className="font-normal ml-3">
-                  {data?.technical_info?.energy_use} </span>
+                  {technical_info?.energy_use} </span>
                 </p>}
-               {data?.measures?.height==""? <></>:<p className="font-semibold">
+               {measures?.height==""? <></>:<p className="font-semibold">
                   Altura: <span className="font-normal ml-3">
-                  {data?.measures?.height} </span>
+                  {measures?.height} </span>
                 </p>} 
-                {data?.measures?.width==""?<></>:<p className="font-semibold">
+                {measures?.width==""?<></>:<p className="font-semibold">
                   Ancho:   <span className="font-normal ml-3">
-                  {data?.measures?.width} </span>
+                  {measures?.width} </span>
                 </p>}
-                {data?.measures?.base_diameter==""?<></>:<p className="font-semibold">
+                {measures?.base_diameter==""?<></>:<p className="font-semibold">
                   Diámetro de base: <span className="font-normal ml-3">
-                  {data?.measures?.base_diameter} </span>
+                  {measures?.base_diameter} </span>
                 </p>}
                 
                 <p className="font-semibold flex mb-4 ">
                   <span className="mr-3">Eficiencia energética:</span>      
-                  <TagEfficiency letter={data?.energy_efficiency} />
+                  <TagEfficiency letter={energy_efficiency} />
                 </p>
               </div>
             </div>
