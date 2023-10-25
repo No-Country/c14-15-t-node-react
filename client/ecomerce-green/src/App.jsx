@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from "./pages/Home";
 import { Login } from './pages/Login';
@@ -7,13 +7,26 @@ import Product from './pages/ProductDetail';
 import Products from './pages/Products';
 import DynamicTitlePage from './pages/DynamicTitlePage';
 import UserRegister from './pages/UserRegister';
+import { useLocation } from "react-router-dom";
+
 
 
 
 const App = () => {
+  const ScrollToTop = () => {
+    const location = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [location]);
+  
+    return null;
+  };
   return (
     <Router>
+      <ScrollToTop/>
       <Routes>
+        
         <Route exact path="/" element={<Home />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/login" element={<Login />} />

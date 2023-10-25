@@ -12,6 +12,7 @@
     "start": "json-server --watch db.json --port 5000"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
