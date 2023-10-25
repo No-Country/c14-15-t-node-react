@@ -28,7 +28,7 @@ export const Login = () => {
 
 
   
-  // 
+  // Verificar Token
   useEffect(() => {
     if (!userToken) return;
 
@@ -40,14 +40,13 @@ export const Login = () => {
     if(userToken){
       navigate('/')
     }
-    // console.log("user", userInfo);
+   
     console.log("token", userToken);
   }, [userToken]);
   
+  // Recargar pagina si esta autenticado
   useEffect(() => {
     if (isAuthenticated) {
-      // Cuando isAuthenticated se convierte en true, la autenticación se ha completado.
-      // Puedes realizar acciones aquí, como redirigir al usuario o recargar la página.
       window.location.reload();
       navigate('/');
     }
