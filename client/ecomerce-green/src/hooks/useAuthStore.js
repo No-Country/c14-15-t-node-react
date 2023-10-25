@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import pageApi from "../api/pageApi";
-import { clearErrorMessage, onChecking, onLogin, onLogout } from "../store";
+import {greenIXApi} from "../axiosApi";
+import { clearErrorMessage, onChecking, onLogin, onLogout } from "../redux/store/auth/authSlice";
 
 export const useAuthStore = () => {
-  const { status, user, errorMessage } = useSelector((state) => state.auth);
+  const { status, user, errorMessage ,userToken} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
@@ -13,7 +13,7 @@ export const useAuthStore = () => {
   const startLogin = async ({ email, password }) => {
     dispatch(onChecking());
     try {
-      const { data } = await pageApi.post("/auth", { email, password });
+      const { data } = await greenIXApi.post("/auth", { email, password });
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("token-init-date", new Date().getTime());
@@ -33,12 +33,12 @@ export const useAuthStore = () => {
   const startRegister = async (User) => {
     dispatch(onChecking());
     try {
-      const { data } = await pageApi.post("/auth/register", { ...User });
+      const { data } = await greenIXApi.post("/auth/register", { ...User });
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("token-init-date", new Date().getTime());
       dispatch(
-        onLogin({ name: data.name, uid: data.uid})
+        onLogin(user)
       );
       Swal.fire(
         "Usuario creado correctamente",

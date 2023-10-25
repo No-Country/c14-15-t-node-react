@@ -1,37 +1,18 @@
 import MainLayout from "../components/MainLayout";
 import "../styles/Contacto.css"
 import { useForm } from "react-hook-form";
-import { validations } from "../utils";
+ import { validations } from "../utils";
 
 export const Contacto = () => {
+
   const {
     register,
-     handleSubmit,
+    handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
-  const onSubmit = ({
-    firstname,
-    lastname,
-    email,
-    // select,
-    // textarea,
-  
-  }) => {
-    if (onSubmit) {
-      alert("Los campos no puede estar vacio ");
-    } else {
-      console.log("data", {
-        firstname,
-        lastname,
-        email,
-        // select,
-        // textarea,
-
-      });
-      
-    }
-  };
+  const onSubmit = (data) => console.log(data)
 
 
   return (
@@ -50,8 +31,8 @@ export const Contacto = () => {
               </h2>
             </div>
             <div className="mt-5 sm:mx-auto sm:w-full ">
-              <from className="from w-auto sm:flex-column"
-               onSubmit={handleSubmit(onSubmit)}
+              <form className="from w-auto sm:flex-column"
+                onSubmit={handleSubmit(onSubmit)}
                 action="#"
                 method="POST"
               >
@@ -63,8 +44,7 @@ export const Contacto = () => {
                       autoComplete="firstname"
                       name="firstname"
                       required
-                      className={`${
-                        errors.firstname ? "border-error" : "form"
+                      className={`${errors.firstname ? "border-error" : "form"
                         }  w-full bg-inherit text-white px-4 text-sm peer  outline-none`}
                       {...register("firstname", { required: true })}
                       aria-invalid={errors.firstname ? "true" : "false"}
@@ -90,12 +70,12 @@ export const Contacto = () => {
                       type="text"
                       autoComplete="lastname"
                       required
-                      className={` ${
-                        errors.lastname ? "border-error" : "form"
+                      className={` ${errors.lastname ? "border-error" : "form"
                         } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
                       {...register("lastname", {
-                        required: true})}
-                        aria-invalid={errors.lastname ? "true" : "false"}
+                        required: true
+                      })}
+                      aria-invalid={errors.lastname ? "true" : "false"}
                     />
 
                     <label
@@ -112,19 +92,20 @@ export const Contacto = () => {
 
                 {/* Email */}
                 <div className="p-2">
-                  <div className="lg:w-60 left-10 relative group bg-inherit w-50">
-                    <input
-                      type="email"
-                      autoComplete="email"
-                      name="email"
-                      required
-                      className={`${errors.email ? "border-error" : "form"
-                        }  w-full bg-inherit text-white px-4 text-sm peer  outline-none`}
-                      {...register("email", {
-                        required: "Este campo es requerido",
-                        validate: validations.isEmail,
-                      })}
-                    />
+              <div className="w-56 left-8 relative group">
+                <input
+                  name="email"
+                  type="text"
+                  required
+                  autoComplete="email"
+                  className={` ${
+                    errors.email ? "border-error" : "form"
+                  } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
+                  {...register("email", {
+                    required: "Este campo es requerido",
+                    validate: validations.isEmail,
+                  })}
+                />
 
                     <label
                       htmlFor="email"
@@ -145,39 +126,45 @@ export const Contacto = () => {
 
                   <div className="select-container lg:w-60 left-10  relative group w-50-sm ">
                     <div className="absolute inset-y-0 left-0 items-center">
-                      <select  id="select" name="select" className="select-input h-full w-[190px] lg:w-[230px] cursor-pointer text-white  border-0 bg-transparent  py-0  text-white-400 focus:ring-2 focus:ring-inset focus:ring-white-600 sm:text-sm">
-                        <option className="text-black cursor-pointer">Me comunico por</option>
-                        <option className="text-black cursor-pointer">Consultas</option>
-                        <option className="text-black cursor-pointer">Reclamos</option>
-                        <option className="text-black">Sugencia</option>
-                      </select>
+                      {/* <select {...register("message")} id="select" name="select" className="select-input h-full w-[190px] lg:w-[230px] cursor-pointer text-white  border-0 bg-transparent  py-0  text-white-400 focus:ring-2 focus:ring-inset focus:ring-white-600 sm:text-sm">
+                        <option value="comunico" className="text-black cursor-pointer">Me comunico por</option>
+                        <option value="consultas" className="text-black cursor-pointer">Consultas</option>
+                        <option value="reclamos" className="text-black cursor-pointer">Reclamos</option>
+                        <option value="sugerencia" className="text-black">Sugerencia</option>
+                       </select>  */}
+                       <select {...register("message")} >
+                       <option value="comucio">me comunico</option>
+                        <option value="reclamos">reclamos</option>
+                          <option value="sugerencias">sugerencias</option>
+                       </select>
                       <svg className="cursor-pointer absolute right-3 top-0 h-full w-5 text-white" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       </svg>
                     </div>
-                    <input
+                    {/* <input
                       type="text"
                       autoComplete="select"
                       name="select"
-                      required
-                      className={`${errors.select ?
+                      
+                      className={`${errors.message ?
                         "border-error" : "form"
                         }  w-full bg-inherit text-white px-4 text-sm peer  outline-none`}
-                      {...register("select", {
+                      {...register("mesage", {
                         required: "Este campo es requerido",
                       })}
-                    />
+                    /> */}
 
                   </div>
                 </div>
-                      {/*Comentario  */}
+                {/*Comentario  */}
                 <div className="p-2">
                   <div className="lg:w-[538px] w-[190px]  left-10 relative group flex flex-row-reverse">
                     <textarea
-                      name="textarea"
-                      type="text"
+                      name="observation"
+                      rows="4"
+                      cols="50"
                       autoComplete="text"
                       required
-                      className={` ${errors.textarea ? "border-error" : "form"
+                      className={` ${errors.observation ? "border-error" : "form"
                         } border-b-3 w-full text-white  px-4 text-sm peer resize-none outline-none`}
                       {...register("textarea", {
                         required: "Este campo es requerido",
@@ -186,14 +173,14 @@ export const Contacto = () => {
                     />
 
                     <label
-                      htmlFor="password"
+                      htmlFor="observation"
                       className=" title transform transition-all text-white  absolute pb-2 top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6">
                       Dejanos tu comentario
                     </label>
                   </div>
-                  {errors.password && (
+                  {errors.observation && (
                     <p className="pl-12 text-red-600 text-xs" role="alert">
-                      {errors.password.message}
+                      {errors.observation}
                     </p>
                   )}
                 </div>
@@ -205,7 +192,7 @@ export const Contacto = () => {
                     Enviar
                   </button>
                 </div>
-              </from>
+              </form>
             </div>
           </div>
         </div>
@@ -213,8 +200,7 @@ export const Contacto = () => {
       </main>
 
     </MainLayout>
-  )
-
+  );
 }
 
 

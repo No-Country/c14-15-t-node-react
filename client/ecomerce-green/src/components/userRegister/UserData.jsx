@@ -1,13 +1,21 @@
 import "./../../styles/UserData.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import isoTipo from "/logo.svg";
-import TextField from "./TextField";
 import { useState } from "react";
-import ButtonForm from "./ButtonForm";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
+import { useDispatch, useSelector } from "react-redux";
+import logo from "../../assets/logo.svg";
+import Error from "../Error";
+
+import { registerUser } from "../../redux/store/authv/authActions";
+import useShowAlert from "../../hooks/useShowAlert";
 const UserData = () => {
+  const { loading, userInfo, error, success } = useSelector(
+    (state) => state.authv
+  );
+  const { showError, messageError, showAlert } = useShowAlert();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -18,25 +26,32 @@ const UserData = () => {
   const [icoPassword, setsicoPassword] = useState(false);
   const [icoPassword2, setsicoPassword2] = useState(false);
 
-  const onSubmit = ({
-    firstname,
-    lastname,
-    email,
-    password,
-    password_repeat,
-  }) => {
+
+  const onSubmit = async (data) => {
+    const { firstname, lastname, email, password, password_repeat } = data;
     if (password !== password_repeat) {
-      alert("Las contraseñas no coinciden");
-    } else {
-      console.log("data", {
-        firstname,
-        lastname,
-        email,
-        password,
-        password_repeat,
-      });
-      // Aquí puedes realizar otras acciones, como enviar el formulario.
+      showAlert("Las contraseñas no coinciden");
     }
+
+    // Capitalizar los nombres
+    const capitalizedFirstname =
+      firstname.charAt(0).toUpperCase() + firstname.slice(1);
+
+    const capitalizedLastname =
+      lastname.charAt(0).toUpperCase() + lastname.slice(1);
+
+    const formData = {
+      firstname: capitalizedFirstname,
+      lastname: capitalizedLastname,
+      email,
+      password,
+    };
+    console.log("formData", formData);
+
+    dispatch(registerUser(formData));
+    showAlert();
+    console.log(error);
+
   };
 
   return (
@@ -45,7 +60,7 @@ const UserData = () => {
         <div className=" logo sm:mx-auto sm:w-full sm:max-w-sm ">
           <img
             className="mx-auto h-[40px] w-[33px]"
-            src="/src/assets/logo.svg"
+            src={logo}
             alt="Your Company"
           />
 
@@ -57,16 +72,21 @@ const UserData = () => {
 
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-auto">
+            
+            <Error 
+            error={error}
+            messageError={messageError}
+            showError={showError} />
             {/* Fistname */}
             <div className="p-2">
               <div className="w-56 left-8 relative group">
                 <input
                   name="firstname"
                   type="text"
+                  required
                   className={` ${
                     errors.firstname ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
-                 
                   autoComplete="firstname"
                   {...register("firstname", { required: true })}
                   aria-invalid={errors.firstname ? "true" : "false"}
@@ -80,7 +100,9 @@ const UserData = () => {
                 </label>
               </div>
               {errors.firstname?.type === "required" && (
-                <p className="pl-12 text-red-600 text-xs" role="alert">El nombre es requerido</p>
+                <p className="pl-12 text-red-600 text-xs" role="alert">
+                  El nombre es requerido
+                </p>
               )}
             </div>
             {/* Lastname */}
@@ -90,6 +112,7 @@ const UserData = () => {
                   name="lastname"
                   type="text"
                   autoComplete="lastname"
+                  required
                   className={` ${
                     errors.lastname ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
@@ -105,7 +128,9 @@ const UserData = () => {
                 </label>
               </div>
               {errors.lastname?.type === "required" && (
-                <p className="pl-12 text-red-600 text-xs" role="alert">El apellido es requerido</p>
+                <p className="pl-12 text-red-600 text-xs" role="alert">
+                  El apellido es requerido
+                </p>
               )}
             </div>
             {/* email */}
@@ -113,7 +138,8 @@ const UserData = () => {
               <div className="w-56 left-8 relative group">
                 <input
                   name="email"
-                  type="email"
+                  type="text"
+                  required
                   autoComplete="email"
                   className={` ${
                     errors.email ? "border-error" : "form"
@@ -151,10 +177,11 @@ const UserData = () => {
                   )}
                 </div>
                 <input
-                id="password"
+                  id="password"
                   name="password"
                   type={icoPassword ? "text" : "password"}
                   autoComplete="current-password"
+                  required
                   className={` ${
                     errors.password ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
@@ -191,9 +218,10 @@ const UserData = () => {
                   )}
                 </div>
                 <input
-                id="password_repeat"
+                  id="password_repeat"
                   name="password_repeat"
                   type={icoPassword2 ? "text" : "password"}
+                  required
                   autoComplete="current-password_repeat"
                   className={` ${
                     errors.password_repeat ? "border-error" : "form"
