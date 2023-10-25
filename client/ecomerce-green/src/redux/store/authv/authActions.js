@@ -26,12 +26,15 @@ export const registerUser = createAsyncThunk(
         config
       );
       console.log(data);
+      console.log(data.data);
+      console.log(data.data[0]);
+      console.log(data.data[0].firstname);
      
-      return data;
+      return {userInfo: data, userToken: data.data[0]};
     } catch (error) {
       console.log("error",error.message)
       console.log("si hay error",error.response.data.error)
-      console.log("mensaje de error",error.response.data.data.message)
+      console.log("mensaje de error",error.response)
     // return custom error message from backend if present
       if (error.response && error.response.data.data.message) {
         return rejectWithValue(error.response.data.data.message);
