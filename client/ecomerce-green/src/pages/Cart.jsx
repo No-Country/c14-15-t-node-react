@@ -5,7 +5,7 @@ import CartProduct from "../components/CartProduct";
 import { AiOutlineShoppingCart, AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
-import "../styles/cart.css";
+import "../styles/Cart.css";
 
 const Cart = ({ open, setOpen }) => {
   return (
