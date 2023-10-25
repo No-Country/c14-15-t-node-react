@@ -26,12 +26,12 @@
       "subtitle": "Este es un subtitle",
       "description": "Panel solar adaptable",
       "detail": "Proporciona iluminacion",
-      "techinal_info": {
+      "technical_info": {
         "driver_model": "ICDPD-19-1",
         "energy_use": "16.5 KWH/1.000 h"
       },
       "measures": {
-        "heigth": 180,
+        "height": 180,
         "width": 50,
         "base_diameter": 24
       },
@@ -58,12 +58,12 @@
       "subtitle": "Este es un subtitle",
       "description": "Panel solar adaptable",
       "detail": "Proporciona iluminacion",
-      "techinal_info": {
+      "technical_info": {
         "driver_model": "ICDPD-19-1",
         "energy_use": "16.5 KWH/1.000 h"
       },
       "measures": {
-        "heigth": 180,
+        "height": 180,
         "width": 50,
         "base_diameter": 24
       },
@@ -90,7 +90,7 @@
         "subtitle": "Este es un subtitle",
         "description": "Panel solar adaptable",
         "detail": "Proporciona iluminacion",
-        "techinal_info": {
+        "technical_info": {
           "driver_model": "ICDPD-19-1",
           "energy_use": "16.5 KWH/1.000 h"
         },
