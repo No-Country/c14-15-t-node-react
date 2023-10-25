@@ -8,14 +8,14 @@ class productModel {
 
     const newProduct = new Product(body);
 
-    newProduct.id = productId;
+    newProduct.productId = productId;
 
     await newProduct.save();
 
     return {
       error: false,
       data: {
-        id: newProduct.id,
+        productId,
         message: "Producto creado con exito",
       },
     };
@@ -23,9 +23,9 @@ class productModel {
 
   // ------------------- Edit Product -------------------
   static async edit(body) {
-    const { id } = body;
+    const { productId } = body;
 
-    let product = await Product.findOne({ id });
+    let product = await Product.findOne({ productId });
 
     if (!product) {
       return {
@@ -42,7 +42,7 @@ class productModel {
       error: false,
       data: [
         {
-          id: isValidProduct.id,
+          productId: isValidProduct.productId,
           data: { message: "Producto editado con exito" },
         },
       ],
@@ -51,9 +51,9 @@ class productModel {
 
   // ------------------- Delete Product -------------------
   static async delete(body) {
-    const { id } = body;
+    const { productId } = body;
 
-    let product = await Product.findOne({ id });
+    let product = await Product.findOne({ productId });
 
     if (!product) {
       return {
@@ -68,7 +68,7 @@ class productModel {
       error: false,
       data: [
         {
-          id: isValidProduct.id,
+          productId: isValidProduct.productId,
           message: "Producto eliminado con exito",
         },
       ],
@@ -77,9 +77,9 @@ class productModel {
 
   // ------------------- GetProductById Product -------------------
   static async getProductById(body) {
-    const { id } = body;
+    const { productId } = body;
 
-    const productById = await Product.findOne({ id });
+    const productById = await Product.findOne({ productId });
 
     if (!productById) {
       return {
@@ -90,12 +90,12 @@ class productModel {
     return {
       error: false,
       data: {
-        id: productById.id,
+        productId: productById.productId,
         name: productById.name,
         subtitle: productById.subtitle,
         description: productById.description,
         detail: productById.detail,
-        ProductEnabled: productById.ProductEnabled,
+        productEnabled: productById.productEnabled,
         technical_info: productById.technical_info,
         measures: productById.measures,
         energy_efficiency: productById.energy_efficiency,
@@ -108,11 +108,18 @@ class productModel {
   }
 
   // ------------------- GetProductByCategory Product -------------------
-  static async getProducByCategory(body) {
+  static async getProductByCategory(body) {
     let filteredProduct = {};
 
     try {
       const { category, page, views } = body;
+
+      if (!page || page < 1) {
+        return {
+          error: true,
+          data: { message: "La page tiene que ser 1 o mayor" },
+        };
+      }
 
       const categoryCapitalize =
         category.charAt(0).toUpperCase() + category.slice(1);
@@ -121,7 +128,7 @@ class productModel {
 
       const options = {
         select:
-          "id name images price energy_effiency category garanty available_quantity",
+          "productId name images price energy_efficiency category garanty available_quantity",
         page: page,
         limit: viewsNumber,
       };
@@ -129,7 +136,6 @@ class productModel {
       const query = {
         "category.name": categoryCapitalize,
         productEnabled: true,
-        // "category.brand_name": "Nokia",
       };
       filteredProduct = await Product.paginate(query, options);
     } catch (error) {
@@ -139,7 +145,13 @@ class productModel {
     if (filteredProduct.totalDocs == 0) {
       return {
         error: true,
-        data: { message: "No existen productos con esa categoria" },
+        data: {
+          products: filteredProduct.docs,
+          totalProducts: filteredProduct.totalDocs,
+          totalPages: filteredProduct.totalPages,
+          page: filteredProduct.page,
+          views: filteredProduct.limit,
+        },
       };
     }
 
@@ -147,7 +159,7 @@ class productModel {
       error: false,
       data: {
         products: filteredProduct.docs,
-        totalByCategory: filteredProduct.totalDocs,
+        totalProducts: filteredProduct.totalDocs,
         totalPages: filteredProduct.totalPages,
         page: filteredProduct.page,
         views: filteredProduct.limit,
@@ -162,6 +174,13 @@ class productModel {
     try {
       const { category, page, views, brand } = body;
 
+      if (!page || page < 1) {
+        return {
+          error: true,
+          data: { message: "La page tiene que ser 1 o mayor" },
+        };
+      }
+
       const categoryCapitalize =
         category.charAt(0).toUpperCase() + category.slice(1);
 
@@ -171,7 +190,7 @@ class productModel {
 
       const options = {
         select:
-          "id name images price energy_effiency category garanty available_quantity",
+          "productId name images price energy_efficiency category garanty available_quantity",
         page: page,
         limit: viewsNumber,
       };
@@ -190,7 +209,13 @@ class productModel {
     if (filteredProduct.totalDocs == 0) {
       return {
         error: true,
-        data: { message: "No existen productos con esa categoria" },
+        data: {
+          products: filteredProduct.docs,
+          totalProducts: filteredProduct.totalDocs,
+          totalPages: filteredProduct.totalPages,
+          page: filteredProduct.page,
+          views: filteredProduct.limit,
+        },
       };
     }
 
@@ -198,7 +223,7 @@ class productModel {
       error: false,
       data: {
         products: filteredProduct.docs,
-        totalByCategory: filteredProduct.totalDocs,
+        totalProducts: filteredProduct.totalDocs,
         totalPages: filteredProduct.totalPages,
         page: filteredProduct.page,
         views: filteredProduct.limit,
@@ -213,13 +238,19 @@ class productModel {
     try {
       const { page, views } = body;
 
-      const pageNumber = page || 1;
+      if (!page || page < 1) {
+        return {
+          error: true,
+          data: { message: "Page tiene que ser 1 o mayor" },
+        };
+      }
+
       const viewsNumber = views || 9;
 
       const options = {
         select:
-          "id name images price energy_effiency category garanty available_quantity",
-        page: pageNumber,
+          "productId name images price energy_efficiency category garanty available_quantity",
+        page: page,
         limit: viewsNumber,
       };
 
@@ -235,7 +266,13 @@ class productModel {
     if (filteredProduct.totalDocs == 0) {
       return {
         error: true,
-        data: { message: "No existen productos con esa categoria" },
+        data: {
+          products: filteredProduct.docs,
+          totalProducts: filteredProduct.totalDocs,
+          totalPages: filteredProduct.totalPages,
+          page: filteredProduct.page,
+          views: filteredProduct.limit,
+        },
       };
     }
 
@@ -243,7 +280,7 @@ class productModel {
       error: false,
       data: {
         products: filteredProduct.docs,
-        totalByCategory: filteredProduct.totalDocs,
+        totalProducts: filteredProduct.totalDocs,
         totalPages: filteredProduct.totalPages,
         page: filteredProduct.page,
         views: filteredProduct.limit,

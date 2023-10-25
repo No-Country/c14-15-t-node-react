@@ -89,6 +89,8 @@ userRoutes.post("/create", userController.create);
  *  patch:
  *    summary: Edit user
  *    tags: [Users]
+ *    security:
+ *      - bearerAuth: []
  *    requestBody:
  *      required: true
  *      content:

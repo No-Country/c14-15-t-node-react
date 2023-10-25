@@ -1,7 +1,7 @@
 const z = require("zod");
 
 const productSchema = z.object({
-  productId: z.string().uuid().optional().readonly(),
+  productId: z.string().optional().readonly(),
   name: z.string(),
   subtitle: z.string(),
   description: z.string(),
@@ -27,8 +27,8 @@ const productSchema = z.object({
     picture_1: z.string().url(),
     picture_2: z.string().url(),
   }),
-  productEnabled: z.boolean(),
-  garanty: z.number().int().positive().optional(),
+  productEnabled: z.boolean().optional(),
+  garanty: z.string().optional(),
   category: z
     .object({
       id: z.string().uuid(),

@@ -44,9 +44,9 @@ class productController {
 
   // ------------------- Delete Product -------------------
   static async delete(req, res) {
-    const { id } = body;
+    const productId = req.params.productId;
 
-    const result = validatorPartialProduct({ id });
+    const result = validatorPartialProduct({ productId });
 
     if (!result.success) {
       return res.status(400).json({
@@ -66,9 +66,9 @@ class productController {
   // ------------------- GetProductById Product -------------------
 
   static async getProductById(req, res) {
-    const id = req.params.id;
+    const productId = req.params.productId;
 
-    const result = validatorPartialProduct({ id });
+    const result = validatorPartialProduct({ productId });
 
     if (!result.success) {
       return res.status(400).json({
@@ -87,24 +87,14 @@ class productController {
 
   // ------------------- GetProductByCategory Product -------------------
 
-  static async GetProductByCategory(req, res) {
+  static async getProductByCategory(req, res) {
     const category = req.params.category;
+
     const { page, views } = req.query;
-
-    // console.log(category);
-    // console.log(page);
-    // const result = validatorPartialProduct(category);
-
-    // if (!result.success) {
-    //   return res.status(400).json({
-    //     error: true,
-    //     data: JSON.parse(result.error.message),
-    //   });
-    // }
 
     const info = { category, page, views };
 
-    const filteredProduct = await productModel.getProducByCategory(info);
+    const filteredProduct = await productModel.getProductByCategory(info);
     if (filteredProduct.error) {
       return res.status(404).json(filteredProduct);
     }
@@ -112,22 +102,11 @@ class productController {
   }
 
   // ------------------- GetProductByBrand Product -------------------
-  static async GetProductByBrand(req, res) {
+  static async getProductByBrand(req, res) {
     // const { category, brand } = req.params;
     const category = req.params.category;
     const brand = req.params.brand;
     const { page, views } = req.query;
-
-    // console.log(category);
-    // console.log(page);
-    // const result = validatorPartialProduct(category);
-
-    // if (!result.success) {
-    //   return res.status(400).json({
-    //     error: true,
-    //     data: JSON.parse(result.error.message),
-    //   });
-    // }
 
     const info = { category, brand, page, views };
 
@@ -139,7 +118,7 @@ class productController {
   }
 
   // ------------------- GetProductRecent Product -------------------
-  static async GetProductRecent(req, res) {
+  static async getProductRecent(req, res) {
     const { page, views } = req.query;
 
     const info = { page, views };

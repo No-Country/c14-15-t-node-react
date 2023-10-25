@@ -6,7 +6,9 @@ const { generateToken } = require("../helper/jwt");
 class AuthModel {
   static async login(body) {
     const { email, password } = body;
+
     const user = await User.findOne({ email });
+
     if (!user) {
       return {
         error: true,

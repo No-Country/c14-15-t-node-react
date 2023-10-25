@@ -1,10 +1,9 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
 
 const ProductSchema = Schema(
   {
     productId: {
-      index: true,
       type: String,
       required: true,
       unique: true,
@@ -29,10 +28,10 @@ const ProductSchema = Schema(
       driver_model: String,
       energy_use: String,
     },
-    mesaures: {
-      height: String,
-      width: String,
-      base_diameter: String,
+    measures: {
+      height: Number,
+      width: Number,
+      base_diameter: Number,
     },
     energy_efficiency: {
       type: String,
@@ -58,12 +57,13 @@ const ProductSchema = Schema(
     },
     productEnabled: {
       type: Boolean,
-      required: true,
       default: true,
+      required: true,
     },
     garanty: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: "No Garanty",
+      required: true,
     },
   },
   {

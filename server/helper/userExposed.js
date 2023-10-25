@@ -2,10 +2,9 @@ const jwt = require("jsonwebtoken");
 const User = require("../Schema/UserSchema");
 
 const userExposed = async (req, res, next) => {
-  // const token = req.header("x-token");
   const authorization = req.header("Authorization");
   let token = "";
-  let decodeToken = "";
+  let userValid = "";
 
   if (authorization && authorization.toLowerCase().startsWith("bearer")) {
     token = authorization.substring(7);
@@ -21,7 +20,7 @@ const userExposed = async (req, res, next) => {
   try {
     const decodeToken = jwt.verify(token, process.env.JWT_SECRET);
 
-    const userValid = await User.findOne({ uid: decodeToken.uid });
+    userValid = await User.findOne({ uid: decodeToken.uid });
 
     if (!userValid) {
       return res.status(401).json({
@@ -32,7 +31,7 @@ const userExposed = async (req, res, next) => {
   } catch (error) {
     return res.status(500).json({
       error: true,
-      data: { message: "Error interno" },
+      data: { message: "Token invalido" },
     });
   }
   req.uid = userValid.uid;
