@@ -3,10 +3,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { greenIXApi } from "../../../axiosApi";
 import { jwt } from "../../../utils";
+import { useNavigate } from "react-router-dom";
 
 export const registerUser = createAsyncThunk(
   "auth/register",
   async ({ firstname, lastname, email, password }, { rejectWithValue }) => {
+   
     try {
       const config = {
         headers: {
@@ -24,6 +26,7 @@ export const registerUser = createAsyncThunk(
         config
       );
       console.log(data);
+     
       return data;
     } catch (error) {
       console.log("error",error.message)
@@ -42,6 +45,7 @@ export const registerUser = createAsyncThunk(
 export const userLogin = createAsyncThunk(
   "auth/login",
   async ({ email, password }, { rejectWithValue }) => {
+ 
     try {
       // configure header's Content-Type as JSON
       const config = {
@@ -57,10 +61,12 @@ export const userLogin = createAsyncThunk(
         },
         config
       );
+      console.log(data);
       console.log(data.data);
       console.log(data.data.token);
       // store user's token in local storage
       localStorage.setItem("userToken", data.data.token);
+
       return data;
     } catch (error) {
       console.log("error",error.message)
