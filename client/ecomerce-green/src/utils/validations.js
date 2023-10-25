@@ -15,18 +15,49 @@ export const isValidEmail = (email) => {
   }
 
 
-export const isValidPassword = (email) => {
+// export const isValidPassword = (email) => {
   
-    const match = String(email)
-        .toLowerCase()
-        .match(
-          /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]+$/
-        );
+//     const match = String(email)
+//         .toLowerCase()
+//         .match(
+//           /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]+$/
+//         );
   
-      return !!match;
+//       return !!match;
+//   };
+  // export const isPassword = (password) => {
+  //   return isValidPassword(password) 
+  //     ? undefined
+  //     : 'La contraseña no cumple con los requisitos';
+  // }
+
+  export const isValidPassword = (message) => {
+    const uppercaseLetters = message.match(/[A-Z]/g);
+    const numbers = message.match(/[0-9]/g);
+    const specialChars = message.match(/[!@#$%^&*()_+]/g);
+    const letters = message.match(/[a-zA-Z]/g);
+  
+    let errorString = '';
+  
+    if (!uppercaseLetters) {
+      errorString += 'El mensaje no contiene letras mayúsculas. ';
+    }
+  
+    if (!numbers) {
+      errorString += 'El mensaje no contiene números. ';
+    }
+  
+    if (!specialChars) {
+      errorString += 'El mensaje no contiene caracteres especiales. ';
+    }
+  
+    return {
+      match: `${uppercaseLetters || ''}${numbers || ''}${specialChars || ''}${letters || ''}`,
+      errors: errorString.trim(),
+    };
   };
+
   export const isPassword = (password) => {
     return isValidPassword(password) 
-      ? undefined
-      : 'La contraseña no cumple con los requisitos';
+     
   }
