@@ -1,4 +1,4 @@
-import SumaryImg from "../assets/SumaryImg.png";
+import SumaryImg from "../assets/sumaryImg.png";
 import MainLayout from '../components/MainLayout'
 import "../styles/sumary.css";
 
