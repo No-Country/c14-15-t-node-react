@@ -5,35 +5,43 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../utils";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../redux/store/authv/authActions";
-import logo from "../assets/logo.svg"
-
+import logo from "../assets/logo.svg";
+import useShowAlert from "../hooks/useShowAlert";
+import Error from "../components/Error";
 export const Login = () => {
-  const { userInfo, loading, error , userToken} = useSelector((state) => state.authv)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { userInfo, loading, error, userToken } = useSelector(
+    (state) => state.authv
+  );
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { showError, messageError, showAlert } = useShowAlert();
 
   useEffect(() => {
     // if(userToken){
     //   navigate('/')
     // }
-    console.log("user",userInfo)
-    console.log("token",userToken)
-  }, [])
-  
+    console.log("user", userInfo);
+    console.log("token", userToken);
+  }, []);
 
+
+  console.log("prueba");
   const [icoPassword, setsicoPassword] = useState(false);
 
   const onSubmit = (data) => {
     console.log("data", data);
-    dispatch(userLogin(data))
+    dispatch(userLogin(data));
+    showAlert();
+    console.log("error", error);
   };
   return (
     <MainLayout>
@@ -60,15 +68,21 @@ export const Login = () => {
                 action="#"
                 method="POST"
               >
+                <Error
+                  error={error}
+                  messageError={messageError}
+                  showError={showError}
+                />
                 <div className="p-2">
-                  <div className="w-56 left-8 relative group bg-inherit">
+                  <div className="w-56 left-8 relative group">
                     <input
-                      type="email"
+                      type="text"
                       autoComplete="email"
                       name="email"
+                      required
                       className={`${
                         errors.email ? "border-error" : "form"
-                      }  w-full bg-inherit text-white px-4 text-sm peer  outline-none`}
+                      }  w-full text-white px-4 text-sm peer  outline-none`}
                       {...register("email", {
                         required: "Este campo es requerido",
                         validate: validations.isEmail,
@@ -105,12 +119,20 @@ export const Login = () => {
                       name="password"
                       type={icoPassword ? "text" : "password"}
                       autoComplete="current-password"
+                      required
                       className={` ${
                         errors.password ? "border-error" : "form"
                       } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
                       {...register("password", {
                         required: "Este campo es requerido",
                         minLength: { value: 6, message: "Mínimo 6 caracteres" },
+                        validate: (value) => {
+                          const result = validations.isPassword(value);
+                          if (result.errors) {
+                            return result.errors;
+                          }
+                          return true; // Indicar que la validación ha pasado
+                        },
                       })}
                     />
 

@@ -8,19 +8,26 @@ import {
 import logo from "../assets/logo.svg";
 import { VscAccount } from "react-icons/vsc";
 import useHeaderShadow from "../hooks/useHeaderShadow";
-import { useSelector } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink, Link  } from "react-router-dom";
+import Cart from "../pages/Cart";
+
+import { logout } from "../redux/store/authv/authActions";
 
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
 
+  const { isAuthenticated } = useSelector((state) => state.authv);
+  const dispatch = useDispatch();
 
+  const [open, setOpen] = useState(false);
 
   const [nav, setNav] = useState(false);
   const headerShadow = useHeaderShadow();
   const handleNav = () => {
     setNav(!nav);
   };
+  
 
   return (
     <>
@@ -29,17 +36,17 @@ const Header = () => {
       >
         <div className="flex sm:z-[3] justify-between items-center h-24 max-w-[1240px]  px-7 mx-auto">
           <NavLink to="/">
-          <div className=" flex gap-2 ">
-            <img src={logo}></img>
-            <h1>GreenIX</h1>
-          </div>
+            <div className=" flex gap-2 ">
+              <img src={logo}></img>
+              <h1>GreenIX</h1>
+            </div>
           </NavLink>
 
           {/* Navbar destock */}
           <nav className=" hidden md:flex gap-3 p-6 ">
             <ul className=" flex  gap-2 p-6 ">
               <li>
-              <NavLink to="/">Home</NavLink>
+                <NavLink to="/">Home</NavLink>
               </li>
               <li>
                 <NavLink to="/products">Tienda</NavLink>
@@ -59,21 +66,46 @@ const Header = () => {
           </nav>
           <div className="hidden md:flex">
             <ul className="flex g-1">
-              <li className="pr-4">
-                {" "}
-                <Link to="/login">Log in</Link>
-              </li>
-              <li className="pr-4">
-                <Link to="/login">
-                  <VscAccount size={20} />
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/cart">
+              {isAuthenticated ? (
+                <li
+                  className="pr-4 flex justify-center items-center"
+                  onClick={() => dispatch(logout())}
+                >
                   {" "}
-                  <AiOutlineShoppingCart size={20} />
-                </Link>
+                  Log out
+                </li>
+              ) : (
+                <li className="pr-4 flex justify-center items-center">
+                  {" "}
+                  <Link to="/login">Log in</Link>
+                </li>
+              )}
+              <li className="pr-4 flex justify-center items-center">
+              <Link to="/login"><VscAccount size={20} /></Link>
+              </li>
+              <li className="flex justify-center items-center mt-[-0.7rem]">
+                <div className="relative ">
+                  <div className="t-0 absolute left-3">
+                    <p
+                      className={`${
+                        cart.length > 0 ? "flex" : "hidden"
+                      } h-2 w-2  items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white`}
+                    >
+                      {cart?.length}
+                    </p>
+                  </div>
+                  <button onClick = {() => setOpen(true)}>{" "}
+                  <AiOutlineShoppingCart
+                    size={20}
+                    className="file: mt-4 h-6 w-6"
+                  />
+                  </button>
+                  <Cart open={open}
+                setOpen={setOpen}
+                />
+                </div>
+
+                
               </li>
             </ul>
           </div>
@@ -92,11 +124,20 @@ const Header = () => {
             : "fixed top-[-100%]"
         }
       >
-        <div className="p-4 mt-5"> <Link to="/login">Ingresar</Link></div>
+        <div className="p-4 mt-5">
+          {" "}
+          <Link to="/login">Ingresar</Link>
+        </div>
         <ul>
-          <NavLink to="/"><li className="p-4"> Home</li></NavLink>
-          <NavLink to="/products"><li className="p-4"> Tienda</li></NavLink>
-          <NavLink to="/contacto"><li className="p-4"> Contacto</li></NavLink>
+          <NavLink to="/">
+            <li className="p-4"> Home</li>
+          </NavLink>
+          <NavLink to="/products">
+            <li className="p-4"> Tienda</li>
+          </NavLink>
+          <NavLink to="/contacto">
+            <li className="p-4"> Contacto</li>
+          </NavLink>
           <li className="p-4">
             <div className="flex g-2 items-center border rounded-xl h-10 px-3 mt-1 bg-slate-50">
               <input
@@ -109,16 +150,20 @@ const Header = () => {
           </li>
         </ul>
         <ul className="flex justify-between mx-2">
+          
           <li className=" flex pr-4 items-center">
             <div className="ml-2">
-              <VscAccount size={20} />{" "}
+            <Link to="/login"><VscAccount size={20} />{" "}</Link>
             </div>
-            <a className="ml-2 ">Log in</a>
+            <Link to="/login"><p className="ml-2">Log in</p></Link>
           </li>
+          
+         <button onClick = {() => setOpen(true)}>
           <li className="p-4 border-b border-r-gray-600">
             {" "}
             <AiOutlineShoppingCart size={25} />
           </li>
+          </button> 
         </ul>
       </nav>
     </>
