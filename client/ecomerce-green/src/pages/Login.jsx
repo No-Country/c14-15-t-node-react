@@ -50,9 +50,9 @@ export const Login = () => {
                       type="email"
                       autoComplete="email"
                       name="email"
-                      className={`${
-                        errors.email ? "border-error" : "form"
-                      }  w-full bg-inherit text-white px-4 text-sm peer  outline-none`}
+                      required
+                      className={`${errors.email ? "border-error" : "form"
+                        }  w-full bg-inherit text-white px-4 text-sm peer  outline-none`}
                       {...register("email", {
                         required: "Este campo es requerido",
                         validate: validations.isEmail,
@@ -89,9 +89,9 @@ export const Login = () => {
                       name="password"
                       type={icoPassword ? "text" : "password"}
                       autoComplete="current-password"
-                      className={` ${
-                        errors.password ? "border-error" : "form"
-                      } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
+                      required
+                      className={` ${errors.password ? "border-error" : "form"
+                        } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
                       {...register("password", {
                         required: "Este campo es requerido",
                         minLength: { value: 6, message: "Mínimo 6 caracteres" },

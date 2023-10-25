@@ -8,6 +8,7 @@ import Products from './pages/Products';
 import DynamicTitlePage from './pages/DynamicTitlePage';
 import UserRegister from './pages/UserRegister';
 import { LoginPrueba } from './pages/LoginPrueba';
+import { Contacto } from "./pages/Contacto"
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route exact path="/register" element={<UserRegister />} />
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/dinamic" element={<DynamicTitlePage />} />
+        <Route exact path="/contacto" element={<Contacto />}/>
       </Routes>
     </Router>
 
