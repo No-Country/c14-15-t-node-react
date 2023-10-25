@@ -11,8 +11,7 @@ import logo from "../assets/logo.svg";
 import useShowAlert from "../hooks/useShowAlert";
 import Error from "../components/Error";
 export const Login = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { userInfo, loading, error, userToken } = useSelector(
     (state) => state.authv
   );
@@ -25,7 +24,7 @@ export const Login = () => {
   } = useForm();
   const navigate = useNavigate();
   const { showError, messageError, showAlert } = useShowAlert();
-  
+
   useEffect(() => {
     // if(userToken){
     //   navigate('/')
@@ -34,13 +33,15 @@ export const Login = () => {
     console.log("token", userToken);
   }, []);
 
+
+  console.log("prueba");
   const [icoPassword, setsicoPassword] = useState(false);
 
   const onSubmit = (data) => {
     console.log("data", data);
     dispatch(userLogin(data));
     showAlert();
-    console.log("error", error)
+    console.log("error", error);
   };
   return (
     <MainLayout>
@@ -125,7 +126,13 @@ export const Login = () => {
                       {...register("password", {
                         required: "Este campo es requerido",
                         minLength: { value: 6, message: "Mínimo 6 caracteres" },
-                        validate: validations.isPassword,
+                        validate: (value) => {
+                          const result = validations.isPassword(value);
+                          if (result.errors) {
+                            return result.errors;
+                          }
+                          return true; // Indicar que la validación ha pasado
+                        },
                       })}
                     />
 
