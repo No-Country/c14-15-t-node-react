@@ -81,7 +81,7 @@ const Header = () => {
                 </li>
               )}
               <li className="pr-4 flex justify-center items-center">
-                <VscAccount size={20} />
+              <Link to="/login"><VscAccount size={20} /></Link>
               </li>
               <li className="flex justify-center items-center mt-[-0.7rem]">
                 <div className="relative ">
@@ -150,17 +150,14 @@ const Header = () => {
           </li>
         </ul>
         <ul className="flex justify-between mx-2">
-          <Link to="/login">
+          
           <li className=" flex pr-4 items-center">
             <div className="ml-2">
-              <VscAccount size={20} />{" "}
+            <Link to="/login"><VscAccount size={20} />{" "}</Link>
             </div>
-            <a className="ml-2 ">Log in</a>
+            <Link to="/login"><p className="ml-2">Log in</p></Link>
           </li>
-          </Link>
-          {/* <li>
-            <Cart />
-          </li> */}
+          
          <button onClick = {() => setOpen(true)}>
           <li className="p-4 border-b border-r-gray-600">
             {" "}

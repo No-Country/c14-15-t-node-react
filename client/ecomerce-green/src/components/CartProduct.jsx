@@ -53,18 +53,7 @@ const CartProduct = () => {
         </div>
       </div>
 
-      {/* <img src={images.cover} alt="" className="object-cover"/>
-      <ul>
-        <li>{name}</li>
-        <li>{price}</li>
-        <li className="cursor-pointer"><AiOutlineDelete size={15}/></li>
-      </ul>
-      <p>{technical_specifications}</p>
-      <div>
-        <button onClick={dispatch(decrementProduct(product))}>-</button>
-        <span></span>
-        <button onClick={dispatch(incrementProduct(product))}>+</button>
-      </div> */}
+   
     </div>
   );
 };
