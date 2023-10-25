@@ -1,10 +1,10 @@
+
 import React, { Fragment, useState, useEffect, useRef } from "react";
 import MainLayout from "../components/MainLayout";
 import CartProduct from "../components/CartProduct";
 import { AiOutlineShoppingCart, AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
-
 import "../styles/cart.css";
 
 const Cart = ({ open, setOpen }) => {
