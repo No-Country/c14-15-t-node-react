@@ -2,7 +2,7 @@ import React from "react";
 // import { useDispatch } from 'react-redux';
 // import {  incrementProduct, decrementProduct } from '../redux/store/cart/cartSlice';
 import { AiOutlineDelete } from "react-icons/ai";
-import "../styles/cart.css";
+import "../styles/Cart.css";
 
 const CartProduct = () => {
   // const dispatch = useDispatch();
