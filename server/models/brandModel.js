@@ -57,7 +57,7 @@ class brandModel{
         if(index == -1){
             return {
                 error: true,
-                message: 'No existe esta marca'
+                message: 'La marca que quiere actualizar no existe'
             };
         }
         
@@ -84,7 +84,7 @@ class brandModel{
             }
         }
     }
-    
+
     static async deleteBrand(body){
         const { categoryId, brand } = body;
 
@@ -97,17 +97,36 @@ class brandModel{
         }
 
         const brands = [...category.brands ];
+
+        if(brands.length <= 1){
+            return{
+                error: true,
+                message: 'No puedes eliminar la unica marca'
+            };
+        }
         
         const index = brands.indexOf(brand)
         if(index == -1){
             return {
                 error: true,
-                message: 'No existe esta marca'
+                message: 'Esta marca no existe'
             };
         }
 
-        brands.splice(0, index);
-        return brands
+        const deleteBrand = brands.filter(brand => brand != body.brand)
+        
+        const deletedBrand = await Category.findOneAndUpdate(
+            {_id: category._id}, 
+            { $set: {brands: deleteBrand}},
+            { new: true}
+            )
+
+        return { 
+            error: false, 
+            data:{
+                message: 'Se elimino una marca'
+            }
+        }
 
     }
 }
