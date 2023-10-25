@@ -16,15 +16,7 @@ const ProductSelected = ({ id }) => {
       setSelected(id);
     }
   };
-  const colors=[
-    {"A":"#15A14C"},
-    {"B":"#8DBC40"},
-    {"C":"#C0D036"},
-    {"D":"#FDEA16"},
-    {"E":"#F9B914"},
-    {"F":"#EA7327"},
-    {"G":"#E32430"}
-  ];
+  
   return (
     <section
       className="w-full px-3 flex flex-col justify-center items-center
