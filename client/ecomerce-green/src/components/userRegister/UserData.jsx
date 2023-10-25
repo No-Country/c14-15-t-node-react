@@ -188,6 +188,13 @@ const UserData = () => {
                   {...register("password", {
                     required: "Este campo es requerido",
                     minLength: { value: 6, message: "Mínimo 6 caracteres" },
+                    validate: (value) => {
+                      const result = validations.isPassword(value);
+                      if (result.errors) {
+                        return result.errors;
+                      }
+                      return true; // Indicar que la validación ha pasado
+                    },
                   })}
                 />
 
@@ -227,11 +234,18 @@ const UserData = () => {
                     errors.password_repeat ? "border-error" : "form"
                   } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
                   {...register("password_repeat", {
-                    required: "Este campo es requerido",
-                    minLength: { value: 6, message: "Mínimo 6 caracteres" },
-                    validate: (value) =>
-                      value !== password || "La contraseña no coincide",
-                  })}
+                
+                      required: "Este campo es requerido",
+                      minLength: { value: 6, message: "Mínimo 6 caracteres" },
+                      validate: (value) => {
+                        const result = validations.isPassword(value);
+                        if (result.errors) {
+                          return result.errors;
+                        }
+                        return true; // Indicar que la validación ha pasado
+                      },
+                    })}
+             
                 />
 
                 <label
