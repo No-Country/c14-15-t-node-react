@@ -20,10 +20,10 @@ const Marks = ({ images }) => {
           >
             <ul
               x-ref="logos"
-              className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll duration-1000"
+              className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll ease-in-out duration-700"
             >
               {images.map((el) => (
-                <li key={el.id}>
+                <li className="ease-in-out duration-1000" key={el.id}>
                 <img className="md:h-20 md:max-w-xs" src={el.image} alt={el.image} />
               </li>
               ))}
