@@ -1,5 +1,6 @@
 import useFetch from "../redux/service/useFetch";
-
+import { useDispatch, useSelector } from "react-redux";
+import {  incrementProduct } from '../redux/store/cart/cartSlice';
 import arrowRight from "./../assets/arrow-right.svg";
 import arrowDown from "./../assets/arrow-down.svg";
 import { useState } from "react";
@@ -9,6 +10,7 @@ import { currency } from "../utils";
 
 
 const ProductSelected = ({ product, id }) => {
+  const dispatch = useDispatch();
   // const { data } = useFetch(`/${id}`);
 const{category, 
   images,
@@ -65,9 +67,12 @@ const{category,
           <span className=" font-extrabold text-[36px]">{formatPrice}</span>
           <div className="flex flex-col gap-3">
             <button
+            onClick={() => {
+              dispatch(incrementProduct(product));
+            }}
               className="text-[20px] text-[white] bg-[#F8924FF2] hover:bg-[#ea8847] w-full h-[40px]
               flex justify-center items-center rounded-lg font-medium"
-              type="submit"
+           
             >
               Agregar al carrito
             </button>

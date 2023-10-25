@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import {  incrementProduct } from '../redux/store/cart/cartSlice';
 import CartIcon from '../assets/CartIcon.svg'
+import { Link } from "react-router-dom";
 
 const ProductCards = ({product}) => {
   const dispatch = useDispatch();
-
+console.log(product)
   const {name, price,  images, category,
     energy_efficiency } = product
   return (
-       <div className="product-card flex-column w-[288px] mt-20 divide-y divide-gray-950">
+    <div  className="product-card flex-column w-[288px] mt-20 divide-y divide-gray-950">
+         <Link to={`/products/${product.productId}`}>
         <img src={images.cover} alt="" className="object-cover"/>
         <div className="description flex place-content-between items-center pb-3">
           <div>
@@ -18,7 +20,9 @@ const ProductCards = ({product}) => {
         <span className="energy-label a-tag flex items-center justify-center">
           <p className="text-white text-3xl font-extrabold text-center">{energy_efficiency}</p></span>
         </div>
+        </Link>
         <div className="flex place-content-between items-center pt-3">
+       
         <p className="text-3xl font-extrabold">${price}</p>
         <img src={CartIcon} alt="" className="w-12 cursor-pointer"   
         onClick={() => {
