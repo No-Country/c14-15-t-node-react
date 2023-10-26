@@ -1,5 +1,6 @@
 const BrandModel = require("../models/brandModel");
 const { brandValidator, brandPartialValidator } = require("../middlewares/brandValidator");
+
 class brandController{
     // ------------------- create brand ---------------
     static async create(req, res){

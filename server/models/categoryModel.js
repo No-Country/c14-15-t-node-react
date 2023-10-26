@@ -6,9 +6,8 @@ const Crypto = require("crypto");
 
 class categoryModel {
     static async createCategory(body) {
-        const { name } = body;
-      
-        const category_id = Crypto.randomUUID();
+        const { name, brands } = body;
+        const id = Crypto.randomUUID();
         
         // Check if a category with the same name already exists
         const existingCategory = await Category.findOne({ name });
@@ -20,8 +19,9 @@ class categoryModel {
         const newCategory = new Category(body);
       
         // Set the category's ID and name
-        newCategory.categoryId = category_id;
+        newCategory.id = id;
         newCategory.name = name;
+        newCategory.brands = brands;
       
         await newCategory.save();
       
@@ -36,7 +36,7 @@ class categoryModel {
       
     static async updateCategory(body) {
         const { id, name } = body;
-      
+        
         // Find the category by ID
         const category = await Category.findOne({ id });
       
