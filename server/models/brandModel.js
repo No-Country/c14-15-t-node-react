@@ -2,9 +2,9 @@ const Category = require("../Schema/categorySchema");
 
 class brandModel{
     static async createBrand(body){
-        const { categoryId, brand } = body;
+        const { id, brand } = body;
 
-        const category = await Category.findOne({ categoryId });
+        const category = await Category.findOne({ id });
         if(!category){
             return{
                 error: true,
@@ -41,9 +41,9 @@ class brandModel{
     }
 
     static async updateBrand(body){
-        const { categoryId, brand,  otherBrand } = body;
+        const { id, brand,  otherBrand } = body;
         
-        const category = await Category.findOne({ categoryId });
+        const category = await Category.findOne({ id });
         if(!category){
             return{
                 error: true,
@@ -86,9 +86,9 @@ class brandModel{
     }
 
     static async deleteBrand(body){
-        const { categoryId, brand } = body;
+        const { id, brand } = body;
 
-        const category = await Category.findOne({ categoryId });
+        const category = await Category.findOne({ id });
         if(!category){
             return{
                 error: true,
