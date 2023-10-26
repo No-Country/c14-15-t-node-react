@@ -6,13 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../utils";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogin } from "../redux/store/authv/authActions";
+import { userLogin, verifyJwt } from "../redux/store/authv/authActions";
 import logo from "../assets/logo.svg";
 import useShowAlert from "../hooks/useShowAlert";
 import Error from "../components/Error";
+
 export const Login = () => {
   const dispatch = useDispatch();
-  const { userInfo, loading, error, userToken } = useSelector(
+  const { userInfo, loading, error, userToken, success, isAuthenticated } = useSelector(
     (state) => state.authv
   );
 
@@ -25,22 +26,49 @@ export const Login = () => {
   // const navigate = useNavigate();
   const { showError, messageError, showAlert } = useShowAlert();
 
+
+  
+  // Verificar Token
   useEffect(() => {
-    // if(userToken){
-    //   navigate('/')
-    // }
-    console.log("user", userInfo);
+    if (!userToken) return;
+
+    dispatch(verifyJwt(userToken));
+    console.log(userToken)
+  }, [userToken, isAuthenticated]);
+
+  useEffect(() => {
+    if(userToken){
+      navigate('/')
+    }
+   
     console.log("token", userToken);
-  }, []);
+  }, [userToken]);
+  
+  // Recargar pagina si esta autenticado
+  useEffect(() => {
+    if (isAuthenticated) {
+      window.location.reload();
+      navigate('/');
+    }
+  }, [isAuthenticated]);
+  
 
 
-  console.log("prueba");
+
+
   const [icoPassword, setsicoPassword] = useState(false);
 
   const onSubmit = (data) => {
     console.log("data", data);
     dispatch(userLogin(data));
+    console.log(isAuthenticated)
+  
     showAlert();
+    if (isAuthenticated) {
+      window.location.reload()
+      navigate('/');
+    }
+   
     console.log("error", error);
   };
   return (

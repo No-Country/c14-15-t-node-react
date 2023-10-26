@@ -10,7 +10,9 @@ const modifyQtyByOne = (cart, selectedProduct, modificationType) => {
   const previousCart = [...cart];
 
   const productInCart = previousCart.find(
-    (product) => product.id === selectedProduct.id
+    (product) => product.productId
+    === selectedProduct.productId
+
   );
 
   let newCart = [];
@@ -19,7 +21,9 @@ const modifyQtyByOne = (cart, selectedProduct, modificationType) => {
     previousCart.push({ ...selectedProduct, quantity: 1 });
     newCart = previousCart;
   } else {
-    const filteredCart = previousCart.filter((p) => p.id !== productInCart.id);
+    const filteredCart = previousCart.filter((p) => p.productId
+    !== productInCart.productId
+    );
 
     const modification = modificationType === "INCREMENT" ? 1 : -1;
 

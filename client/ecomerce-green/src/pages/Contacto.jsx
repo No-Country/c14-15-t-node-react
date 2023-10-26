@@ -1,7 +1,7 @@
 import MainLayout from "../components/MainLayout";
 import "../styles/Contacto.css"
 import { useForm } from "react-hook-form";
- import { validations } from "../utils";
+import { validations } from "../utils";
 
 export const Contacto = () => {
 
@@ -12,14 +12,20 @@ export const Contacto = () => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit =  (data) => {
+    const { firstname, lastname, email, message, observation,  } = data;
+     console.log(data) 
+  }
+    // Capitalizar los nombres
+     
 
 
+  
   return (
     <MainLayout>
       <main className="container-contacto flex justify-center">
         <div className="flex  min-h-full  flex-col justify-center  sm:py-32  px-6 lg:py-12 lg:px-8 ">
-          <div className="input-container lg:w-[640px] lg:min-h-[410px]   justify-center w-[288px] min-h-[496px] ">
+          <div className="input-container md:w-[640px] md:min-h-[410px]  justify-center w-[288px] min-h-[496px] ">
             <div className=" logo sm:mx-auto  sm:max-w-sm ">
               <img
                 className="mx-auto h-[40px] w-[33px]"
@@ -31,13 +37,13 @@ export const Contacto = () => {
               </h2>
             </div>
             <div className="mt-5 sm:mx-auto sm:w-full ">
-              <form className="from w-auto sm:flex-column"
+              <form className="from w-auto "
                 onSubmit={handleSubmit(onSubmit)}
                 action="#"
                 method="POST"
               >
                 <div className="p-2">
-                  <div className="lg:w-60 left-10 relative group bg-inherit w-50">
+                  <div className="md:w-60  left-10 relative group bg-inherit w-50">
                     {/* Nombre */}
                     <input
                       type="text"
@@ -64,7 +70,7 @@ export const Contacto = () => {
 
                 {/* Apellido */}
                 <div className="p-2">
-                  <div className="lg:w-60 left-10 relative group flex flex-row-reverse w-50">
+                  <div className="md:w-60 left-10 relative group flex flex-row-reverse w-50">
                     <input
                       name="lastname"
                       type="text"
@@ -91,21 +97,20 @@ export const Contacto = () => {
 
 
                 {/* Email */}
-                <div className="p-2">
-              <div className="w-56 left-8 relative group">
-                <input
-                  name="email"
-                  type="text"
-                  required
-                  autoComplete="email"
-                  className={` ${
-                    errors.email ? "border-error" : "form"
-                  } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
-                  {...register("email", {
-                    required: "Este campo es requerido",
-                    validate: validations.isEmail,
-                  })}
-                />
+                <div className="p-2 md:flex md:gap-12 items-center lg:mt-0 flex-wrap ">
+                  <div className="md:w-60 w-50 left-10 relative group">
+                    <input
+                      name="email"
+                      type="text"
+                      required
+                      autoComplete="email"
+                      className={` ${errors.email ? "border-error" : "form"
+                        } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
+                      {...register("email", {
+                        required: "Este campo es requerido",
+                        validate: validations.isEmail,
+                      })}
+                    />
 
                     <label
                       htmlFor="email"
@@ -120,44 +125,37 @@ export const Contacto = () => {
                     )}
 
                   </div>
-                </div>
 
-                <div className="sm:col-span-2 flex left-5">
+                  <div className="sm:col-span-2 md:p-2 md:mt-0 mt-12">
+                    <div className=" md:w-60 left-10  relative group w-50 ">
+                      <div className=" absolute inset-y-0 flex  items-center ">
+                        <select {...register("message", {
+                          required: "Este campo es requerido",
+                        }
+                        )}
+                          className="select-input w-[200px] md:w-[240px] cursor-pointer  border-b-2 text-white border-0 bg-transparent  py-1  text-white-400 focus:ring-2 focus:ring-inset focus:ring-white-600 sm:text-sm" >
+                           
+                           <option className="text-black" value="comunico" >Me comunico por</option>   
+                          <option className="text-black" value="reclamos">Reclamos</option>
+                          <option className="text-black" value="Consultas">Consultas</option>
+                          <option className="text-black" value="sugerencias">Sugerencias</option>
 
-                  <div className="select-container lg:w-60 left-10  relative group w-50-sm ">
-                    <div className="absolute inset-y-0 left-0 items-center">
-                      {/* <select {...register("message")} id="select" name="select" className="select-input h-full w-[190px] lg:w-[230px] cursor-pointer text-white  border-0 bg-transparent  py-0  text-white-400 focus:ring-2 focus:ring-inset focus:ring-white-600 sm:text-sm">
-                        <option value="comunico" className="text-black cursor-pointer">Me comunico por</option>
-                        <option value="consultas" className="text-black cursor-pointer">Consultas</option>
-                        <option value="reclamos" className="text-black cursor-pointer">Reclamos</option>
-                        <option value="sugerencia" className="text-black">Sugerencia</option>
-                       </select>  */}
-                       <select {...register("message")} >
-                       <option value="comucio">me comunico</option>
-                        <option value="reclamos">reclamos</option>
-                          <option value="sugerencias">sugerencias</option>
-                       </select>
-                      <svg className="cursor-pointer absolute right-3 top-0 h-full w-5 text-white" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      </svg>
+                        </select>
+                        <svg className="cursor-pointer absolute right-3 top-0 h-full w-5 text-white" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        </svg>
+                        {errors.message && (
+                          <p className=" border-error pl-12 text-red-600 text-xs" role="alert">
+                            {errors.message}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                    {/* <input
-                      type="text"
-                      autoComplete="select"
-                      name="select"
-                      
-                      className={`${errors.message ?
-                        "border-error" : "form"
-                        }  w-full bg-inherit text-white px-4 text-sm peer  outline-none`}
-                      {...register("mesage", {
-                        required: "Este campo es requerido",
-                      })}
-                    /> */}
-
                   </div>
                 </div>
+
                 {/*Comentario  */}
                 <div className="p-2">
-                  <div className="lg:w-[538px] w-[190px]  left-10 relative group flex flex-row-reverse">
+                  <div className="md:w-[538px] w-[200px]  left-10 relative group flex flex-row-reverse">
                     <textarea
                       name="observation"
                       rows="4"
@@ -166,7 +164,7 @@ export const Contacto = () => {
                       required
                       className={` ${errors.observation ? "border-error" : "form"
                         } border-b-3 w-full text-white  px-4 text-sm peer resize-none outline-none`}
-                      {...register("textarea", {
+                      {...register("observation", {
                         required: "Este campo es requerido",
                         minLength: { value: 6, message: "Mínimo 6 caracteres" },
                       })}

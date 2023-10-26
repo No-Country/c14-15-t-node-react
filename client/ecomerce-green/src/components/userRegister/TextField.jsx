@@ -46,7 +46,7 @@ const TextField = ({
           onChange={onChange}
           onFocus={() => setFocus(!focus)}
           onBlur={() => setFocus(!focus)}
-          autoComplete="current-pasword"
+          autoComplete="current-password"
         />
 
         </div>

@@ -10,13 +10,20 @@ import { VscAccount } from "react-icons/vsc";
 import useHeaderShadow from "../hooks/useHeaderShadow";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
+import Cart from "../pages/Cart";
+
 import { logout } from "../redux/store/authv/authActions";
 
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
 
-  const { isAuthenticated } = useSelector((state) => state.authv);
+  // console.log(cart)
+
+  const { userToken } = useSelector((state) => state.authv);
   const dispatch = useDispatch();
+
+  const [open, setOpen] = useState(false);
+
   const [nav, setNav] = useState(false);
   const headerShadow = useHeaderShadow();
   const handleNav = () => {
@@ -60,7 +67,7 @@ const Header = () => {
           </nav>
           <div className="hidden md:flex">
             <ul className="flex g-1">
-              {isAuthenticated ? (
+              {userToken ? (
                 <li
                   className="pr-4 flex justify-center items-center"
                   onClick={() => dispatch(logout())}
@@ -75,7 +82,9 @@ const Header = () => {
                 </li>
               )}
               <li className="pr-4 flex justify-center items-center">
-                <VscAccount size={20} />
+                <Link to="/login">
+                  <VscAccount size={20} />
+                </Link>
               </li>
               <li className="flex justify-center items-center mt-[-0.7rem]">
                 <div className="relative ">
@@ -87,11 +96,15 @@ const Header = () => {
                     >
                       {cart?.length}
                     </p>
-                  </div>{" "}
-                  <AiOutlineShoppingCart
-                    size={20}
-                    className="file: mt-4 h-6 w-6"
-                  />
+                  </div>
+                  <button onClick={() => setOpen(true)}>
+                    {" "}
+                    <AiOutlineShoppingCart
+                      size={20}
+                      className="file: mt-4 h-6 w-6"
+                    />
+                  </button>
+                  <Cart open={open} setOpen={setOpen} />
                 </div>
               </li>
             </ul>
@@ -137,16 +150,37 @@ const Header = () => {
           </li>
         </ul>
         <ul className="flex justify-between mx-2">
-          <li className=" flex pr-4 items-center">
-            <div className="ml-2">
+          {userToken ? (
+            <li
+              className="pr-4 flex justify-center items-center"
+              onClick={() => dispatch(logout())}
+            > <div className="ml-2">
+            <Link to="/login">
               <VscAccount size={20} />{" "}
-            </div>
-            <a className="ml-2 ">Log in</a>
-          </li>
-          <li className="p-4 border-b border-r-gray-600">
-            {" "}
-            <AiOutlineShoppingCart size={25} />
-          </li>
+            </Link>
+          </div>
+              {" "}
+              <p className="ml-2">  Log out </p> 
+            </li>
+          ) : (
+            <li className=" flex pr-4 items-center">
+              <div className="ml-2">
+                <Link to="/login">
+                  <VscAccount size={20} />{" "}
+                </Link>
+              </div>
+              <Link to="/login">
+                <p className="ml-2">Log in</p>
+              </Link>
+            </li>
+          )}
+
+          <button onClick={() => setOpen(true)}>
+            <li className="p-4 border-b border-r-gray-600">
+              {" "}
+              <AiOutlineShoppingCart size={25} />
+            </li>
+          </button>
         </ul>
       </nav>
     </>

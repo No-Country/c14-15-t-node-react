@@ -1,21 +1,23 @@
 import "./../../styles/UserData.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/logo.svg";
 import Error from "../Error";
 
-import { registerUser } from "../../redux/store/authv/authActions";
+import { registerUser, verifyJwt } from "../../redux/store/authv/authActions";
 import useShowAlert from "../../hooks/useShowAlert";
+
 const UserData = () => {
-  const { loading, userInfo, error, success } = useSelector(
+  const { loading, userInfo, userToken,error, isAuthenticated, success } = useSelector(
     (state) => state.authv
   );
-  const { showError, messageError, showAlert } = useShowAlert();
+  const { showError, messageError,  showAlert } = useShowAlert();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,7 +28,32 @@ const UserData = () => {
   const [icoPassword, setsicoPassword] = useState(false);
   const [icoPassword2, setsicoPassword2] = useState(false);
 
+ 
+  // Verificar Token
+  useEffect(() => {
+    if (!userToken) return;
+    dispatch(verifyJwt(userToken));
+   
+  }, [userToken, success]);
+  console.log(userToken);
+  console.log(success);
+  console.log(isAuthenticated);
 
+  useEffect(() => {
+    if (userToken) {
+      navigate("/");
+    }
+
+    console.log("token", userToken);
+  }, [userToken]);
+
+  // Recargar pagina si esta autenticado
+  useEffect(() => {
+    if (isAuthenticated) {
+      window.location.reload();
+      navigate('/');
+    }
+  }, [isAuthenticated]);
   const onSubmit = async (data) => {
     const { firstname, lastname, email, password, password_repeat } = data;
     if (password !== password_repeat) {
@@ -49,9 +76,14 @@ const UserData = () => {
     console.log("formData", formData);
 
     dispatch(registerUser(formData));
+    console.log(success)
+    console.log(isAuthenticated);
     showAlert();
+    if (isAuthenticated) {
+      window.location.reload();
+      navigate("/");
+    }
     console.log(error);
-
   };
 
   return (
@@ -72,11 +104,11 @@ const UserData = () => {
 
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-auto">
-            
-            <Error 
-            error={error}
-            messageError={messageError}
-            showError={showError} />
+            <Error
+              error={error}
+              messageError={messageError}
+              showError={showError}
+            />
             {/* Fistname */}
             <div className="p-2">
               <div className="w-56 left-8 relative group">
@@ -188,6 +220,13 @@ const UserData = () => {
                   {...register("password", {
                     required: "Este campo es requerido",
                     minLength: { value: 6, message: "Mínimo 6 caracteres" },
+                    validate: (value) => {
+                      const result = validations.isPassword(value);
+                      if (result.errors) {
+                        return result.errors;
+                      }
+                      return true; // Indicar que la validación ha pasado
+                    },
                   })}
                 />
 
@@ -229,8 +268,13 @@ const UserData = () => {
                   {...register("password_repeat", {
                     required: "Este campo es requerido",
                     minLength: { value: 6, message: "Mínimo 6 caracteres" },
-                    validate: (value) =>
-                      value !== password || "La contraseña no coincide",
+                    validate: (value) => {
+                      const result = validations.isPassword(value);
+                      if (result.errors) {
+                        return result.errors;
+                      }
+                      return true; // Indicar que la validación ha pasado
+                    },
                   })}
                 />
 

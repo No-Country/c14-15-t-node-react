@@ -1,0 +1,32 @@
+.desplegar{
+    height: auto;
+    overflow:visible;
+}
+.no-desplegar{
+    height: 0;
+    overflow: hidden;
+}
+.item__acordion{
+    line-height: 2rem;
+    transition: all;
+    transition-duration:50ms;
+    transition-timing-function: ease-in-out;
+}
+.item__acordion-eficiencia{
+    width: 32px;
+    height: 32px;
+    color: white;
+    background-color: #70A02A;
+    font-size: 20px;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin-left: 12px;
+}
+@media screen and (min-width:1024px){
+    .item__acordion{
+        line-height: 2.5rem;
+    }
+}
