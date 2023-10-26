@@ -11,7 +11,7 @@ class UserModel {
     let user = await User.findOne({ email });
 
     if (user) {
-      return { error: true, data: [{ message: "Email ya utilizado" }] };
+      return { error: true, data: { message: "Email ya utilizado" } };
     }
 
     user = new User(body);
@@ -25,15 +25,13 @@ class UserModel {
     const token = await generateToken(user.uid, user.firstname, user.lastname);
     return {
       error: false,
-      data: [
-        {
-          // uid: user.uid,
-          firstname: user.firstname,
-          // lastname: user.lastname,
-          // email: user.email,
-          token,
-        },
-      ],
+      data: {
+        // uid: user.uid,
+        firstname: user.firstname,
+        // lastname: user.lastname,
+        // email: user.email,
+        token,
+      },
     };
   }
 

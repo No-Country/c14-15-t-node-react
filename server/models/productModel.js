@@ -128,8 +128,10 @@ class productModel {
 
       const options = {
         select:
-          "productId name images price energy_efficiency category garanty available_quantity",
+          "-_id productId name images price energy_efficiency category garanty available_quantity",
         page: page,
+        lean: true,
+        leanWithId: false,
         limit: viewsNumber,
       };
 
@@ -190,8 +192,10 @@ class productModel {
 
       const options = {
         select:
-          "productId name images price energy_efficiency category garanty available_quantity",
+          "-_id productId name images price energy_efficiency category garanty available_quantity",
         page: page,
+        lean: true,
+        leanWithId: false,
         limit: viewsNumber,
       };
 
@@ -249,7 +253,10 @@ class productModel {
 
       const options = {
         select:
-          "productId name images price energy_efficiency category garanty available_quantity",
+          "-_id productId name images price energy_efficiency category garanty available_quantity",
+        sort: { createdAt: -1 },
+        lean: true,
+        leanWithId: false,
         page: page,
         limit: viewsNumber,
       };

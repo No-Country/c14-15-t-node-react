@@ -7,6 +7,13 @@ const productModel = require("../models/productModel");
 class productController {
   // ------------------- create Product -------------------
   static async create(req, res) {
+    if (req.isAdmin === false) {
+      return res.status(401).json({
+        error: true,
+        message: "Permisos no valido",
+      });
+    }
+
     const result = validatorProduct(req.body);
 
     if (!result.success) {
@@ -26,6 +33,12 @@ class productController {
   // ------------------- Edit Product -------------------
 
   static async edit(req, res) {
+    if (req.isAdmin === false) {
+      return res.status(401).json({
+        error: true,
+        message: "Permisos no valido",
+      });
+    }
     const result = validatorPartialProduct(req.body);
 
     if (!result.success) {
@@ -44,6 +57,12 @@ class productController {
 
   // ------------------- Delete Product -------------------
   static async delete(req, res) {
+    if (req.isAdmin === false) {
+      return res.status(401).json({
+        error: true,
+        message: "Permisos no valido",
+      });
+    }
     const productId = req.params.productId;
 
     const result = validatorPartialProduct({ productId });
