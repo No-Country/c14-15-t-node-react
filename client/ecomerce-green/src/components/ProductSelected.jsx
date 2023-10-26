@@ -1,6 +1,6 @@
 import useFetch from "../redux/service/useFetch";
 import { useDispatch, useSelector } from "react-redux";
-import {  incrementProduct } from '../redux/store/cart/cartSlice';
+import {  incrementProduct, updateTotal } from '../redux/store/cart/cartSlice';
 import arrowRight from "./../assets/arrow-right.svg";
 import arrowDown from "./../assets/arrow-down.svg";
 import { useState } from "react";
@@ -12,6 +12,10 @@ import { currency } from "../utils";
 const ProductSelected = ({ product, id }) => {
   const dispatch = useDispatch();
   // const { data } = useFetch(`/${id}`);
+  const handleIncrement = (product) => {
+    dispatch(incrementProduct(product));
+    dispatch(updateTotal()); // Actualiza el total después de incrementar
+  }
 const{category, 
   images,
   price,
@@ -68,7 +72,7 @@ const{category,
           <div className="flex flex-col gap-3">
             <button
             onClick={() => {
-              dispatch(incrementProduct(product));
+              dispatch(handleIncrement(product));
             }}
               className="text-[20px] text-[white] bg-[#F8924FF2] hover:bg-[#ea8847] w-full h-[40px]
               flex justify-center items-center rounded-lg font-medium"

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { incrementProduct } from "../redux/store/cart/cartSlice";
+import { incrementProduct, updateTotal } from "../redux/store/cart/cartSlice";
 import CartIcon from "../assets/CartIcon.svg";
 import { Link } from "react-router-dom";
 
@@ -7,6 +7,11 @@ const ProductCards = ({ product }) => {
   const dispatch = useDispatch();
  
   const { name, price, images, category, energy_efficiency } = product;
+
+  const handleIncrement = (product) => {
+    dispatch(incrementProduct(product));
+    dispatch(updateTotal()); // Actualiza el total después de incrementar
+  }
   return (
     <div className="product-card flex-column w-72  divide-y duration-500 hover:scale-105  divide-gray-950">
       <Link to={`/products/${product.productId}`}>
@@ -30,7 +35,7 @@ const ProductCards = ({ product }) => {
           alt=""
           className="w-12 cursor-pointer"
           onClick={() => {
-            dispatch(incrementProduct(product));
+            dispatch(handleIncrement(product));
           }}
         />
       </div>
