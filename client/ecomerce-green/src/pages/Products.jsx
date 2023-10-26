@@ -6,11 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/store/product/productAction";
 import Loader from "../components/Loader";
 import ProductList from "../components/ProductList";
+import { fetchCategory } from "../redux/store/productFilter/productFilterAction";
 
 const Products = () => {
   const dispatch = useDispatch();
 
   const { products, isLoading } = useSelector((state) => state.products);
+  const { productsfilter } = useSelector((state) => state.productsfilter);
   const [productsData, setProductsData] = useState([]);
   const [productsData1, setProductsData1] = useState([]);
   const [productsData2, setProductsData2] = useState([]);
@@ -29,6 +31,14 @@ const Products = () => {
   useEffect(() => {
     setProductsData(products.products); // Actualizar el estado cuando cambian los productos
   }, [products.products]);
+
+  useEffect(() => {
+    if(productsfilter.products.length >0){
+
+      setProductsData(productsfilter.products); // Actualizar el estado cuando cambian los productos
+    }
+  }, [productsfilter.products]);
+
   useEffect(() => {
     setProductsData1(products.products);
   }, [products.products]);
@@ -117,6 +127,11 @@ const Products = () => {
   // .....................................................................................................................................................................................
 
   const categoryFilter = (string) => {
+    console.log("categoria elegida",string)
+// Lalamarla
+    dispatch(fetchCategory(string, currentPage));
+    // Mostrar
+    console.log("filtrado por categoria de la api",productsfilter.products)
     if (string === "Celulares") {
       let Products4 = [...productsData4];
       let filtro = Products4.filter((product) => {

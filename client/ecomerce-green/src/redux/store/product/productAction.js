@@ -10,3 +10,4 @@ export const fetchProducts = createAsyncThunk("product", async (page=1) => {
     console.log("Error: ", error);
   }
 });
+
