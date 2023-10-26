@@ -27,7 +27,7 @@ const authSliceV = createSlice({
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userInfo = payload;
+        state.userInfo = payload.userInfo;
         state.isAuthenticated = true;
         state.userToken = payload.userToken;
       })
