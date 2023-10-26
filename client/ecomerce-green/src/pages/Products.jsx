@@ -33,11 +33,11 @@ const Products = () => {
   }, [products.products]);
 
   useEffect(() => {
-    if(productsfilter.products.length >0){
-
-      setProductsData(productsfilter.products); // Actualizar el estado cuando cambian los productos
+    if (productsfilter.products && productsfilter.products.length > 0) {
+      setProductsData(productsfilter.products);
     }
   }, [productsfilter.products]);
+  
 
   useEffect(() => {
     setProductsData1(products.products);

@@ -47,7 +47,6 @@ const authSliceV = createSlice({
       .addCase(registerUser.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
-        state.isAuthenticated = true;
         state.userToken =  action.payload.userToken;
         state.userInfo = payload.firstname;
       })
