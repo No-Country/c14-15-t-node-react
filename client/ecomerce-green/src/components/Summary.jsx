@@ -31,61 +31,21 @@ const Summary = ({ orderValues }) => {
             <p>Precio</p>
           </li>
           <li>
-            <ul className="detalle-ul">
-              <li>
-                <strong>Panel Solar</strong>
-              </li>
-              <li>
-                <strong>15</strong>
-              </li>
-              <li>
-                <strong>$1500</strong>
-              </li>
-            </ul>
-            <ul className="detalle-ul">
-              <li>
-                <strong>Panel Solar</strong>
-              </li>
-              <li>
-                <strong>15</strong>
-              </li>
-              <li>
-                <strong>$1500</strong>
-              </li>
-            </ul>
-            <ul className="detalle-ul">
-              <li>
-                <strong>Panel Solar</strong>
-              </li>
-              <li>
-                <strong>15</strong>
-              </li>
-              <li>
-                <strong>$1500</strong>
-              </li>
-            </ul>
-            <ul className="detalle-ul">
-              <li>
-                <strong>Panel Solar</strong>
-              </li>
-              <li>
-                <strong>15</strong>
-              </li>
-              <li>
-                <strong>$1500</strong>
-              </li>
-            </ul>
-            <ul className="detalle-ul">
-              <li>
-                <strong>Panel Solar</strong>
-              </li>
-              <li>
-                <strong>15</strong>
-              </li>
-              <li>
-                <strong>$1500</strong>
-              </li>
-            </ul>
+            {cart.map((product) => (
+              <ul key={product.productId} className="detalle-ul">
+                <li>
+                  <strong>{product.name}</strong>
+                </li>
+                <li>
+                  <strong>{product.quantity}</strong>
+                </li>
+                <li>
+                  <strong>${product.subtotal}</strong>
+                </li>
+              </ul>
+            ))}
+
+           
           </li>
         </ul>
         <hr className="hr-1" />
