@@ -24,8 +24,8 @@ const Marks = ({ images }) => {
   
             >
               {images.map((el) => (
-                <li className="ease-in-out duration-[1000ms]" key={el.id}>
-                <img className="md:h-20 md:max-w-xs ease-in-out duration-[1000ms]" src={el.image} alt={el.image} />
+                <li key={el.id}>
+                <img className="md:h-20 md:max-w-xs" src={el.image} alt={el.image} />
               </li>
               ))}
             </ul>

@@ -1,13 +1,13 @@
-
-import React, { Fragment, useState, useEffect, useRef } from "react";
-import MainLayout from "../components/MainLayout";
+import React, { Fragment, useState, useEffect } from "react";
 import CartProduct from "../components/CartProduct";
-import { AiOutlineShoppingCart, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
-import "../styles/cart.css";
+import "../styles/Cart.css";
 
 const Cart = ({ open, setOpen }) => {
+
+  
   return (
     <Transition.Root show={open} as={Fragment} className="cart">
       <Dialog as="div" className="relative z-10 " onClose={setOpen}>
@@ -62,7 +62,7 @@ const Cart = ({ open, setOpen }) => {
                   </Transition.Child>
                   <div className="flex h-full flex-col overflow-y-scroll cart py-6 shadow-xl">
                     <div className="px-4 sm:px-6">
-                      <Dialog.Title className="text-base font-semibold leading-6 ">
+                      <Dialog.Title className="text-base font-semibold leading-6 text-white">
                         Carrito de compras
                       </Dialog.Title>
                     </div>
@@ -77,7 +77,7 @@ const Cart = ({ open, setOpen }) => {
                         <li>Total</li>
                         <li>123678</li>
                       </ul>
-                      <Link to="/checkout">
+                      <Link to="/sumary">
                         <button className="shopBtn">Finalizar Compra</button>
                       </Link>
                     </div>
