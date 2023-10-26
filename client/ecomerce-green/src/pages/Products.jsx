@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MainLayout from "../components/MainLayout";
 import HeroStore from "../components/HeroStore";
 import ProductFilters from "../components/ProductFilters";
@@ -15,32 +15,44 @@ const Products = () => {
   const [productsData1, setProductsData1] = useState([]);
   const [productsData2, setProductsData2] = useState([]);
   const [productsData3, setProductsData3] = useState([]);
-
- 
-
+  const [productsData4, setProductsData4] = useState([]);
+  const [energyLabelData, setenergyLabelData] = useState([]);
+  const [energyLabelData1, setenergyLabelData1] = useState([]);
+  const [energyLabelData2, setenergyLabelData2] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   useEffect(() => {
-    dispatch(fetchProducts(currentPage)); 
+    dispatch(fetchProducts(currentPage));
   }, [dispatch, currentPage]);
- 
 
   useEffect(() => {
     setProductsData(products.products); // Actualizar el estado cuando cambian los productos
   }, [products.products]);
   useEffect(() => {
-    setProductsData1(products.products); // Actualizar el estado cuando cambian los productos
+    setProductsData1(products.products);
   }, [products.products]);
   useEffect(() => {
-    setProductsData2(products.products); // Actualizar el estado cuando cambian los productos
+    setProductsData2(products.products);
   }, [products.products]);
   useEffect(() => {
-    setProductsData3(products.products); // Actualizar el estado cuando cambian los productos
+    setProductsData3(products.products);
+  }, [products.products]);
+  useEffect(() => {
+    setProductsData4(products.products);
   }, [products.products]);
 
-  
+  // ...............................................................................................................
 
+  useEffect(() => {
+    setenergyLabelData(products.products);
+  }, [products.products]);
+  useEffect(() => {
+    setenergyLabelData1(products.products);
+  }, [products.products]);
+  useEffect(() => {
+    setenergyLabelData2(products.products);
+  }, [products.products]);
 
   const orderProduct = (string) => {
     if (string === "lowerPrice") {
@@ -65,70 +77,97 @@ const Products = () => {
       setProductsData(sortedProducts);
     }
     // return productsData
-  }; 
+  };
 
-
-  const motorolaFilter = (string) => {
-
-
+  const brandFilter = (string) => {
     if (string === "Motorola") {
-      let Products = [...productsData3]; // Clona el arreglo
-    let filtro = Products.filter((product) => {
-       if (product.category.brand_name == 'Motorola') {
-        console.log(product.category.brand_name)
-        return product;
-       }
-       
+      let Products = [...productsData3];
+      let filtro = Products.filter((product) => {
+        if (product.category.brand_name == "Motorola") {
+          console.log(product.category.brand_name);
+          return product;
+        }
       });
-      setProductsData(filtro); // Actualiza el estado para reflejar los productos ordenados
+      setProductsData(filtro);
     }
 
+    if (string === "Nokia") {
+      let Products1 = [...productsData1];
+      let filtro = Products1.filter((product) => {
+        if (product.category.brand_name == "Nokia") {
+          console.log(product.category.brand_name);
+          return product;
+        }
+      });
+      setProductsData(filtro);
+    }
 
+    if (string === "Huawei") {
+      let Products2 = [...productsData2];
+      let filtro = Products2.filter((product) => {
+        if (product.category.brand_name == "Huawei") {
+          console.log(product.category.brand_name);
+          return product;
+        }
+      });
+      setProductsData(filtro);
+    }
+  };
 
-    
-  }
+  // .....................................................................................................................................................................................
 
-// .....................................................................................................................................................................................
+  const categoryFilter = (string) => {
+    if (string === "Celulares") {
+      let Products4 = [...productsData4];
+      let filtro = Products4.filter((product) => {
+        if (product.category.name == "Celulares") {
+          console.log(product.category.name);
+          return product;
+        }
+      });
+      setProductsData(filtro);
+    }
+  };
 
-const nokiaFilter = (string) => {
+  // .....................................................................................................................................................................................
 
-  if (string === "Nokia") {
-    let Products1 = [...productsData1]; // Clona el arreglo
-    let filtro = Products1.filter((product) => {
-     if (product.category.brand_name == 'Nokia') {
-      console.log(product.category.brand_name)
-      return product;
-     }
-     
-    });
-    setProductsData(filtro); // Actualiza el estado para reflejar los productos ordenados
-  }
+  const energyLabelFilter = (string) => {
+    if (string === "A") {
+      let Products = [...energyLabelData];
+      let filtro = Products.filter((product) => {
+        if (product.energy_efficiency == "A") {
+          console.log(product.energy_efficiency);
+          return product;
+        }
+      });
+      setProductsData(filtro);
+    }
 
-  // return productsData
-}; 
+    if (string === "B") {
+      let Products1 = [...energyLabelData1];
+      let filtro = Products1.filter((product) => {
+        if (product.energy_efficiency == "B") {
+          console.log(product.energy_efficiency);
+          return product;
+        }
+      });
+      setProductsData(filtro);
+    }
 
-// .....................................................................................................................................................................................
+    if (string === "C") {
+      let Products2 = [...energyLabelData2];
+      let filtro = Products2.filter((product) => {
+        if (product.energy_efficiency == "C") {
+          console.log(product.energy_efficiency);
+          return product;
+        }
+      });
+      setProductsData(filtro);
+    }
+  };
+  // .....................................................................................................................................................................................
 
-const huaweiFilter = (string) => {
-
-  if (string === "Huawei") {
-    let Products2 = [...productsData2]; // Clona el arreglo
-    let filtro = Products2.filter((product) => {
-     if (product.category.brand_name == 'Huawei') {
-      console.log(product.category.brand_name)
-      return product;
-     }
-     
-    });
-    setProductsData(filtro); // Actualiza el estado para reflejar los productos ordenados
-  }
-  // return productsData
-}; 
-// .....................................................................................................................................................................................
-
-
-
-   const onPageChange = (newPage) => {
+  const onPageChange = (newPage) => {
     // Update the current page and trigger a fetch for the new page
     setCurrentPage(newPage);
   };
@@ -136,22 +175,31 @@ const huaweiFilter = (string) => {
   if (isLoading) {
     return <Loader />;
   }
-// console.log(products.products[0].category)
+
   return (
     <MainLayout>
       <main>
         <HeroStore />
-        <ProductFilters orderProduct={orderProduct}  motorolaFilter={motorolaFilter} nokiaFilter={nokiaFilter} huaweiFilter={huaweiFilter} />
+        <ProductFilters
+          orderProduct={orderProduct}
+          brandFilter={brandFilter}
+          categoryFilter={categoryFilter}
+          energyLabelFilter={energyLabelFilter}
+        />
 
-        {isLoading ? <Loader /> : <ProductList 
-        totalPages={products.totalPages}
-        onPageChange={onPageChange}
-        page ={products.page} 
-        productsData={productsData}  />}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <ProductList
+            totalPages={products.totalPages}
+            onPageChange={onPageChange}
+            page={products.page}
+            productsData={productsData}
+          />
+        )}
       </main>
     </MainLayout>
   );
 };
-
 
 export default Products;
