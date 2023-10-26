@@ -24,7 +24,6 @@ const PurchaseSumary = () => {
               <li><strong>Panel Solar</strong></li>
               <li><strong>15</strong></li>
               <li><strong>$1500</strong></li>
-            
             </ul>
             <ul className="detalle-ul">
               <li><strong>Panel Solar</strong></li>
@@ -48,7 +47,6 @@ const PurchaseSumary = () => {
               <li><strong>Panel Solar</strong></li>
               <li><strong>15</strong></li>
               <li><strong>$1500</strong></li>
-            
             </ul>
           </li>
         </ul>

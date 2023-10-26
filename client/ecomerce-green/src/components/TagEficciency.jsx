@@ -10,9 +10,9 @@ const TagEfficiency =({ letter })=>{
         "G":"#E32430",
     };
     const color=colors[letter];
-    return <div className="item__efficiency" style={{backgroundColor: `${color}`}}>
+    return <span className="item__efficiency" style={{backgroundColor: `${color}`}}>
         {letter}
-    </div>
+    </span>
     
 }
 export default TagEfficiency;
