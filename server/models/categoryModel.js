@@ -36,7 +36,7 @@ class categoryModel {
       
     static async updateCategory(body) {
         const { id, name } = body;
-        
+      
         // Find the category by ID
         const category = await Category.findOne({ id });
       
