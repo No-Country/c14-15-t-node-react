@@ -37,6 +37,7 @@ const UserData = () => {
   }, [userToken, success]);
   console.log(userToken);
   console.log(success);
+  console.log(isAuthenticated);
 
   useEffect(() => {
     if (userToken) {
