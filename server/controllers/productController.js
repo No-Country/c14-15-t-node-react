@@ -1,4 +1,3 @@
-const generateRandomID = require("../helper/Ids");
 const {
   validatorProduct,
   validatorPartialProduct,
@@ -8,6 +7,13 @@ const productModel = require("../models/productModel");
 class productController {
   // ------------------- create Product -------------------
   static async create(req, res) {
+    if (req.isAdmin === false) {
+      return res.status(401).json({
+        error: true,
+        message: "Permisos no valido",
+      });
+    }
+
     const result = validatorProduct(req.body);
 
     if (!result.success) {
@@ -27,6 +33,12 @@ class productController {
   // ------------------- Edit Product -------------------
 
   static async edit(req, res) {
+    if (req.isAdmin === false) {
+      return res.status(401).json({
+        error: true,
+        message: "Permisos no valido",
+      });
+    }
     const result = validatorPartialProduct(req.body);
 
     if (!result.success) {
@@ -45,9 +57,15 @@ class productController {
 
   // ------------------- Delete Product -------------------
   static async delete(req, res) {
-    const { id } = body;
+    if (req.isAdmin === false) {
+      return res.status(401).json({
+        error: true,
+        message: "Permisos no valido",
+      });
+    }
+    const productId = req.params.productId;
 
-    const result = validatorPartialProduct({ id });
+    const result = validatorPartialProduct({ productId });
 
     if (!result.success) {
       return res.status(400).json({
@@ -67,10 +85,9 @@ class productController {
   // ------------------- GetProductById Product -------------------
 
   static async getProductById(req, res) {
-    // const id = parseInt(req.params.id);
-    const { id } = req.body;
+    const productId = req.params.productId;
 
-    const result = validatorPartialProduct({ id });
+    const result = validatorPartialProduct({ productId });
 
     if (!result.success) {
       return res.status(400).json({
@@ -83,28 +100,53 @@ class productController {
     if (ProductById.error) {
       return res.status(409).json(ProductById);
     }
+
     res.status(200).json(ProductById);
   }
 
-  // ------------------- GetProductByCategories Product -------------------
+  // ------------------- GetProductByCategory Product -------------------
 
-  static async GetProductByCategories(req, res) {
-    const { id } = req.body;
+  static async getProductByCategory(req, res) {
+    const category = req.params.category;
 
-    const result = validatorPartialProduct({ id });
+    const { page, views } = req.query;
 
-    if (!result.success) {
-      return res.status(400).json({
-        error: true,
-        data: JSON.parse(result.error.message),
-      });
+    const info = { category, page, views };
+
+    const filteredProduct = await productModel.getProductByCategory(info);
+    if (filteredProduct.error) {
+      return res.status(404).json(filteredProduct);
     }
+    res.status(200).json(filteredProduct);
+  }
 
-    const ProductById = await productModel.GetProductByCategories(result.data);
-    if (ProductById.error) {
-      return res.status(409).json(ProductById);
+  // ------------------- GetProductByBrand Product -------------------
+  static async getProductByBrand(req, res) {
+    // const { category, brand } = req.params;
+    const category = req.params.category;
+    const brand = req.params.brand;
+    const { page, views } = req.query;
+
+    const info = { category, brand, page, views };
+
+    const filteredProduct = await productModel.GetProductByBrand(info);
+    if (filteredProduct.error) {
+      return res.status(404).json(filteredProduct);
     }
-    res.status(200).json(ProductById);
+    res.status(200).json(filteredProduct);
+  }
+
+  // ------------------- GetProductRecent Product -------------------
+  static async getProductRecent(req, res) {
+    const { page, views } = req.query;
+
+    const info = { page, views };
+
+    const filteredProduct = await productModel.GetProductRecent(info);
+    if (filteredProduct.error) {
+      return res.status(404).json(filteredProduct);
+    }
+    res.status(200).json(filteredProduct);
   }
 }
 

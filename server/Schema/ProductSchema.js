@@ -1,10 +1,9 @@
-const { Schema, model } = require("mongoose");
-const { string } = require("zod");
+const { Schema, model, Types } = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const ProductSchema = Schema(
   {
-    id: {
-      index: true,
+    productId: {
       type: String,
       required: true,
       unique: true,
@@ -29,10 +28,10 @@ const ProductSchema = Schema(
       driver_model: String,
       energy_use: String,
     },
-    mesaures: {
-      height: String,
-      width: String,
-      base_diameter: String,
+    measures: {
+      height: Number,
+      width: Number,
+      base_diameter: Number,
     },
     energy_efficiency: {
       type: String,
@@ -46,7 +45,7 @@ const ProductSchema = Schema(
       type: Number,
       required: true,
     },
-    image: {
+    images: {
       cover: String,
       picture_1: String,
       picture_2: String,
@@ -56,10 +55,15 @@ const ProductSchema = Schema(
       name: String,
       brand_name: String,
     },
-    ProductEnabled: {
-      type: String,
-      required: true,
+    productEnabled: {
+      type: Boolean,
       default: true,
+      required: true,
+    },
+    garanty: {
+      type: String,
+      default: "No Garanty",
+      required: true,
     },
   },
   {
@@ -67,5 +71,7 @@ const ProductSchema = Schema(
     versionKey: false,
   }
 );
+
+ProductSchema.plugin(mongoosePaginate);
 
 module.exports = model("Product", ProductSchema);

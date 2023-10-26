@@ -5,14 +5,17 @@ const dbConnection = require("./database/db");
 const { config } = require("dotenv");
 
 const { userRoutes } = require("./routes/user");
+
 const { productRoutes } = require("./routes/product");
 const { categoryRoutes } = require("./routes/category");
 const { brandRoutes } = require("./routes/brand");
+
 
 const swaggerUI = require("swagger-ui-express");
 const swaggerDoc = require("swagger-jsdoc");
 const path = require("path");
 const authRoutes = require("./routes/auth");
+const { productRoutes } = require("./routes/products");
 
 //env
 config();
