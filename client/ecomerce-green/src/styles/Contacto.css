@@ -1,0 +1,42 @@
+
+.container-contacto{
+    background-image: url(../../../public/img-contacto.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.input-container{
+    margin-top: 8rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(252deg, rgba(52, 150, 107, 0.95) 1.76%, rgba(53, 86, 71, 0.95) 87.66%);
+    border-radius: 8px;
+}
+
+.select-input{
+    outline: none;
+    box-shadow: none;
+ 
+}
+.border-error{
+    background:none;
+    border-bottom: 2px solid rgba(219, 37, 37, 0.75);
+}
+
+.from{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.title{
+    color: #FFF;
+   font-family: Roboto;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+   }
+
+    
+   

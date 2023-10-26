@@ -12,7 +12,7 @@ import { registerUser, verifyJwt } from "../../redux/store/authv/authActions";
 import useShowAlert from "../../hooks/useShowAlert";
 
 const UserData = () => {
-  const { loading, userInfo, userToken,error, isAuthenticated, success } = useSelector(
+  const { loading, userInfo, userToken,error, success } = useSelector(
     (state) => state.authv
   );
   const { showError, messageError,  showAlert } = useShowAlert();
@@ -37,7 +37,7 @@ const UserData = () => {
   }, [userToken, success]);
   console.log(userToken);
   console.log(success);
-  console.log(isAuthenticated);
+
 
   useEffect(() => {
     if (userToken) {
@@ -49,11 +49,11 @@ const UserData = () => {
 
   // Recargar pagina si esta autenticado
   useEffect(() => {
-    if (isAuthenticated) {
+    if (success) {
       window.location.reload();
       navigate('/');
     }
-  }, [isAuthenticated]);
+  }, [success]);
   const onSubmit = async (data) => {
     const { firstname, lastname, email, password, password_repeat } = data;
     if (password !== password_repeat) {
@@ -77,9 +77,9 @@ const UserData = () => {
 
     dispatch(registerUser(formData));
     console.log(success)
-    console.log(isAuthenticated);
+
     showAlert();
-    if (isAuthenticated) {
+    if (success) {
       window.location.reload();
       navigate("/");
     }
