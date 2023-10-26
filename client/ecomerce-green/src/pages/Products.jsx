@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import MainLayout from "../components/MainLayout";
 import HeroStore from "../components/HeroStore";
 import ProductFilters from "../components/ProductFilters";
-import ProductCards from "../components/ProductCards";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/store/product/productAction";
 import Loader from "../components/Loader";
@@ -13,16 +12,35 @@ const Products = () => {
 
   const { products, isLoading } = useSelector((state) => state.products);
   const [productsData, setProductsData] = useState([]);
+  const [productsData1, setProductsData1] = useState([]);
+  const [productsData2, setProductsData2] = useState([]);
+  const [productsData3, setProductsData3] = useState([]);
+
+ 
+
+
   const [currentPage, setCurrentPage] = useState(1);
   
   useEffect(() => {
     dispatch(fetchProducts(currentPage)); 
   }, [dispatch, currentPage]);
-
+ 
 
   useEffect(() => {
     setProductsData(products.products); // Actualizar el estado cuando cambian los productos
   }, [products.products]);
+  useEffect(() => {
+    setProductsData1(products.products); // Actualizar el estado cuando cambian los productos
+  }, [products.products]);
+  useEffect(() => {
+    setProductsData2(products.products); // Actualizar el estado cuando cambian los productos
+  }, [products.products]);
+  useEffect(() => {
+    setProductsData3(products.products); // Actualizar el estado cuando cambian los productos
+  }, [products.products]);
+
+  
+
 
   const orderProduct = (string) => {
     if (string === "lowerPrice") {
@@ -48,6 +66,68 @@ const Products = () => {
     }
     // return productsData
   }; 
+
+
+  const motorolaFilter = (string) => {
+
+
+    if (string === "Motorola") {
+      let Products = [...productsData3]; // Clona el arreglo
+    let filtro = Products.filter((product) => {
+       if (product.category.brand_name == 'Motorola') {
+        console.log(product.category.brand_name)
+        return product;
+       }
+       
+      });
+      setProductsData(filtro); // Actualiza el estado para reflejar los productos ordenados
+    }
+
+
+
+    
+  }
+
+// .....................................................................................................................................................................................
+
+const nokiaFilter = (string) => {
+
+  if (string === "Nokia") {
+    let Products1 = [...productsData1]; // Clona el arreglo
+    let filtro = Products1.filter((product) => {
+     if (product.category.brand_name == 'Nokia') {
+      console.log(product.category.brand_name)
+      return product;
+     }
+     
+    });
+    setProductsData(filtro); // Actualiza el estado para reflejar los productos ordenados
+  }
+
+  // return productsData
+}; 
+
+// .....................................................................................................................................................................................
+
+const huaweiFilter = (string) => {
+
+  if (string === "Huawei") {
+    let Products2 = [...productsData2]; // Clona el arreglo
+    let filtro = Products2.filter((product) => {
+     if (product.category.brand_name == 'Huawei') {
+      console.log(product.category.brand_name)
+      return product;
+     }
+     
+    });
+    setProductsData(filtro); // Actualiza el estado para reflejar los productos ordenados
+  }
+  // return productsData
+}; 
+// .....................................................................................................................................................................................
+
+
+
    const onPageChange = (newPage) => {
     // Update the current page and trigger a fetch for the new page
     setCurrentPage(newPage);
@@ -56,12 +136,12 @@ const Products = () => {
   if (isLoading) {
     return <Loader />;
   }
-
+// console.log(products.products[0].category)
   return (
     <MainLayout>
       <main>
         <HeroStore />
-        <ProductFilters orderProduct={orderProduct} />
+        <ProductFilters orderProduct={orderProduct}  motorolaFilter={motorolaFilter} nokiaFilter={nokiaFilter} huaweiFilter={huaweiFilter} />
 
         {isLoading ? <Loader /> : <ProductList 
         totalPages={products.totalPages}
@@ -72,5 +152,6 @@ const Products = () => {
     </MainLayout>
   );
 };
+
 
 export default Products;

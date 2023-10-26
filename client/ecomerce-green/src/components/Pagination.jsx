@@ -1,8 +1,8 @@
-import React from 'react'
+
 
 const Pagination = ({page,  totalPages, onPageChange }) => {
     const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
-  console.log(pages)
+
     return (
     <div className="container mx-auto px-4">
     <nav className="flex flex-row flex-nowrap justify-between md:justify-center items-center" aria-label="Pagination">

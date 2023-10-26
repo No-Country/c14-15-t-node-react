@@ -1,13 +1,15 @@
 import SumaryImg from "../assets/SumaryImg.png";
 import MainLayout from '../components/MainLayout'
 import "../styles/sumary.css";
+import HeroStore from "../components/HeroStore";
 
 const PurchaseSumary = () => {
   return (
     <MainLayout >
+          <HeroStore />
     <div className="container-sumary">
       <section className="section-1-sumary">
-        <h4>Estas a solo un paso de ayudar al mundo</h4>
+        <h2 className="text-titulo">Estas a solo un paso de ayudar al mundo</h2>
         <img src={SumaryImg} alt="" />
       </section>
       <section className="section-2-sumary">
