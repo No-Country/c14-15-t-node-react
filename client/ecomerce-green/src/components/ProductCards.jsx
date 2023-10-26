@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const ProductCards = ({ product }) => {
   const dispatch = useDispatch();
-  console.log(product);
+ 
   const { name, price, images, category, energy_efficiency } = product;
   return (
     <div className="product-card flex-column w-72  divide-y duration-500 hover:scale-105  divide-gray-950">

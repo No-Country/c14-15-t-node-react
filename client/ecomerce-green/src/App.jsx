@@ -7,11 +7,12 @@ import Product from './pages/ProductDetail';
 import Products from './pages/Products';
 import DynamicTitlePage from './pages/DynamicTitlePage';
 import UserRegister from './pages/UserRegister';
+// import { LoginPrueba } from './pages/LoginPrueba';
+import { Contacto } from "./pages/Contacto";
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PurchaseSumary from './pages/PurchaseSumary';
 import { useLocation } from "react-router-dom";
 import ProductPanel from './pages/ProductPanel';
-
 
 
 
@@ -39,9 +40,9 @@ const App = () => {
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/products/:id" element={<Product />} />
         <Route exact path="/dinamic" element={<DynamicTitlePage />} />
+        <Route exact path="/contacto" element={<Contacto />}/>
         <Route exact path="/sumary" element={<PurchaseSumary />} />
         <Route path='' element={<PrivateRoute />}>
-
         </Route>
       </Routes>
     </Router>

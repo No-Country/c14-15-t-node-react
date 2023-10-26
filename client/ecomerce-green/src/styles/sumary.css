@@ -51,11 +51,12 @@ h2{
     color: #307C5A;
     padding-bottom: 1rem;
 }
-h4{
+.text-titulo{
     font-size: 2rem;
     width: 60%;
     text-align: center;
     margin-bottom: 1rem;
+    color: #FFF;
 }
 .continer-data-user{
     display: flex;
