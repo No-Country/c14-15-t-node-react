@@ -2,8 +2,8 @@
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { greenIXApi } from "../../../axiosApi";
-import { jwt } from "../../../utils";
-import { useNavigate } from "react-router-dom";
+
+
 
 export const registerUser = createAsyncThunk(
   "auth/register",
@@ -28,16 +28,17 @@ export const registerUser = createAsyncThunk(
       console.log(data);
       console.log(data.data);
       console.log(data.data[0]);
-      console.log(data.data[0].firstname);
-     
-      return {userInfo: data, userToken: data.data[0]};
+      console.log(data.data.firstname);
+      console.log(data.data.token);
+      localStorage.setItem("userToken", data.data.token);
+      return data.data;
     } catch (error) {
       console.log("error",error.message)
       console.log("si hay error",error.response.data.error)
-      console.log("mensaje de error",error.response)
+      console.log("mensaje de error",error.response.data.data[0].message)
     // return custom error message from backend if present
-      if (error.response && error.response.data.data.message) {
-        return rejectWithValue(error.response.data.data.message);
+      if (error.response && error.response.data.data[0].message) {
+        return rejectWithValue(error.response.data.data[0].message);
       } else {
         return rejectWithValue(error.message);
       }

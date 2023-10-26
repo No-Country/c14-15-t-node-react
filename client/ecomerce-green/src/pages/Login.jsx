@@ -34,7 +34,7 @@ export const Login = () => {
 
     dispatch(verifyJwt(userToken));
     console.log(userToken)
-  }, [userToken, success]);
+  }, [userToken, isAuthenticated]);
 
   useEffect(() => {
     if(userToken){
