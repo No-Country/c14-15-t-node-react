@@ -10,6 +10,7 @@ import UserRegister from './pages/UserRegister';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PurchaseSumary from './pages/PurchaseSumary';
 import { useLocation } from "react-router-dom";
+import ProductPanel from './pages/ProductPanel';
 
 
 
@@ -34,6 +35,7 @@ const App = () => {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<UserRegister />} />
+        <Route exact path="/dashboard/product" element={<ProductPanel />} />
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/products/:id" element={<Product />} />
         <Route exact path="/dinamic" element={<DynamicTitlePage />} />
