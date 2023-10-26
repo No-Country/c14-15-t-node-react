@@ -6,9 +6,8 @@ const Crypto = require("crypto");
 
 class categoryModel {
     static async createCategory(body) {
-        const { name } = body;
-      
-        const categoryId = Crypto.randomUUID();
+        const { name, brands } = body;
+        const id = Crypto.randomUUID();
         
         // Check if a category with the same name already exists
         const existingCategory = await Category.findOne({ name });
@@ -20,8 +19,9 @@ class categoryModel {
         const newCategory = new Category(body);
       
         // Set the category's ID and name
-        newCategory.id = categoryId;
+        newCategory.id = id;
         newCategory.name = name;
+        newCategory.brands = brands;
       
         await newCategory.save();
       
@@ -43,7 +43,7 @@ class categoryModel {
         if (!category) {
           return {
             error: true,
-            data: [{ message: 'No existe categoria con ese id' }]
+            data: [{ message: 'No existe esta categoria' }]
           };
         }
 

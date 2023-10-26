@@ -13,7 +13,11 @@ const categorySchema = z.object({
         }),
     brands: z
         .array(z
-            .string().trim()
+            .string()
+            .regex(/^[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*$/, {
+                message: "El nombre debe estar bien escrito",
+            })
+            .trim()
         ).nonempty()
         
 });

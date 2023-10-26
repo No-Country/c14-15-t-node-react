@@ -24,7 +24,7 @@ class categoryController{
     // ------------------- update category -------------------
     static async update(req, res) {
         try {
-            const result = categoryValidator(req.body);
+            const result = categoryPartialValidator(req.body);
     
             if (!result.success) {
                 return res.status(400).json({ 
