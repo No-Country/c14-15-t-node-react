@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import {  incrementProduct, decrementProduct } from '../redux/store/cart/cartSlice';
+import {  incrementProduct, decrementProduct } from '../redux/store/cart/cartSlice';
 import { AiOutlineDelete } from "react-icons/ai";
 import "../styles/Cart.css";
 
 const CartProduct = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const {name, price, technical_specifications, images} = product
   const { cart } = useSelector((state) => state.cart);
   console.log(cart)
@@ -31,9 +31,13 @@ const CartProduct = () => {
         </div>
         <p>{item.name}</p>
         <div className="cart-counter">
-          <button> —</button>
-          <span className="cart-quantity">1</span>
-          <button>
+          <button onClick={() => {
+          dispatch(decrementProduct(item));
+        }}> —</button>
+          <span className="cart-quantity">{item.quantity}</span>
+          <button onClick={() => {
+          dispatch(incrementProduct(item));
+        }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"
