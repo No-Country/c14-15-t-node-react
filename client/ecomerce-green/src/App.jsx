@@ -15,7 +15,7 @@ import { useLocation } from "react-router-dom";
 import ProductPanel from './pages/ProductPanel';
 import PageNotFound from './pages/PageNotFound';
 import CheckoutPage from './pages/Checkout';
-import { Router } from 'next/router';
+
 
 
 
