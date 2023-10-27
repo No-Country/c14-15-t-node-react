@@ -13,6 +13,7 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PurchaseSumary from './pages/PurchaseSumary';
 import { useLocation } from "react-router-dom";
 import ProductPanel from './pages/ProductPanel';
+import CheckoutPage from './pages/Checkout';
 
 
 
@@ -42,6 +43,7 @@ const App = () => {
         <Route exact path="/dinamic" element={<DynamicTitlePage />} />
         <Route exact path="/contacto" element={<Contacto />}/>
         <Route exact path="/sumary" element={<PurchaseSumary />} />
+        <Route exact path="/checkout" element={<CheckoutPage />} />
         <Route path='' element={<PrivateRoute />}>
         </Route>
       </Routes>

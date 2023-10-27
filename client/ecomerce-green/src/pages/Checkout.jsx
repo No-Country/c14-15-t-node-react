@@ -4,7 +4,8 @@ import MainLayout from '../components/MainLayout'
 import HeroStore from "../components/HeroStore";
 import Summary from "../components/Summary";
 
-const PurchaseSumary = () => {
+
+const CheckoutPage = () => {
   return (
     <MainLayout >
           <HeroStore />
@@ -14,4 +15,4 @@ const PurchaseSumary = () => {
   );
 };
 
-export default PurchaseSumary;
+export default CheckoutPage;

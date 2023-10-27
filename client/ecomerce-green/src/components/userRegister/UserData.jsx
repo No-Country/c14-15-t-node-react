@@ -9,10 +9,12 @@ import logo from "../../assets/logo.svg";
 import Error from "../Error";
 
 import { registerUser, verifyJwt } from "../../redux/store/authv/authActions";
+
+import { reset } from "../../redux/store/authv/authSlicev";
 import useShowAlert from "../../hooks/useShowAlert";
 
 const UserData = () => {
-  const { loading, userInfo, userToken,error, success } = useSelector(
+  const { userToken, error, success } = useSelector(
     (state) => state.authv
   );
   const { showError, messageError,  showAlert } = useShowAlert();
@@ -40,20 +42,21 @@ const UserData = () => {
 
 
   useEffect(() => {
-    if (userToken) {
+    if (success) {
+      dispatch(reset());
       navigate("/");
     }
 
-    console.log("token", userToken);
-  }, [userToken]);
+    console.log("success", success);
+  }, [success, dispatch]);
 
-  // Recargar pagina si esta autenticado
   useEffect(() => {
-    if (success) {
-      window.location.reload();
-      navigate('/');
+    if(userToken){
+      navigate('/')
     }
-  }, [success]);
+   
+    console.log("token", userToken);
+  }, [navigate,userToken]);
   const onSubmit = async (data) => {
     const { firstname, lastname, email, password, password_repeat } = data;
     if (password !== password_repeat) {
@@ -79,10 +82,10 @@ const UserData = () => {
     console.log(success)
 
     showAlert();
-    if (success) {
-      window.location.reload();
-      navigate("/");
-    }
+    // if (success) {
+    //   window.location.reload();
+    //   navigate("/");
+    // }
     console.log(error);
   };
 

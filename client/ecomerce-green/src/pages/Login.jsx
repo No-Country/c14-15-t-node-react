@@ -13,7 +13,8 @@ import Error from "../components/Error";
 
 export const Login = () => {
   const dispatch = useDispatch();
-  const { userInfo, loading, error, userToken, success, isAuthenticated } = useSelector(
+  const navigate = useNavigate();
+  const { user, loading, error, userToken, success, isAuthenticated } = useSelector(
     (state) => state.authv
   );
 
@@ -23,7 +24,7 @@ export const Login = () => {
     // watch,
     formState: { errors },
   } = useForm();
-  // const navigate = useNavigate();
+
   const { showError, messageError, showAlert } = useShowAlert();
 
 
@@ -44,7 +45,7 @@ export const Login = () => {
     console.log("token", userToken);
   }, [userToken]);
   
-  // Recargar pagina si esta autenticado
+ // Recargar pagina si esta autenticado
   useEffect(() => {
     if (isAuthenticated) {
       window.location.reload();

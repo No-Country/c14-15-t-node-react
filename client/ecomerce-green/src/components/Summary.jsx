@@ -4,7 +4,7 @@ import SumaryImg from "../assets/sumaryImg.png";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTotal } from "../redux/store/cart/cartSlice";
 
-const Summary = ({ orderValues }) => {
+const Summary = ({ orderValues, title }) => {
   const dispatch = useDispatch();
   const { cart, total } = useSelector((state) => state.cart);
   useEffect(() => {
@@ -22,7 +22,7 @@ const Summary = ({ orderValues }) => {
         <img src={SumaryImg} alt="" />
       </section>
       <section className="section-2-sumary">
-        <h2>Resumen de compra</h2>
+        <h2>{title}</h2>
         <p></p>
         <ul>
           <li className="titulo-tabla">
