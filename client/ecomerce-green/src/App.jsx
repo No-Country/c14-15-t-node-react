@@ -42,8 +42,8 @@ const App = () => {
         <Route exact path="/contacto" element={<Contacto />}/>
         <Route exact path="/sumary" element={<PurchaseSumary />} />
         <Route exact path="/checkout" element={<CheckoutPage />} />
+        <Route path="/404" element={ <PageNotFound />} />
         <Route exact path='' element={<PrivateRoute />} />
-        <Route path="/404" component={PageNotFound} />
       
         
       </Routes>
