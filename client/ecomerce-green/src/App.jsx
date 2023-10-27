@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Redirect, Route, Router,  BrowserRouter } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from "./pages/Home";
 import { Login } from './pages/Login';
 import Cart from './pages/Cart';
@@ -17,9 +17,6 @@ import PageNotFound from './pages/PageNotFound';
 import CheckoutPage from './pages/Checkout';
 
 
-
-
-
 const App = () => {
   const ScrollToTop = () => {
     const location = useLocation();
@@ -31,11 +28,9 @@ const App = () => {
     return null;
   };
   return (
-    <BrowserRouter>  
-     
-      <ScrollToTop/>
-   
     <Router>
+    <ScrollToTop/>
+    <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/login" element={<Login />} />
@@ -49,10 +44,10 @@ const App = () => {
         <Route exact path="/checkout" element={<CheckoutPage />} />
         <Route exact path='' element={<PrivateRoute />} />
         <Route path="/404" component={PageNotFound} />
-        <Redirect to="/404" />
-        </Router>
- 
-    </BrowserRouter>
+      
+        
+      </Routes>
+    </Router>
 
   )
 }
