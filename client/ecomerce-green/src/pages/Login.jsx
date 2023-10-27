@@ -104,7 +104,7 @@ export const Login = () => {
                       required
                       className={`${
                         errors.email ? "border-error" : "form"
-                      }  w-full text-white px-4 text-sm peer  outline-none`}
+                      }  w-full text-white  text-sm peer  outline-none`}
                       {...register("email", {
                         required: "Este campo es requerido",
                         validate: validations.isEmail,
@@ -158,7 +158,7 @@ export const Login = () => {
                       required
                       className={` ${
                         errors.password ? "border-error" : "form"
-                      } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
+                      } border-b-3 w-full text-white text-sm peer outline-none`}
                       {...register("password", {
                         required: "Contraseña invalida",
                         minLength: { value: 6, message: "Contraseña invalida" },
