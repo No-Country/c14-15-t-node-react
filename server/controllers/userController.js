@@ -33,9 +33,9 @@ class userController {
     }
     const updatedUser = await UserModel.updateUser(result.data);
     if (updatedUser.error) {
-      return res.status(400).json(updatedUser);
+      return res.status(404).json(updatedUser);
     }
-    res.status(202).json(updatedUser);
+    res.status(200).json(updatedUser);
   }
 }
 

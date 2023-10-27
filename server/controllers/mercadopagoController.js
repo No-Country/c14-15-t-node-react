@@ -1,9 +1,10 @@
-const{mercadoPago} = require('../helper/mercadopago') 
+const OrderController = require("./orderController")
+
 class mercadoPagoController {
   //------------Create mercadoPago----------------
   static async createmercadoPago(req, res){
-    const response = await mercadoPago()
-    res.send(response)
+    const newOrder = await OrderController.createOrder(req.body)
+    res.send(newOrder)
   }
   //------------Update mercadoPago----------------
   static async updatemercadoPago(req, res){

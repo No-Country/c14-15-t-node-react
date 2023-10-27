@@ -11,7 +11,7 @@ class UserModel {
     let user = await User.findOne({ email });
 
     if (user) {
-      return { error: true, message: "Email ya utilizado" };
+      return { error: true, data: { message: "Email ya utilizado" } };
     }
 
     user = new User(body);
@@ -27,7 +27,7 @@ class UserModel {
       error: false,
       data: {
         // uid: user.uid,
-        // firstname: user.firstname,
+        firstname: user.firstname,
         // lastname: user.lastname,
         // email: user.email,
         token,
@@ -39,34 +39,52 @@ class UserModel {
     const { email, password } = body;
     const user = await User.findOne({ email });
     if (!user) {
-      return { error: true, message: "Email o contraseña incorrectos" };
+      return {
+        error: true,
+        data: { message: "Alguna de tus credenciales no son correctas" },
+      };
     }
 
     const passValidated = bcrypt.compareSync(password, user.password);
     if (!passValidated) {
-      return { error: true, message: "Email o contraseña incorrectos" };
+      return {
+        error: true,
+        data: { message: "Alguna de tus credenciales no son correctas" },
+      };
     }
 
-    const token = await generateToken(user.uid, user.firstname, user.lastname);
-    return { error: false, data: { token } };
+    const token = await generateToken(user.uid);
+    return { error: false, data: { firstname: user.firstname, token } };
   }
 
   static async revalidateToken(body) {
-    const { uid, firstname, lastname } = body;
-    const token = await generateToken(uid, firstname, lastname);
+    const { uid, firstname } = body;
+    const token = await generateToken(uid);
 
-    return { error: false, data: { token } };
+    return { error: false, data: { firstname: firstname, token } };
   }
+
   // === update user model ====
   static async updateUser(body) {
-    let { uid, firstname, lastname, email, address, password } = body;
+    let uid = req.uid;
+
+    let { firstname, lastname, email, address, password } = body;
 
     let user = await User.findOne({ uid });
     if (!user) {
       return {
         error: true,
-        message: "El usuario que intenta modificar no existe",
+        data: {
+          message: "El usuario que intenta modificar no existe",
+        },
       };
+    }
+
+    if (email) {
+      let Emailvalid = await User.findOne({ email });
+      if (Emailvalid) {
+        return { error: true, data: { messsage: "Email no valido" } };
+      }
     }
 
     if (password) {
@@ -76,11 +94,11 @@ class UserModel {
     let isValidUser = await User.findByIdAndUpdate(user._id, body, {
       new: true,
     });
-    
+
     return {
       error: false,
       data: {
-        id: user.id,
+        // id: isValidUser.id,
         // firstname: isValidUser.firstname,
         // lastname: isValidUser.lastname,
         // email: isValidUser.email,
@@ -88,26 +106,6 @@ class UserModel {
       },
     };
   }
-  // === updating password ===
-  // static async updateUserPassword(body){
-  //   const { uid, password } = body;
-  //   let user = await User.findOne({uid});
-  //   if(!user){
-  //     return{error: true, message: "Este usuario no existe (?)"}
-  //   }
-  //   const passValidated = bcrypt.compareSync(password, user.password);
-  //   if(!passValidated){
-  //     return{error: true, message:"La contraseña es incorrecta"};
-  //   }
-  //   user = new User(body);
-  //   user.password = password;
-  //   await user.save();
-  //   return{
-  //     error: false,
-  //     message: "La contraseña ha sido actualizada"
-  //   }
-  //   // aquí falta algo unu
-  // }
 }
 
 module.exports = UserModel;

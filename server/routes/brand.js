@@ -1,80 +1,84 @@
 const { Router } = require("express");
 
-const categoryController = require("../controllers/categoryController");
+const brandController = require("../controllers/brandController");
 
-const categoryRoutes = Router();
+const brandRoutes = Router();
+
 /**
  * @swagger
  *  components:
  *    schemas:
- *      CategoryCreate:
+ *      BrandCreate:
  *        type: object
  *        properties:
- *          name:
+ *          id:
  *            type: string
- *            example: Telefonía
- *          brands:
- *            type: array
- *            items:
- *              type: string
- *            example: ['Samsung','Apple','Nokia']
+ *            example: categoryId
+ *          brand:
+ *            type: string
+ *            example: Samsung
  *        required:
- *          - name
- *          - brands
+ *          - id
+ *          - brand
  */
 
 /**
  * @swagger
- * /api/v1/categories/create:
+ * /api/v1/brands/create:
  *  post:
- *    summary: Create category
- *    tags: [Categories]
+ *    summary: Create brand
+ *    tags: [Brands]
  *    requestBody:
  *      required: true
  *      content:
  *        application/json:
  *          schema:
  *            type: object
- *            $ref: '#/components/schemas/CategoryCreate'
+ *            $ref: '#/components/schemas/BrandCreate'
  *    responses:
  *      201:
  *        description: Response error false and data
  *      409:
  *        description: Some of the parameters are not correct
  */
-categoryRoutes.post("/create", categoryController.create);
+
+brandRoutes.post("/create", brandController.create);
 
 /**
  * @swagger
  *  components:
  *    schemas:
- *      CategoryEdit:
+ *      BrandEdit:
  *        type: object
  *        properties:
  *          id:
  *            type: string
  *            example: categoryId
- *          name:
+ *          brand:
  *            type: string
- *            example: Teléfonos
+ *            example: Samsung
+ *          otherBrand:
+ *            type: string
+ *            example: Nokia
  *        required:
  *          - id
- *          - name
+ *          - brand
+ *          - otherBrand
  */
 
 /**
  * @swagger
- * /api/v1/categories/edit:
+ * /api/v1/brands/edit:
  *  patch:
- *    summary: Edit category
- *    tags: [Categories]
+ *    summary: Edit brand
+ *    tags: [Brands]
  *    requestBody:
  *      required: true
  *      content:
  *        application/json:
  *          schema:
  *            type: object
- *            $ref: '#/components/schemas/CategoryEdit'
+ *            $ref: '#/components/schemas/BrandEdit'
  *    responses:
  *      201:
  *        description: Response error false and data
@@ -82,62 +86,46 @@ categoryRoutes.post("/create", categoryController.create);
  *        description: Some of the parameters are not correct
  */
 
-categoryRoutes.patch("/edit", categoryController.update);
-
-
-
-/**
- * @swagger
- * /api/v1/categories/getAll:
- *  get:
- *    summary: Get Category
- *    tags: [Categories]
- *    requestBody:
- *      required: false
- *    responses:
- *      200:
- *        description: Response error false and data
- *      400:
- *        description: credentials are not valid
- */
-categoryRoutes.get("/getAll", categoryController.getAll);
+brandRoutes.patch("/edit", brandController.update);
 
 /**
  * @swagger
  *  components:
  *    schemas:
- *      CategoryDelete:
+ *      BrandDelete:
  *        type: object
  *        properties:
  *          id:
  *            type: string
  *            example: categoryId
+ *          brand:
+ *            type: string
+ *            example: Samsung
  *        required:
  *          - id
+ *          - brand
  */
-
 /**
  * @swagger
- * /api/v1/categories/delete:
+ * /api/v1/brands/delete:
  *  delete:
- *    summary: Delete category
- *    tags: [Categories]
+ *    summary: Delete brand
+ *    tags: [Brands]
  *    requestBody:
  *      required: true
  *      content:
  *        application/json:
  *          schema:
  *            type: object
- *            $ref: '#/components/schemas/CategoryDelete'
+ *            $ref: '#/components/schemas/BrandDelete'
  *    responses:
  *      201:
  *        description: Response error false and data
  *      409:
  *        description: Some of the parameters are not correct
  */
-
-categoryRoutes.delete("/delete", categoryController.delete);
+brandRoutes.delete("/delete", brandController.delete);
 
 module.exports = {
-    categoryRoutes,
+    brandRoutes
 };

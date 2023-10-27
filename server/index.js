@@ -5,13 +5,15 @@ const dbConnection = require("./database/db");
 const { config } = require("dotenv");
 
 const { userRoutes } = require("./routes/user");
+
 const { productRoutes } = require("./routes/product");
 const { categoryRoutes } = require("./routes/category"); // io
-const { orderRoutes } = require('./routes/order.js')
+const { brandRoutes } = require("./routes/brand");
 const swaggerUI = require("swagger-ui-express");
 const swaggerDoc = require("swagger-jsdoc");
 const path = require("path");
 const authRoutes = require("./routes/auth");
+const { productRoutes } = require("./routes/products");
 
 //env
 config();
@@ -24,14 +26,14 @@ const swaggerSpect = {
       title: "API E-Commerce Green",
       version: "1.0.0",
     },
-    servers: [
-      {
-        url: `http://localhost:${process.env.PORT}`,
-      },
-      {
-        url: "https://api-greeni.onrender.com",
-      },
-    ],
+    // servers: [
+    //   {
+    //     url: `http://localhost:${process.env.PORT}`,
+    //   },
+    //   {
+    //     url: "https://api-greeni.onrender.com",
+    //   },
+    // ],
   },
   apis: [`${path.join(__dirname, "./routes/*.js")}`],
 };
@@ -61,7 +63,6 @@ app.use("/api/v1/products", productRoutes);
 
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/orders", orderRoutes);
-
 //listen
 app.listen(process.env.PORT || 5000, () => {
   console.log(`El servidor esta online en el puerto ${process.env.PORT}`);
