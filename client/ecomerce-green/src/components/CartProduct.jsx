@@ -1,32 +1,43 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import {  incrementProduct, decrementProduct } from '../redux/store/cart/cartSlice';
+import {  incrementProduct, decrementProduct } from '../redux/store/cart/cartSlice';
 import { AiOutlineDelete } from "react-icons/ai";
 import "../styles/Cart.css";
 
 const CartProduct = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const {name, price, technical_specifications, images} = product
   const { cart } = useSelector((state) => state.cart);
   console.log(cart)
   return (
-    <div className="cart-product">
-      <img
-        src="/ProductImg.png"
-        alt=""
-        className="object-cover w-24 rounded-l"
-      />
-      <div className="cart-details ">
+    <>
+
+      {cart.map(item => (
+
+        <div className="cart-product" key={item.productId}>
+
+           <img
+           src={item.images.cover
+           }
+           
+           alt=""
+           className="object-cover w-24 rounded-l"
+           />
+            <div className="cart-details ">
         <div className="product-details">
-          <p className="capitalize font-semibold">Trina Solar</p>
-          <p>$101.864</p>
+          <p className="capitalize font-semibold">{item.category.brand_name}</p>
+          <p>${item.price}</p>
           <AiOutlineDelete size={15} className="cursor-pointer" />
         </div>
-        <p>Vertex N 610W</p>
+        <p>{item.name}</p>
         <div className="cart-counter">
-          <button> —</button>
-          <span className="cart-quantity">1</span>
-          <button>
+          <button onClick={() => {
+          dispatch(decrementProduct(item));
+        }}> —</button>
+          <span className="cart-quantity">{item.quantity}</span>
+          <button onClick={() => {
+          dispatch(incrementProduct(item));
+        }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"
@@ -55,8 +66,14 @@ const CartProduct = () => {
         </div>
       </div>
 
+           </div> 
+
+      ))}
+     
+     
+
    
-    </div>
+      </>
   );
 };
 

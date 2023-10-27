@@ -3,16 +3,20 @@ import ProductCards from "./ProductCards";
 
 const ProductList = ({ productsData, page, totalPages, onPageChange }) => {
   return (
-    <section className="card-container py-10 flex flex-col justify-center items-center w-screen min-w-min gap-10 flex-wrap md:flex-row">
+    <>
+    <section className="card-container w-fit mx-auto  grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
       {productsData?.map((product) => {
-        return <ProductCards key={product?._id} product={product} />;
+        return <ProductCards key={product?.productId} product={product} />;
+
       })}
-      <Pagination
-        onPageChange={onPageChange}
-        totalPages={totalPages}
-        page={page}
-      />
+  
     </section>
+    <Pagination
+    onPageChange={onPageChange}
+    totalPages={totalPages}
+    page={page}
+  />
+    </>
   );
 };
 

@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, userLogin, verifyJwt, logout } from "./authActions";
 
+const storedUser= localStorage.getItem('user');
+const user= !!storedUser ? JSON.parse(storedUser) : null;
 const userToken = localStorage.getItem("userToken")
   ? localStorage.getItem("userToken")
   : null;
 
 const initialState = {
   loading: false,
-  userInfo: {},
+  user,
   isAuthenticated: false,
   userToken,
   error: null,
@@ -17,7 +19,13 @@ const initialState = {
 const authSliceV = createSlice({
   name: "authv",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state.loading = false;
+      state.success = false;
+      state.error = false;
+    },
+  },
   extraReducers: (builder) => {
     // Login user
     builder
@@ -27,9 +35,9 @@ const authSliceV = createSlice({
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userInfo = payload.userInfo;
+        state.user = payload.user;
         state.isAuthenticated = true;
-        state.userToken = payload.userToken;
+        state.userToken = payload;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
@@ -41,20 +49,22 @@ const authSliceV = createSlice({
     builder
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(registerUser.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
+        state.userToken =  action.payload.userToken;
+        
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = payload;
-        state.userInfo = action.payload;
+        state.error = null;
+        state.userToken = null;
+        state.user = null;
       })
       // LOGOUT
       .addCase(logout.fulfilled, (state) => {
-        state.userInfo = null;
+        state.user = null;
         state.userToken = null;
         state.isAuthenticated = false;
       })
@@ -78,7 +88,7 @@ const authSliceV = createSlice({
   },
 });
 
-export const { onChecking, onLogin, onLogout, clearErrorMessage } =
+export const { onChecking, onLogin, onLogout, clearErrorMessage , reset} =
   authSliceV.actions;
 
 export default authSliceV.reducer;
