@@ -3,6 +3,7 @@ import "../styles/sumary.css";
 import SumaryImg from "../assets/sumaryImg.png";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTotal } from "../redux/store/cart/cartSlice";
+import { format } from "../utils/currency";
 
 const Summary = ({ orderValues, title }) => {
   const dispatch = useDispatch();
