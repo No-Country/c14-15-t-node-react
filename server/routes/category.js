@@ -84,8 +84,6 @@ categoryRoutes.post("/create", categoryController.create);
 
 categoryRoutes.patch("/edit", categoryController.update);
 
-
-
 /**
  * @swagger
  * /api/v1/categories/getAll:
@@ -138,6 +136,4 @@ categoryRoutes.get("/getAll", categoryController.getAll);
 
 categoryRoutes.delete("/delete", categoryController.delete);
 
-module.exports = {
-    categoryRoutes,
-};
+module.exports = categoryRoutes;

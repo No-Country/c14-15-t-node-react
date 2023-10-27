@@ -28,34 +28,34 @@ class UserModel {
       data: {
         // uid: user.uid,
         firstname: user.firstname,
-        // lastname: user.lastname,
+        lastname: user.lastname,
         // email: user.email,
         token,
       },
     };
   }
 
-  static async login(body) {
-    const { email, password } = body;
-    const user = await User.findOne({ email });
-    if (!user) {
-      return {
-        error: true,
-        data: { message: "Alguna de tus credenciales no son correctas" },
-      };
-    }
+  // static async login(body) {
+  //   const { email, password } = body;
+  //   const user = await User.findOne({ email });
+  //   if (!user) {
+  //     return {
+  //       error: true,
+  //       data: { message: "Alguna de tus credenciales no son correctas" },
+  //     };
+  //   }
 
-    const passValidated = bcrypt.compareSync(password, user.password);
-    if (!passValidated) {
-      return {
-        error: true,
-        data: { message: "Alguna de tus credenciales no son correctas" },
-      };
-    }
+  //   const passValidated = bcrypt.compareSync(password, user.password);
+  //   if (!passValidated) {
+  //     return {
+  //       error: true,
+  //       data: { message: "Alguna de tus credenciales no son correctas" },
+  //     };
+  //   }
 
-    const token = await generateToken(user.uid);
-    return { error: false, data: { firstname: user.firstname, token } };
-  }
+  //   const token = await generateToken(user.uid);
+  //   return { error: false, data: { firstname: user.firstname, token } };
+  // }
 
   static async revalidateToken(body) {
     const { uid, firstname } = body;

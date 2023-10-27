@@ -126,6 +126,4 @@ brandRoutes.patch("/edit", brandController.update);
  */
 brandRoutes.delete("/delete", brandController.delete);
 
-module.exports = {
-    brandRoutes
-};
+module.exports = brandRoutes;

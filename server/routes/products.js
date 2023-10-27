@@ -398,6 +398,4 @@ productRoutes.delete(
   productController.delete
 );
 
-module.exports = {
-  productRoutes,
-};
+module.exports = productRoutes;

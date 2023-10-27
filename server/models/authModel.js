@@ -25,14 +25,20 @@ class AuthModel {
     }
 
     const token = await generateToken(user.uid, user.isAdmin);
-    return { error: false, data: { token } };
+    return {
+      error: false,
+      data: { firstname: user.firstname, lastname: user.lastname, token },
+    };
   }
 
   static async revalidateToken(body) {
     const { uid, isAdmin } = body;
+    console.log(isAdmin);
+    console.log(uid);
+
     const token = await generateToken(uid, isAdmin);
 
-    return { error: false, data: { token } };
+    return { error: false, data: { isAdmin, token } };
   }
 }
 

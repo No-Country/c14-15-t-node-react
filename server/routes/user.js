@@ -1,6 +1,5 @@
 const { Router } = require("express");
-const authController = require("../controllers/userController");
-const validatorJWT = require("../helper/validatorJWT");
+
 const userController = require("../controllers/userController");
 const userExposed = require("../helper/userExposed");
 
@@ -106,6 +105,4 @@ userRoutes.post("/create", userController.create);
  */
 userRoutes.patch("/edit", userExposed, userController.update);
 
-module.exports = {
-  userRoutes,
-};
+module.exports = userRoutes;

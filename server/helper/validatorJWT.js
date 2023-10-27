@@ -11,8 +11,9 @@ const validatorJWT = (req, res, next) => {
   }
 
   try {
-    const { uid } = jwt.verify(token, process.env.JWT_SECRET);
+    const { uid, isAdmin } = jwt.verify(token, process.env.JWT_SECRET);
     req.uid = uid;
+    req.isAdmin = isAdmin;
   } catch (error) {
     return res.status(401).json({
       error: true,

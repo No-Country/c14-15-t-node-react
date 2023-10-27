@@ -21,16 +21,14 @@ const userExposed = async (req, res, next) => {
     const decodeToken = jwt.verify(token, process.env.JWT_SECRET);
     userValid = await User.findOne({ uid: decodeToken.uid });
 
-    if (
-      !userValid ||
-      userValid.isAdmin === undefined ||
-      decodeToken.isAdmin != userValid.isAdmin
-    ) {
+    if (!userValid) {
       return res.status(400).json({
         error: true,
         data: { message: "Usuario no valido. Contacte al soporte del sitio" },
       });
     }
+    req.uid = userValid.uid;
+    req.isAdmin = userValid.isAdmin;
   } catch (error) {
     return res.status(500).json({
       error: true,
@@ -38,8 +36,6 @@ const userExposed = async (req, res, next) => {
     });
   }
 
-  req.uid = userValid.uid;
-  req.isAdmin = userValid.isAdmin;
   next();
 };
 

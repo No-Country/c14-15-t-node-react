@@ -2,3 +2,4 @@
 server/user.http
 server/product.http
 server/categories.http
+server/auth.http
