@@ -17,6 +17,8 @@ import { logout } from "../redux/store/authv/authActions";
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
 
+  // console.log(cart)
+
   const { userToken } = useSelector((state) => state.authv);
   const dispatch = useDispatch();
 

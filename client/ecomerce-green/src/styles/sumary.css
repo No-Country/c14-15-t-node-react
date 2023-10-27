@@ -25,7 +25,7 @@
     min-height: 80vh;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 1rem 3rem;
 }
 .titulo-tabla{
@@ -51,11 +51,12 @@ h2{
     color: #307C5A;
     padding-bottom: 1rem;
 }
-h4{
+.text-titulo{
     font-size: 2rem;
     width: 60%;
     text-align: center;
     margin-bottom: 1rem;
+    color: #FFF;
 }
 .continer-data-user{
     display: flex;
@@ -65,11 +66,11 @@ h4{
     display: flex;
     width: 100%;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
 .li-datos{
 display: flex;
-justify-content: end;
+justify-content: flex-end;
 padding: .5rem 0rem;
 }
 .p-top-boton{

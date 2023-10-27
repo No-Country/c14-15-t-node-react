@@ -3,9 +3,11 @@ import CartProduct from "../components/CartProduct";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
+
 import "../styles/Cart.css";
 
 const Cart = ({ open, setOpen }) => {
+
 
   
   return (
@@ -72,8 +74,9 @@ const Cart = ({ open, setOpen }) => {
                         <p>Producto</p>
                         <p>Subtotal</p>
                       </div>
+                      
                       <CartProduct />
-                      <ul className="cart-total inline-flex place-content-between ">
+                      <ul className="cart-total inline-flex place-content-between">
                         <li>Total</li>
                         <li>123678</li>
                       </ul>

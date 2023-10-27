@@ -20,34 +20,33 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { showError, messageError, showAlert } = useShowAlert();
 
 
   
-  // 
+  // Verificar Token
   useEffect(() => {
     if (!userToken) return;
 
     dispatch(verifyJwt(userToken));
     console.log(userToken)
-  }, [userToken, success]);
+  }, [userToken, isAuthenticated]);
 
   useEffect(() => {
     if(userToken){
       navigate('/')
     }
-    // console.log("user", userInfo);
+   
     console.log("token", userToken);
   }, [userToken]);
   
+  // Recargar pagina si esta autenticado
   useEffect(() => {
     if (isAuthenticated) {
-      // Cuando isAuthenticated se convierte en true, la autenticación se ha completado.
-      // Puedes realizar acciones aquí, como redirigir al usuario o recargar la página.
       window.location.reload();
       navigate('/');
     }

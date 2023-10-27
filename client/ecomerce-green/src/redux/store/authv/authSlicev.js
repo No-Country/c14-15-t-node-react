@@ -27,7 +27,7 @@ const authSliceV = createSlice({
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userInfo = payload;
+        state.userInfo = payload.userInfo;
         state.isAuthenticated = true;
         state.userToken = payload.userToken;
       })
@@ -41,16 +41,20 @@ const authSliceV = createSlice({
     builder
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
+        state.userToken = null;
         state.error = null;
       })
       .addCase(registerUser.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
+        state.userToken =  action.payload.userToken;
+        state.userInfo = payload.firstname;
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = payload;
-        state.userInfo = action.payload;
+        state.error = null;
+        state.userToken = null;
+        state.userInfo = null;
       })
       // LOGOUT
       .addCase(logout.fulfilled, (state) => {

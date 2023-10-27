@@ -1,10 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  incrementProduct,
-  decrementProduct,
-} from "../redux/store/cart/cartSlice";
-import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { useDispatch, useSelector } from 'react-redux';
+import {  incrementProduct, decrementProduct} from '../redux/store/cart/cartSlice';
+import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus} from "react-icons/ai";
 import "../styles/cart.css";
 
 const CartProduct = () => {
@@ -13,6 +10,7 @@ const CartProduct = () => {
   
   const { cart } = useSelector((state) => state.cart);
 
+ 
   return (
     cart.map(item => (
       <div className="cart-product">
@@ -25,11 +23,13 @@ const CartProduct = () => {
         <div className="product-details">
           <p className="capitalize font-semibold">{item.category.brand_name}</p>
           <p>${item.price*item.quantity}</p>
+          <button >
           <AiOutlineDelete size={15} className="cursor-pointer" />
+          </button>
         </div>
-        <p>Vertex N 610W</p>
+        <p>{item.name}</p>
         <div className="cart-counter">
-          <button onClick={() => {dispatch(decrementProduct(item));} }>
+          <button onClick={() => {dispatch(decrementProduct(item))}}>
             <AiOutlineMinus size={15} />
           </button>
           <span className="cart-quantity">{item.quantity}</span>
