@@ -17,7 +17,7 @@ const Summary = ({ orderValues, title }) => {
   console.log(total);
   return (
     <div className="container-sumary">
-      <section className="section-1-sumary">
+      <section className="section-1-sumary ">
         <h2 className="text-titulo">Estas a solo un paso de ayudar al mundo</h2>
         <img src={SumaryImg} alt="" />
       </section>
