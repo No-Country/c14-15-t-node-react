@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { incrementProduct, updateTotal} from "../redux/store/cart/cartSlice";
+import { incrementProduct, updateTotal } from "../redux/store/cart/cartSlice";
 import CartIcon from "../assets/CartIcon.svg";
 import { Link } from "react-router-dom";
 

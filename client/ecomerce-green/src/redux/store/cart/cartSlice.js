@@ -3,8 +3,7 @@ import { useEffect } from "react";
 
 const initialState = {
   cart: JSON.parse(localStorage.getItem("cart")) ?? [],
-  total:0,
-  
+  total:0
 };
 
 const modifyQtyByOne = (cart, selectedProduct, modificationType) => {
@@ -50,6 +49,8 @@ const calculateTotal = (cart) => {
 
 
 
+
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -73,6 +74,12 @@ const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.cart));
       state.total = calculateTotal(state.cart);
     },
+    removeFromCart: (state, action) => {
+      const modifiedCart = state.cart.filter((cartItem) => cartItem.productId !== action.payload.productId);
+      state.cart = modifiedCart;
+      localStorage.setItem("cart", JSON.stringify(state.cart));
+    },
+
     resetCart: (state) => {
       state.cart = [];
       localStorage.setItem("cart", JSON.stringify(state.cart));
@@ -87,7 +94,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { incrementProduct, decrementProduct, resetCart, updateTotal } =
+export const { incrementProduct, decrementProduct, resetCart, updateTotal, removeFromCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;

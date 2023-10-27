@@ -3,10 +3,22 @@ import CartProduct from "../components/CartProduct";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
-
 import "../styles/Cart.css";
+import { useSelector } from "react-redux";
 
 const Cart = ({ open, setOpen }) => {
+
+
+  const { cart } = useSelector((state) => state.cart);
+
+const GetTotal = () =>{
+  let total = 0;
+  cart.map((item) => {
+     total += item.quantity * item.price;
+  }, 0);
+  return total;
+} 
+console.log(GetTotal());
 
 
   
@@ -74,11 +86,14 @@ const Cart = ({ open, setOpen }) => {
                         <p>Producto</p>
                         <p>Subtotal</p>
                       </div>
-                      
-                      <CartProduct />
-                      <ul className="cart-total inline-flex place-content-between">
+                      {
+                        cart.length === 0 ? <h2 className="empty-cart text-white normal-case text-sm font-medium text-center">El carrito se encuentra vacio</h2> : <CartProduct/>
+                      }
+                     
+
+                      <ul className="cart-total inline-flex place-content-between ">
                         <li>Total</li>
-                        <li>123678</li>
+                        <li>${Number(GetTotal())}</li>
                       </ul>
                       <Link to="/sumary">
                         <button className="shopBtn">Finalizar Compra</button>
