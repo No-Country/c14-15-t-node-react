@@ -13,9 +13,9 @@ import Error from "../components/Error";
 
 export const Login = () => {
   const dispatch = useDispatch();
-  const { userInfo, loading, error, userToken, success, isAuthenticated } = useSelector(
-    (state) => state.authv
-  );
+  const navigate = useNavigate();
+  const { user, loading, error, userToken, success, isAuthenticated } =
+    useSelector((state) => state.authv);
 
   const {
     register,
@@ -23,52 +23,46 @@ export const Login = () => {
     // watch,
     formState: { errors },
   } = useForm();
-  // const navigate = useNavigate();
+
   const { showError, messageError, showAlert } = useShowAlert();
 
-
-  
   // Verificar Token
   useEffect(() => {
     if (!userToken) return;
 
     dispatch(verifyJwt(userToken));
-    console.log(userToken)
+    console.log(userToken);
   }, [userToken, isAuthenticated]);
 
   useEffect(() => {
-    if(userToken){
-      navigate('/')
+    if (userToken) {
+      navigate("/");
     }
-   
+
     console.log("token", userToken);
   }, [userToken]);
-  
+
   // Recargar pagina si esta autenticado
   useEffect(() => {
     if (isAuthenticated) {
       window.location.reload();
-      navigate('/');
+      navigate("/");
     }
   }, [isAuthenticated]);
-  
-
-
-
 
   const [icoPassword, setsicoPassword] = useState(false);
 
   const onSubmit = (data) => {
     console.log("data", data);
     dispatch(userLogin(data));
-    console.log(isAuthenticated)
-  
+    console.log(isAuthenticated);
+
     showAlert();
     if (isAuthenticated) {
-      window.location.reload()
-      navigate('/');
+      window.location.reload();
+      navigate("/");
     }
-   
+
     console.log("error", error);
   };
   return (
@@ -110,7 +104,7 @@ export const Login = () => {
                       required
                       className={`${
                         errors.email ? "border-error" : "form"
-                      }  w-full text-white px-4 text-sm peer  outline-none`}
+                      }  w-full text-white  text-sm peer  outline-none`}
                       {...register("email", {
                         required: "Este campo es requerido",
                         validate: validations.isEmail,
@@ -124,9 +118,23 @@ export const Login = () => {
                       Email
                     </label>
                     {errors.email && (
-                      <p className="px-4 text-red-600 text-xs" role="alert">
-                        {errors.email.message}
-                      </p>
+                        <div className="pl-0">
+                        <div
+                          className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
+                          role="alert"
+                        >
+                          <svg
+                            className="fill-current w-4 h-4 mr-2"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                          </svg>
+                          <p className="  " role="alert">
+                            {errors.email.message}
+                          </p>
+                        </div>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -150,10 +158,10 @@ export const Login = () => {
                       required
                       className={` ${
                         errors.password ? "border-error" : "form"
-                      } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
+                      } border-b-3 w-full text-white text-sm peer outline-none`}
                       {...register("password", {
-                        required: "Este campo es requerido",
-                        minLength: { value: 6, message: "Mínimo 6 caracteres" },
+                        required: "Contraseña invalida",
+                        minLength: { value: 6, message: "Contraseña invalida" },
                         validate: (value) => {
                           const result = validations.isPassword(value);
                           if (result.errors) {
@@ -172,9 +180,23 @@ export const Login = () => {
                     </label>
                   </div>
                   {errors.password && (
-                    <p className="pl-12 text-red-600 text-xs" role="alert">
-                      {errors.password.message}
-                    </p>
+                    <div className="pl-8">
+                      <div
+                        className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
+                        role="alert"
+                      >
+                        <svg
+                          className="fill-current w-4 h-4 mr-2"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                        </svg>
+                        <p  role="alert">
+                          {errors.password.message}
+                        </p>
+                      </div>
+                    </div>
                   )}
                 </div>
                 <div className="text-sm flex justify-center">

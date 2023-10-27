@@ -2,7 +2,7 @@ import MainLayout from "../components/MainLayout";
 import "../styles/Contacto.css"
 import { useForm } from "react-hook-form";
 import { validations } from "../utils";
-
+import logo from "../assets/logo.svg";
 export const Contacto = () => {
 
   const {
@@ -29,7 +29,7 @@ export const Contacto = () => {
             <div className=" logo sm:mx-auto  sm:max-w-sm ">
               <img
                 className="mx-auto h-[40px] w-[33px]"
-                src="/src/assets/logo.svg"
+                src={logo}
                 alt="Your Company"
               />
               <h2 className="mt-1 text-center text-1xl  leading-9 tracking-tight text-white-200">
