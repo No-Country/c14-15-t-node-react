@@ -6,8 +6,8 @@ const ProductList = ({ productsData, page, totalPages, onPageChange }) => {
     <>
     <section className="card-container w-fit mx-auto  grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
       {productsData?.map((product) => {
-        return <ProductCards key={product?.productId
-        } product={product} />;
+        return <ProductCards key={product?.productId} product={product} />;
+
       })}
   
     </section>
