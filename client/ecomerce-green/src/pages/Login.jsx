@@ -1,7 +1,7 @@
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import MainLayout from "../components/MainLayout";
 import "../styles/login.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState,   } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../utils";
@@ -70,6 +70,8 @@ export const Login = () => {
     }
    
     console.log("error", error);
+
+    
   };
   return (
     <MainLayout>
@@ -104,27 +106,28 @@ export const Login = () => {
                 <div className="p-2">
                   <div className="w-56 left-8 relative group">
                     <input
+                      id="miInput"
                       type="text"
                       autoComplete="email"
                       name="email"
                       required
                       className={`${
                         errors.email ? "border-error" : "form"
-                      }  w-full text-white px-4 text-sm peer  outline-none`}
+                      }  w-full text-white  text-sm peer  outline-none`}
                       {...register("email", {
                         required: "Este campo es requerido",
                         validate: validations.isEmail,
                       })}
                     />
-
                     <label
-                      htmlFor="email"
-                      className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+                      
+                      htmlFor="miInput"
+                      className=" title cursor-pointer transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
                     >
                       Email
-                    </label>
+                    </label> 
                     {errors.email && (
-                      <p className="px-4 text-red-600 text-xs" role="alert">
+                      <p className="px-4 text-red-600 text-xs " role="alert">
                         {errors.email.message}
                       </p>
                     )}
@@ -144,13 +147,14 @@ export const Login = () => {
                       )}
                     </div>
                     <input
+                      id="miPassword"
                       name="password"
                       type={icoPassword ? "text" : "password"}
                       autoComplete="current-password"
                       required
                       className={` ${
                         errors.password ? "border-error" : "form"
-                      } border-b-3 w-full text-white  px-4 text-sm peer outline-none`}
+                      } border-b-3 w-full text-white   text-sm peer outline-none`}
                       {...register("password", {
                         required: "Este campo es requerido",
                         minLength: { value: 6, message: "Mínimo 6 caracteres" },
@@ -165,8 +169,8 @@ export const Login = () => {
                     />
 
                     <label
-                      htmlFor="password"
-                      className=" title transform transition-all text-white  absolute pb-2 top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+                      htmlFor="miPassword"
+                      className=" title cursor-pointer transform transition-all text-white  absolute pb-2 top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
                     >
                       Contraseña
                     </label>
