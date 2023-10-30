@@ -1,57 +1,56 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "../styles/sumary.css";
 import SumaryImg from "../assets/sumaryImg.png";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTotal } from "../redux/store/cart/cartSlice";
 
-const Summary = ({ orderValues }) => {
+const Summary = () => {
   const dispatch = useDispatch();
   const { cart, total } = useSelector((state) => state.cart);
   useEffect(() => {
     dispatch(updateTotal());
   }, [cart]);
   updateTotal;
-  const summaryValues = orderValues ? orderValues : { cart, total };
 
   console.log(cart);
   console.log(total);
   return (
     <div className="container-sumary">
-      <section className="section-1-sumary">
-        <h2 className="text-titulo">Estas a solo un paso de ayudar al mundo</h2>
+      <section className="section-1-sumary ">
+        <h2 className="text-titulo">
+          Estas a solo un paso de <br /> ayudar al mundo
+        </h2>
         <img src={SumaryImg} alt="" />
       </section>
       <section className="section-2-sumary">
-        <h2>Resumen de compra</h2>
+        <h2 className="h2-section">Resumen de compra</h2>
         <p></p>
         <ul>
           <li className="titulo-tabla">
-            <p>Producto</p>
-            <p>Cantidad</p>
-            <p>Precio</p>
+            <p className="w-p">Producto</p>
+            <p className="w-p-cantidad j-c-center">Cantidad</p>
+            <p className="w-p-precio j-c-end">Precio</p>
           </li>
           <li>
             {cart.map((product) => (
               <ul key={product.productId} className="detalle-ul">
-                <li>
+                <li className="w-p">
                   <strong>{product.name}</strong>
                 </li>
-                <li>
+                <li className="w-p-cantidad j-c-center">
                   <strong>{product.quantity}</strong>
                 </li>
-                <li>
+                <li className="w-p-precio j-c-end">
                   <strong>${product.subtotal}</strong>
                 </li>
               </ul>
             ))}
-
-           
           </li>
         </ul>
         <hr className="hr-1" />
-        <h3>Total</h3>
+        <h3 className="h2-section">Total</h3>
         <section>
-          <h2>Datos comprador</h2>
+          <h2 className="h2-section mt-7">Datos comprador</h2>
           <hr className="hr-1" />
           <div className="continer-data-user">
             <ul className="ul-datos">

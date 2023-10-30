@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiOutlineClose,
   AiOutlineMenu,
@@ -12,16 +12,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import Cart from "../pages/Cart";
 
-import { logout } from "../redux/store/authv/authActions";
+import { logout, verifyJwt } from "../redux/store/authv/authActions";
 
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
 
-  // console.log(cart)
-
-  const { userToken } = useSelector((state) => state.authv);
+  const { userToken, user } = useSelector((state) => state.authv);
+   console.log("token en home", userToken);
+   console.log("user en home", user);
   const dispatch = useDispatch();
-
+// console.log(userToken)
   const [open, setOpen] = useState(false);
 
   const [nav, setNav] = useState(false);
@@ -29,7 +29,12 @@ const Header = () => {
   const handleNav = () => {
     setNav(!nav);
   };
-
+  // Verificar Token
+  useEffect(() => {
+    if (!userToken) return;
+    dispatch(verifyJwt(userToken));
+   
+  }, [userToken]);
   return (
     <>
       <header

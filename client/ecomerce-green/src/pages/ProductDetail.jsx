@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import MainLayout from "../components/MainLayout";
 import ProductSelected from "../components/ProductSelected";
 import { useParams } from "react-router-dom";
@@ -8,14 +8,12 @@ import { getProduct } from "../redux/store/productid/productAction";
 
 const Product = () => {
   const dispatch = useDispatch();
-  const { product, isLoading } = useSelector((state) => state.product);
+  const { product } = useSelector((state) => state.product);
   const {id}=useParams();
-  console.log(id);
+
   useEffect(() => {
     dispatch(getProduct(id)); 
   }, [dispatch, id]);
-
- console.log("page product",product)
 
   return (
     <MainLayout>

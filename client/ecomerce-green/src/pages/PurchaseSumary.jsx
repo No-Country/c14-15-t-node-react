@@ -8,7 +8,7 @@ const PurchaseSumary = () => {
   return (
     <MainLayout >
           <HeroStore />
-          <Summary />
+          <Summary title={"Checkout"} />
    
     </MainLayout>
   );
