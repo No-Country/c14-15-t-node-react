@@ -113,7 +113,7 @@ export const Login = () => {
                       required
                       className={`${
                         errors.email ? "border-error" : "form"
-                      }  w-full text-white  text-sm peer  outline-none`}
+                      }  w-full text-white  text-sm peer border-b-2 outline-none`}
                       {...register("email", {
                         required: "Este campo es requerido",
                         validate: validations.isEmail,
@@ -154,7 +154,7 @@ export const Login = () => {
                       required
                       className={` ${
                         errors.password ? "border-error" : "form"
-                      } border-b-3 w-full text-white   text-sm peer outline-none`}
+                      } border-b-3 w-full text-white border-b-2  text-sm peer outline-none`}
                       {...register("password", {
                         required: "Este campo es requerido",
                         minLength: { value: 6, message: "Mínimo 6 caracteres" },

@@ -119,7 +119,7 @@ const UserData = () => {
                   required
                   className={` ${
                     errors.firstname ? "border-error" : "form"
-                  } border-b-3 w-full text-white   text-sm peer outline-none`}
+                  } border-b-3 w-full text-white  border-b-2 text-sm peer outline-none`}
                   autoComplete="firstname"
                   {...register("firstname", { required: true })}
                   aria-invalid={errors.firstname ? "true" : "false"}
@@ -129,7 +129,7 @@ const UserData = () => {
                   htmlFor="miFirstname"
                   className=" title transform cursor-pointer transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
                 >
-                  Name
+                  Nombre
                 </label>
               </div>
               {errors.firstname?.type === "required" && (
@@ -149,7 +149,7 @@ const UserData = () => {
                   required
                   className={` ${
                     errors.lastname ? "border-error" : "form"
-                  } border-b-3 w-full text-white  text-sm peer outline-none`}
+                  } border-b-3 w-full text-white border-b-2 text-sm peer outline-none`}
                   {...register("lastname", { required: true })}
                   aria-invalid={errors.lastname ? "true" : "false"}
                 />
@@ -178,7 +178,7 @@ const UserData = () => {
                   autoComplete="email"
                   className={` ${
                     errors.email ? "border-error" : "form"
-                  } border-b-3 w-full text-white   text-sm peer outline-none`}
+                  } border-b-3 w-full text-white border-b-2  text-sm peer outline-none`}
                   {...register("email", {
                     required: "Este campo es requerido",
                     validate: validations.isEmail,
@@ -219,7 +219,7 @@ const UserData = () => {
                   required
                   className={` ${
                     errors.password ? "border-error" : "form"
-                  } border-b-3 w-full text-white   text-sm peer outline-none`}
+                  } border-b-3 w-full text-white border-b-2  text-sm peer outline-none`}
                   {...register("password", {
                     required: "Este campo es requerido",
                     minLength: { value: 6, message: "Mínimo 6 caracteres" },
@@ -267,7 +267,7 @@ const UserData = () => {
                   autoComplete="current-password_repeat"
                   className={` ${
                     errors.password_repeat ? "border-error" : "form"
-                  } border-b-3 w-full text-white  text-sm peer outline-none`}
+                  } border-b-3 w-full text-white border-b-2 text-sm peer outline-none`}
                   {...register("password_repeat", {
                     required: "Este campo es requerido",
                     minLength: { value: 6, message: "Mínimo 6 caracteres" },
