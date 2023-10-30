@@ -37,6 +37,7 @@ const Products = () => {
       setProductsData(productsfilter.products);
     }
   }, [productsfilter.products]);
+  
 
   useEffect(() => {
     setProductsData1(products.products);
