@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiOutlineClose,
   AiOutlineMenu,
@@ -12,16 +12,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import Cart from "../pages/Cart";
 
-import { logout } from "../redux/store/authv/authActions";
+import { logout, verifyJwt } from "../redux/store/authv/authActions";
 
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
 
-  // console.log(cart)
-
-  const { userToken } = useSelector((state) => state.authv);
+  const { userToken, user } = useSelector((state) => state.authv);
+   console.log("token en home", userToken);
+   console.log("user en home", user);
   const dispatch = useDispatch();
-
+// console.log(userToken)
   const [open, setOpen] = useState(false);
 
   const [nav, setNav] = useState(false);
@@ -29,30 +29,35 @@ const Header = () => {
   const handleNav = () => {
     setNav(!nav);
   };
-
+  // Verificar Token
+  useEffect(() => {
+    if (!userToken) return;
+    dispatch(verifyJwt(userToken));
+   
+  }, [userToken]);
   return (
     <>
       <header
         className={`w-[100vw] fixed z-[3] ${headerShadow} rounded-b-lg border-b-2 border-white `}
       >
-        <div className="flex sm:z-[3] justify-between items-center h-24 max-w-[1240px]  px-7 mx-auto">
+        <div className="flex sm:z-[3] justify-between items-center h-24 max-w-[1240px]  px-7 mx-auto ">
           <NavLink to="/">
-            <div className=" flex gap-2 ">
+            <div className=" flex gap-2  text-xl hover:font-extrabold">
               <img src={logo}></img>
               <h1>GreenIX</h1>
             </div>
           </NavLink>
 
           {/* Navbar destock */}
-          <nav className=" hidden md:flex gap-3 p-6 ">
-            <ul className=" flex  gap-2 p-6 ">
-              <li>
+          <nav className=" hidden md:flex gap-5 p-3 ">
+            <ul className=" flex text-lg text-white gap-3 p-6 tracking-wider">
+              <li className="hover:font-extrabold ">
                 <NavLink to="/">Home</NavLink>
               </li>
-              <li>
+              <li className="hover:font-extrabold">
                 <NavLink to="/products">Tienda</NavLink>
               </li>
-              <li>
+              <li className="hover:font-extrabold">
                 <NavLink to="/contacto">Contacto</NavLink>
               </li>
             </ul>
@@ -66,33 +71,33 @@ const Header = () => {
             </div>
           </nav>
           <div className="hidden md:flex">
-            <ul className="flex g-1">
+            <ul className="flex g-1 text-lg">
               {userToken ? (
                 <li
-                  className="pr-4 flex justify-center items-center"
+                  className="pr-4 flex justify-center cursor-pointer items-center hover:font-extrabold"
                   onClick={() => dispatch(logout())}
                 >
                   {" "}
                   Log out
                 </li>
               ) : (
-                <li className="pr-4 flex justify-center items-center">
+                <li className="pr-4 flex justify-center items-center hover:font-extrabold">
                   {" "}
                   <Link to="/login">Log in</Link>
                 </li>
               )}
-              <li className="pr-4 flex justify-center items-center">
+              <li className="pr-4 flex justify-center items-center ">
                 <Link to="/login">
                   <VscAccount size={20} />
                 </Link>
               </li>
               <li className="flex justify-center items-center mt-[-0.7rem]">
-                <div className="relative ">
+                <div className="relative  hover:font-extrabold ">
                   <div className="t-0 absolute left-3">
                     <p
                       className={`${
                         cart.length > 0 ? "flex" : "hidden"
-                      } h-2 w-2  items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white`}
+                      } h-2 w-2  hover:font-extrabold items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white`}
                     >
                       {cart?.length}
                     </p>
