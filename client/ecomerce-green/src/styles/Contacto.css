@@ -1,6 +1,6 @@
 
 .container-contacto{
-    background-image: url(../../../public/img-contacto.png);
+    background-image: url(/img-contacto.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
