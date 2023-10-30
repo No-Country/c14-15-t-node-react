@@ -29,7 +29,7 @@ export const registerUser = createAsyncThunk(
       console.log(data.data.firstname);
       console.log(data.data.token);
       localStorage.setItem("userToken", data.data.token);
-      return data.data.token;
+      return data.data;
     } catch (error) {
       console.log("mensaje de error", error.response.data.data.message);
       // return custom error message from backend if present
@@ -62,8 +62,7 @@ export const userLogin = createAsyncThunk(
       );
 
 
-   const decoded =  isValidToken( data.data.token)
-   console.log(decoded)
+
   console.log("pasa por aqui")
       // store user's token in local storage
       localStorage.setItem("userToken", data.data.token);

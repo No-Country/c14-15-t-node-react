@@ -14,10 +14,10 @@ import { reset } from "../../redux/store/authv/authSlicev";
 import useShowAlert from "../../hooks/useShowAlert";
 
 const UserData = () => {
-  const { userToken, error, success } = useSelector(
+  const { userToken, error, success, loading } = useSelector(
     (state) => state.authv
   );
-  const { showError, messageError,  showAlert } = useShowAlert();
+  const { showError, messageError, showAlert } = useShowAlert();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -30,16 +30,11 @@ const UserData = () => {
   const [icoPassword, setsicoPassword] = useState(false);
   const [icoPassword2, setsicoPassword2] = useState(false);
 
- 
   // Verificar Token
   useEffect(() => {
     if (!userToken) return;
     dispatch(verifyJwt(userToken));
-   
   }, [userToken, success]);
-  console.log(userToken);
-  console.log(success);
-
 
   useEffect(() => {
     if (success) {
@@ -51,12 +46,13 @@ const UserData = () => {
   }, [success, dispatch]);
 
   useEffect(() => {
-    if(userToken){
-      navigate('/')
+    if (userToken) {
+      navigate("/");
     }
-   
+
     console.log("token", userToken);
-  }, [navigate,userToken]);
+  }, [navigate, userToken]);
+
   const onSubmit = async (data) => {
     const { firstname, lastname, email, password, password_repeat } = data;
     if (password !== password_repeat) {
@@ -78,10 +74,22 @@ const UserData = () => {
     };
     console.log("formData", formData);
 
-    dispatch(registerUser(formData));
-    console.log(success)
+    dispatch(registerUser(formData)).then((result) => {
+      console.log(result.payload)
+      if (result.payload === "Email ya utilizado") {
+        showAlert(result.payload);
+      }
+      if(success){
+        navigate("/")
+      }
+    });
+   
+if(error){
+  showAlert();
 
-    showAlert();
+}
+
+
     // if (success) {
     //   window.location.reload();
     //   navigate("/");
@@ -135,24 +143,22 @@ const UserData = () => {
                 </label>
               </div>
               {errors.firstname && (
-                    <div className="pl-8">
-                      <div
-                        className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
-                        role="alert"
-                      >
-                        <svg
-                          className="fill-current w-4 h-4 mr-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
-                        </svg>
-                        <p  role="alert">
-                          {errors.firstname.message}
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                <div className="pl-8">
+                  <div
+                    className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
+                    role="alert"
+                  >
+                    <svg
+                      className="fill-current w-4 h-4 mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                    </svg>
+                    <p role="alert">{errors.firstname.message}</p>
+                  </div>
+                </div>
+              )}
             </div>
             {/* Lastname */}
             <div className="p-2">
@@ -177,24 +183,22 @@ const UserData = () => {
                 </label>
               </div>
               {errors.lastname && (
-                    <div className="pl-8">
-                      <div
-                        className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
-                        role="alert"
-                      >
-                        <svg
-                          className="fill-current w-4 h-4 mr-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
-                        </svg>
-                        <p  role="alert">
-                          {errors.lastname.message}
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                <div className="pl-8">
+                  <div
+                    className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
+                    role="alert"
+                  >
+                    <svg
+                      className="fill-current w-4 h-4 mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                    </svg>
+                    <p role="alert">{errors.lastname.message}</p>
+                  </div>
+                </div>
+              )}
             </div>
             {/* email */}
             <div className="p-2">
@@ -221,24 +225,22 @@ const UserData = () => {
                 </label>
               </div>
               {errors.email && (
-                    <div className="pl-8">
-                      <div
-                        className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
-                        role="alert"
-                      >
-                        <svg
-                          className="fill-current w-4 h-4 mr-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
-                        </svg>
-                        <p  role="alert">
-                          {errors.email.message}
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                <div className="pl-8">
+                  <div
+                    className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
+                    role="alert"
+                  >
+                    <svg
+                      className="fill-current w-4 h-4 mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                    </svg>
+                    <p role="alert">{errors.email.message}</p>
+                  </div>
+                </div>
+              )}
             </div>
             {/* password */}
             <div className="p-2">
@@ -283,24 +285,22 @@ const UserData = () => {
                 </label>
               </div>
               {errors.password && (
-                    <div className="pl-8">
-                      <div
-                        className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
-                        role="alert"
-                      >
-                        <svg
-                          className="fill-current w-4 h-4 mr-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
-                        </svg>
-                        <p  role="alert">
-                          {errors.password.message}
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                <div className="pl-8">
+                  <div
+                    className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
+                    role="alert"
+                  >
+                    <svg
+                      className="fill-current w-4 h-4 mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                    </svg>
+                    <p role="alert">{errors.password.message}</p>
+                  </div>
+                </div>
+              )}
             </div>
             {/* password repeat */}
             <div className="p-2">
@@ -345,24 +345,22 @@ const UserData = () => {
                 </label>
               </div>
               {errors.password_repeat && (
-                    <div className="pl-8">
-                      <div
-                        className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
-                        role="alert"
-                      >
-                        <svg
-                          className="fill-current w-4 h-4 mr-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
-                        </svg>
-                        <p  role="alert">
-                          {errors.password_repeat.message}
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                <div className="pl-8">
+                  <div
+                    className="flex w-56 items-center bg-red-400 text-red-800 text-sm font-bold pl-12 pr-10"
+                    role="alert"
+                  >
+                    <svg
+                      className="fill-current w-4 h-4 mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                    </svg>
+                    <p role="alert">{errors.password_repeat.message}</p>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="text-sm flex justify-center">
               <a href="#" className="title">
@@ -375,7 +373,7 @@ const UserData = () => {
                 type="submit"
                 className="flex w-[160px] h-[40px] justify-center rounded-md bg-[#F8924F99] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#F8924F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
               >
-                Registrarse
+                {loading ? "Loading" : "Registrarse"}
               </button>
             </div>
           </form>
