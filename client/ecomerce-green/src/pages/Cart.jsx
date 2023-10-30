@@ -1,12 +1,27 @@
-
-import React, { Fragment, useState, useEffect, useRef } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import CartProduct from "../components/CartProduct";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import "../styles/Cart.css";
+import { useSelector } from "react-redux";
 
 const Cart = ({ open, setOpen }) => {
+
+
+  const { cart } = useSelector((state) => state.cart);
+
+const GetTotal = () =>{
+  let total = 0;
+  cart.map((item) => {
+     total += item.quantity * item.price;
+  }, 0);
+  return total;
+} 
+console.log(GetTotal());
+
+
+  
   return (
     <Transition.Root show={open} as={Fragment} className="cart">
       <Dialog as="div" className="relative z-10 " onClose={setOpen}>
@@ -61,7 +76,7 @@ const Cart = ({ open, setOpen }) => {
                   </Transition.Child>
                   <div className="flex h-full flex-col overflow-y-scroll cart py-6 shadow-xl">
                     <div className="px-4 sm:px-6">
-                      <Dialog.Title className="text-base font-semibold leading-6 ">
+                      <Dialog.Title className="text-base font-semibold leading-6 text-white">
                         Carrito de compras
                       </Dialog.Title>
                     </div>
@@ -71,12 +86,16 @@ const Cart = ({ open, setOpen }) => {
                         <p>Producto</p>
                         <p>Subtotal</p>
                       </div>
-                      <CartProduct />
+                      {
+                        cart.length === 0 ? <h2 className="empty-cart text-white normal-case text-sm font-medium text-center">El carrito se encuentra vacio</h2> : <CartProduct/>
+                      }
+                     
+
                       <ul className="cart-total inline-flex place-content-between ">
                         <li>Total</li>
-                        <li>123678</li>
+                        <li>${Number(GetTotal())}</li>
                       </ul>
-                      <Link to="/checkout">
+                      <Link to="/sumary">
                         <button className="shopBtn">Finalizar Compra</button>
                       </Link>
                     </div>
