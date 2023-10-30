@@ -95,7 +95,7 @@ console.log(GetTotal());
                         <li>Total</li>
                         <li>${Number(GetTotal())}</li>
                       </ul>
-                      <Link to="/sumary">
+                      <Link to="/checkout">
                         <button className="shopBtn">Finalizar Compra</button>
                       </Link>
                     </div>
