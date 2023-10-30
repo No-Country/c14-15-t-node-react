@@ -16,7 +16,7 @@
    overflow: hidden;   
 }
 
-.cart-title, .cart-subtitle, .cart-total, .cart-product{
+.cart-title, .cart-subtitle, .cart-total, .cart-product, .empty-cart{
     border-bottom: 1px solid #fff;
     padding-bottom: 10px;
 }
