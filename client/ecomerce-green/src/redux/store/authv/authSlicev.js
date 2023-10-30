@@ -88,7 +88,7 @@ const authSliceV = createSlice({
   },
 });
 
-export const { onChecking, onLogin, onLogout, clearErrorMessage , reset} =
+export const { reset} =
   authSliceV.actions;
 
 export default authSliceV.reducer;
