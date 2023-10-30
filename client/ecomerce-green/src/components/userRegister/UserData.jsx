@@ -124,22 +124,27 @@ if(error){
             <div className="p-2">
               <div className="w-56 left-8 relative group">
                 <input
+                  id="miFirstname"
                   name="firstname"
                   type="text"
                   required
                   className={` ${
                     errors.firstname ? "border-error" : "form"
-                  } border-b-3 w-full text-white   text-sm peer outline-none`}
+
+                  } border-b-3 w-full text-white  border-b-2 text-sm peer outline-none`}
+
+       
+
                   autoComplete="firstname"
                   {...register("firstname", { required: true })}
                   aria-invalid={errors.firstname ? "true" : "false"}
                 />
 
                 <label
-                  htmlFor="firstname"
-                  className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+                  htmlFor="miFirstname"
+                  className=" title transform cursor-pointer transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
                 >
-                  Name
+                  Nombre
                 </label>
               </div>
               {errors.firstname && (
@@ -164,20 +169,24 @@ if(error){
             <div className="p-2">
               <div className="w-56 left-8 relative group">
                 <input
+                  id="miLastname"
                   name="lastname"
                   type="text"
                   autoComplete="lastname"
                   required
                   className={` ${
                     errors.lastname ? "border-error" : "form"
-                  } border-b-3 w-full text-white  text-sm peer outline-none`}
+
+                  } border-b-3 w-full text-white border-b-2 text-sm peer outline-none`}
+
+
                   {...register("lastname", { required: true })}
                   aria-invalid={errors.lastname ? "true" : "false"}
                 />
 
                 <label
-                  htmlFor="lastname"
-                  className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+                  htmlFor="miLastname"
+                  className=" title cursor-pointer transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
                 >
                   Apellido
                 </label>
@@ -204,13 +213,15 @@ if(error){
             <div className="p-2">
               <div className="w-56 left-8 relative group">
                 <input
+                  id="miEmail"
                   name="email"
                   type="text"
                   required
                   autoComplete="email"
                   className={` ${
                     errors.email ? "border-error" : "form"
-                  } border-b-3 w-full text-white  text-sm peer outline-none`}
+                  } border-b-3 w-full text-white border-b-2  text-sm peer outline-none`}
+
                   {...register("email", {
                     required: "Este campo es requerido",
                     validate: validations.isEmail,
@@ -218,8 +229,8 @@ if(error){
                 />
 
                 <label
-                  htmlFor="email"
-                  className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+                  htmlFor="miEmail"
+                  className=" title cursor-pointer transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
                 >
                   Email
                 </label>
@@ -263,7 +274,10 @@ if(error){
                   required
                   className={` ${
                     errors.password ? "border-error" : "form"
-                  } border-b-3 w-full text-white  text-sm peer outline-none`}
+
+                  } border-b-3 w-full text-white border-b-2  text-sm peer outline-none`}
+
+
                   {...register("password", {
                     required: "Este campo es requerido",
                     minLength: { value: 6, message: "Contraseña no valida" },
@@ -279,7 +293,7 @@ if(error){
 
                 <label
                   htmlFor="password"
-                  className=" title transform transition-all text-white  absolute pb-2 top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+                  className=" title cursor-pointer transform transition-all text-white  absolute pb-2 top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
                 >
                   Contraseña
                 </label>
@@ -323,7 +337,9 @@ if(error){
                   autoComplete="current-password_repeat"
                   className={` ${
                     errors.password_repeat ? "border-error" : "form"
-                  } border-b-3 w-full text-white  text-sm peer outline-none`}
+
+                  } border-b-3 w-full text-white border-b-2 text-sm peer outline-none`}
+
                   {...register("password_repeat", {
                     required: "Este campo es requerido",
                     minLength: { value: 6, message: "Contraseña invalida" },
@@ -339,7 +355,7 @@ if(error){
 
                 <label
                   htmlFor="password_repeat"
-                  className=" title transform transition-all text-white  absolute pb-2 top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+                  className=" title cursor-pointer transform transition-all text-white  absolute pb-2 top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
                 >
                   Repetir contraseña
                 </label>

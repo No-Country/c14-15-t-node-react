@@ -15,10 +15,7 @@
     background: linear-gradient(252deg, rgba(52, 150, 107, 0.95) 1.76%, rgba(53, 86, 71, 0.95) 87.66%);
     border-radius: 8px;
 }
-.form{
-    background:none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.75);  
-}
+
 .border-error{
     background:none;
     border-bottom: 2px solid rgba(219, 37, 37, 0.75);
