@@ -99,7 +99,7 @@ const UserData = () => {
             alt="Your Company"
           />
 
-          <h2 className="mt-1 text-center text-1xl  leading-9 tracking-tight text-white-200">
+          <h2 className="mt-1 text-white  text-center text-1xl  leading-9 tracking-tight text-white-200">
             GreenIX
           </h2>
           <p className="text-center mt-1 title">Registra tus datos</p>

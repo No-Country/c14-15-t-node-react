@@ -77,7 +77,7 @@ export const Login = () => {
                 alt="Your Company"
               />
 
-              <h2 className="mt-1 text-center text-1xl  leading-9 tracking-tight text-white-200">
+              <h2 className="mt-1 text-center text-white text-1xl  leading-9 tracking-tight text-white-200">
                 GreenIX
               </h2>
               <p className="text-center mt-1 title">Ingresa tus datos</p>
@@ -104,7 +104,7 @@ export const Login = () => {
                       required
                       className={`${
                         errors.email ? "border-error" : "form"
-                      }  w-full text-white  text-sm peer  outline-none`}
+                      }  w-full text-white z-[5] text-sm peer  outline-none`}
                       {...register("email", {
                         required: "Este campo es requerido",
                         validate: validations.isEmail,
@@ -113,7 +113,7 @@ export const Login = () => {
 
                     <label
                       htmlFor="email"
-                      className=" title transform transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
+                      className=" title transform z-[1] transition-all text-white absolute pb-2 size-14px  top-0 left-0 h-full flex items-center  text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0 shadow-sm  sm:text-sm sm:leading-6"
                     >
                       Email
                     </label>

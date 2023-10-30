@@ -1,6 +1,6 @@
 .container-sumary{
     width: 100%;
-    min-height: 100vh;
+    min-height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,9 +11,9 @@
 .section-1-sumary{
 
     width: 40%;
-    min-height: 80vh;
-    padding: 9rem 2rem;
-    border-radius: 0px 5rem 5rem 0px;
+    min-height: 50vh;
+    padding: 7rem 2rem 2rem;
+    border-radius: 10px 5rem ;
     background-color: #307c5a;
     color: aliceblue;
     display: flex;
@@ -22,10 +22,10 @@
 }
 .section-2-sumary{
     width: 60%;
-    min-height: 80vh;
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 1rem 3rem;
 }
 .titulo-tabla{
@@ -57,12 +57,15 @@ h2{
     text-align: center;
     margin-bottom: 1rem;
     color: #FFF;
+   
 }
 .continer-data-user{
     display: flex;
     justify-content: space-between;
+
 }
 .ul-datos{
+  
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -95,3 +98,105 @@ padding: .5rem 0rem;
     background-color: #307c5a38;
     margin: .5rem 0rem;
 }
+.w-p{
+    width: 33%;
+    display: flex;
+   
+    text-align: center;
+    align-items: center;
+
+}
+.w-p-cantidad{
+    display: flex;
+    width: 20%;
+    text-align: center;
+}
+.w-p-precio{
+    width: 20%;
+    display: flex;
+}
+
+
+
+
+.j-c-center{
+    justify-content: center;
+}
+.j-c-end{
+    justify-content: flex-end;
+}
+
+.h2-section{
+    font-size: 1.5rem;
+}
+
+@media (max-width: 1920px) {
+    .container-sumary{
+        display: flex;
+        width: 80%;
+        margin-left: 10%;
+     
+    
+    }
+    
+
+  }
+
+
+@media (max-width: 1090px) {
+
+    .container-sumary{
+        display: flex;
+        width: 100%;
+        margin-left: 0%;
+     
+    
+    }
+    .section-1-sumary{
+
+        width:30%;
+    
+    }
+    .text-titulo{
+       width: 90%;
+    }
+
+    .w-p{
+        width: 60%;
+        display: flex;
+       
+        text-align: center;
+        align-items: center;
+    
+    }
+
+  }
+
+  @media (max-width: 790px) {
+    .section-1-sumary{
+
+      display: none;
+    
+    }
+
+    .section-2-sumary{
+        width: 90%;
+        padding: 10px;
+    }
+
+    .text-titulo{
+        width: 100%;
+     }
+
+    .w-p{
+        width: 60%;
+        display: flex;
+       
+        text-align: center;
+        align-items: center;
+    
+    }
+   
+
+  }
+
