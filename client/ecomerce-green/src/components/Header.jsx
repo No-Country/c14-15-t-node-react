@@ -17,8 +17,6 @@ import { logout, verifyJwt } from "../redux/store/authv/authActions";
 const Header = () => {
   const { cart } = useSelector((state) => state.cart);
 
-  // console.log(cart)
-
   const { userToken, user } = useSelector((state) => state.authv);
    console.log("token en home", userToken);
    console.log("user en home", user);

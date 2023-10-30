@@ -6,7 +6,7 @@ import {
   removeFromCart,
 } from "../redux/store/cart/cartSlice";
 import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import "../styles/cart.css";
+import "../styles/Cart.css";
 
 const CartProduct = () => {
   const dispatch = useDispatch();
