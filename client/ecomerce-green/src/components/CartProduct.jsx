@@ -22,7 +22,7 @@ const CartProduct = () => {
       <img
         src={item.images.cover}
         alt=""
-        className="object-cover w-24 rounded-l"
+        className="object-cover w-24 h-24 rounded-l"
       />
       <div className="cart-details ">
         <div className="product-details">
