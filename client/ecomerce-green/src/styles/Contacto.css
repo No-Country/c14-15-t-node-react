@@ -1,6 +1,6 @@
 
 .container-contacto{
-    background-image: url(../../../public/img-contacto.png);
+    background-image: url(/img-contacto.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -22,11 +22,12 @@
     border-bottom: 2px solid rgba(219, 37, 37, 0.75);
 }
 
-.from{
+.form{
     display: flex;
     align-items: center;
     gap: 40px;
     flex-wrap: wrap;
+    background: none;
 }
 
 .title{

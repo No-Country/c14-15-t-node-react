@@ -13,7 +13,7 @@ export default {
        
       },
       animation: {
-        "infinite-scroll": "infinite-scroll 25s linear infinite backwards",
+        "infinite-scroll": "infinite-scroll 20s linear infinite backwards",
       },
       keyframes: {
         "infinite-scroll": {
