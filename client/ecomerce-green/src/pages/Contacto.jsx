@@ -44,13 +44,7 @@ export const Contacto = () => {
               email: " ",
               select: " ",
               message: " ",
-
-
-
-
             })
-  
-        
 
         } else {
           setMessage('Error al enviar el mensaje');
@@ -63,12 +57,6 @@ export const Contacto = () => {
 
     }
   };
-
-
-
-
-
-
 
   // const {
   //   register,
@@ -111,9 +99,6 @@ export const Contacto = () => {
 
   //   setFormMessage(result.errors.map((error) => error.message).join(' '));
   // };
-
-
-
 
   return (
     <MainLayout>
