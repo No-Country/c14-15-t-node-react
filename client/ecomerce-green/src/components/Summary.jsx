@@ -11,7 +11,7 @@ const Summary = ({ orderValues, editable }) => {
   useEffect(() => {
     dispatch(updateTotal());
   }, [cart]);
-  updateTotal;
+
   const summaryValues = orderValues ? orderValues : { products: cart, total };
 
   console.log("orden summary", summaryValues);

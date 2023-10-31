@@ -18,8 +18,7 @@ const Header = () => {
   const { cart } = useSelector((state) => state.cart);
 
   const { userToken, user } = useSelector((state) => state.authv);
-   console.log("token en home", userToken);
-   console.log("user en home", user);
+
   const dispatch = useDispatch();
 // console.log(userToken)
   const [open, setOpen] = useState(false);

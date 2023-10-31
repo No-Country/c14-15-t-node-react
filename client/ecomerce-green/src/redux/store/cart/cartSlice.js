@@ -88,7 +88,7 @@ const cartSlice = createSlice({
     },
       // Nueva acción para actualizar el total
       updateTotal: (state) => {
-        state.total = calculateTotal(state.cart);
+        state.total = Math.round(calculateTotal(state.cart));
       },
   
   },

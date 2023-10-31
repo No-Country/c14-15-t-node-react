@@ -1,7 +1,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 const FormSumary = ({ summaryValues }) => {
-  console.log("desde el formulario", summaryValues);
+
+ const products = summaryValues.products.map(product => {
+  return {
+    prodproductId: product.productId,
+    quantity: product.quantity,
+    name: product.name,
+    price: product.price,
+    subtotal: product.subtotal
+  };
+
+
+});
+const total = summaryValues.total
+const total_products= products.reduce((prev, current) => current.quantity + prev, 0);
   const {
     register,
     handleSubmit,
@@ -10,16 +23,23 @@ const FormSumary = ({ summaryValues }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("data", data);
+
+    const formData ={
+      ...data,
+      total_products,
+      products,
+      total
+    }
+    console.log("formData", formData);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} action="">
-      <div class="md:flex md:items-center mb-6">
-        <div class="md:w-1/3">
+      <div className="md:flex md:items-center mb-6">
+        <div className="md:w-1/3">
           <label
-            class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
-            for="firstname"
+            className="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
+            htmlFor="firstname"
           >
             Nombre
           </label>
@@ -37,11 +57,11 @@ const FormSumary = ({ summaryValues }) => {
           />
         </div>
       </div>
-      <div class="md:flex md:items-center mb-6">
-        <div class="md:w-1/3">
+      <div className="md:flex md:items-center mb-6">
+        <div className="md:w-1/3">
           <label
-            class="block text-gray-500 font-bold  md:text-left mb-1 md:mb-0 pr-4"
-            for="inline-full-name"
+            className="block text-gray-500 font-bold  md:text-left mb-1 md:mb-0 pr-4"
+            htmlFor="inline-full-name"
           >
             Apellido
           </label>
@@ -60,11 +80,11 @@ const FormSumary = ({ summaryValues }) => {
         </div>
       </div>
       <hr className="hr-1" />
-      <div class="md:flex md:items-center mb-6">
-        <div class="md:w-1/3">
+      <div className="md:flex md:items-center mb-6">
+        <div className="md:w-1/3">
           <label
-            class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
-            for="inline-full-name"
+            className="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
+            htmlFor="inline-full-name"
           >
             Direccion
           </label>
@@ -82,11 +102,11 @@ const FormSumary = ({ summaryValues }) => {
           />
         </div>
       </div>
-      <div class="md:flex md:items-center mb-6">
-        <div class="md:w-1/3">
+      <div className="md:flex md:items-center mb-6">
+        <div className="md:w-1/3">
           <label
-            class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
-            for="inline-full-name"
+            className="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
+            htmlFor="inline-full-name"
           >
             Telefono
           </label>
@@ -103,7 +123,7 @@ const FormSumary = ({ summaryValues }) => {
           />
         </div>
       </div>
-      <div class="md:flex md:items-center">
+      <div className="md:flex md:items-center">
         <button type={"submit"} className="btn-sumary">
           Comprar
         </button>
