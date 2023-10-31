@@ -1,6 +1,6 @@
 const HeroStore = () => {
   return (
-    <section className="heroImgProducts">
+    <section className="heroImgProducts ">
       <div className="gradient"></div>{" "}
     </section>
   );
