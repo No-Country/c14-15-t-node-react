@@ -22,6 +22,7 @@ import { Contacto } from "../src/pages/Contacto";
 import CheckoutPage from "../src/pages/Checkout";
 import PageNotFound from "../src/pages/PageNotFound";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import  PageConstruccion  from "../src/pages/PageConstruccion";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,8 +39,9 @@ const router = createBrowserRouter(
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/404" element={<PageNotFound />} />
         <Route path="" element={<PrivateRoute />}>
-          <Route path="/checkout" element={<CheckoutPage />} />
-        </Route>
+            <Route path="/checkout" element={<CheckoutPage />} />
+          </Route>
+        <Route path="/construccion" element={<PageConstruccion />} />
       </Route>
     </>
   )
