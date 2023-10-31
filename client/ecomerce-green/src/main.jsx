@@ -36,10 +36,11 @@ const router = createBrowserRouter(
         <Route path="/products/:id" element={<Product />} />
         <Route path="/dinamic" element={<DynamicTitlePage />} />
         <Route path="/contacto" element={<Contacto />} />
-        <Route path="/404" element={<PageNotFound />} />
         <Route path="" element={<PrivateRoute />}>
           <Route path="/checkout" element={<CheckoutPage />} />
         </Route>
+        <Route path="/*" element={<PageNotFound />} />
+
       </Route>
     </>
   )
