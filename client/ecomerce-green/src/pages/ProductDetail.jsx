@@ -39,7 +39,7 @@ const Product = () => {
     <MainLayout>
       <HeroStore />
       {isEmptyObject(product) ? (
-    main
+ <Error404 />
       ) : (
         <main>
           <ProductSelected product={product} id={id} />
