@@ -86,7 +86,7 @@ console.log(category)
     }
     // return productsData
   };
-
+  // const brandUnics = [...new Set(productos.map(producto => producto))];
   const brandFilter = (string) => {
     if (string === "Motorola") {
       let Products = [...productsData3];
