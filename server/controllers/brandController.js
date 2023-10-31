@@ -4,8 +4,18 @@ const { brandValidator, brandPartialValidator } = require("../middlewares/brandV
 class brandController{
     // ------------------- create brand ---------------
     static async create(req, res){
-        const result = brandPartialValidator(req.body);
+        if (req.isAdmin === false) {
+            return res.status(401).json({
+              error: true,
+              message: "Permisos no valido",
+            });
+        }
         
+        const id = req.params.id;
+        const body = {id, ...req.body};
+        
+        const result = brandPartialValidator(body);
+                
         if(!result.success){
             return res.status(400).json({ 
                 error: true, 
@@ -23,7 +33,17 @@ class brandController{
     }
     // ------------------- update brand ---------------
     static async update(req, res){
-        const result = brandValidator(req.body);
+        if (req.isAdmin === false) {
+            return res.status(401).json({
+              error: true,
+              message: "Permisos no valido",
+            });
+        }
+        
+        const id = req.params.id;
+        const body = {id, ...req.body};
+        
+        const result = brandPartialValidator(body);
         
         if(!result.success){
             return res.status(400).json({ 
@@ -42,7 +62,17 @@ class brandController{
     }
     // ------------------- delete brand ---------------
     static async delete(req,res){
-        const result = brandPartialValidator(req.body);
+        if (req.isAdmin === false) {
+            return res.status(401).json({
+              error: true,
+              message: "Permisos no valido",
+            });
+        }
+        
+        const id = req.params.id;
+        const body = {id, ...req.body};
+        
+        const result = brandPartialValidator(body);
         
         if(!result.success){
             return res.status(400).json({ 
