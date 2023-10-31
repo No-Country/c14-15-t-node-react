@@ -5,21 +5,34 @@ import { useParams } from "react-router-dom";
 import HeroStore from "../components/HeroStore";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/store/productid/productAction";
+import PageNotFound from "./PageNotFound";
 
 const Product = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
-  const {id}=useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getProduct(id)); 
+    dispatch(getProduct(id));
   }, [dispatch, id]);
+const isEmptyObject = (obj) => {
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   return (
     <MainLayout>
-    <HeroStore />
+      <HeroStore />
       <main>
-        <ProductSelected product={product} id={id}/> 
+        {isEmptyObject(product) ? (
+          <PageNotFound />
+        ) : (
+          <ProductSelected product={product} id={id} />
+        )}
       </main>
     </MainLayout>
   );

@@ -1,20 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
+
 const FormSumary = ({ summaryValues }) => {
-
- const products = summaryValues.products.map(product => {
-  return {
-    prodproductId: product.productId,
-    quantity: product.quantity,
-    name: product.name,
-    price: product.price,
-    subtotal: product.subtotal
-  };
-
-
-});
-const total = summaryValues.total
-const total_products= products.reduce((prev, current) => current.quantity + prev, 0);
+  const navigate = useNavigate()
+  const products = summaryValues.products.map((product) => {
+    return {
+      prodproductId: product.productId,
+      quantity: product.quantity,
+      name: product.name,
+      price: product.price,
+      subtotal: product.subtotal,
+    };
+  });
+  const total = summaryValues.total;
+  const total_products = products.reduce(
+    (prev, current) => current.quantity + prev,
+    0
+  );
   const {
     register,
     handleSubmit,
@@ -23,14 +27,15 @@ const total_products= products.reduce((prev, current) => current.quantity + prev
   } = useForm();
 
   const onSubmit = (data) => {
-
-    const formData ={
+    const formData = {
       ...data,
       total_products,
       products,
-      total
-    }
+      total,
+    };
     console.log("formData", formData);
+
+    navigate("/orders")
   };
 
   return (
@@ -51,9 +56,8 @@ const total_products= products.reduce((prev, current) => current.quantity + prev
             id="firstname"
             type="text"
             {...register("firstname", {
-                required: "Este campo es requerido",
-              
-              })}
+              required: "Este campo es requerido",
+            })}
           />
         </div>
       </div>
@@ -73,9 +77,8 @@ const total_products= products.reduce((prev, current) => current.quantity + prev
             id="inline-full-name"
             type="text"
             {...register("lastname", {
-                required: "Este campo es requerido",
-              
-              })}
+              required: "Este campo es requerido",
+            })}
           />
         </div>
       </div>
@@ -96,9 +99,8 @@ const total_products= products.reduce((prev, current) => current.quantity + prev
             id="inline-full-name"
             type="text"
             {...register("address", {
-                required: "Este campo es requerido",
-                
-              })}
+              required: "Este campo es requerido",
+            })}
           />
         </div>
       </div>
@@ -117,9 +119,8 @@ const total_products= products.reduce((prev, current) => current.quantity + prev
             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#051C12]"
             type="text"
             {...register("phone", {
-                required: "Este campo es requerido",
-                
-              })}
+              required: "Este campo es requerido",
+            })}
           />
         </div>
       </div>

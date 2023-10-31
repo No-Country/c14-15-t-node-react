@@ -3,18 +3,18 @@ import MainLayout from "../components/MainLayout";
 import HeroStore from "../components/HeroStore";
 import ProductFilters from "../components/ProductFilters";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../redux/store/product/productAction";
 import Loader from "../components/Loader";
 import ProductList from "../components/ProductList";
 import { fetchCategory } from "../redux/store/productFilter/productFilterAction";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Breadcrums from "../components/Breadcrums";
 
-const Products = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const { products, isLoading } = useSelector((state) => state.products);
-  const { productsfilter } = useSelector((state) => state.productsfilter);
+const Category = () => {
+    const dispatch = useDispatch();
+   
+    const { productsfilter, isLoading } = useSelector((state) => state.productsfilter);
+    const { category } = useParams();
   const [productsData, setProductsData] = useState([]);
   const [productsData1, setProductsData1] = useState([]);
   const [productsData2, setProductsData2] = useState([]);
@@ -25,45 +25,42 @@ const Products = () => {
   const [energyLabelData2, setenergyLabelData2] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
-
+console.log(category)
   useEffect(() => {
-    dispatch(fetchProducts(currentPage));
+    dispatch(fetchCategory(category,currentPage));
   }, [dispatch, currentPage]);
-
-  useEffect(() => {
-    setProductsData(products.products); // Actualizar el estado cuando cambian los productos
-  }, [products.products]);
 
   useEffect(() => {
     if (productsfilter.products && productsfilter.products.length > 0) {
       setProductsData(productsfilter.products);
     }
   }, [productsfilter.products]);
+  
 
   useEffect(() => {
-    setProductsData1(products.products);
-  }, [products.products]);
+    setProductsData1(productsfilter.products);
+  }, [productsfilter.products]);
   useEffect(() => {
-    setProductsData2(products.products);
-  }, [products.products]);
+    setProductsData2(productsfilter.products);
+  }, [productsfilter.products]);
   useEffect(() => {
-    setProductsData3(products.products);
-  }, [products.products]);
+    setProductsData3(productsfilter.products);
+  }, [productsfilter.products]);
   useEffect(() => {
-    setProductsData4(products.products);
-  }, [products.products]);
+    setProductsData4(productsfilter.products);
+  }, [productsfilter.products]);
 
   // ...............................................................................................................
 
   useEffect(() => {
-    setenergyLabelData(products.products);
-  }, [products.products]);
+    setenergyLabelData(productsfilter.products);
+  }, [productsfilter.products]);
   useEffect(() => {
-    setenergyLabelData1(products.products);
-  }, [products.products]);
+    setenergyLabelData1(productsfilter.products);
+  }, [productsfilter.products]);
   useEffect(() => {
-    setenergyLabelData2(products.products);
-  }, [products.products]);
+    setenergyLabelData2(productsfilter.products);
+  }, [productsfilter.products]);
 
   const orderProduct = (string) => {
     if (string === "lowerPrice") {
@@ -125,14 +122,15 @@ const Products = () => {
     }
   };
 
-  // .....................................................................................................................................................................................
+//   // .....................................................................................................................................................................................
 
   const categoryFilter = (string) => {
-    console.log("categoria elegida", string);
-    // Lalamarla
+    console.log("categoria elegida",string)
+    navigate("/products/category/:name")
     // dispatch(fetchCategory(string, currentPage));
-    navigate(`/category/${string}`);
-  };
+
+    }
+  
 
   // .....................................................................................................................................................................................
 
@@ -177,34 +175,33 @@ const Products = () => {
     setCurrentPage(newPage);
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
+
 
   return (
     <MainLayout>
       <main>
-        <HeroStore />
+          <HeroStore />
+          <Breadcrums category={category} />
         <ProductFilters
           orderProduct={orderProduct}
           brandFilter={brandFilter}
           categoryFilter={categoryFilter}
           energyLabelFilter={energyLabelFilter}
-        />
+        /> 
 
         {isLoading ? (
           <Loader />
         ) : (
           <ProductList
-            totalPages={products.totalPages}
+            totalPages={productsfilter.totalPages}
             onPageChange={onPageChange}
-            page={products.page}
+            page={productsfilter.page}
             productsData={productsData}
           />
-        )}
-      </main>
+        )} 
+       </main>
     </MainLayout>
   );
 };
 
-export default Products;
+export default Category
