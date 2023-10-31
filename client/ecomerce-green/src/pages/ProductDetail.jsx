@@ -6,8 +6,10 @@ import HeroStore from "../components/HeroStore";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/store/productid/productAction";
 import PageNotFound from "./PageNotFound";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
+  const history = useNavigate();
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
   const { id } = useParams();
@@ -15,25 +17,30 @@ const Product = () => {
   useEffect(() => {
     dispatch(getProduct(id));
   }, [dispatch, id]);
-const isEmptyObject = (obj) => {
+
+  console.log("este es la data", product);
+  const isEmptyObject = (obj) => {
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
         return false;
       }
     }
     return true;
-  }
+  };
 
+  const goTo404 = () => {
+    history("/*");
+  };
   return (
     <MainLayout>
       <HeroStore />
-      <main>
-        {isEmptyObject(product) ? (
-          <PageNotFound />
-        ) : (
+      {isEmptyObject(product) ? (
+        goTo404()
+      ) : (
+        <main>
           <ProductSelected product={product} id={id} />
-        )}
-      </main>
+        </main>
+      )}
     </MainLayout>
   );
 };

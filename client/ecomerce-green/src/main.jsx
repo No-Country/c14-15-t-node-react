@@ -45,6 +45,8 @@ const router = createBrowserRouter(
         <Route path="" element={<PrivateRoute />}>
           <Route path="/checkout" element={<CheckoutPage />} />
         </Route>
+        <Route path="/*" element={<PageNotFound />} />
+
       </Route>
     </>
   )
