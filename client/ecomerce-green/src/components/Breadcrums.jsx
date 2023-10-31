@@ -18,7 +18,7 @@ const Breadcrums = ({ category }) => {
           <span className="mx-2 text-neutral-500 dark:text-neutral-400"></span>
         </li>
         <li>
-          <Link to={"/products"}>
+          <Link to={`/category/${category}`}>
             Categoria &gt;
           </Link>
           
