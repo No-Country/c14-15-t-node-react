@@ -55,9 +55,11 @@ class categoryModel {
         }
       
         // Update the category with the new data
-        const updatedCategory = await Category.findByIdAndUpdate(category._id, body, {
-          new: true,
-        });
+        const updatedCategory = await Category.findByIdAndUpdate(
+          category._id, 
+          {$set: {name: body.name}}, 
+          { new: true}
+        );
             
         return {
           error: false,
@@ -69,7 +71,7 @@ class categoryModel {
         const { id } = body;
       
         const category = await Category.findOne({ id });
-      
+
         if (!category) {
           return {
             error: true,

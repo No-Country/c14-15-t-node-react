@@ -1,7 +1,7 @@
 const z = require("zod");
 
 const categorySchema = z.object({
-    id: z.string().uuid().optional().readonly(),
+    id: z.string().optional().readonly(),
     name: z
         .string({
         invalid_type_error: "El nombre debe ser letras",

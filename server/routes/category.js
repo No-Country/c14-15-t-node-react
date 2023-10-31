@@ -1,8 +1,21 @@
 const { Router } = require("express");
 
 const categoryController = require("../controllers/categoryController");
+const userExposed = require("../helper/userExposed");
 
 const categoryRoutes = Router();
+
+/**
+ * @swagger
+ * components:
+ *  securitySchemes:
+ *    bearerAuth:
+ *      type: http
+ *      scheme: bearer
+ *      bearerFormat: JWT
+ *
+ */
+
 /**
  * @swagger
  *  components:
@@ -27,6 +40,8 @@ const categoryRoutes = Router();
  * @swagger
  * /api/v1/categories/create:
  *  post:
+ *    security:
+ *      - bearerAuth: []
  *    summary: Create category
  *    tags: [Categories]
  *    requestBody:
@@ -42,7 +57,7 @@ const categoryRoutes = Router();
  *      409:
  *        description: Some of the parameters are not correct
  */
-categoryRoutes.post("/create", categoryController.create);
+categoryRoutes.post("/create", userExposed, categoryController.create);
 
 /**
  * @swagger
@@ -68,6 +83,8 @@ categoryRoutes.post("/create", categoryController.create);
  *  patch:
  *    summary: Edit category
  *    tags: [Categories]
+ *    security:
+ *      - bearerAuth: []
  *    requestBody:
  *      required: true
  *      content:
@@ -82,7 +99,7 @@ categoryRoutes.post("/create", categoryController.create);
  *        description: Some of the parameters are not correct
  */
 
-categoryRoutes.patch("/edit", categoryController.update);
+categoryRoutes.patch("/edit", userExposed, categoryController.update);
 
 /**
  * @swagger
@@ -100,40 +117,33 @@ categoryRoutes.patch("/edit", categoryController.update);
  */
 categoryRoutes.get("/getAll", categoryController.getAll);
 
-/**
- * @swagger
- *  components:
- *    schemas:
- *      CategoryDelete:
- *        type: object
- *        properties:
- *          id:
- *            type: string
- *            example: categoryId
- *        required:
- *          - id
- */
 
 /**
  * @swagger
- * /api/v1/categories/delete:
- *  delete:
- *    summary: Delete category
- *    tags: [Categories]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            $ref: '#/components/schemas/CategoryDelete'
- *    responses:
- *      201:
- *        description: Response error false and data
- *      409:
- *        description: Some of the parameters are not correct
+ * /api/v1/categories/delete/{id}:
+ *   delete:
+ *     summary: Delete category
+ *     tags: [Categories]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: params
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Category deleted successfully
+ *       400:
+ *         description: Invalid request format or missing parameters
+ *       404:
+ *         description: Category not found
  */
 
-categoryRoutes.delete("/delete", categoryController.delete);
+categoryRoutes.delete(
+    "/delete/:id",
+    userExposed,
+    categoryController.delete
+);
+
 
 module.exports = categoryRoutes;
