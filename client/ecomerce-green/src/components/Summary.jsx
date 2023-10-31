@@ -3,17 +3,19 @@ import "../styles/sumary.css";
 import SumaryImg from "../assets/sumaryImg.png";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTotal } from "../redux/store/cart/cartSlice";
+import FormSumary from "./summary/FormSumary";
 
-const Summary = () => {
+const Summary = ({ orderValues, editable }) => {
   const dispatch = useDispatch();
   const { cart, total } = useSelector((state) => state.cart);
   useEffect(() => {
     dispatch(updateTotal());
   }, [cart]);
   updateTotal;
+  const summaryValues = orderValues ? orderValues : { products: cart, total };
 
-  console.log(cart);
-  console.log(total);
+  console.log("orden summary", summaryValues);
+  console.log(editable);
   return (
     <div className="container-sumary">
       <section className="section-1-sumary ">
@@ -52,42 +54,47 @@ const Summary = () => {
         <section>
           <h2 className="h2-section mt-7">Datos comprador</h2>
           <hr className="hr-1" />
-          <div className="continer-data-user">
-            <ul className="ul-datos">
-              <li className="p-top-boton">Nombre</li>
-              <li className="p-top-boton">Apellido</li>
-              <li className="p-top-boton">Email</li>
-            </ul>
+          {editable ? (
+          <FormSumary summaryValues={summaryValues}/>
+          ) : (
+            <>
+              <div className="continer-data-user">
+                <ul className="ul-datos">
+                  <li className="p-top-boton">Nombre</li>
+                  <li className="p-top-boton">Apellido</li>
+                  <li className="p-top-boton">Email</li>
+                </ul>
 
-            <ul className="ul-datos">
-              <li className="li-datos">
-                <strong>Valentina</strong>
-              </li>
-              <li className="li-datos">
-                <strong>Ysis</strong>
-              </li>
-              <li className="li-datos">
-                <strong>Lourdes.carolina@gamil.com</strong>
-              </li>
-            </ul>
-          </div>
-          <hr className="hr-1" />
-          <div className="continer-data-user">
-            <ul className="ul-datos">
-              <li className="p-top-boton">Dirección</li>
-              <li className="p-top-boton">Documento de identidad</li>
-              <li className="p-top-boton">Teléfono</li>
-            </ul>
-            <ul className="ul-datos">
-              <li className="li-datos">Calle 1568</li>
-              <hr className="hr-2" />
-              <li className="li-datos">30851469</li>
-              <hr className="hr-2" />
-              <li className="li-datos">+5491166558899</li>
-              <hr className="hr-2" />
-            </ul>
-          </div>
-          <button className="btn-sumary">Comprar</button>
+                <ul className="ul-datos">
+                  <li className="li-datos">
+                    <strong>Valentina</strong>
+                  </li>
+                  <li className="li-datos">
+                    <strong>Ysis</strong>
+                  </li>
+                  <li className="li-datos">
+                    <strong>Lourdes.carolina@gamil.com</strong>
+                  </li>
+                </ul>
+              </div>
+              <hr className="hr-1" />
+              <div className="continer-data-user">
+                <ul className="ul-datos">
+                  <li className="p-top-boton">Dirección</li>
+                  <li className="p-top-boton">Documento de identidad</li>
+                  <li className="p-top-boton">Teléfono</li>
+                </ul>
+                <ul className="ul-datos">
+                  <li className="li-datos">Calle 1568</li>
+                  <hr className="hr-2" />
+                  <li className="li-datos">30851469</li>
+                  <hr className="hr-2" />
+                  <li className="li-datos">+5491166558899</li>
+                  <hr className="hr-2" />
+                </ul>
+              </div>
+            </>
+          )}
         </section>
       </section>
     </div>

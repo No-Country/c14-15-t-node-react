@@ -3,9 +3,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { greenIXApi } from "../../../axiosApi";
 
-
-
-
 export const registerUser = createAsyncThunk(
   "auth/register",
   async ({ firstname, lastname, email, password }, { rejectWithValue }) => {
@@ -26,10 +23,14 @@ export const registerUser = createAsyncThunk(
         config
       );
 
-      console.log(data.data.firstname);
-      console.log(data.data.token);
+      // store user's token in local storage
+      const user = {
+        firstname: data.data.firstname,
+        lastname: data.data.lastname,
+      };
       localStorage.setItem("userToken", data.data.token);
-      return data.data.token;
+      localStorage.setItem("user", JSON.stringify(user));
+      return data.data;
     } catch (error) {
       console.log("mensaje de error", error.response.data.data.message);
       // return custom error message from backend if present
@@ -61,15 +62,15 @@ export const userLogin = createAsyncThunk(
         config
       );
 
-
-   const decoded =  isValidToken( data.data.token)
-   console.log(decoded)
-  console.log("pasa por aqui")
       // store user's token in local storage
+      const user = {
+        firstname: data.data.firstname,
+        lastname: data.data.lastname,
+      };
       localStorage.setItem("userToken", data.data.token);
-   
+      localStorage.setItem("user", JSON.stringify(user));
 
-      return data;
+      return { userToken: data.data.token, user };
     } catch (error) {
       console.log("error", error.message);
       console.log("hay error", error.response.data.error);
@@ -109,8 +110,6 @@ export const verifyJwt = createAsyncThunk(
         config
       );
       console.log(data);
-      var decoded = jwt.verify(data, process.env.JWT_SECRET_SEED);
-      console.log(decoded); // bar
 
       // return await jwt.verifyJwt(userToken);
     } catch (error) {

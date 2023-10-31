@@ -4,6 +4,8 @@ import Marks from "../components/Marks";
 import MainLayout from "../components/MainLayout";
 
 const Home = () => {
+
+ 
   const images = [
     "/img/jks.png",
     "/img/longi.png",

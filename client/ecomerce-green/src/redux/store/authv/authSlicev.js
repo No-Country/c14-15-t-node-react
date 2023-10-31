@@ -50,13 +50,13 @@ const authSliceV = createSlice({
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
       })
-      .addCase(registerUser.fulfilled, (state) => {
+      .addCase(registerUser.fulfilled, (state , { payload }) => {
         state.loading = false;
         state.success = true;
-        state.userToken =  action.payload.userToken;
+        state.userToken =  payload;
         
       })
-      .addCase(registerUser.rejected, (state, { payload }) => {
+      .addCase(registerUser.rejected, (state) => {
         state.loading = false;
         state.error = null;
         state.userToken = null;
@@ -88,7 +88,7 @@ const authSliceV = createSlice({
   },
 });
 
-export const { onChecking, onLogin, onLogout, clearErrorMessage , reset} =
+export const { reset} =
   authSliceV.actions;
 
 export default authSliceV.reducer;
