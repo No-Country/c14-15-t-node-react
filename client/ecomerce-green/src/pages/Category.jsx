@@ -86,7 +86,11 @@ console.log(category)
     }
     // return productsData
   };
-  // const brandUnics = [...new Set(productos.map(producto => producto))];
+  const brandUnics = [...new Set(productsData.map(producto => producto.category.brand_name))];
+  const energyUnics = [...new Set(productsData.map(producto => producto.energy_efficiency))];
+
+  console.log("brand",brandUnics)
+  console.log("energy",energyUnics)
   const brandFilter = (string) => {
     if (string === "Motorola") {
       let Products = [...productsData3];
@@ -183,6 +187,8 @@ console.log(category)
           <HeroStore />
           <Breadcrums category={category} />
         <ProductFilters
+        brandUnics={brandUnics}
+        energyUnics={energyUnics}
           orderProduct={orderProduct}
           brandFilter={brandFilter}
           categoryFilter={categoryFilter}
