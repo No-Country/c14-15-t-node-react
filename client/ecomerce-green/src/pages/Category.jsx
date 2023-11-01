@@ -9,12 +9,21 @@ import { fetchCategory } from "../redux/store/productFilter/productFilterAction"
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Breadcrums from "../components/Breadcrums";
+import { AiOutlineSearch } from "react-icons/ai";
+import {
+   setSearchProduct 
+  } from "../redux/store/productFilter/productFilterSlice";
 
 const Category = () => {
-    const dispatch = useDispatch();
-   
-    const { productsfilter, isLoading } = useSelector((state) => state.productsfilter);
-    const { category } = useParams();
+  const dispatch = useDispatch();
+
+  const { productsfilter, 
+    isLoading ,
+    searchedProduct
+     } = useSelector(
+    (state) => state.productsfilter
+  );
+  const { category } = useParams();
   const [productsData, setProductsData] = useState([]);
   const [productsData1, setProductsData1] = useState([]);
   const [productsData2, setProductsData2] = useState([]);
@@ -25,9 +34,12 @@ const Category = () => {
   const [energyLabelData2, setenergyLabelData2] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
-console.log(category)
+
+
+
+  console.log(category);
   useEffect(() => {
-    dispatch(fetchCategory(category,currentPage));
+    dispatch(fetchCategory(category, currentPage));
   }, [dispatch, currentPage]);
 
   useEffect(() => {
@@ -35,7 +47,6 @@ console.log(category)
       setProductsData(productsfilter.products);
     }
   }, [productsfilter.products]);
-  
 
   useEffect(() => {
     setProductsData1(productsfilter.products);
@@ -61,7 +72,25 @@ console.log(category)
   useEffect(() => {
     setenergyLabelData2(productsfilter.products);
   }, [productsfilter.products]);
+  
+  // ...............................................................................................................
+  const handlerSearchProduct = (e) =>{
+    dispatch(setSearchProduct(e.target.value))
+    if (searchedProduct) {
+      const products = productsfilter.products?.filter((item) =>{
+      console.log("item",item.name.toLowerCase())
+      console.log("searc",searchedProduct.toLowerCase())
+       return item.name.toLowerCase().includes(searchedProduct.toLowerCase() )|| item.category.brand_name.toLowerCase().includes(searchedProduct.toLowerCase()  )
+     
+      }) 
+      console.log("busqueda",products)
+      setProductsData(products)
+   
+    } 
 
+   }
+  
+ // ...............................................................................................................
   const orderProduct = (string) => {
     if (string === "lowerPrice") {
       const sortedProducts = [...productsData]; // Clona el arreglo
@@ -86,11 +115,17 @@ console.log(category)
     }
     // return productsData
   };
-  const brandUnics = [...new Set(productsData.map(producto => producto.category.brand_name))];
-  const energyUnics = [...new Set(productsData.map(producto => producto.energy_efficiency))];
 
-  console.log("brand",brandUnics)
-  console.log("energy",energyUnics)
+  const brandUnics = [
+    ...new Set(productsData.map((producto) => producto.category.brand_name)),
+  ];
+  const energyUnics = [
+    ...new Set(productsData.map((producto) => producto.energy_efficiency)),
+  ];
+
+
+  console.log("brand", brandUnics);
+  console.log("energy", energyUnics);
   const brandFilter = (string) => {
     if (string === "Motorola") {
       let Products = [...productsData3];
@@ -126,15 +161,13 @@ console.log(category)
     }
   };
 
-//   // .....................................................................................................................................................................................
+  //   // .....................................................................................................................................................................................
 
   const categoryFilter = (string) => {
-    console.log("categoria elegida",string)
-    navigate("/products/category/:name")
+    console.log("categoria elegida", string);
+    navigate("/products/category/:name");
     // dispatch(fetchCategory(string, currentPage));
-
-    }
-  
+  };
 
   // .....................................................................................................................................................................................
 
@@ -179,22 +212,30 @@ console.log(category)
     setCurrentPage(newPage);
   };
 
-
-
   return (
     <MainLayout>
       <main>
-          <HeroStore />
-          <Breadcrums category={category} />
+        <HeroStore />
+        <Breadcrums category={category} />
         <ProductFilters
-        brandUnics={brandUnics}
-        energyUnics={energyUnics}
+          
+          brandUnics={brandUnics}
+          energyUnics={energyUnics}
           orderProduct={orderProduct}
           brandFilter={brandFilter}
           categoryFilter={categoryFilter}
           energyLabelFilter={energyLabelFilter}
-        /> 
-
+        />
+        <div className="mx-auto w-[15rem] flex g-2 items-center border rounded-xl h-10 px-3 mt-4 bg-slate-50">
+          <input
+           value={searchedProduct}
+           onChange={handlerSearchProduct}
+            className="border-none text-black bg-slate-50 focus:border-none active:border-none w-full"
+            placeholder="Buscador"
+            type="text"
+          />
+          <AiOutlineSearch className="text-gray-800" />
+        </div>
         {isLoading ? (
           <Loader />
         ) : (
@@ -204,10 +245,10 @@ console.log(category)
             page={productsfilter.page}
             productsData={productsData}
           />
-        )} 
-       </main>
+        )}
+      </main>
     </MainLayout>
   );
 };
 
-export default Category
+export default Category;

@@ -24,7 +24,7 @@ import PageNotFound from "../src/pages/PageNotFound";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import SumarryOrder from "./pages/orders/SumarryOrder";
 import Category from "../src/pages/Category";
-import Categoryv from "./pages/Categoryv";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(

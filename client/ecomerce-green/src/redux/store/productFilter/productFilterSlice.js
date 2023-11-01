@@ -10,7 +10,9 @@ const initialState = {
   isSuccess: false,
   isError: false,
   productsfilter: [],
-  product: {}
+  product: {},
+  searchedProduct: "",
+ 
 };
 
 
@@ -19,6 +21,12 @@ const initialState = {
 const productFilterSlice = createSlice({
   name: "productsfilter",
   initialState,
+  reducers:{
+    setSearchProduct: (state, action) => {
+      state.searchedProduct = action.payload;
+    },
+ 
+  },
   extraReducers: (builder) => {
     builder
  
@@ -38,5 +46,5 @@ const productFilterSlice = createSlice({
       ;
     },
   });
-
+  export const { setSearchProduct } = productFilterSlice.actions;
   export default productFilterSlice.reducer;
