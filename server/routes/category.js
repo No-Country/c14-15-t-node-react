@@ -1,8 +1,21 @@
 const { Router } = require("express");
 
 const categoryController = require("../controllers/categoryController");
+const userExposed = require("../helper/userExposed");
 
 const categoryRoutes = Router();
+
+/**
+ * @swagger
+ * components:
+ *  securitySchemes:
+ *    bearerAuth:
+ *      type: http
+ *      scheme: bearer
+ *      bearerFormat: JWT
+ *
+ */
+
 /**
  * @swagger
  *  components:
@@ -29,6 +42,8 @@ const categoryRoutes = Router();
  *  post:
  *    summary: Create category
  *    tags: [Categories]
+ *    security:
+ *      - bearerAuth: []
  *    requestBody:
  *      required: true
  *      content:
@@ -42,7 +57,7 @@ const categoryRoutes = Router();
  *      409:
  *        description: Some of the parameters are not correct
  */
-categoryRoutes.post("/create", categoryController.create);
+categoryRoutes.post("/create", userExposed, categoryController.create);
 
 /**
  * @swagger
@@ -68,6 +83,8 @@ categoryRoutes.post("/create", categoryController.create);
  *  patch:
  *    summary: Edit category
  *    tags: [Categories]
+ *    security:
+ *      - bearerAuth: []
  *    requestBody:
  *      required: true
  *      content:
@@ -82,7 +99,7 @@ categoryRoutes.post("/create", categoryController.create);
  *        description: Some of the parameters are not correct
  */
 
-categoryRoutes.patch("/edit", categoryController.update);
+categoryRoutes.patch("/edit", userExposed, categoryController.update);
 
 /**
  * @swagger
@@ -98,7 +115,7 @@ categoryRoutes.patch("/edit", categoryController.update);
  *      400:
  *        description: credentials are not valid
  */
-categoryRoutes.get("/getAll", categoryController.getAll);
+categoryRoutes.get("/getAll", userExposed, categoryController.getAll);
 
 /**
  * @swagger
@@ -120,6 +137,8 @@ categoryRoutes.get("/getAll", categoryController.getAll);
  *  delete:
  *    summary: Delete category
  *    tags: [Categories]
+ *    security:
+ *      - bearerAuth: []
  *    requestBody:
  *      required: true
  *      content:
@@ -134,6 +153,6 @@ categoryRoutes.get("/getAll", categoryController.getAll);
  *        description: Some of the parameters are not correct
  */
 
-categoryRoutes.delete("/delete", categoryController.delete);
+categoryRoutes.delete("/delete", userExposed, categoryController.delete);
 
 module.exports = categoryRoutes;
