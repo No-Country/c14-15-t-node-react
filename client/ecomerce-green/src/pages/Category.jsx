@@ -78,8 +78,7 @@ const Category = () => {
     dispatch(setSearchProduct(e.target.value))
     if (searchedProduct) {
       const products = productsfilter.products?.filter((item) =>{
-      console.log("item",item.name.toLowerCase())
-      console.log("searc",searchedProduct.toLowerCase())
+   
        return item.name.toLowerCase().includes(searchedProduct.toLowerCase() )|| item.category.brand_name.toLowerCase().includes(searchedProduct.toLowerCase()  )
      
       }) 
