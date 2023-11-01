@@ -4,8 +4,16 @@ const { categoryValidator, categoryPartialValidator } = require("../middlewares/
 class categoryController{
     // ------------------- create category ---------------
     static async create(req, res){
-        const result = categoryValidator(req.body);
+    
+        if (req.isAdmin === false) {
+            return res.status(401).json({
+              error: true,
+              message: "Permisos no valido",
+            });
+        }
         
+        const result = categoryValidator(req.body);
+
         if(!result.success){
             return res.status(400).json({
                 error: true, 
@@ -23,32 +31,44 @@ class categoryController{
     }
     // ------------------- update category -------------------
     static async update(req, res) {
-        try {
-            const result = categoryPartialValidator(req.body);
+        if (req.isAdmin === false) {
+            return res.status(401).json({
+              error: true,
+              message: "Permisos no valido",
+            });
+        }
+                
+        const result = categoryPartialValidator(req.body);
     
-            if (!result.success) {
-                return res.status(400).json({ 
-                    error: true, 
-                    data: JSON.parse(result.error.message) 
-                });
-            }
+        if (!result.success) {
+            return res.status(400).json({ 
+                error: true, 
+                data: JSON.parse(result.error.message) 
+            });
+        }
     
-            const updatedCategory = await CategoryModel.updateCategory(result.data);
+        const updatedCategory = await CategoryModel.updateCategory(result.data);
     
-            if (updatedCategory && !updatedCategory.error) {
-                return res.status(202).json(updatedCategory);
-            } else {
-                return res.status(400).json(updatedCategory);
-            }
-        } catch (error) {
-            return res.status(500).json({ error: true, message: 'Ocurrió un error' });
+        if (updatedCategory && !updatedCategory.error) {
+            return res.status(202).json(updatedCategory);
+        } else {
+            return res.status(400).json(updatedCategory);
         }
     }
     
     // ------------------- delete category -------------------
     static async delete(req, res) {
-        const validationResult = categoryPartialValidator(req.body);
-    
+        if (req.isAdmin === false) {
+            return res.status(401).json({
+              error: true,
+              message: "Permisos no valido",
+            });
+        }
+        
+        const id = req.params.id;
+        
+        const validationResult = categoryPartialValidator( {id} );
+       
         if (!validationResult.success) {
             return res.status(400).json({
                 error: true,

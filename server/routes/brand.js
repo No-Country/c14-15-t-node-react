@@ -1,8 +1,20 @@
 const { Router } = require("express");
 
 const brandController = require("../controllers/brandController");
+const userExposed = require("../helper/userExposed");
 
 const brandRoutes = Router();
+
+/**
+ * @swagger
+ * components:
+ *  securitySchemes:
+ *    bearerAuth:
+ *      type: http
+ *      scheme: bearer
+ *      bearerFormat: JWT
+ *
+ */
 
 /**
  * @swagger
@@ -11,23 +23,25 @@ const brandRoutes = Router();
  *      BrandCreate:
  *        type: object
  *        properties:
- *          id:
- *            type: string
- *            example: categoryId
  *          brand:
  *            type: string
  *            example: Samsung
  *        required:
- *          - id
  *          - brand
  */
 
 /**
  * @swagger
- * /api/v1/brands/create:
+ * /api/v1/brands/create/{id}:
  *  post:
+ *    security:
+ *      - bearerAuth: []
  *    summary: Create brand
  *    tags: [Brands]
+ *    parameters:
+ *      - name: id
+ *        in: params
+ *        required: true
  *    requestBody:
  *      required: true
  *      content:
@@ -42,7 +56,7 @@ const brandRoutes = Router();
  *        description: Some of the parameters are not correct
  */
 
-brandRoutes.post("/create", brandController.create);
+brandRoutes.post("/create/:id", userExposed, brandController.create);
 
 /**
  * @swagger
@@ -51,9 +65,6 @@ brandRoutes.post("/create", brandController.create);
  *      BrandEdit:
  *        type: object
  *        properties:
- *          id:
- *            type: string
- *            example: categoryId
  *          brand:
  *            type: string
  *            example: Samsung
@@ -61,17 +72,22 @@ brandRoutes.post("/create", brandController.create);
  *            type: string
  *            example: Nokia
  *        required:
- *          - id
  *          - brand
  *          - otherBrand
  */
 
 /**
  * @swagger
- * /api/v1/brands/edit:
+ * /api/v1/brands/edit/{id}:
  *  patch:
+ *    security:
+ *      - bearerAuth: []
  *    summary: Edit brand
  *    tags: [Brands]
+ *    parameters:
+ *      - name: id
+ *        in: params
+ *        required: true
  *    requestBody:
  *      required: true
  *      content:
@@ -86,7 +102,7 @@ brandRoutes.post("/create", brandController.create);
  *        description: Some of the parameters are not correct
  */
 
-brandRoutes.patch("/edit", brandController.update);
+brandRoutes.patch("/edit/:id", userExposed, brandController.update);
 
 /**
  * @swagger
@@ -95,22 +111,24 @@ brandRoutes.patch("/edit", brandController.update);
  *      BrandDelete:
  *        type: object
  *        properties:
- *          id:
- *            type: string
- *            example: categoryId
  *          brand:
  *            type: string
  *            example: Samsung
  *        required:
- *          - id
  *          - brand
  */
 /**
  * @swagger
- * /api/v1/brands/delete:
+ * /api/v1/brands/delete/{id}:
  *  delete:
+ *    security:
+ *      - bearerAuth: []
  *    summary: Delete brand
  *    tags: [Brands]
+ *    parameters:
+ *      - name: id
+ *        in: params
+ *        required: true
  *    requestBody:
  *      required: true
  *      content:
@@ -124,6 +142,6 @@ brandRoutes.patch("/edit", brandController.update);
  *      409:
  *        description: Some of the parameters are not correct
  */
-brandRoutes.delete("/delete", brandController.delete);
+brandRoutes.delete("/delete/:id", userExposed, brandController.delete);
 
 module.exports = brandRoutes;
