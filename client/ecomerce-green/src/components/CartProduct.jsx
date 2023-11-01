@@ -18,11 +18,11 @@ const CartProduct = () => {
   }
 
   return cart.map((item) => (
-    <div className="cart-product">
+    <div className="cart-product" key={item.productId}>
       <img
         src={item.images.cover}
         alt=""
-        className="object-cover w-24 rounded-l"
+        className="object-cover w-24 h-24 rounded-l"
       />
       <div className="cart-details ">
         <div className="product-details">

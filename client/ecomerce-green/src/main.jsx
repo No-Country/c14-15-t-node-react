@@ -22,9 +22,6 @@ import { Contacto } from "../src/pages/Contacto";
 import CheckoutPage from "../src/pages/orders/Checkout";
 import PageNotFound from "../src/pages/PageNotFound";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import SumarryOrder from "./pages/orders/SumarryOrder";
-import Category from "../src/pages/Category";
-
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,8 +42,6 @@ const router = createBrowserRouter(
         <Route path="" element={<PrivateRoute />}>
           <Route path="/checkout" element={<CheckoutPage />} />
         </Route>
-        <Route path="/*" element={<PageNotFound />} />
-
       </Route>
     </>
   )
