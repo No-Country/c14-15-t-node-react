@@ -1,10 +1,15 @@
 import React from "react";
 import MainLayout from "../components/MainLayout";
 import HeroStore from "../components/HeroStore";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Construccion.css";
 
 const PageConstruccion = () => {
+  const history= useNavigate();
+
+  const goToPreview=()=>{
+    history(-1);
+}
   return (
     <MainLayout>
       <main>
@@ -16,7 +21,7 @@ const PageConstruccion = () => {
           </div>
           <div className="m-3 flex flex-col md:flex-row">
             <Link to="/"><button className="bg-[#317D5B] construccion-btn">Home</button></Link>
-            <Link to=""><button className="bg-[#F8924F] construccion-btn">Pagina previa</button></Link>
+            <button onClick={goToPreview} className="bg-[#F8924F] construccion-btn">Pagina previa</button>
           </div>
         </div>
       </main>
