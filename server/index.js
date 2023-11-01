@@ -9,6 +9,7 @@ const productRoutes = require("./routes/products");
 const categoryRoutes = require("./routes/category");
 const brandRoutes = require("./routes/brand");
 const authRoutes = require("./routes/auth");
+const orderRoutes = require("./routes/order");
 
 const swaggerUI = require("swagger-ui-express");
 const swaggerDoc = require("swagger-jsdoc");
@@ -63,6 +64,8 @@ app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 
 app.use("/api/v1/brands", brandRoutes);
+
+app.use("/api/v1/orders", orderRoutes);
 
 //listen
 app.listen(process.env.PORT || 5000, () => {

@@ -44,6 +44,8 @@ const categoryRoutes = Router();
  *      - bearerAuth: []
  *    summary: Create category
  *    tags: [Categories]
+ *    security:
+ *      - bearerAuth: []
  *    requestBody:
  *      required: true
  *      content:
@@ -115,7 +117,7 @@ categoryRoutes.patch("/edit", userExposed, categoryController.update);
  *      400:
  *        description: credentials are not valid
  */
-categoryRoutes.get("/getAll", categoryController.getAll);
+categoryRoutes.get("/getAll", userExposed, categoryController.getAll);
 
 
 /**
