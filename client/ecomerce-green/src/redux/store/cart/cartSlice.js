@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { useEffect } from "react";
 
 const initialState = {
   cart: JSON.parse(localStorage.getItem("cart")) ?? [],
@@ -43,8 +43,9 @@ const modifyQtyByOne = (cart, selectedProduct, modificationType) => {
 };
 
 // Función para calcular el total del carrito
+
 const calculateTotal = (cart) => {
-  return cart.reduce((prev, current) => current.subtotal + prev, 0);
+  return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 };
 
 
@@ -62,7 +63,7 @@ const cartSlice = createSlice({
       if (itemIndex >= 0) {
         state.cart[itemIndex].quantity += 1;
       } else {
-        const product = { ...action.payload, quantity: 1 };
+        const product = { ...action.payload, quantity: 1, subtotal: action.payload.price }; 
         state.cart.push(product);
       }
 
@@ -90,6 +91,7 @@ const cartSlice = createSlice({
       );
       if (state.cart[itemIndex].quantity >= 1) {
         state.cart[itemIndex].quantity += 1;
+        state.cart[itemIndex].subtotal = 1;
       }
     },
 

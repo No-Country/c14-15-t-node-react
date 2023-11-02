@@ -43,19 +43,23 @@ const Summary = ({ orderValues, editable }) => {
                   <strong>{product.quantity}</strong>
                 </li>
                 <li className="w-p-precio j-c-end">
-                  <strong>${product.subtotal}</strong>
+                  <strong>${product.price}</strong>
                 </li>
               </ul>
             ))}
           </li>
         </ul>
         <hr className="hr-1" />
-        <h3 className="h2-section">Total</h3>
+        <div className="flex justify-between">
+          <h3 className="h2-section">Total: </h3>
+          <h3>$ {total}</h3>
+        </div>
+
         <section>
           <h2 className="h2-section mt-7">Datos comprador</h2>
           <hr className="hr-1" />
           {editable ? (
-          <FormSumary summaryValues={summaryValues}/>
+            <FormSumary summaryValues={summaryValues} />
           ) : (
             <>
               <div className="continer-data-user">

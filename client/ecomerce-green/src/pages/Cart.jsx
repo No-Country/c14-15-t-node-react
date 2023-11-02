@@ -10,7 +10,7 @@ const Cart = ({ open, setOpen }) => {
 
 
   const { cart } = useSelector((state) => state.cart);
-
+console.log("carri",cart)
 const GetTotal = () =>{
   let total = 0;
   cart.map((item) => {
