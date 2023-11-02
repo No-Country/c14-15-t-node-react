@@ -35,7 +35,7 @@ const FormSumary = ({ summaryValues }) => {
     };
     console.log("formData", formData);
 
-    navigate("/orders")
+    navigate("/construccion")
   };
 
   return (
