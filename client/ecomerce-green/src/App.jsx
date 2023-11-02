@@ -1,23 +1,23 @@
-import React from 'react'
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+const ScrollToTop = () => {
+  const location = useLocation();
 
-import Home from "./pages/Home";
-import { Login } from './pages/Login';
-import Cart from './pages/Cart';
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return null;
+};
+
 
 const App = () => {
   return (
-    <div >
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/cart" element={<Cart />} />
-        <Route exact path="/login" element={<Login />} />
-      </Routes>
-    </Router>
-    </div>
-  )
-}
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  );
+};
 
-export default App
-
+export default App;

@@ -1,0 +1,122 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Carlos",
+      "lastName": "Santillan",
+      "email": "carlos@test.com",
+      "pasword": "123456test",
+      "address": "recreo 250, estacion central",
+      "role_admin": true
+    },
+    {
+      "id": 2,
+      "firstName": "Ysis",
+      "lastName": "Longart",
+      "email": "ysis@test.com",
+      "pasword": "123456test",
+      "address": "recreo 250, estacion central",
+      "role_admin": true
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Tiger Neo",
+      "subtitle": "Este es un subtitle",
+      "description": "Panel solar adaptable",
+      "detail": "Proporciona iluminacion",
+      "technical_info": {
+        "driver_model": "ICDPD-19-1",
+        "energy_use": "16.5 KWH/1.000 h"
+      },
+      "measures": {
+        "height": 180,
+        "width": 50,
+        "base_diameter": 24
+      },
+      "energy_efficiency": "A",
+      "price": 600,
+      "available_quantity": 10,
+      "images": {
+        "cover": "/ProductImg.png",
+        "picture_1": "/ProductImg.png",
+        "picture_2": "/ProductImg.png"
+      },
+      
+      "category": {
+        "id": "dfsd1548f",
+        "name": "Paneles",
+        "brand_name": "Trina Solar"
+      },
+      "productEnabled": false,
+      " timestamps": "dd-mm-yy"
+    },
+    {
+      "id": 2,
+      "name": "Tiger Neo 72HC-BDV",
+      "subtitle": "Este es un subtitle",
+      "description": "Panel solar adaptable",
+      "detail": "Proporciona iluminacion",
+      "technical_info": {
+        "driver_model": "ICDPD-19-1",
+        "energy_use": "16.5 KWH/1.000 h"
+      },
+      "measures": {
+        "height": 180,
+        "width": 50,
+        "base_diameter": 24
+      },
+      "energy_efficiency": "A",
+      "price": 300,
+      "available_quantity": 10,
+      "images": {
+        "cover": "/ProductImg.png",
+        "picture_1": "/ProductImg.png",
+        "picture_2": "/ProductImg.png"
+      },
+      
+      "category": {
+        "id": "dfsd1548f",
+        "name": "Paneles",
+        "brand_name": "Trina Solar"
+      },
+      "productEnabled": false,
+      " timestamps": "dd-mm-yy"
+    },
+    {
+        "id": 3,
+        "name": "Trina Solar2",
+        "subtitle": "Este es un subtitle",
+        "description": "Panel solar adaptable",
+        "detail": "Proporciona iluminacion",
+        "technical_info": {
+          "driver_model": "ICDPD-19-1",
+          "energy_use": "16.5 KWH/1.000 h"
+        },
+        "measures": {
+          "heigth": 180,
+          "width": 50,
+          "base_diameter": 24
+        },
+        "energy_efficiency": "A",
+        "price": 400,
+        "available_quantity": 10,
+        "images": {
+          "cover": "/ProductImg.png",
+          "picture_1": "/ProductImg.png",
+          "picture_2": "/ProductImg.png"
+        },
+        
+        "category": {
+          "id": "dfsd1548f",
+          "name": "Paneles",
+          "brand_name": "Trina Solar"
+        },
+        "productEnabled": false,
+        " timestamps": "dd-mm-yy"
+      } 
+ 
+
+  ]
+}
