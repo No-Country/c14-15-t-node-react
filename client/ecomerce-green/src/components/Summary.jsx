@@ -4,10 +4,14 @@ import SumaryImg from "../assets/sumaryImg.png";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTotal } from "../redux/store/cart/cartSlice";
 import FormSumary from "./summary/FormSumary";
+import { currency } from "../utils";
+
 
 const Summary = ({ orderValues, editable }) => {
   const dispatch = useDispatch();
   const { cart, total } = useSelector((state) => state.cart);
+  // const { user } = useSelector((state) => state.user);
+  // console.log(user)
   useEffect(() => {
     dispatch(updateTotal());
   }, [cart]);
@@ -15,7 +19,21 @@ const Summary = ({ orderValues, editable }) => {
   const summaryValues = orderValues ? orderValues : { products: cart, total };
 
   console.log("orden summary", summaryValues);
-  console.log(editable);
+  console.log(cart);
+
+ const calcularTotal = () => {
+  let total = 0
+  for (let i = 0; i < cart.length; i++) {
+    total += cart[i].price * cart[i].quantity;
+  }
+
+  return total;
+};
+ console.log(calcularTotal())
+
+const totalAPagar =currency.format(calcularTotal())
+
+
   return (
     <div className="container-sumary">
       <section className="section-1-sumary ">
@@ -31,7 +49,7 @@ const Summary = ({ orderValues, editable }) => {
           <li className="titulo-tabla">
             <p className="w-p">Producto</p>
             <p className="w-p-cantidad j-c-center">Cantidad</p>
-            <p className="w-p-precio j-c-end">Precio</p>
+            <p className="w-p-precio j-c-end">Subtotal</p>
           </li>
           <li>
             {cart.map((product) => (
@@ -43,18 +61,20 @@ const Summary = ({ orderValues, editable }) => {
                   <strong>{product.quantity}</strong>
                 </li>
                 <li className="w-p-precio j-c-end">
-                  <strong>${product.price}</strong>
+                  <strong>{ currency.format( product.quantity * product.price )}</strong>
                 </li>
               </ul>
             ))}
           </li>
         </ul>
         <hr className="hr-1" />
+       
         <div className="flex justify-between">
           <h3 className="h2-section">Total: </h3>
-          <h3>$ {total}</h3>
+          <h3>{totalAPagar}</h3>
         </div>
-
+      
+        
         <section>
           <h2 className="h2-section mt-7">Datos comprador</h2>
           <hr className="hr-1" />
@@ -106,3 +126,4 @@ const Summary = ({ orderValues, editable }) => {
 };
 
 export default Summary;
+
