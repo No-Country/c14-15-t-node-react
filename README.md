@@ -35,6 +35,17 @@ Back .env
 
 ## ✔ Backend
 ### 👉🏻 Lista de Tareas ✅
+- Creacion de las distintas endpoints Usuarios, Autenticacion, Productos, Categorias, Brands y orders
+- Implementacion de la logica para cada una de las rutas antes mencionadas junto a a las rutas privadas
+- Generacion de token para cada usuario en el momento del login
+- Refactorizacion del codigo en los endspoint
+- Validar las distintas request que se obtienen en cada ruta
+- Investigacion, configuracion, implementacion de Swagger
+- Paginacion de productos en distintas rutas como filtros para categorias y marcas
+- Investigacion y implementacion de Clean Code
+- Investigacion, pruebas con API MercadoPago
+- Documentacion de los endpoints en Swagger
+- Utilizacion de base de datos MongoDB
 
 ### 👉🏻 Tecnologías usadas: 🛠️
 ![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?style=for-the-badge&logo=Node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/Express.js-%23404d59.svg?style=for-the-badge&logo=Express&logoColor=%2361DAFB)  ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=MongoDB&logoColor=white) ![Mongoose](https://img.shields.io/badge/Mongoose-%2320232a.svg?style=for-the-badge&logo=Mongoose&logoColor=%%2361DAFB) ![JWT](https://img.shields.io/badge/JWT-blue.svg?style=for-the-badge&logo=JWT&logoColor=%blue) ![Swagger](https://img.shields.io/badge/Swagger-%2385EA2D.svg?style=for-the-badge&logo=Swagger&logoColor=white)
@@ -53,19 +64,38 @@ Back .env
 - Obtención y carga de imágenes desde una base de datos.
 - Desplegado en Vercel.
 
-![React](https://img.shields.io/badge/React-149eca?style=for-the-badge&logo=react&logoColor=fff) ![Redux](https://img.shields.io/badge/Redux-764abc?style=for-the-badge&logo=redux&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-000?style=for-the-badge&logo=reactrouter&logoColor=fff) ![Vercel](https://img.shields.io/badge/vercel%20-%23000000.svg?&style=for-the-badge&logo=vercel&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white) ![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![React](https://img.shields.io/badge/React-149eca?style=for-the-badge&logo=react&logoColor=fff) ![Redux](https://img.shields.io/badge/Redux-764abc?style=for-the-badge&logo=redux&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-000?style=for-the-badge&logo=reactrouter&logoColor=fff) ![Vercel](https://img.shields.io/badge/vercel%20-%23000000.svg?&style=for-the-badge&logo=vercel&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)  ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 
 ## ✔ UI/UX
 
+### 👉🏻 Lista de Tareas ✅
+
+- Desarrollo del producto
+- Definición del proyecto:
+- User Personas y Point of View 
+- Priorización de funcionalidades
+- Prototipado en Baja Fidelidad
+- Prototipado en Alta Fidelidad
+- Diseño del UI Kit
+- Flujo del Usuario
+- Prototipo Funcional
+- Pruebas de Usabilidad
+
 ### 👉🏻 Tecnologías usadas: 🛠️
 
-![Figma](https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white) ![Maze](https://img.shields.io/badge/Maze-%233FA9F5.svg?style=for-the-badge&logo=Maze&logoColor=white) ![Illustrator](https://img.shields.io/badge/Illustrator-%23FF9A00.svg?style=for-the-badge&logo=Adobe-Illustrator&logoColor=white) ![Miro](https://img.shields.io/badge/Miro-%233266C9.svg?style=for-the-badge&logo=Miro&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white) ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white) ![Illustrator](https://img.shields.io/badge/Illustrator-%23FF9A00.svg?style=for-the-badge&logo=Adobe-Illustrator&logoColor=white)
 
 ## ✔ QA Tester
 
+### 👉🏻 Lista de Tareas ✅
+- Creacion de historia usuarios y criterio de aceptacion
+- Creacion y ejecucion de casos de prueba 
+- Reporte de bugs
+- Creacion de informe de testing
+
 ### 👉🏻 Tecnologías usadas: 🛠️
-![Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
+![Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white) ![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 
 ## Comunicación de equipo
 
