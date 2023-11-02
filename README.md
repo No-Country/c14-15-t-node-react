@@ -13,7 +13,9 @@
 <h3 align="center"  ><b>Puede consultar nuestra página web aquí:</b></h3>
 <h3 align="center" style="color: #D39245;
 "><a href="https://c14-15-t-node-react.vercel.app/" target="_blank" rel="noopener noreferrer"> GREENIX</a></h3>
+
 <hr/>
+
 ### ✔ Requisitos 📋
 1 - Deberás crear un archivo .env en las carpetas Front y Back.
 
