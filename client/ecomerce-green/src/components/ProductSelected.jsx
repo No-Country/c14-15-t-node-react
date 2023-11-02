@@ -1,6 +1,6 @@
 import useFetch from "../redux/service/useFetch";
 import { useDispatch, useSelector } from "react-redux";
-import {  incrementProduct, updateTotal } from '../redux/store/cart/cartSlice';
+import {  addToCart, incrementProduct, updateTotal } from '../redux/store/cart/cartSlice';
 import arrowRight from "./../assets/arrow-right.svg";
 import arrowDown from "./../assets/arrow-down.svg";
 import { useState } from "react";
@@ -11,12 +11,7 @@ import { currency } from "../utils";
 
 const ProductSelected = ({ product, id }) => {
 
-  const dispatch = useDispatch();
-  // const { data } = useFetch(`/${id}`);
-  const handleIncrement = (product) => {
-    dispatch(incrementProduct(product));
-    dispatch(updateTotal()); // Actualiza el total después de incrementar
-  }
+
 const{category, 
   images,
   price,
@@ -30,6 +25,13 @@ const{category,
   technical_info
 
 } =product;
+
+const dispatch = useDispatch();
+// const { data } = useFetch(`/${id}`);
+const handleIncrement = (product) => {
+  dispatch(addToCart(product));
+  dispatch(updateTotal()); // Actualiza el total después de incrementar
+}
   
   const formatPrice = currency.format(price)
   console.log(formatPrice)
