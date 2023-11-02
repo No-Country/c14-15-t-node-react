@@ -1,4 +1,4 @@
-import useFetch from "../redux/service/useFetch";
+
 import { useDispatch, useSelector } from "react-redux";
 import {  incrementProduct, updateTotal } from '../redux/store/cart/cartSlice';
 import arrowRight from "./../assets/arrow-right.svg";

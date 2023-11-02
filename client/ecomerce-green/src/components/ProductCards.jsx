@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { incrementProduct, updateTotal, addToCart } from "../redux/store/cart/cartSlice";
 import { addToCart } from "../redux/store/cart/cartSlice"
 import CartIcon from "../assets/CartIcon.svg";

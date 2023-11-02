@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import HeroStore from "../components/HeroStore";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/store/productid/productAction";
-import PageNotFound from "./PageNotFound";
 import { useNavigate } from "react-router-dom";
 import Error404 from "../components/Error404";
 

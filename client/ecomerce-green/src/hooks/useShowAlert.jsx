@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import {  useSelector } from "react-redux";
 
 const useShowAlert = () => {
   const { success } = useSelector(

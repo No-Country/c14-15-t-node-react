@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AiOutlineClose,
   AiOutlineMenu,
@@ -20,7 +20,7 @@ const Header = () => {
   const { userToken, user } = useSelector((state) => state.authv);
 
   const dispatch = useDispatch();
-// console.log(userToken)
+console.log(user?.firstname)
   const [open, setOpen] = useState(false);
 
   const [nav, setNav] = useState(false);
@@ -34,6 +34,20 @@ const Header = () => {
     dispatch(verifyJwt(userToken));
    
   }, [userToken]);
+
+
+
+let userName = user?.firstname
+
+let iconUser =  <VscAccount className="text-white" size={20} />
+
+
+
+
+
+
+
+
   return (
     <>
       <header
@@ -78,9 +92,11 @@ const Header = () => {
                   <Link to="/login">Log in</Link>
                 </li>
               )}
-              <li className="pr-4 flex justify-center items-center ">
+              <li className="pr-4 flex text-green-400 justify-center items-center ">
                 <Link to="/login">
-                  <VscAccount size={20} />
+                  {
+                  user ? userName : iconUser
+                  }
                 </Link>
               </li>
               <li className="flex justify-center items-center mt-[-0.7rem]">

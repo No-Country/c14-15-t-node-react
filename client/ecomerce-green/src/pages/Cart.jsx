@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import { Fragment } from "react";
 import CartProduct from "../components/CartProduct";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";

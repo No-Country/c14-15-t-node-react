@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
+
 // import { STATUS } from "../../../constants/Status";
 import {  fetchProducts } from "./productAction";
-const base_url = "http://localhost:5000/";
+
 
 const initialState = {
   status: "",

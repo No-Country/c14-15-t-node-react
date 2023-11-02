@@ -1,5 +1,4 @@
-import React from "react";
-import Category from "../pages/Category";
+
 import { Link } from 'react-router-dom';
 
 const Breadcrums = ({ category }) => {
