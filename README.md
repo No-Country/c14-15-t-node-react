@@ -35,6 +35,8 @@ Back .env
 ### 👉🏻 Lista de Tareas ✅
 
 ### 👉🏻 Tecnologías usadas: 🛠️
+![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?style=for-the-badge&logo=Node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/Express.js-%23404d59.svg?style=for-the-badge&logo=Express&logoColor=%2361DAFB)  ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=MongoDB&logoColor=white) ![Mongoose](https://img.shields.io/badge/Mongoose-%2320232a.svg?style=for-the-badge&logo=Mongoose&logoColor=%%2361DAFB) ![JWT](https://img.shields.io/badge/JWT-blue.svg?style=for-the-badge&logo=JWT&logoColor=%blue) ![Swagger](https://img.shields.io/badge/Swagger-%2385EA2D.svg?style=for-the-badge&logo=Swagger&logoColor=white)
+
 
 ## ✔ Frontend
 
