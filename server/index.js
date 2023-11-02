@@ -1,8 +1,16 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const dbConnection = require("./database/db");
 const { config } = require("dotenv");
-const { userRoutes } = require("./routes/user");
+
+const userRoutes = require("./routes/user");
+const productRoutes = require("./routes/products");
+const categoryRoutes = require("./routes/category");
+const brandRoutes = require("./routes/brand");
+const authRoutes = require("./routes/auth");
+const orderRoutes = require("./routes/order");
+
 const swaggerUI = require("swagger-ui-express");
 const swaggerDoc = require("swagger-jsdoc");
 const path = require("path");
@@ -18,12 +26,14 @@ const swaggerSpect = {
       title: "API E-Commerce Green",
       version: "1.0.0",
     },
-    servers: [
-      {
-        url: `http://localhost:${process.env.PORT}`,
-        // url: "HTTP",
-      },
-    ],
+    // servers: [
+    //   {
+    //     url: `http://localhost:${process.env.PORT}`,
+    //   },
+    //   {
+    //     url: "https://api-greeni.onrender.com",
+    //   },
+    // ],
   },
   apis: [`${path.join(__dirname, "./routes/*.js")}`],
 };
@@ -35,6 +45,9 @@ app.use(
   swaggerUI.setup(swaggerDoc(swaggerSpect))
 );
 
+//cors
+app.use(cors());
+
 //parse body
 app.use(express.json());
 
@@ -42,7 +55,17 @@ app.use(express.json());
 app.disable("x-powered-by");
 
 //routes
-app.use("/api/v1/auth", userRoutes);
+app.use("/api/v1/auth", authRoutes);
+
+app.use("/api/v1/users", userRoutes);
+
+app.use("/api/v1/products", productRoutes);
+
+app.use("/api/v1/categories", categoryRoutes);
+
+app.use("/api/v1/brands", brandRoutes);
+
+app.use("/api/v1/orders", orderRoutes);
 
 //listen
 app.listen(process.env.PORT || 5000, () => {
