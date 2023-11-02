@@ -1,10 +1,10 @@
 
 // /api/v1/categories/getAll
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import {  createSlice } from "@reduxjs/toolkit";
+
 // import { STATUS } from "../../../constants/Status";
 import {  fetchCategories } from "./CategoryActionAction";
-const base_url = "http://localhost:5000/";
+
 
 const initialState = {
   status: "",

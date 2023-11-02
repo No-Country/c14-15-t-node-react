@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import "../styles/Contacto.css"
 import MainLayout from "../components/MainLayout";
 import { useForm } from "react-hook-form";

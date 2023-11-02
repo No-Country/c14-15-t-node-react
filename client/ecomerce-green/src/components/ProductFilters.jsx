@@ -1,22 +1,20 @@
 import  '../styles/ProductHero.css';
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch} from "react-redux";
 import { AiOutlineDown } from "react-icons/ai";
-import { useEffect, useState } from 'react';
-import { fetchProducts } from '../redux/store/product/productAction';
+import { useState } from 'react';
 
 const ProductFilters = ({orderProduct, brandFilter, page, categoryFilter, energyLabelFilter}) => {
   const dispatch = useDispatch();
   const [productsData, setProductsData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  
 
 
-console.log(page)
+
   
   const categoryUnics = [
     ...new Set(productsData.map((producto) => producto.category.name)),
   ];
-  console.log("category", categoryUnics);
+
 
   return (
     <section className="dropdown-container">

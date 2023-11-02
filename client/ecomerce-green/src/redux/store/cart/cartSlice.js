@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useEffect } from "react";
+
 
 const initialState = {
   cart: JSON.parse(localStorage.getItem("cart")) ?? [],

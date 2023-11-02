@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import ProductList from "../components/ProductList";
 import { fetchCategory } from "../redux/store/productFilter/productFilterAction";
-import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Breadcrums from "../components/Breadcrums";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -163,7 +162,7 @@ const Category = () => {
   //   // .....................................................................................................................................................................................
 
   const categoryFilter = (string) => {
-    console.log("categoria elegida", string);
+  
     navigate("/products/category/:name");
     // dispatch(fetchCategory(string, currentPage));
   };

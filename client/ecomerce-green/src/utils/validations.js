@@ -38,25 +38,3 @@ export const isValidEmail = (email) => {
      
   }
 
-  // export const isValidPassword = (message) => {
-  //   const uppercaseLetters = message.match(  /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]+$/,g);
-  //   const numbers = message.match(/[0-9]/g);
-  //   const specialChars = message.match(/[!@#$%^&*()_+]/g);
-  //   const letters = message.match(/[a-zA-Z]/g);
-  
-  //   let errorString = '';
-  
-  //   if (!uppercaseLetters ) {
-  //     errorString += 'Revisa contraseña';
-  //   }
-  
-  //   return {
-  //     match: `${uppercaseLetters || ''}${numbers || ''}${specialChars || ''}${letters || ''}`,
-  //     errors: errorString.trim(),
-  //   };
-  // };
-
-  // export const isPassword = (password) => {
-  //   return isValidPassword(password) 
-     
-  // }

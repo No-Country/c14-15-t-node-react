@@ -32,10 +32,11 @@ Back .env
 -MONGO_URI = Para la base de datos en MongoDB.
 -JWT_SECRET: es la clave secreta utilizada para JWT.
 -JWT_EXPIRES = es el tiempo de expiracion del token
+-ACCESS_TOKEN_MP = token privado de MercadoPago
 
 ## ✔ Backend
 ### 👉🏻 Lista de Tareas ✅
-- Creacion de las distintas endpoints Usuarios, Autenticacion, Productos, Categorias, Brands y orders
+- Creacion de las distintas endpoints Usuarios, Autenticacion, Productos, Categorias, Brands y Orders
 - Implementacion de la logica para cada una de las rutas antes mencionadas junto a a las rutas privadas
 - Generacion de token para cada usuario en el momento del login
 - Refactorizacion del codigo en los endspoint

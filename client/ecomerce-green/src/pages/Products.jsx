@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/store/product/productAction";
 import Loader from "../components/Loader";
 import ProductList from "../components/ProductList";
-import { fetchCategory } from "../redux/store/productFilter/productFilterAction";
 import { useNavigate } from "react-router-dom";
 
 const Products = () => {

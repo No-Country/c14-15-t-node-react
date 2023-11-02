@@ -4,60 +4,39 @@ const {
   validatorPartialUser,
 } = require("../middlewares/userValidator");
 
-class authController {
+class userController {
   // ------------------- create user -------------------
   static async create(req, res) {
     const result = validatorUser(req.body);
 
     if (!result.success) {
-      return res.status(400).json({ error: JSON.parse(result.error.message) });
+      return res
+        .status(400)
+        .json({ error: true, data: JSON.parse(result.error.message) });
     }
 
     const newUser = await UserModel.createUser(result.data);
 
-    if (!newUser.error) {
-      return res.status(201).json(newUser);
+    if (newUser.error) {
+      return res.status(409).json(newUser);
     }
-    res.status(409).json(newUser);
+    res.status(201).json(newUser);
   }
 
   // ------------------- updating user -------------------
   static async update(req, res) {
     const result = validatorPartialUser(req.body);
     if (!result.success) {
-      return res.status(400).json({ error: JSON.parse(result.error.message) });
+      return res
+        .status(400)
+        .json({ error: true, data: JSON.parse(result.error.message) });
     }
     const updatedUser = await UserModel.updateUser(result.data);
-    if (!updatedUser.error) {
-      return res.status(202).json(updatedUser);
+    if (updatedUser.error) {
+      return res.status(404).json(updatedUser);
     }
-    res.status(400).json(updatedUser);
-  }
-
-  // ------------------- login user-------------------
-  static async login(req, res) {
-    const { email, password } = req.body;
-
-    const result = validatorPartialUser({ email, password });
-
-    if (!result.success) {
-      return res.status(400).json({ error: JSON.parse(result.error.message) });
-    }
-
-    const login = await UserModel.login(result.data);
-
-    if (!login.error) {
-      return res.status(200).json(login);
-    }
-    res.status(400).json(login);
-  }
-
-  // ------------------- validate token -------------------
-  static async validateToken(req, res) {
-    const token = await UserModel.revalidateToken(req);
-
-    res.status(200).json(token);
+    res.status(200).json(updatedUser);
   }
 }
 
-module.exports = authController;
+module.exports = userController;
