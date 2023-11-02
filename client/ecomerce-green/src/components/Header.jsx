@@ -18,8 +18,8 @@ const Header = () => {
   const { cart } = useSelector((state) => state.cart);
 
   const { userToken, user } = useSelector((state) => state.authv);
-   console.log("token en home", userToken);
-   console.log("user en home", user);
+  //  console.log("token en home", userToken);
+  //  console.log("user en home", user);
   const dispatch = useDispatch();
 // console.log(userToken)
   const [open, setOpen] = useState(false);
@@ -61,14 +61,14 @@ const Header = () => {
                 <NavLink to="/contacto">Contacto</NavLink>
               </li>
             </ul>
-            <div className="flex g-2 items-center border rounded-xl h-10 px-3 mt-4 bg-slate-50">
+            {/* <div className="flex g-2 items-center border rounded-xl h-10 px-3 mt-4 bg-slate-50">
               <input
                 className="border-none text-black bg-slate-50 focus:border-none active:border-none w-full"
                 placeholder="Buscador"
                 type="text"
               />
               <AiOutlineSearch className="text-gray-800" />
-            </div>
+            </div> */}
           </nav>
           <div className="hidden md:flex">
             <ul className="flex g-1 text-lg">

@@ -23,6 +23,7 @@ import CheckoutPage from "../src/pages/Checkout";
 import PageNotFound from "../src/pages/PageNotFound";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>

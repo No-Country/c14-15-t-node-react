@@ -18,7 +18,7 @@ const GetTotal = () =>{
   }, 0);
   return total;
 } 
-console.log(GetTotal());
+// console.log(GetTotal());
 
 
   
