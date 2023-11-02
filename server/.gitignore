@@ -4,6 +4,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 .env
+.env.local
 api.http
 node_modules/
 .env.local
