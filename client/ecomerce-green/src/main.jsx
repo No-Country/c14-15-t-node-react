@@ -43,6 +43,7 @@ const router = createBrowserRouter(
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/orders" element={<SumarryOrder />} />
         <Route path="/404" element={<PageNotFound />} />
+        <Route path="/*" element={<PageNotFound />} />
         <Route path="" element={<PrivateRoute />}>
           <Route path="/checkout" element={<CheckoutPage />} />
         </Route>
