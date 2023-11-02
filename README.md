@@ -54,3 +54,19 @@ Back .env
 - Desplegado en Vercel.
 
 ![React](https://img.shields.io/badge/React-149eca?style=for-the-badge&logo=react&logoColor=fff) ![Redux](https://img.shields.io/badge/Redux-764abc?style=for-the-badge&logo=redux&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-000?style=for-the-badge&logo=reactrouter&logoColor=fff) ![Vercel](https://img.shields.io/badge/vercel%20-%23000000.svg?&style=for-the-badge&logo=vercel&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white) ![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+
+## ✔ UI/UX
+
+### 👉🏻 Tecnologías usadas: 🛠️
+
+![Figma](https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white) ![Maze](https://img.shields.io/badge/Maze-%233FA9F5.svg?style=for-the-badge&logo=Maze&logoColor=white) ![Illustrator](https://img.shields.io/badge/Illustrator-%23FF9A00.svg?style=for-the-badge&logo=Adobe-Illustrator&logoColor=white) ![Miro](https://img.shields.io/badge/Miro-%233266C9.svg?style=for-the-badge&logo=Miro&logoColor=white)
+
+## ✔ QA Tester
+
+### 👉🏻 Tecnologías usadas: 🛠️
+![Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
+
+## Comunicación de equipo
+
+[![](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=fff)](https://discord.gg/dyxDxw8w)  [![](https://img.shields.io/badge/Slack-%23ED8B00?style=for-the-badge&logo=Slack&logoColor=fff)](https://slack.com/intl/es-pe/) [![](https://img.shields.io/badge/Google_Meet-00897B?style=for-the-badge&logo=Google-Meet&logoColor=fff)](https://meet.google.com/) [![](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=WhatsApp&logoColor=fff)](https://web.whatsapp.com/)
