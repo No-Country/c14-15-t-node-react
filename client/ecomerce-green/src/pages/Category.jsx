@@ -3,18 +3,27 @@ import MainLayout from "../components/MainLayout";
 import HeroStore from "../components/HeroStore";
 import ProductFilters from "../components/ProductFilters";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../redux/store/product/productAction";
 import Loader from "../components/Loader";
 import ProductList from "../components/ProductList";
 import { fetchCategory } from "../redux/store/productFilter/productFilterAction";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Breadcrums from "../components/Breadcrums";
+import { AiOutlineSearch } from "react-icons/ai";
+import {
+   setSearchProduct 
+  } from "../redux/store/productFilter/productFilterSlice";
 
-const Products = () => {
+const Category = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const { products, isLoading } = useSelector((state) => state.products);
-  const { productsfilter } = useSelector((state) => state.productsfilter);
+  const { productsfilter, 
+    isLoading ,
+    searchedProduct
+     } = useSelector(
+    (state) => state.productsfilter
+  );
+  const { category } = useParams();
   const [productsData, setProductsData] = useState([]);
   const [productsData1, setProductsData1] = useState([]);
   const [productsData2, setProductsData2] = useState([]);
@@ -26,13 +35,12 @@ const Products = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    dispatch(fetchProducts(currentPage));
-  }, [dispatch, currentPage]);
 
+
+  console.log(category);
   useEffect(() => {
-    setProductsData(products.products); // Actualizar el estado cuando cambian los productos
-  }, [products.products]);
+    dispatch(fetchCategory(category, currentPage));
+  }, [dispatch, currentPage]);
 
   useEffect(() => {
     if (productsfilter.products && productsfilter.products.length > 0) {
@@ -41,30 +49,47 @@ const Products = () => {
   }, [productsfilter.products]);
 
   useEffect(() => {
-    setProductsData1(products.products);
-  }, [products.products]);
+    setProductsData1(productsfilter.products);
+  }, [productsfilter.products]);
   useEffect(() => {
-    setProductsData2(products.products);
-  }, [products.products]);
+    setProductsData2(productsfilter.products);
+  }, [productsfilter.products]);
   useEffect(() => {
-    setProductsData3(products.products);
-  }, [products.products]);
+    setProductsData3(productsfilter.products);
+  }, [productsfilter.products]);
   useEffect(() => {
-    setProductsData4(products.products);
-  }, [products.products]);
+    setProductsData4(productsfilter.products);
+  }, [productsfilter.products]);
 
   // ...............................................................................................................
 
   useEffect(() => {
-    setenergyLabelData(products.products);
-  }, [products.products]);
+    setenergyLabelData(productsfilter.products);
+  }, [productsfilter.products]);
   useEffect(() => {
-    setenergyLabelData1(products.products);
-  }, [products.products]);
+    setenergyLabelData1(productsfilter.products);
+  }, [productsfilter.products]);
   useEffect(() => {
-    setenergyLabelData2(products.products);
-  }, [products.products]);
+    setenergyLabelData2(productsfilter.products);
+  }, [productsfilter.products]);
+  
+  // ...............................................................................................................
+  const handlerSearchProduct = (e) =>{
+    dispatch(setSearchProduct(e.target.value))
+    if (searchedProduct) {
+      const products = productsfilter.products?.filter((item) =>{
+   
+       return item.name.toLowerCase().includes(searchedProduct.toLowerCase() )|| item.category.brand_name.toLowerCase().includes(searchedProduct.toLowerCase()  )
+     
+      }) 
+      console.log("busqueda",products)
+      setProductsData(products)
+   
+    } 
 
+   }
+  
+ // ...............................................................................................................
   const orderProduct = (string) => {
     if (string === "lowerPrice") {
       const sortedProducts = [...productsData]; // Clona el arreglo
@@ -90,6 +115,16 @@ const Products = () => {
     // return productsData
   };
 
+  const brandUnics = [
+    ...new Set(productsData.map((producto) => producto.category.brand_name)),
+  ];
+  const energyUnics = [
+    ...new Set(productsData.map((producto) => producto.energy_efficiency)),
+  ];
+
+
+  console.log("brand", brandUnics);
+  console.log("energy", energyUnics);
   const brandFilter = (string) => {
     if (string === "Motorola") {
       let Products = [...productsData3];
@@ -125,13 +160,12 @@ const Products = () => {
     }
   };
 
-  // .....................................................................................................................................................................................
+  //   // .....................................................................................................................................................................................
 
   const categoryFilter = (string) => {
     console.log("categoria elegida", string);
-    // Lalamarla
+    navigate("/products/category/:name");
     // dispatch(fetchCategory(string, currentPage));
-    navigate(`/category/${string}`);
   };
 
   // .....................................................................................................................................................................................
@@ -177,28 +211,37 @@ const Products = () => {
     setCurrentPage(newPage);
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
     <MainLayout>
       <main>
         <HeroStore />
+        <Breadcrums category={category} />
         <ProductFilters
+          
+          brandUnics={brandUnics}
+          energyUnics={energyUnics}
           orderProduct={orderProduct}
           brandFilter={brandFilter}
           categoryFilter={categoryFilter}
           energyLabelFilter={energyLabelFilter}
         />
-
+        <div className="mx-auto w-[15rem] flex g-2 items-center border rounded-xl h-10 px-3 mt-4 bg-slate-50">
+          <input
+           value={searchedProduct}
+           onChange={handlerSearchProduct}
+            className="border-none text-black bg-slate-50 focus:border-none active:border-none w-full"
+            placeholder="Buscador"
+            type="text"
+          />
+          <AiOutlineSearch className="text-gray-800" />
+        </div>
         {isLoading ? (
           <Loader />
         ) : (
           <ProductList
-            totalPages={products.totalPages}
+            totalPages={productsfilter.totalPages}
             onPageChange={onPageChange}
-            page={products.page}
+            page={productsfilter.page}
             productsData={productsData}
           />
         )}
@@ -207,4 +250,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Category;

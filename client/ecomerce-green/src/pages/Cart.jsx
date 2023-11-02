@@ -18,7 +18,7 @@ const GetTotal = () =>{
   }, 0);
   return total;
 } 
-// console.log(GetTotal());
+
 
 
   
@@ -59,7 +59,7 @@ const GetTotal = () =>{
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <div className="close-button absolute right-0 top-0 -ml-8 flex mr-4 pr-2 pt-4 ">
+                    <div className="closeBtn absolute right-0 top-0 -ml-8 flex mr-4 pr-2 pt-4 ">
                       <button
                         type="button"
                         className="relative border-0 text-gray-300 hover:text-white "
@@ -87,8 +87,9 @@ const GetTotal = () =>{
                         <p>Subtotal</p>
                       </div>
                       {
-                        cart.length === 0 ? <h2 className="empty-cart text-white normal-case text-sm font-medium text-center">El carrito se encuentra vacio</h2> : <CartProduct/>
-                      }
+                        cart.length === 0 ? <h2 className="empty-cart text-white normal-case text-sm font-medium text-center">El carrito se encuentra vacio</h2> : <CartProduct />
+                        }
+                      
                      
 
                       <ul className="cart-total inline-flex place-content-between ">

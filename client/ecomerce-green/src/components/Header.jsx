@@ -18,10 +18,9 @@ const Header = () => {
   const { cart } = useSelector((state) => state.cart);
 
   const { userToken, user } = useSelector((state) => state.authv);
-  //  console.log("token en home", userToken);
-  //  console.log("user en home", user);
+
   const dispatch = useDispatch();
-// console.log(userToken)
+console.log(user)
   const [open, setOpen] = useState(false);
 
   const [nav, setNav] = useState(false);
@@ -49,8 +48,8 @@ const Header = () => {
           </NavLink>
 
           {/* Navbar destock */}
-          <nav className=" hidden md:flex gap-5 p-3 ">
-            <ul className=" flex text-lg text-white gap-3 p-6 tracking-wider">
+          <nav className=" hidden md:flex gap-5 p-3 z-[5]">
+            <ul className=" flex  text-lg text-white gap-3 p-6 tracking-wider ">
               <li className="hover:font-extrabold ">
                 <NavLink to="/">Home</NavLink>
               </li>
@@ -61,14 +60,7 @@ const Header = () => {
                 <NavLink to="/contacto">Contacto</NavLink>
               </li>
             </ul>
-            {/* <div className="flex g-2 items-center border rounded-xl h-10 px-3 mt-4 bg-slate-50">
-              <input
-                className="border-none text-black bg-slate-50 focus:border-none active:border-none w-full"
-                placeholder="Buscador"
-                type="text"
-              />
-              <AiOutlineSearch className="text-gray-800" />
-            </div> */}
+          
           </nav>
           <div className="hidden md:flex">
             <ul className="flex g-1 text-lg">

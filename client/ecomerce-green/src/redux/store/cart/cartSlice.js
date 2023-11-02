@@ -55,25 +55,63 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    incrementProduct: (state, action) => {
-      const modifiedCart = modifyQtyByOne(
-        state.cart,
-        action.payload,
-        "INCREMENT"
+    addToCart: (state, action) => {
+      const itemIndex = state.cart.findIndex(
+        (item) => item.productId === action.payload.productId
       );
-      state.cart = modifiedCart;
+      if (itemIndex >= 0) {
+        state.cart[itemIndex].quantity += 1;
+      } else {
+        const product = { ...action.payload, quantity: 1 };
+        state.cart.push(product);
+      }
+
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
-    decrementProduct: (state, action) => {
-      const modifiedCart = modifyQtyByOne(
-        state.cart,
-        action.payload,
-        "DECREMENT"
+    
+    decrementProduct(state, action) {
+      const itemIndex = state.cart.findIndex(
+        (item) => item.productId === action.payload.productId
       );
-      state.cart = modifiedCart;
+
+      if (state.cart[itemIndex].quantity > 1) {
+        state.cart[itemIndex].quantity -= 1;
+      } else if (state.cart[itemIndex].quantity === 1) {
+        const updatedCart = state.cart.filter(
+          (p) => p.productId !== action.payload.productId
+        );
+        state.cart = updatedCart;
+      }
       localStorage.setItem("cart", JSON.stringify(state.cart));
-      state.total = calculateTotal(state.cart);
     },
+    incrementProduct(state, action) {
+      const itemIndex = state.cart.findIndex(
+        (item) => item.productId === action.payload.productId
+      );
+      if (state.cart[itemIndex].quantity >= 1) {
+        state.cart[itemIndex].quantity += 1;
+      }
+    },
+
+    // incrementProduct: (state, action) => {
+    //   const modifiedCart = modifyQtyByOne(
+    //     state.cart,
+    //     action.payload,
+    //     "INCREMENT"
+    //   );
+    //   state.cart = modifiedCart;
+    //   localStorage.setItem("cart", JSON.stringify(state.cart));
+    // },
+    // decrementProduct: (state, action) => {
+    //   const modifiedCart = modifyQtyByOne(
+    //     state.cart,
+    //     action.payload,
+    //     "DECREMENT"
+    //   );
+    //   state.cart = modifiedCart;
+    //   localStorage.setItem("cart", JSON.stringify(state.cart));
+    //   state.total = calculateTotal(state.cart);
+    // },
     removeFromCart: (state, action) => {
       const modifiedCart = state.cart.filter((cartItem) => cartItem.productId !== action.payload.productId);
       state.cart = modifiedCart;
@@ -88,13 +126,13 @@ const cartSlice = createSlice({
     },
       // Nueva acción para actualizar el total
       updateTotal: (state) => {
-        state.total = calculateTotal(state.cart);
+        state.total = Math.round(calculateTotal(state.cart));
       },
   
   },
 });
 
-export const { incrementProduct, decrementProduct, resetCart, updateTotal, removeFromCart } =
+export const { incrementProduct, decrementProduct, resetCart, updateTotal, removeFromCart, addToCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;

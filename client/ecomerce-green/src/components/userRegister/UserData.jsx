@@ -1,6 +1,6 @@
 import "./../../styles/UserData.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validations } from "../../utils";
@@ -97,6 +97,13 @@ if(error){
     console.log(error);
   };
 
+//  Controlador de click 
+  const btnScroll = () => {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  }
+  
   return (
     <section className="flex   flex-col justify-center  ">
       <div className=" input-container w-[336px] min-h-[400px] justify-center ">
@@ -386,6 +393,7 @@ if(error){
 
             <div className="flex justify-center ">
               <button
+              onClick={btnScroll}
                 type="submit"
                 className="flex w-[160px] h-[40px] justify-center rounded-md bg-[#F8924F99] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#F8924F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
               >

@@ -9,7 +9,7 @@ const ProductTable = () => {
         <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
           <div className="w-full md:w-1/2">
             <form className="flex items-center">
-              <label for="simple-search" className="sr-only">
+              <label htmlFor="simple-search" className="sr-only">
                 Search
               </label>
               <div className="relative w-full">
@@ -162,7 +162,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     ></input>
                     <label
-                      for="apple"
+                      htmlFor="apple"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       Apple (56)
@@ -176,7 +176,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     ></input>
                     <label
-                      for="fitbit"
+                      htmlFor="fitbit"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       Fitbit (56)
@@ -190,7 +190,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     />
                     <label
-                      for="dell"
+                      htmlFor="dell"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       Dell (56)
@@ -205,7 +205,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     />
                     <label
-                      for="asus"
+                      htmlFor="asus"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       Asus (97)
@@ -220,7 +220,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     ></input>
                     <label
-                      for="logitech"
+                      htmlForfor="logitech"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       Logitech (97)
@@ -235,7 +235,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     />
                     <label
-                      for="msi"
+                      htmlFor="msi"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       MSI (97)
@@ -250,7 +250,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     />
                     <label
-                      for="bosch"
+                      htmlFor="bosch"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       Bosch (176)
@@ -264,7 +264,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     />
                     <label
-                      for="sony"
+                      htmlFor="sony"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       Sony (234)
@@ -279,7 +279,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     />
                     <label
-                      for="samsung"
+                      htmlFor="samsung"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       Samsung (76)
@@ -293,7 +293,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     />
                     <label
-                      for="canon"
+                      htmlFor="canon"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       Canon (49)
@@ -321,7 +321,7 @@ const ProductTable = () => {
                       className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                     />
                     <label
-                      for="razor"
+                      htmlFor="razor"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                     >
                       Razor (49)

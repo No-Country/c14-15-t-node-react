@@ -10,6 +10,7 @@ import { currency } from "../utils";
 
 
 const ProductSelected = ({ product, id }) => {
+
   const dispatch = useDispatch();
   // const { data } = useFetch(`/${id}`);
   const handleIncrement = (product) => {
@@ -28,9 +29,8 @@ const{category,
   energy_efficiency,
   technical_info
 
-} =product 
-  console.log("product api",product)
-
+} =product;
+  
   const formatPrice = currency.format(price)
   console.log(formatPrice)
   // console.log("objeto:", data);
@@ -44,10 +44,12 @@ const{category,
   };
   
   return (
+    
     <section
       className="w-full px-3 flex flex-col justify-center items-center
     md:flex-col md:px-16 md:py-6"
     >
+    
       <div
         className="flex flex-col justify-center items-center 
       md:flex md:flex-row-reverse md:justify-center 
