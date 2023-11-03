@@ -5,14 +5,26 @@ import { useNavigate } from "react-router-dom";
 const FormSumary = ({ summaryValues }) => {
   const navigate = useNavigate()
   const products = summaryValues.products.map((product) => {
+    let subtotal= product.quantity* product.price
     return {
-      prodproductId: product.productId,
+      productId: product.productId,
       quantity: product.quantity,
       name: product.name,
       price: product.price,
-      subtotal: product.subtotal,
+      subtotal,
     };
   });
+  const generarID =() => {
+    const numeroAleatorio = Math.random();
+    const marcaDeTiempo = Date.now(); // Obtén la marca de tiempo actual en milisegundos
+  
+    // Combina el número aleatorio y la marca de tiempo para crear el ID
+    const id = numeroAleatorio.toString(36).substr(2) + marcaDeTiempo.toString(36);
+  
+    return id;
+  }
+
+  const uid = generarID().toLocaleUpperCase;
   const total = summaryValues.total;
   const total_products = products.reduce(
     (prev, current) => current.quantity + prev,
@@ -28,13 +40,15 @@ const FormSumary = ({ summaryValues }) => {
   const onSubmit = (data) => {
     const formData = {
       ...data,
+      uid,
       total_products,
       products,
       total,
     };
     console.log("formData", formData);
+    localStorage.setItem("order", JSON.stringify(formData))
 
-    navigate("/construccion")
+    navigate("/orders")
   };
 
   return (

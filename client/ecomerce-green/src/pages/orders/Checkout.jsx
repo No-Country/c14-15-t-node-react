@@ -9,7 +9,7 @@ const CheckoutPage = () => {
   return (
     <MainLayout>
       <HeroStore />
-      <Summary editable={true}/>
+      <Summary title={'Resumen de compra'} editable={true}/>
     </MainLayout>
   );
 };
