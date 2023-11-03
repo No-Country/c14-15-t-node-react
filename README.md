@@ -96,7 +96,7 @@ Back .env
 - Creacion de informe de testing
 
 
-<h3 ><b>Puede consultar los casos de prueba:</b></h3>
+<h3 ><b>Puede consultar la documentacion:</b></h3>
 
 <p align="center" style="color: #D39245;
 "><a href="https://drive.google.com/drive/folders/1VzayqzVrN_cvNzZ3lCnRGhDj9Fp9Pcow" target="_blank" > Carpeta </a></p>
