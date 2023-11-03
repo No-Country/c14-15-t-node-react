@@ -6,8 +6,7 @@ import { updateTotal } from "../redux/store/cart/cartSlice";
 import FormSumary from "./summary/FormSumary";
 import { currency } from "../utils";
 
-
-const Summary = ({title, orderValues, editable, subtitle }) => {
+const Summary = ({ title, orderValues, editable, subtitle }) => {
   const dispatch = useDispatch();
   const { cart, total } = useSelector((state) => state.cart);
   // const { user } = useSelector((state) => state.user);
@@ -17,44 +16,53 @@ const Summary = ({title, orderValues, editable, subtitle }) => {
   }, [cart]);
 
   const calcularTotal = () => {
-    let total = 0
+    let total = 0;
     for (let i = 0; i < cart.length; i++) {
       total += cart[i].price * cart[i].quantity;
     }
-  
+
     return total;
   };
 
-  const totalAPagar =currency.format(calcularTotal())
+  const totalAPagar = currency.format(calcularTotal());
   const summaryValues = orderValues ? orderValues : { products: cart, total };
 
   console.log("orden summary", summaryValues);
   console.log(cart);
 
-
- console.log(calcularTotal())
-
-
+  console.log(calcularTotal());
 
   return (
     <div className="container-sumary">
       <section className="section-1-sumary ">
-        <h2 className="text-titulo">
-          Estas a solo un paso de <br /> ayudar al mundo
-        </h2>
+        {editable ? (
+          <>
+            <h2 className="text-titulo">
+              Estas a solo un paso de <br /> ayudar al mundo
+            </h2>
+          </>
+        ) : (
+          <h2 className="text-titulo">
+            ¡Tu compra fue exitosa!
+          </h2>
+        )}
+
         <img src={SumaryImg} alt="" />
       </section>
       <section className="section-2-sumary">
         <h2 className="h2-section">{title}</h2>
-       { !editable && (<>
-       <p>{subtitle}</p> 
-       <hr className="hr-1" />
-     
-       <h2 className="text-[#307C5A]">Numero de orden: {orderValues.uid}</h2>
+        {!editable && (
+          <>
+            <p>{subtitle}</p>
+            <hr className="hr-1" />
 
-     
-       <hr className="hr-1" />
-       </>) } 
+            <h2 className="text-[#307C5A]">
+              Numero de orden: {orderValues.uid}
+            </h2>
+
+            <hr className="hr-1" />
+          </>
+        )}
         <ul>
           <li className="titulo-tabla">
             <p className="w-p">Producto</p>
@@ -71,21 +79,21 @@ const Summary = ({title, orderValues, editable, subtitle }) => {
                   <strong>{product.quantity}</strong>
                 </li>
                 <li className="w-p-precio j-c-end">
-                  <strong>{ currency.format( product.quantity * product.price )}</strong>
+                  <strong>
+                    {currency.format(product.quantity * product.price)}
+                  </strong>
                 </li>
               </ul>
             ))}
           </li>
         </ul>
         <hr className="hr-1" />
-       
+
         <div className="flex justify-between">
           <h3 className="h2-section">Total: </h3>
           <h3>$ {summaryValues.total}</h3>
-        
         </div>
-      
-        
+
         <section>
           <h2 className="h2-section mt-7">Datos comprador</h2>
           <hr className="hr-1" />
@@ -137,4 +145,3 @@ const Summary = ({title, orderValues, editable, subtitle }) => {
 };
 
 export default Summary;
-
