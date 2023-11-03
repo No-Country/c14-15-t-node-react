@@ -98,7 +98,7 @@ Back .env
 <div style="display: grid; gap: 2rem; ">
 <h3 ><b>Puede consultar los casos de prueba:</b></h3>
 
-<h3 align="center" style="color: #D39245;
+<h3  style="color: #D39245;
 "><a href="https://drive.google.com/drive/folders/1VzayqzVrN_cvNzZ3lCnRGhDj9Fp9Pcow" target="_blank" rel="noopener noreferrer"> Carpeta </a></h3>
 </div>
 ### 👉🏻 Tecnologías usadas: 🛠️
