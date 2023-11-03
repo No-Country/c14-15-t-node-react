@@ -24,7 +24,7 @@ const FormSumary = ({ summaryValues }) => {
     return id;
   }
 
-  const uid = generarID().toLocaleUpperCase;
+  const uid = generarID();
   const total = summaryValues.total;
   const total_products = products.reduce(
     (prev, current) => current.quantity + prev,
