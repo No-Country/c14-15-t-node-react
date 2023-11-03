@@ -16,20 +16,22 @@ const Summary = ({title, orderValues, editable, subtitle }) => {
     dispatch(updateTotal());
   }, [cart]);
 
+  const calcularTotal = () => {
+    let total = 0
+    for (let i = 0; i < cart.length; i++) {
+      total += cart[i].price * cart[i].quantity;
+    }
+  
+    return total;
+  };
+
   const totalAPagar =currency.format(calcularTotal())
   const summaryValues = orderValues ? orderValues : { products: cart, total };
 
   console.log("orden summary", summaryValues);
   console.log(cart);
 
- const calcularTotal = () => {
-  let total = 0
-  for (let i = 0; i < cart.length; i++) {
-    total += cart[i].price * cart[i].quantity;
-  }
 
-  return total;
-};
  console.log(calcularTotal())
 
 
