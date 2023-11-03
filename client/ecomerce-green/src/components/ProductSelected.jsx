@@ -99,13 +99,13 @@ const handleIncrement = (product) => {
           lg:w-[620px] "
         >
           <img
-            className="rounded-lg h-[300px] w-[280px] md:w-[200px] 
+            className="rounded-lg h-[300px] object-cover w-[280px] md:w-[200px] 
             lg:w-[300px] lg:h-[400px]"
             src={images?.cover}
             alt="imagen_1 del producto"
           />
           <img
-            className="rounded-lg h-[300px] w-[280px] md:w-[200px] 
+            className="rounded-lg h-[300px] object-cover w-[280px] md:w-[200px] 
             lg:w-[300px] lg:h-[400px]"
             src={images?.picture_1}
             alt="imagen_2 del producto"

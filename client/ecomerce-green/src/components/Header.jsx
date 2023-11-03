@@ -22,7 +22,7 @@ const Header = () => {
   const dispatch = useDispatch();
 console.log(user?.firstname)
   const [open, setOpen] = useState(false);
-
+const [userName, setUserName] = useState("")
   const [nav, setNav] = useState(false);
   const headerShadow = useHeaderShadow();
   const handleNav = () => {
@@ -35,9 +35,18 @@ console.log(user?.firstname)
    
   }, [userToken]);
 
+  // Verificar Token
+  useEffect(() => {
+    if (!user) return;
+
+    setUserName(user?.firstname)
+   
+   
+  }, [user]);
 
 
-let userName = user?.firstname
+
+
 
 let iconUser =  <VscAccount className="text-white" size={20} />
 

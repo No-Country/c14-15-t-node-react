@@ -39,8 +39,7 @@ const ProductFilters = ({orderProduct, brandFilter, page, categoryFilter, energy
         <div className="dropdown-content">
        
           <a className='btn-drop' onClick={() => categoryFilter("Celulares")}>Celulares</a>
-          <a className='btn-drop' href="#">Link 2</a>
-          <a className='btn-drop' href="#">Link 3</a>
+        
         </div>
       </div>
       <div className="dropdown">
