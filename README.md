@@ -98,8 +98,8 @@ Back .env
 
 <h3 ><b>Puede consultar los casos de prueba:</b></h3>
 
-<h3 align="center" style="color: #D39245;
-"><a href="https://drive.google.com/drive/folders/1VzayqzVrN_cvNzZ3lCnRGhDj9Fp9Pcow" target="_blank" rel="noopener noreferrer"> Carpeta </a></h3>
+<p align="center" style="color: #D39245;
+"><a href="https://drive.google.com/drive/folders/1VzayqzVrN_cvNzZ3lCnRGhDj9Fp9Pcow" target="_blank" > Carpeta </a></p>
 
 ### 👉🏻 Tecnologías usadas: 🛠️
 ![Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white) ![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white)
